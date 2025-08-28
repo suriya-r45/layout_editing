@@ -6,7 +6,7 @@ import logoPath from '@assets/1000284180_1755240849891_1755886428742.jpg';
 
 export default function Footer() {
   return (
-    <footer className="py-12 border-t-2" data-testid="footer-main" style={{
+    <footer className="py-8 border-t-2" data-testid="footer-main" style={{
       backgroundColor: '#ffffff',
       borderTopColor: '#E5E5E5',
       color: '#374151'

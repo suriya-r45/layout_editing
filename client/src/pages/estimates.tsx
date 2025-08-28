@@ -45,7 +45,7 @@ export function EstimatesPage() {
               <List className="h-3 w-3 md:h-4 md:w-4" />
               <span>View Estimates</span>
             </TabsTrigger>
-            <TabsTrigger value="create" className="flex items-center justify-center space-x-1 md:space-x-2 data-[state=active]:bg-white data-[state=active]:text-gray-700 text-gray-600 px-2 py-2 text-xs md:text-sm rounded-md font-light">
+            <TabsTrigger value="create" className="flex items-center justify-center space-x-1 md:space-x-2 data-[state=active]:bg-emerald-50 data-[state=active]:text-emerald-700 text-gray-600 px-2 py-2 text-xs md:text-sm rounded-md font-medium hover:bg-emerald-50 hover:text-emerald-600">
               <Plus className="h-3 w-3 md:h-4 md:w-4" />
               <span>Create Estimate</span>
             </TabsTrigger>

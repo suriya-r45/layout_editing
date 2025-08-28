@@ -133,7 +133,7 @@ export default function Login() {
             <Card className="border-0 shadow-lg bg-white border border-gray-200">
               <CardContent className="p-8">
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-light text-gray-700 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Log In Using</h1>
+                  <h1 className="text-2xl font-medium text-gray-800 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Log In Using</h1>
                 </div>
 
                 <form onSubmit={handleLogin} className="space-y-6">
@@ -181,7 +181,7 @@ export default function Login() {
                   
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 text-lg font-light rounded-lg mt-8"
+                    className="w-full h-14 bg-blue-600 border border-blue-600 text-white hover:bg-blue-700 text-lg font-medium rounded-lg mt-8"
                     disabled={isLoading}
                     data-testid="button-submit-login"
                   >
@@ -219,7 +219,7 @@ export default function Login() {
             <Card className="border-0 shadow-lg bg-white border border-gray-200">
               <CardContent className="p-8">
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-light text-gray-700 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Sign Up With Palaniappa</h1>
+                  <h1 className="text-2xl font-medium text-gray-800 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Sign Up With Palaniappa</h1>
                 </div>
 
                 <form onSubmit={handleRegister} className="space-y-6">
@@ -361,7 +361,7 @@ export default function Login() {
                   
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 text-lg font-light rounded-lg mt-8"
+                    className="w-full h-14 bg-green-600 border border-green-600 text-white hover:bg-green-700 text-lg font-medium rounded-lg mt-8"
                     disabled={isRegistering}
                   >
                     {isRegistering ? 'CREATING ACCOUNT...' : 'REGISTER TO CONTINUE'}
