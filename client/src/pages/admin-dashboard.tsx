@@ -277,7 +277,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen" data-testid="page-admin-dashboard" style={{ background: '#ffffff' }}>
+    <div className="min-h-screen" data-testid="page-admin-dashboard" style={{ background: '#f8fafc' }}>
       <Header 
         selectedCurrency={selectedCurrency} 
         onCurrencyChange={setSelectedCurrency} 
@@ -286,11 +286,11 @@ export default function AdminDashboard() {
       <div className="container mx-auto px-3 md:px-4 py-4 md:py-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <h1 className="text-2xl md:text-3xl font-light text-gray-700" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Admin Dashboard</h1>
+            <h1 className="text-2xl md:text-3xl font-medium text-gray-800" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Admin Dashboard</h1>
           </div>
           <Button
             onClick={() => setLocation('/estimates')}
-            className="bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 font-light shadow-md w-full sm:w-auto text-sm px-3 py-2"
+            className="bg-blue-600 border border-blue-600 text-white hover:bg-blue-700 font-medium shadow-md w-full sm:w-auto text-sm px-3 py-2"
           >
             <Calculator className="h-4 w-4 mr-2" />
             Create Customer Estimate
@@ -299,48 +299,48 @@ export default function AdminDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
-          <Card data-testid="card-total-products" className="bg-white shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 rounded-xl">
+          <Card data-testid="card-total-products" className="bg-white shadow-lg border border-gray-300 hover:shadow-xl transition-all duration-300 rounded-xl">
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <Package className="h-6 w-6 md:h-8 md:w-8 text-gray-700" />
+                  <div className="bg-blue-50 p-3 rounded-lg">
+                    <Package className="h-6 w-6 md:h-8 md:w-8 text-blue-600" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-light text-gray-700">Total Products</p>
-                    <p className="text-xl md:text-2xl font-light text-gray-700">{totalProducts}</p>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Total Products</p>
+                    <p className="text-xl md:text-2xl font-semibold text-gray-800">{totalProducts}</p>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card data-testid="card-total-bills" className="bg-white shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 rounded-xl">
+          <Card data-testid="card-total-bills" className="bg-white shadow-lg border border-gray-300 hover:shadow-xl transition-all duration-300 rounded-xl">
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <FileText className="h-6 w-6 md:h-8 md:w-8 text-gray-700" />
+                  <div className="bg-green-50 p-3 rounded-lg">
+                    <FileText className="h-6 w-6 md:h-8 md:w-8 text-green-600" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-light text-gray-700">Total Bills</p>
-                    <p className="text-xl md:text-2xl font-light text-gray-700">{bills.length}</p>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Total Bills</p>
+                    <p className="text-xl md:text-2xl font-semibold text-gray-800">{bills.length}</p>
                   </div>
                 </div>
               </div>
             </CardContent>
           </Card>
 
-          <Card data-testid="card-total-revenue" className="bg-white shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 rounded-xl">
+          <Card data-testid="card-total-revenue" className="bg-white shadow-lg border border-gray-300 hover:shadow-xl transition-all duration-300 rounded-xl">
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <TrendingUp className="h-6 w-6 md:h-8 md:w-8 text-gray-700" />
+                  <div className="bg-emerald-50 p-3 rounded-lg">
+                    <TrendingUp className="h-6 w-6 md:h-8 md:w-8 text-emerald-600" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-light text-gray-700">Total Revenue</p>
-                    <p className="text-lg md:text-2xl font-light text-gray-700">
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Total Revenue</p>
+                    <p className="text-lg md:text-2xl font-semibold text-gray-800">
                       {selectedCurrency === 'INR' ? '₹' : 'BD'} {totalRevenue.toLocaleString()}
                     </p>
                   </div>
@@ -349,16 +349,16 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card data-testid="card-low-stock" className="bg-white shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 rounded-xl">
+          <Card data-testid="card-low-stock" className="bg-white shadow-lg border border-gray-300 hover:shadow-xl transition-all duration-300 rounded-xl">
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <Users className="h-6 w-6 md:h-8 md:w-8 text-gray-700" />
+                  <div className="bg-orange-50 p-3 rounded-lg">
+                    <Users className="h-6 w-6 md:h-8 md:w-8 text-orange-600" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-light text-gray-700">Low Stock Items</p>
-                    <p className="text-xl md:text-2xl font-light text-gray-700">{lowStockProducts}</p>
+                    <p className="text-xs md:text-sm font-medium text-gray-600">Low Stock Items</p>
+                    <p className="text-xl md:text-2xl font-semibold text-gray-800">{lowStockProducts}</p>
                   </div>
                 </div>
               </div>

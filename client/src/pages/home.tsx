@@ -267,6 +267,9 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section Divider */}
+      <div className="w-full border-t border-gray-200 my-8"></div>
+
       {/* Custom Admin Sections */}
       {homeSections.length > 0 && homeSections.map((section) => {
         if (section.items.length === 0) return null;
@@ -391,6 +394,9 @@ export default function Home() {
         );
       })}
 
+      {/* Section Divider */}
+      {homeSections.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
+
       {/* New Arrivals */}
       {newArrivalProducts.length > 0 && (
         <section className="py-12" data-testid="section-new-arrivals" style={{ background: '#ffffff' }}>
@@ -422,6 +428,9 @@ export default function Home() {
         </section>
       )}
 
+      {/* Section Divider */}
+      {newArrivalProducts.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
+
       {/* Gold Plated Silver Collection */}
       {goldPlatedSilverProducts.length > 0 && (
         <section className="py-12" data-testid="section-gold-plated-silver-collection" style={{ background: '#ffffff' }}>
@@ -452,6 +461,9 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {/* Section Divider */}
+      {goldPlatedSilverProducts.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
 
       {/* Material-Based Sections - Always show these regardless of custom sections */}
       
@@ -486,6 +498,9 @@ export default function Home() {
         </section>
       )}
 
+      {/* Section Divider */}
+      {goldProducts.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
+
       {/* Silver Collection */}
       {silverProducts.length > 0 && (
         <section className="py-12" data-testid="section-silver-collection" style={{ background: '#ffffff' }}>
@@ -516,6 +531,9 @@ export default function Home() {
           </div>
         </section>
       )}
+
+      {/* Section Divider */}
+      {silverProducts.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
 
       {/* Diamond Collection */}
       {diamondProducts.length > 0 && (
