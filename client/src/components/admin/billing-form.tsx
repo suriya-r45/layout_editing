@@ -646,9 +646,9 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
               disabled={createBillMutation.isPending || selectedProducts.size === 0}
               data-testid="button-create-bill"
               style={{
-                background: 'linear-gradient(45deg, #ff0066, #ff3366, #ff6600, #ff9900) !important',
-                boxShadow: '0 0 30px #ff0066, 0 8px 25px rgba(255, 0, 102, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important',
-                border: '3px solid #ff0066 !important',
+                background: 'linear-gradient(45deg, #d97706, #f59e0b, #eab308, #facc15) !important',
+                boxShadow: '0 0 30px #d97706, 0 8px 25px rgba(217, 119, 6, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important',
+                border: '3px solid #d97706 !important',
                 textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
                 animation: 'brightPulse 1.5s ease-in-out infinite alternate',
                 transform: 'scale(1.02)',

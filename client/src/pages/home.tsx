@@ -33,11 +33,11 @@ import collectionsImage from '@assets/collections_luxury.png';
 import goldCollectionImage from '@assets/gold_1756147150804.png';
 import silverCollectionImage from '@assets/silver_1756147563831.png';
 import diamondCollectionImage from '@assets/diamond_1756147563832.png';
-import mangalsutraImage from '@assets/mangalsutra_hero.png';
-import noseJewelryImage from '@assets/nose_jewelry_hero.png';
-import ankletsImage from '@assets/anklets_hero.png';
-import broochesImage from '@assets/brooches_hero.png';
-import bridalCollectionsImage from '@assets/bridal_hero.png';
+import mangalsutraImage from '@assets/mangalsutra_new.png';
+import noseJewelryImage from '@assets/nosepins_new.png';
+import ankletsImage from '@assets/anklets_new.png';
+import broochesImage from '@assets/brooches_new.png';
+import bridalCollectionsImage from '@assets/bridal_new.png';
 
 export default function Home() {
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>('BHD');

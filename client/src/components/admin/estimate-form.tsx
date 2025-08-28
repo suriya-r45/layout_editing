@@ -957,7 +957,7 @@ export function EstimateForm() {
               )}
               <Button
                 type="submit"
-                className={`${isEditMode ? 'flex-1' : 'w-full'} bg-rose-800 hover:bg-rose-700 text-rose-100 font-semibold py-3 rounded-lg shadow-lg border border-rose-700 transition-all`}
+                className={`${isEditMode ? 'flex-1' : 'w-full'} bg-amber-800 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg shadow-lg border border-amber-700 transition-all`}
                 disabled={createEstimateMutation.isPending || updateEstimateMutation.isPending}
               >
                 {createEstimateMutation.isPending ? "Creating Estimate..." : 
