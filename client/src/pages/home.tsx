@@ -21,10 +21,10 @@ interface HomeSectionItemWithProduct extends HomeSectionItem {
 }
 import pendantsImage from '@assets/new_pendants.png';
 import earringsImage from '@assets/new_earrings.png';
-import braceletsImage from '@assets/new_bracelets.png';
-import necklacesImage from '@assets/necklaces_luxury_new.png';
-import chainsImage from '@assets/chains_luxury.png';
-import banglesImage from '@assets/new_bangles.png';
+import braceletsImage from '@assets/bracelets_hero.png';
+import necklacesImage from '@assets/necklaces_hero.png';
+import chainsImage from '@assets/chains_hero.png';
+import banglesImage from '@assets/bangles_hero.png';
 import watchesImage from '@assets/watches_luxury.png';
 import mensJewelryImage from '@assets/mens_jewelry_luxury.png';
 import childrenJewelryImage from '@assets/children_jewelry_luxury.png';
