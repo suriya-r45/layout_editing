@@ -654,7 +654,7 @@ function ProductForm({ currency }: ProductFormProps) {
 
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-lg shadow-md border-0 transition-all"
+              className="w-full bg-gradient-to-r from-amber-800 to-yellow-700 hover:from-amber-900 hover:to-yellow-800 text-white font-semibold py-3 rounded-lg shadow-lg border border-amber-700 transition-all"
               disabled={addProductMutation.isPending}
               data-testid="button-add-product"
             >

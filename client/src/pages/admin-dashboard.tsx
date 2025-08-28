@@ -290,7 +290,7 @@ export default function AdminDashboard() {
           </div>
           <Button
             onClick={() => setLocation('/estimates')}
-            className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-md w-full sm:w-auto text-sm px-3 py-2"
+            className="bg-gradient-to-r from-amber-800 to-yellow-700 hover:from-amber-900 hover:to-yellow-800 text-white font-semibold shadow-md w-full sm:w-auto text-sm px-3 py-2"
           >
             <Calculator className="h-4 w-4 mr-2" />
             Create Customer Estimate
@@ -303,8 +303,8 @@ export default function AdminDashboard() {
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="bg-blue-50 p-3 rounded-lg">
-                    <Package className="h-6 w-6 md:h-8 md:w-8 text-blue-600" />
+                  <div className="bg-amber-50 p-3 rounded-lg">
+                    <Package className="h-6 w-6 md:h-8 md:w-8 text-amber-700" />
                   </div>
                   <div className="ml-3 md:ml-4">
                     <p className="text-xs md:text-sm font-medium text-gray-600">Total Products</p>
@@ -319,8 +319,8 @@ export default function AdminDashboard() {
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="bg-green-50 p-3 rounded-lg">
-                    <FileText className="h-6 w-6 md:h-8 md:w-8 text-green-600" />
+                  <div className="bg-yellow-50 p-3 rounded-lg">
+                    <FileText className="h-6 w-6 md:h-8 md:w-8 text-yellow-700" />
                   </div>
                   <div className="ml-3 md:ml-4">
                     <p className="text-xs md:text-sm font-medium text-gray-600">Total Bills</p>
@@ -335,8 +335,8 @@ export default function AdminDashboard() {
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="bg-purple-50 p-3 rounded-lg">
-                    <TrendingUp className="h-6 w-6 md:h-8 md:w-8 text-purple-600" />
+                  <div className="bg-amber-50 p-3 rounded-lg">
+                    <TrendingUp className="h-6 w-6 md:h-8 md:w-8 text-amber-600" />
                   </div>
                   <div className="ml-3 md:ml-4">
                     <p className="text-xs md:text-sm font-medium text-gray-600">Total Revenue</p>
@@ -372,40 +372,40 @@ export default function AdminDashboard() {
             {/* Mobile: Vertical scrollable tabs */}
             <div className="md:hidden">
               <div className="overflow-x-auto">
-                <TabsList className="grid w-full grid-cols-9 bg-white border border-slate-200 shadow-sm h-auto p-2 rounded-xl min-w-max">
-                  <TabsTrigger value="products" data-testid="tab-products" className="text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
+                <TabsList className="grid w-full grid-cols-9 bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 shadow-md h-auto p-2 rounded-xl min-w-max">
+                  <TabsTrigger value="products" data-testid="tab-products" className="text-xs font-semibold text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
                     <Plus className="h-4 w-4 mr-1" />
                     Products
                   </TabsTrigger>
-                  <TabsTrigger value="billing" data-testid="tab-billing" className="text-xs font-semibold text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
+                  <TabsTrigger value="billing" data-testid="tab-billing" className="text-xs font-semibold text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
                     <Receipt className="h-4 w-4 mr-1" />
                     Billing
                   </TabsTrigger>
-                  <TabsTrigger value="bills" data-testid="tab-bills" className="text-xs font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
+                  <TabsTrigger value="bills" data-testid="tab-bills" className="text-xs font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
                     <History className="h-4 w-4 mr-1" />
                     Bills History
                   </TabsTrigger>
-                  <TabsTrigger value="estimates" data-testid="tab-estimates" className="text-xs font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
+                  <TabsTrigger value="estimates" data-testid="tab-estimates" className="text-xs font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
                     <ClipboardList className="h-4 w-4 mr-1" />
                     Estimates
                   </TabsTrigger>
-                  <TabsTrigger value="categories" data-testid="tab-categories" className="text-xs font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
+                  <TabsTrigger value="categories" data-testid="tab-categories" className="text-xs font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
                     <Tag className="h-4 w-4 mr-1" />
                     Categories
                   </TabsTrigger>
-                  <TabsTrigger value="pricing" data-testid="tab-pricing" className="text-xs font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
+                  <TabsTrigger value="pricing" data-testid="tab-pricing" className="text-xs font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
                     <BarChart3 className="h-4 w-4 mr-1" />
                     Pricing
                   </TabsTrigger>
-                  <TabsTrigger value="barcodes" data-testid="tab-barcodes" className="text-xs font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
+                  <TabsTrigger value="barcodes" data-testid="tab-barcodes" className="text-xs font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
                     <QrCode className="h-4 w-4 mr-1" />
                     QR Codes
                   </TabsTrigger>
-                  <TabsTrigger value="home-sections" data-testid="tab-home-sections" className="text-xs font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
+                  <TabsTrigger value="home-sections" data-testid="tab-home-sections" className="text-xs font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
                     <Grid3X3 className="h-4 w-4 mr-1" />
                     Home Sections
                   </TabsTrigger>
-                  <TabsTrigger value="orders" data-testid="tab-orders" className="text-xs font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
+                  <TabsTrigger value="orders" data-testid="tab-orders" className="text-xs font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-300 px-3 py-3 mx-1 rounded-lg min-h-[44px] flex items-center justify-center whitespace-nowrap">
                     <Package className="h-4 w-4 mr-1" />
                     Order Tracking
                   </TabsTrigger>
@@ -414,40 +414,40 @@ export default function AdminDashboard() {
             </div>
             
             {/* Desktop: Original horizontal layout */}
-            <TabsList className="hidden md:grid w-full grid-cols-9 bg-white border border-slate-200 shadow-sm h-auto p-1 rounded-xl">
-              <TabsTrigger value="products" data-testid="tab-products" className="text-xs md:text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
+            <TabsList className="hidden md:grid w-full grid-cols-9 bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 shadow-sm h-auto p-1">
+              <TabsTrigger value="products" data-testid="tab-products" className="text-xs md:text-sm font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
                 <Plus className="h-4 w-4 mr-1" />
                 Products
               </TabsTrigger>
-              <TabsTrigger value="billing" data-testid="tab-billing" className="text-xs md:text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
+              <TabsTrigger value="billing" data-testid="tab-billing" className="text-xs md:text-sm font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
                 <Receipt className="h-4 w-4 mr-1" />
                 Billing
               </TabsTrigger>
-              <TabsTrigger value="bills" data-testid="tab-bills" className="text-xs md:text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
+              <TabsTrigger value="bills" data-testid="tab-bills" className="text-xs md:text-sm font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
                 <History className="h-4 w-4 mr-1" />
                 Bills History
               </TabsTrigger>
-              <TabsTrigger value="estimates" data-testid="tab-estimates" className="text-xs md:text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
+              <TabsTrigger value="estimates" data-testid="tab-estimates" className="text-xs md:text-sm font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
                 <ClipboardList className="h-4 w-4 mr-1" />
                 Customer Estimates
               </TabsTrigger>
-              <TabsTrigger value="categories" data-testid="tab-categories" className="text-xs md:text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
+              <TabsTrigger value="categories" data-testid="tab-categories" className="text-xs md:text-sm font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
                 <Tag className="h-4 w-4 mr-1" />
                 Categories
               </TabsTrigger>
-              <TabsTrigger value="pricing" data-testid="tab-pricing" className="text-xs md:text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
+              <TabsTrigger value="pricing" data-testid="tab-pricing" className="text-xs md:text-sm font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
                 <BarChart3 className="h-4 w-4 mr-1" />
                 Pricing
               </TabsTrigger>
-              <TabsTrigger value="barcodes" data-testid="tab-barcodes" className="text-xs md:text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
+              <TabsTrigger value="barcodes" data-testid="tab-barcodes" className="text-xs md:text-sm font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
                 <QrCode className="h-4 w-4 mr-1" />
                 QR Codes
               </TabsTrigger>
-              <TabsTrigger value="home-sections" data-testid="tab-home-sections" className="text-xs md:text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
+              <TabsTrigger value="home-sections" data-testid="tab-home-sections" className="text-xs md:text-sm font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
                 <Grid3X3 className="h-4 w-4 mr-1" />
                 Home Sections
               </TabsTrigger>
-              <TabsTrigger value="orders" data-testid="tab-orders" className="text-xs md:text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-indigo-600 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
+              <TabsTrigger value="orders" data-testid="tab-orders" className="text-xs md:text-sm font-medium text-amber-800 hover:text-amber-900 hover:bg-amber-100 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber-800 data-[state=active]:to-yellow-700 data-[state=active]:text-white data-[state=active]:shadow-md transition-all duration-200 px-1 py-2 mx-0.5 rounded-md min-h-[40px] flex items-center justify-center">
                 <Package className="h-4 w-4 mr-1" />
                 Order Tracking
               </TabsTrigger>
