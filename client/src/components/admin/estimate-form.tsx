@@ -904,7 +904,7 @@ export function EstimateForm() {
               <Button
                 type="button"
                 onClick={calculatePricing}
-                className="mt-4 bg-yellow-600 hover:bg-yellow-700 text-white"
+                className="mt-4 bg-blue-600 hover:bg-blue-700 text-white"
               >
                 Calculate Pricing
               </Button>
@@ -957,7 +957,7 @@ export function EstimateForm() {
               )}
               <Button
                 type="submit"
-                className={`${isEditMode ? 'flex-1' : 'w-full'} bg-amber-800 hover:bg-amber-700 text-white font-semibold py-3 rounded-lg shadow-lg border border-amber-700 transition-all`}
+                className={`${isEditMode ? 'flex-1' : 'w-full'} bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-lg shadow-md border-0 transition-all`}
                 disabled={createEstimateMutation.isPending || updateEstimateMutation.isPending}
               >
                 {createEstimateMutation.isPending ? "Creating Estimate..." : 
