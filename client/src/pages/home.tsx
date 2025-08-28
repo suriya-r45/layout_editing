@@ -218,10 +218,11 @@ export default function Home() {
       />
 
       {/* 1. Explore Our Collections - New Carousel Design */}
-      <section className="pt-6 pb-8" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #fefdfb 0%, #fef9f4 100%)' }}>
+      <section className="pt-8 pb-12" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #fefefe 0%, #f8f6f0 50%, #fef7ed 100%)' }}>
         <div className="container mx-auto px-4">
-          <div className="text-center mb-6">
-            <h2 className="text-lg sm:text-2xl md:text-4xl font-bold text-black">Explore Our Collections</h2>
+          <div className="text-center mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold bg-gradient-to-r from-amber-900 via-yellow-800 to-amber-900 bg-clip-text text-transparent drop-shadow-lg mb-2">Explore Our Collections</h2>
+            <p className="text-amber-700 text-lg font-medium opacity-90">Discover our exquisite jewelry crafted with precision and care</p>
           </div>
           
           {/* Category Carousel */}
@@ -230,20 +231,20 @@ export default function Home() {
             {/* Category Items Container */}
             <div 
               id="category-carousel"
-              className="flex overflow-x-auto scrollbar-hide gap-4 px-2 py-4"
+              className="flex overflow-x-auto scrollbar-hide gap-6 px-4 py-6"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {categories.map((category, index) => (
                 <div 
                   key={category.key}
-                  className="flex-shrink-0 cursor-pointer hover:transform hover:scale-105 transition-transform duration-200"
+                  className="flex-shrink-0 cursor-pointer hover:transform hover:scale-110 transition-all duration-300 hover:shadow-2xl"
                   onClick={() => handleViewAllClick(category.key)}
                   data-testid={`category-card-${category.key}`}
                 >
                   <div className="flex flex-col items-center">
                     {/* Category Image */}
                     <div 
-                      className="w-24 h-24 md:w-32 md:h-32 rounded-full shadow-lg overflow-hidden mb-3 border-2 border-black"
+                      className="w-24 h-24 md:w-32 md:h-32 rounded-full shadow-xl overflow-hidden mb-3 bg-gradient-to-br from-white to-gray-50 ring-4 ring-white ring-opacity-50"
                       style={{
                         backgroundImage: `url(${category.image})`,
                         backgroundSize: 'cover',
@@ -254,8 +255,7 @@ export default function Home() {
                     
                     {/* Category Name */}
                     <h3 
-                      className="text-sm md:text-base font-semibold text-center max-w-[100px] leading-tight" 
-                      style={{ color: '#8b4513' }}
+                      className="text-sm md:text-base font-bold text-center max-w-[100px] leading-tight bg-gradient-to-r from-amber-800 to-yellow-700 bg-clip-text text-transparent drop-shadow-sm" 
                     >
                       {category.name}
                     </h3>
