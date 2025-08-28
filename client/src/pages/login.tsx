@@ -125,20 +125,20 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4" data-testid="page-login">
+    <div className="min-h-screen flex items-center justify-center px-4" data-testid="page-login" style={{ background: 'linear-gradient(135deg, #fefefe 0%, #f8f6f0 50%, #fef7ed 100%)' }}>
       <div className="w-full max-w-md">
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'login' | 'register')} className="w-full">
           {/* Login Tab */}
           <TabsContent value="login" className="space-y-0">
-            <Card className="border-0 shadow-lg">
+            <Card className="border-0 shadow-lg bg-white border border-amber-200">
               <CardContent className="p-8">
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-bold text-gray-900 mb-6">Log In Using</h1>
+                  <h1 className="text-2xl font-light text-amber-800 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Log In Using</h1>
                 </div>
 
                 <form onSubmit={handleLogin} className="space-y-6">
                   <div>
-                    <Label htmlFor="email" className="text-base font-medium text-gray-700 mb-2 block">
+                    <Label htmlFor="email" className="text-base font-light text-amber-800 mb-2 block">
                       Email Address / Mobile Number*
                     </Label>
                     <Input
@@ -147,14 +147,14 @@ export default function Login() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="h-14 text-base border-gray-300 rounded-lg focus:border-rose-900 focus:ring-rose-900"
+                      className="h-14 text-base border-amber-200 rounded-lg focus:border-amber-700 focus:ring-amber-200 text-amber-800"
                       data-testid="input-email"
                       placeholder="Enter email or mobile number"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="password" className="text-base font-medium text-gray-700 mb-2 block">
+                    <Label htmlFor="password" className="text-base font-light text-amber-800 mb-2 block">
                       Enter Password*
                     </Label>
                     <div className="relative">
@@ -164,14 +164,14 @@ export default function Login() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        className="h-14 text-base border-gray-300 rounded-lg focus:border-rose-900 focus:ring-rose-900 pr-16"
+                        className="h-14 text-base border-amber-200 rounded-lg focus:border-amber-700 focus:ring-amber-200 pr-16 text-amber-800"
                         data-testid="input-password"
                       />
                       <Button
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-amber-700 hover:text-amber-800"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? "HIDE" : "SHOW"}
@@ -216,10 +216,10 @@ export default function Login() {
 
           {/* Register Tab */}
           <TabsContent value="register" className="space-y-0">
-            <Card className="border-0 shadow-lg">
+            <Card className="border-0 shadow-lg bg-white border border-amber-200">
               <CardContent className="p-8">
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-bold text-gray-900 mb-6">Sign Up With Palaniappa</h1>
+                  <h1 className="text-2xl font-light text-amber-800 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Sign Up With Palaniappa</h1>
                 </div>
 
                 <form onSubmit={handleRegister} className="space-y-6">

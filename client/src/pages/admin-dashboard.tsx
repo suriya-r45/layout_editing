@@ -277,7 +277,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50" data-testid="page-admin-dashboard">
+    <div className="min-h-screen" data-testid="page-admin-dashboard" style={{ background: 'linear-gradient(135deg, #fefefe 0%, #f8f6f0 50%, #fef7ed 100%)' }}>
       <Header 
         selectedCurrency={selectedCurrency} 
         onCurrencyChange={setSelectedCurrency} 
@@ -286,7 +286,7 @@ export default function AdminDashboard() {
       <div className="container mx-auto px-3 md:px-4 py-4 md:py-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold text-slate-800">Admin Dashboard</h1>
+            <h1 className="text-2xl md:text-3xl font-light text-amber-800" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Admin Dashboard</h1>
           </div>
           <Button
             onClick={() => setLocation('/estimates')}
@@ -299,7 +299,7 @@ export default function AdminDashboard() {
 
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
-          <Card data-testid="card-total-products" className="bg-white shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 rounded-xl">
+          <Card data-testid="card-total-products" className="bg-white shadow-sm border border-amber-200 hover:shadow-md transition-all duration-300 rounded-xl">
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -315,7 +315,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card data-testid="card-total-bills" className="bg-white shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 rounded-xl">
+          <Card data-testid="card-total-bills" className="bg-white shadow-sm border border-amber-200 hover:shadow-md transition-all duration-300 rounded-xl">
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -331,7 +331,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card data-testid="card-total-revenue" className="bg-white shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 rounded-xl">
+          <Card data-testid="card-total-revenue" className="bg-white shadow-sm border border-amber-200 hover:shadow-md transition-all duration-300 rounded-xl">
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -349,7 +349,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card data-testid="card-low-stock" className="bg-white shadow-sm border border-slate-200 hover:shadow-md transition-all duration-300 rounded-xl">
+          <Card data-testid="card-low-stock" className="bg-white shadow-sm border border-amber-200 hover:shadow-md transition-all duration-300 rounded-xl">
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
