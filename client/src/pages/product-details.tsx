@@ -43,7 +43,7 @@ export default function ProductDetails() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen" style={{ background: '#ffffff' }}>
         <Header selectedCurrency={selectedCurrency} onCurrencyChange={setSelectedCurrency} />
         <div className="container mx-auto px-4 py-8">
           <div className="animate-pulse">
@@ -65,10 +65,10 @@ export default function ProductDetails() {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen" style={{ background: '#ffffff' }}>
         <Header selectedCurrency={selectedCurrency} onCurrencyChange={setSelectedCurrency} />
         <div className="container mx-auto px-4 py-8 text-center">
-          <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
+          <h1 className="text-2xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Product Not Found</h1>
           <Link href="/">
             <Button>Back to Home</Button>
           </Link>
@@ -145,15 +145,15 @@ export default function ProductDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50" data-testid="page-product-details">
+    <div className="min-h-screen" data-testid="page-product-details" style={{ background: '#ffffff' }}>
       <Header selectedCurrency={selectedCurrency} onCurrencyChange={setSelectedCurrency} />
       
       <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
-        <nav className="flex items-center space-x-2 text-sm text-gray-600 mb-6">
-          <Link href="/" className="hover:text-black">Home</Link>
+        <nav className="flex items-center space-x-2 text-sm font-medium text-gray-700 mb-6">
+          <Link href="/" className="hover:text-gray-900">Home</Link>
           <span>/</span>
-          <span className="text-black">{product.name}</span>
+          <span className="font-semibold text-gray-900">{product.name}</span>
         </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -270,7 +270,7 @@ export default function ProductDetails() {
           <div className="space-y-6">
             <div>
               <div className="flex items-start justify-between mb-2">
-                <h1 className="text-3xl font-bold text-black" data-testid="text-product-name">
+                <h1 className="text-3xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }} data-testid="text-product-name">
                   {product.name}
                 </h1>
                 <div className="flex space-x-2">
@@ -289,7 +289,7 @@ export default function ProductDetails() {
                 </Badge>
               )}
               
-              <div className="text-4xl font-bold text-black mb-2" data-testid="text-product-price">
+              <div className="text-4xl font-semibold text-gray-900 mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }} data-testid="text-product-price">
                 {currencySymbol} {price.toFixed(2)}
               </div>
               
@@ -307,8 +307,8 @@ export default function ProductDetails() {
             {/* Enhanced Product Description */}
             <div className="space-y-6">
               <div>
-                <h3 className="text-xl font-semibold text-black mb-3">Product Description</h3>
-                <p className="text-gray-600 leading-relaxed" data-testid="text-product-description">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Product Description</h3>
+                <p className="font-medium text-gray-700 leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }} data-testid="text-product-description">
                   {product.description}
                 </p>
               </div>
@@ -318,30 +318,30 @@ export default function ProductDetails() {
               {/* Detailed Product Information */}
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="bg-white p-4 rounded-lg border border-gray-200">
-                  <h4 className="font-semibold text-black mb-3 flex items-center">
+                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                     <Info className="h-4 w-4 mr-2 text-blue-600" />
                     Material Details
                   </h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Material:</span>
+                      <span className="font-medium text-gray-700">Material:</span>
                       <span className="font-medium">{product.material}</span>
                     </div>
                     {product.purity && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Purity:</span>
+                        <span className="font-medium text-gray-700">Purity:</span>
                         <span className="font-medium">{product.purity}</span>
                       </div>
                     )}
                     {product.grossWeight && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Gross Weight:</span>
+                        <span className="font-medium text-gray-700">Gross Weight:</span>
                         <span className="font-medium">{product.grossWeight}g</span>
                       </div>
                     )}
                     {product.netWeight && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Net Weight:</span>
+                        <span className="font-medium text-gray-700">Net Weight:</span>
                         <span className="font-medium">{product.netWeight}g</span>
                       </div>
                     )}
@@ -349,32 +349,32 @@ export default function ProductDetails() {
                 </div>
 
                 <div className="bg-white p-4 rounded-lg border border-gray-200">
-                  <h4 className="font-semibold text-black mb-3 flex items-center">
+                  <h4 className="font-semibold text-gray-900 mb-3 flex items-center" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                     <Package className="h-4 w-4 mr-2 text-green-600" />
                     Product Features
                   </h4>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Product Code:</span>
+                      <span className="font-medium text-gray-700">Product Code:</span>
                       <span className="font-medium" data-testid="text-product-code">{product.productCode || 'N/A'}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Category:</span>
+                      <span className="font-medium text-gray-700">Category:</span>
                       <span className="font-medium">{product.category}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Suitable For:</span>
+                      <span className="font-medium text-gray-700">Suitable For:</span>
                       <span className="font-medium">{product.gender || 'Unisex'}</span>
                     </div>
                     {product.size && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Size:</span>
+                        <span className="font-medium text-gray-700">Size:</span>
                         <span className="font-medium">{product.size}</span>
                       </div>
                     )}
                     {product.occasion && (
                       <div className="flex justify-between">
-                        <span className="text-gray-600">Perfect For:</span>
+                        <span className="font-medium text-gray-700">Perfect For:</span>
                         <span className="font-medium">{product.occasion}</span>
                       </div>
                     )}
@@ -384,7 +384,7 @@ export default function ProductDetails() {
 
               {/* Care Instructions */}
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                <h4 className="font-semibold text-black mb-3 flex items-center">
+                <h4 className="font-semibold text-gray-900 mb-3 flex items-center" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   <Heart className="h-4 w-4 mr-2 text-blue-600" />
                   Care Instructions
                 </h4>
@@ -419,27 +419,27 @@ export default function ProductDetails() {
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   {product.material && (
                     <div>
-                      <span className="text-gray-600">Material:</span>
+                      <span className="font-medium text-gray-700">Material:</span>
                       <span className="ml-2 font-medium">{product.material}</span>
                     </div>
                   )}
                   {product.grossWeight && (
                     <div className="flex items-center">
                       <Weight className="h-4 w-4 mr-1 text-gray-500" />
-                      <span className="text-gray-600">Gross Weight:</span>
+                      <span className="font-medium text-gray-700">Gross Weight:</span>
                       <span className="ml-2 font-medium">{product.grossWeight}g</span>
                     </div>
                   )}
                   {product.netWeight && (
                     <div className="flex items-center">
                       <Weight className="h-4 w-4 mr-1 text-gray-500" />
-                      <span className="text-gray-600">Net Weight:</span>
+                      <span className="font-medium text-gray-700">Net Weight:</span>
                       <span className="ml-2 font-medium">{product.netWeight}g</span>
                     </div>
                   )}
                   <div className="flex items-center">
                     <Package className="h-4 w-4 mr-1 text-gray-500" />
-                    <span className="text-gray-600">Category:</span>
+                    <span className="font-medium text-gray-700">Category:</span>
                     <span className="ml-2 font-medium">{category?.name || product.category}</span>
                   </div>
                 </div>
@@ -480,11 +480,11 @@ export default function ProductDetails() {
             </div>
 
             {/* Additional Info */}
-            <div className="border-t pt-6 text-sm text-gray-600">
+            <div className="border-t pt-6 text-sm font-medium text-gray-700">
 
               <div className="bg-gray-50 p-4 rounded-lg border">
-                <h4 className="font-semibold text-black mb-3 flex items-center">
-                  <Package className="h-4 w-4 mr-2 text-gray-600" />
+                <h4 className="font-semibold text-gray-900 mb-3 flex items-center" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                  <Package className="h-4 w-4 mr-2 font-medium text-gray-700" />
                   Shipping Information
                 </h4>
                 <div className="text-sm text-gray-700 space-y-2">
