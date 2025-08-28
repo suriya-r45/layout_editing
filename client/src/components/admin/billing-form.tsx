@@ -351,7 +351,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
     <div>
       <Card className="bg-white shadow-sm border border-amber-200" data-testid="card-billing-form">
         <CardHeader>
-        <CardTitle className="text-gray-700 font-light flex items-center gap-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+        <CardTitle className="text-gray-900 font-semibold flex items-center gap-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
           <FileText className="h-5 w-5 text-amber-700" />
           {isEditMode ? 'Edit Customer Bill' : 'Create New Bill'}
           {isEditMode && (
@@ -370,7 +370,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
               <h4 className="text-lg font-light text-gray-700" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Customer Information</h4>
               
               <div>
-                <Label htmlFor="customerName">Customer Name</Label>
+                <Label htmlFor="customerName" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Customer Name</Label>
                 <Input
                   id="customerName"
                   value={customerData.customerName}
@@ -382,7 +382,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
               </div>
               
               <div>
-                <Label htmlFor="customerEmail">Email</Label>
+                <Label htmlFor="customerEmail" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Email</Label>
                 <Input
                   id="customerEmail"
                   type="email"
@@ -395,7 +395,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
               </div>
               
               <div>
-                <Label htmlFor="customerPhone">Phone</Label>
+                <Label htmlFor="customerPhone" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Phone</Label>
                 <Input
                   id="customerPhone"
                   type="tel"
@@ -408,7 +408,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
               </div>
               
               <div>
-                <Label htmlFor="customerAddress">Address</Label>
+                <Label htmlFor="customerAddress" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Address</Label>
                 <Textarea
                   id="customerAddress"
                   value={customerData.customerAddress}
@@ -423,10 +423,10 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
 
             {/* Bill Settings */}
             <div className="space-y-4">
-              <h4 className="text-lg font-medium text-black">Bill Settings</h4>
+              <h4 className="text-lg font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Bill Settings</h4>
               
               <div>
-                <Label htmlFor="billCurrency">Currency</Label>
+                <Label htmlFor="billCurrency" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Currency</Label>
                 <Select
                   value={customerData.currency}
                   onValueChange={(value: Currency) => setCustomerData({ ...customerData, currency: value })}
@@ -442,7 +442,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
               </div>
               
               <div>
-                <Label htmlFor="makingCharges">Making Charges (%)</Label>
+                <Label htmlFor="makingCharges" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Making Charges (%)</Label>
                 <Input
                   id="makingCharges"
                   type="number"
@@ -457,7 +457,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
               
               {customerData.currency === 'INR' && (
                 <div>
-                  <Label htmlFor="gst">GST (%)</Label>
+                  <Label htmlFor="gst" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>GST (%)</Label>
                   <Input
                     id="gst"
                     type="number"
@@ -473,7 +473,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
               
               {customerData.currency === 'BHD' && (
                 <div>
-                  <Label htmlFor="vat">VAT (%) - Bahrain</Label>
+                  <Label htmlFor="vat" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>VAT (%) - Bahrain</Label>
                   <Input
                     id="vat"
                     type="number"
@@ -489,11 +489,11 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
 
               {/* Amount Fields */}
               <div className="space-y-4 border-t pt-4">
-                <h5 className="font-medium text-black">Product Amounts (Editable)</h5>
+                <h5 className="font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Product Amounts (Editable)</h5>
                 <p className="text-xs text-gray-600">These amounts are auto-populated from selected products but can be edited manually.</p>
                 
                 <div>
-                  <Label htmlFor="amountInr">Amount (INR)</Label>
+                  <Label htmlFor="amountInr" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Amount (INR)</Label>
                   <Input
                     id="amountInr"
                     type="number"
@@ -506,7 +506,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
                 </div>
                 
                 <div>
-                  <Label htmlFor="amountBhd">Amount (BHD)</Label>
+                  <Label htmlFor="amountBhd" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Amount (BHD)</Label>
                   <Input
                     id="amountBhd"
                     type="number"
@@ -556,7 +556,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
 
           {/* Product Selection */}
           <div>
-            <h4 className="text-lg font-medium text-black mb-4">Select Products</h4>
+            <h4 className="text-lg font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Select Products</h4>
             
             {/* Search Input */}
             <div className="mb-4">

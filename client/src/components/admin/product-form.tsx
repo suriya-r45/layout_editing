@@ -374,7 +374,7 @@ function ProductForm({ currency }: ProductFormProps) {
       {/* Add Product Form */}
       <Card data-testid="card-add-product" className="bg-white shadow-sm border border-amber-200">
         <CardHeader>
-          <CardTitle className="text-gray-700 font-light flex items-center gap-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+          <CardTitle className="text-gray-900 font-semibold flex items-center gap-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
             <Plus className="h-5 w-5 text-amber-700" />
             Add New Product
           </CardTitle>
@@ -383,7 +383,7 @@ function ProductForm({ currency }: ProductFormProps) {
           <form onSubmit={handleSubmit} className="space-y-4" data-testid="form-add-product">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="category">Category</Label>
+                <Label htmlFor="category" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Category</Label>
                 <Select 
                   value={formData.category} 
                   onValueChange={(value) => setFormData({ ...formData, category: value, subCategory: '' })}
@@ -406,7 +406,7 @@ function ProductForm({ currency }: ProductFormProps) {
               </div>
               
               <div>
-                <Label htmlFor="subCategory">Sub Category</Label>
+                <Label htmlFor="subCategory" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Sub Category</Label>
                 <Select 
                   value={formData.subCategory} 
                   onValueChange={(value) => setFormData({ ...formData, subCategory: value })}
@@ -432,7 +432,7 @@ function ProductForm({ currency }: ProductFormProps) {
               </div>
 
               <div>
-                <Label htmlFor="material">Material</Label>
+                <Label htmlFor="material" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Material</Label>
                 <Select 
                   value={formData.material} 
                   onValueChange={(value) => setFormData({ 
@@ -455,7 +455,7 @@ function ProductForm({ currency }: ProductFormProps) {
               </div>
               
               <div>
-                <Label htmlFor="name">Product Name</Label>
+                <Label htmlFor="name" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Product Name</Label>
                 <Input
                   id="name"
                   value={formData.name}
@@ -468,7 +468,7 @@ function ProductForm({ currency }: ProductFormProps) {
             </div>
 
             <div>
-              <Label htmlFor="description">Product Description</Label>
+              <Label htmlFor="description" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Product Description</Label>
               <Textarea
                 id="description"
                 value={formData.description}
@@ -483,7 +483,7 @@ function ProductForm({ currency }: ProductFormProps) {
             {/* Editable price fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="priceInr">Price (INR)</Label>
+                <Label htmlFor="priceInr" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Price (INR)</Label>
                 <Input
                   id="priceInr"
                   type="number"
@@ -498,7 +498,7 @@ function ProductForm({ currency }: ProductFormProps) {
               </div>
               
               <div>
-                <Label htmlFor="priceBhd">Price (BHD)</Label>
+                <Label htmlFor="priceBhd" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Price (BHD)</Label>
                 <Input
                   id="priceBhd"
                   type="number"
@@ -515,7 +515,7 @@ function ProductForm({ currency }: ProductFormProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="grossWeight">Gross Weight (g)</Label>
+                <Label htmlFor="grossWeight" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gross Weight (g)</Label>
                 <Input
                   id="grossWeight"
                   type="number"
@@ -529,7 +529,7 @@ function ProductForm({ currency }: ProductFormProps) {
               </div>
               
               <div>
-                <Label htmlFor="netWeight">Net Weight (g)</Label>
+                <Label htmlFor="netWeight" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Net Weight (g)</Label>
                 <Input
                   id="netWeight"
                   type="number"
@@ -545,7 +545,7 @@ function ProductForm({ currency }: ProductFormProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <Label htmlFor="purity">Purity</Label>
+                <Label htmlFor="purity" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Purity</Label>
                 <Select 
                   value={formData.purity} 
                   onValueChange={(value) => setFormData({ ...formData, purity: value })}
@@ -573,7 +573,7 @@ function ProductForm({ currency }: ProductFormProps) {
               </div>
               
               <div>
-                <Label htmlFor="stones">Stones/Gems</Label>
+                <Label htmlFor="stones" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Stones/Gems</Label>
                 <Input
                   id="stones"
                   value={formData.stones}
@@ -586,7 +586,7 @@ function ProductForm({ currency }: ProductFormProps) {
 
 
             <div>
-              <Label htmlFor="stock">Stock Quantity</Label>
+              <Label htmlFor="stock" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Stock Quantity</Label>
               <Input
                 id="stock"
                 type="number"
@@ -605,13 +605,13 @@ function ProductForm({ currency }: ProductFormProps) {
                 onCheckedChange={(checked) => setFormData({ ...formData, isNewArrival: checked === true })}
                 data-testid="checkbox-new-arrival"
               />
-              <Label htmlFor="isNewArrival" className="text-sm font-medium">
+              <Label htmlFor="isNewArrival" className="text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                 Mark as New Arrival (will appear in New Arrivals section)
               </Label>
             </div>
 
             <div>
-              <Label htmlFor="images">Product Images</Label>
+              <Label htmlFor="images" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Product Images</Label>
               <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-gray-400">
                 <input
                   id="images"

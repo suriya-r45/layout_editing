@@ -157,7 +157,7 @@ export default function PriceManagement() {
         <div>
           <h2 className="text-2xl font-light text-gray-700 flex items-center gap-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
             <DollarSign className="h-6 w-6 text-amber-700" />
-            Price Management
+            <span className="text-gray-900 font-semibold" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Price Management</span>
           </h2>
           <p className="text-gray-500 font-light mt-1">
             Update product prices and manage pricing strategies
@@ -176,7 +176,7 @@ export default function PriceManagement() {
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <Label htmlFor="search">Search Products</Label>
+              <Label htmlFor="search" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Search Products</Label>
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
                 <Input
@@ -190,7 +190,7 @@ export default function PriceManagement() {
             </div>
             
             <div>
-              <Label htmlFor="category">Category Filter</Label>
+              <Label htmlFor="category" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Category Filter</Label>
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
                 <SelectTrigger>
                   <SelectValue placeholder="All Categories" />
@@ -288,7 +288,7 @@ export default function PriceManagement() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Quick Percentage Updates */}
             <div>
-              <Label>Quick Percentage Updates</Label>
+              <Label className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Quick Percentage Updates</Label>
               <div className="flex gap-2 mt-2">
                 <Button
                   type="button"
@@ -336,7 +336,7 @@ export default function PriceManagement() {
             {/* Manual Price Input */}
             <div className="grid grid-cols-3 gap-4">
               <div>
-                <Label htmlFor="priceInr">Price (INR)</Label>
+                <Label htmlFor="priceInr" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Price (INR)</Label>
                 <Input
                   id="priceInr"
                   type="number"
@@ -353,7 +353,7 @@ export default function PriceManagement() {
               </div>
               
               <div>
-                <Label htmlFor="priceBhd">Price (BHD)</Label>
+                <Label htmlFor="priceBhd" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Price (BHD)</Label>
                 <Input
                   id="priceBhd"
                   type="number"
@@ -370,7 +370,7 @@ export default function PriceManagement() {
               </div>
               
               <div>
-                <Label htmlFor="stock">Stock Quantity</Label>
+                <Label htmlFor="stock" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Stock Quantity</Label>
                 <Input
                   id="stock"
                   type="number"

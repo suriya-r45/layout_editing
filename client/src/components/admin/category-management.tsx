@@ -548,7 +548,7 @@ export default function CategoryManagement() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold">Category Management</h2>
+          <h2 className="text-2xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Category Management</h2>
           <p className="text-gray-600 mt-1">
             Manage your jewelry categories and subcategories
           </p>
@@ -593,7 +593,7 @@ export default function CategoryManagement() {
             
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <Label htmlFor="name">Category Name *</Label>
+                <Label htmlFor="name" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Category Name *</Label>
                 <Input
                   id="name"
                   value={formData.name}
@@ -605,7 +605,7 @@ export default function CategoryManagement() {
               </div>
 
               <div>
-                <Label htmlFor="slug">URL Slug *</Label>
+                <Label htmlFor="slug" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>URL Slug *</Label>
                 <Input
                   id="slug"
                   value={formData.slug}
@@ -620,7 +620,7 @@ export default function CategoryManagement() {
               </div>
 
               <div>
-                <Label htmlFor="parentId">Parent Category</Label>
+                <Label htmlFor="parentId" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Parent Category</Label>
                 <Select 
                   value={formData.parentId || "none"} 
                   onValueChange={(value) => setFormData(prev => ({ ...prev, parentId: value === "none" ? null : value }))}
@@ -644,7 +644,7 @@ export default function CategoryManagement() {
               </div>
 
               <div>
-                <Label htmlFor="description">Description</Label>
+                <Label htmlFor="description" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Description</Label>
                 <Textarea
                   id="description"
                   value={formData.description}
@@ -656,7 +656,7 @@ export default function CategoryManagement() {
               </div>
 
               <div>
-                <Label htmlFor="displayOrder">Display Order</Label>
+                <Label htmlFor="displayOrder" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Display Order</Label>
                 <Input
                   id="displayOrder"
                   type="number"
@@ -675,7 +675,7 @@ export default function CategoryManagement() {
                   onChange={(e) => setFormData(prev => ({ ...prev, isActive: e.target.checked }))}
                   data-testid="checkbox-category-active"
                 />
-                <Label htmlFor="isActive">Category is active</Label>
+                <Label htmlFor="isActive" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Category is active</Label>
               </div>
 
               <div className="flex space-x-2 pt-4">
@@ -697,7 +697,7 @@ export default function CategoryManagement() {
 
       <Card>
         <CardHeader>
-          <CardTitle>Categories Hierarchy</CardTitle>
+          <CardTitle className="text-gray-900 font-semibold" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Categories Hierarchy</CardTitle>
         </CardHeader>
         <CardContent>
           {isLoading ? (

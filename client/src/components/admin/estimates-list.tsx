@@ -124,7 +124,7 @@ export function EstimatesList() {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-light text-gray-700" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Customer Estimates</h1>
+        <h1 className="text-2xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Customer Estimates</h1>
         <div className="flex items-center space-x-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 text-gray-400 h-4 w-4" style={{transform: 'translateY(-50%)'}} />
@@ -142,7 +142,7 @@ export function EstimatesList() {
         <Card className="bg-white shadow-sm border border-amber-200">
           <CardContent className="p-8 text-center">
             <Calculator className="h-12 w-12 text-amber-400 mx-auto mb-4" />
-            <h3 className="text-lg font-light text-gray-700 mb-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>No estimates found</h3>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>No estimates found</h3>
             <p className="text-gray-500 font-light">
               {searchQuery ? "No estimates match your search criteria." : "Start creating estimates for your customers."}
             </p>
@@ -154,7 +154,7 @@ export function EstimatesList() {
             <Card key={estimate.id} className="border-l-4 border-l-yellow-400">
               <CardHeader className="pb-4">
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-lg font-semibold text-gray-800">
+                  <CardTitle className="text-lg font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                     {estimate.quotationNo}
                   </CardTitle>
                   <div className="flex items-center space-x-2">
@@ -174,7 +174,7 @@ export function EstimatesList() {
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                   {/* Customer Information */}
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-gray-700 flex items-center">
+                    <h4 className="font-semibold text-gray-900 flex items-center" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                       <User className="h-4 w-4 mr-2" />
                       Customer Details
                     </h4>
@@ -193,7 +193,7 @@ export function EstimatesList() {
 
                   {/* Product Information */}
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-gray-700 flex items-center">
+                    <h4 className="font-semibold text-gray-900 flex items-center" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                       <Package className="h-4 w-4 mr-2" />
                       Product Details
                     </h4>
@@ -208,7 +208,7 @@ export function EstimatesList() {
 
                   {/* Pricing Information */}
                   <div className="space-y-3">
-                    <h4 className="font-semibold text-gray-700 flex items-center">
+                    <h4 className="font-semibold text-gray-900 flex items-center" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                       <Calculator className="h-4 w-4 mr-2" />
                       Pricing Details
                     </h4>

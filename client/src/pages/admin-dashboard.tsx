@@ -277,7 +277,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen" data-testid="page-admin-dashboard" style={{ background: '#f8fafc' }}>
+    <div className="min-h-screen" data-testid="page-admin-dashboard" style={{ background: '#ffffff' }}>
       <Header 
         selectedCurrency={selectedCurrency} 
         onCurrencyChange={setSelectedCurrency} 
@@ -286,7 +286,7 @@ export default function AdminDashboard() {
       <div className="container mx-auto px-3 md:px-4 py-4 md:py-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 md:mb-8 gap-4">
           <div>
-            <h1 className="text-2xl md:text-3xl font-medium text-gray-800" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Admin Dashboard</h1>
+            <h1 className="text-2xl md:text-3xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Admin Dashboard</h1>
           </div>
           <Button
             onClick={() => setLocation('/estimates')}
@@ -307,8 +307,8 @@ export default function AdminDashboard() {
                     <Package className="h-6 w-6 md:h-8 md:w-8 text-blue-600" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-medium text-gray-600">Total Products</p>
-                    <p className="text-xl md:text-2xl font-semibold text-gray-800">{totalProducts}</p>
+                    <p className="text-xs md:text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Total Products</p>
+                    <p className="text-xl md:text-2xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{totalProducts}</p>
                   </div>
                 </div>
               </div>
@@ -323,8 +323,8 @@ export default function AdminDashboard() {
                     <FileText className="h-6 w-6 md:h-8 md:w-8 text-green-600" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-medium text-gray-600">Total Bills</p>
-                    <p className="text-xl md:text-2xl font-semibold text-gray-800">{bills.length}</p>
+                    <p className="text-xs md:text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Total Bills</p>
+                    <p className="text-xl md:text-2xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{bills.length}</p>
                   </div>
                 </div>
               </div>
@@ -339,8 +339,8 @@ export default function AdminDashboard() {
                     <TrendingUp className="h-6 w-6 md:h-8 md:w-8 text-emerald-600" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-medium text-gray-600">Total Revenue</p>
-                    <p className="text-lg md:text-2xl font-semibold text-gray-800">
+                    <p className="text-xs md:text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Total Revenue</p>
+                    <p className="text-lg md:text-2xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                       {selectedCurrency === 'INR' ? '₹' : 'BD'} {totalRevenue.toLocaleString()}
                     </p>
                   </div>
@@ -357,8 +357,8 @@ export default function AdminDashboard() {
                     <Users className="h-6 w-6 md:h-8 md:w-8 text-orange-600" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-medium text-gray-600">Low Stock Items</p>
-                    <p className="text-xl md:text-2xl font-semibold text-gray-800">{lowStockProducts}</p>
+                    <p className="text-xs md:text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Low Stock Items</p>
+                    <p className="text-xl md:text-2xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{lowStockProducts}</p>
                   </div>
                 </div>
               </div>

@@ -182,7 +182,7 @@ export default function OrderTracking() {
         <CardHeader>
           <CardTitle className="text-gray-700 font-light flex items-center gap-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
             <Truck className="h-5 w-5 text-amber-700" />
-            Order & Shipment Tracking
+            <span className="text-gray-900 font-semibold" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Order & Shipment Tracking</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -415,7 +415,7 @@ export default function OrderTracking() {
           
           <div className="space-y-4">
             <div>
-              <label className="text-sm font-medium">Status</label>
+              <label className="text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Status</label>
               <Select value={updateData.status} onValueChange={(value) => setUpdateData(prev => ({...prev, status: value}))}>
                 <SelectTrigger>
                   <SelectValue />
@@ -433,7 +433,7 @@ export default function OrderTracking() {
             </div>
 
             <div>
-              <label className="text-sm font-medium">Estimated Delivery Date</label>
+              <label className="text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Estimated Delivery Date</label>
               <Input
                 type="datetime-local"
                 value={updateData.estimatedDeliveryDate}
@@ -442,7 +442,7 @@ export default function OrderTracking() {
             </div>
 
             <div>
-              <label className="text-sm font-medium">Actual Delivery Date</label>
+              <label className="text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Actual Delivery Date</label>
               <Input
                 type="datetime-local"
                 value={updateData.actualDeliveryDate}
@@ -451,7 +451,7 @@ export default function OrderTracking() {
             </div>
 
             <div>
-              <label className="text-sm font-medium">Notes</label>
+              <label className="text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Notes</label>
               <Textarea
                 value={updateData.notes}
                 onChange={(e) => setUpdateData(prev => ({...prev, notes: e.target.value}))}

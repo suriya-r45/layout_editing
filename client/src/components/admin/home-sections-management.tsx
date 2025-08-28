@@ -161,8 +161,8 @@ export function HomeSectionsManagement() {
     <div className="space-y-6" data-testid="home-sections-management">
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold tracking-tight text-foreground">Custom Home Sections</h2>
-          <p className="text-muted-foreground">Create and manage custom showcase sections for your homepage</p>
+          <h2 className="text-2xl font-semibold tracking-tight text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Custom Home Sections</h2>
+          <p className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Create and manage custom showcase sections for your homepage</p>
         </div>
         <CreateSectionDialog
           onCreate={(data) => createSectionMutation.mutate(data)}
@@ -320,7 +320,7 @@ function CreateSectionDialog({
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="title">Section Title *</Label>
+              <Label htmlFor="title" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Section Title *</Label>
               <Input
                 id="title"
                 value={formData.title}
@@ -331,7 +331,7 @@ function CreateSectionDialog({
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="layoutType">Layout Type *</Label>
+              <Label htmlFor="layoutType" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Layout Type *</Label>
               <Select
                 value={formData.layoutType}
                 onValueChange={(value: 'grid' | 'featured' | 'mixed' | 'split') => 
@@ -352,7 +352,7 @@ function CreateSectionDialog({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="subtitle">Subtitle</Label>
+            <Label htmlFor="subtitle" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Subtitle</Label>
             <Input
               id="subtitle"
               value={formData.subtitle}
@@ -363,7 +363,7 @@ function CreateSectionDialog({
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="description">Description</Label>
+            <Label htmlFor="description" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Description</Label>
             <Textarea
               id="description"
               value={formData.description}
