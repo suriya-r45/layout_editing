@@ -167,9 +167,9 @@ export default function OrderTracking() {
 
   if (ordersLoading || shipmentsLoading) {
     return (
-      <Card>
+      <Card className="bg-white shadow-sm border border-amber-200">
         <CardContent className="p-8">
-          <div className="text-center text-gray-500">Loading orders and shipments...</div>
+          <div className="text-center text-gray-500 font-light">Loading orders and shipments...</div>
         </CardContent>
       </Card>
     );
@@ -178,10 +178,10 @@ export default function OrderTracking() {
   return (
     <div className="space-y-6" data-testid="order-tracking">
       {/* Search and Filter Header */}
-      <Card>
+      <Card className="bg-white shadow-sm border border-amber-200">
         <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Truck className="h-5 w-5" />
+          <CardTitle className="text-gray-700 font-light flex items-center gap-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+            <Truck className="h-5 w-5 text-amber-700" />
             Order & Shipment Tracking
           </CardTitle>
         </CardHeader>

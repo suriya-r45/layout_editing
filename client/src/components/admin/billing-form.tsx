@@ -349,13 +349,13 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
 
   return (
     <div>
-      <Card className="border-2 border-gold bg-gradient-to-r from-cream to-champagne/30 shadow-xl" data-testid="card-billing-form">
+      <Card className="bg-white shadow-sm border border-amber-200" data-testid="card-billing-form">
         <CardHeader>
-        <CardTitle className="flex items-center space-x-2">
-          <FileText className="h-5 w-5" />
-          <span>{isEditMode ? 'Edit Customer Bill' : 'Create New Bill'}</span>
+        <CardTitle className="text-gray-700 font-light flex items-center gap-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+          <FileText className="h-5 w-5 text-amber-700" />
+          {isEditMode ? 'Edit Customer Bill' : 'Create New Bill'}
           {isEditMode && (
-            <Badge variant="secondary" className="ml-2 bg-blue-100 text-blue-800">
+            <Badge variant="secondary" className="ml-2 bg-amber-100 text-amber-800">
               Edit Mode
             </Badge>
           )}
@@ -367,7 +367,7 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
           {/* Customer Information */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
-              <h4 className="text-lg font-medium text-black">Customer Information</h4>
+              <h4 className="text-lg font-light text-gray-700" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Customer Information</h4>
               
               <div>
                 <Label htmlFor="customerName">Customer Name</Label>

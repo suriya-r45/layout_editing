@@ -372,11 +372,11 @@ function ProductForm({ currency }: ProductFormProps) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Add Product Form */}
-      <Card data-testid="card-add-product">
+      <Card data-testid="card-add-product" className="bg-white shadow-sm border border-amber-200">
         <CardHeader>
-          <CardTitle className="flex items-center space-x-2">
-            <Plus className="h-5 w-5" />
-            <span>Add New Product</span>
+          <CardTitle className="text-gray-700 font-light flex items-center gap-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+            <Plus className="h-5 w-5 text-amber-700" />
+            Add New Product
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -665,9 +665,9 @@ function ProductForm({ currency }: ProductFormProps) {
       </Card>
 
       {/* Product List */}
-      <Card data-testid="card-product-inventory">
+      <Card data-testid="card-product-inventory" className="bg-white shadow-sm border border-amber-200">
         <CardHeader>
-          <CardTitle>Product Inventory</CardTitle>
+          <CardTitle className="text-gray-700 font-light" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Product Inventory</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-4 max-h-96 overflow-y-auto">

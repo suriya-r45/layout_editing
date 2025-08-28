@@ -155,21 +155,21 @@ export default function PriceManagement() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold flex items-center gap-2">
-            <DollarSign className="h-6 w-6" />
+          <h2 className="text-2xl font-light text-gray-700 flex items-center gap-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+            <DollarSign className="h-6 w-6 text-amber-700" />
             Price Management
           </h2>
-          <p className="text-gray-600 mt-1">
+          <p className="text-gray-500 font-light mt-1">
             Update product prices and manage pricing strategies
           </p>
         </div>
       </div>
 
       {/* Filters */}
-      <Card>
+      <Card className="bg-white shadow-sm border border-amber-200">
         <CardHeader>
-          <CardTitle className="text-lg flex items-center gap-2">
-            <Filter className="h-5 w-5" />
+          <CardTitle className="text-lg font-light text-gray-700 flex items-center gap-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+            <Filter className="h-5 w-5 text-amber-700" />
             Filters
           </CardTitle>
         </CardHeader>

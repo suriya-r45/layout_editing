@@ -124,7 +124,7 @@ export function EstimatesList() {
   return (
     <div className="max-w-6xl mx-auto p-6">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-800">Customer Estimates</h1>
+        <h1 className="text-2xl font-light text-gray-700" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Customer Estimates</h1>
         <div className="flex items-center space-x-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 text-gray-400 h-4 w-4" style={{transform: 'translateY(-50%)'}} />
@@ -139,11 +139,11 @@ export function EstimatesList() {
       </div>
 
       {filteredEstimates.length === 0 ? (
-        <Card>
+        <Card className="bg-white shadow-sm border border-amber-200">
           <CardContent className="p-8 text-center">
-            <Calculator className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-600 mb-2">No estimates found</h3>
-            <p className="text-gray-500">
+            <Calculator className="h-12 w-12 text-amber-400 mx-auto mb-4" />
+            <h3 className="text-lg font-light text-gray-700 mb-2" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>No estimates found</h3>
+            <p className="text-gray-500 font-light">
               {searchQuery ? "No estimates match your search criteria." : "Start creating estimates for your customers."}
             </p>
           </CardContent>
