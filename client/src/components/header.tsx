@@ -116,7 +116,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                   <div className="flex items-center space-x-1">
                     {isAdmin && (
                       <Link href="/admin">
-                        <Button variant="ghost" size="sm" className="text-amber-800 hover:text-amber-700 hover:bg-amber-50 transition-all duration-200 px-1 md:px-2 py-1" data-testid="button-admin-dashboard">
+                        <Button variant="ghost" size="sm" className="text-gray-700 hover:text-gray-500 hover:bg-gray-50 transition-all duration-200 px-1 md:px-2 py-1" data-testid="button-admin-dashboard">
                           <span className="text-[10px] md:text-xs">Dashboard</span>
                         </Button>
                       </Link>
@@ -125,7 +125,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                       variant="ghost"
                       size="sm"
                       onClick={handleLogout}
-                      className="p-1 md:p-2 text-amber-800 hover:text-amber-700 hover:bg-amber-50 rounded-lg transition-all duration-200"
+                      className="p-1 md:p-2 text-gray-700 hover:text-gray-500 hover:bg-gray-50 rounded-lg transition-all duration-200"
                       data-testid="button-logout"
                     >
                       <LogOut className="h-4 w-4 md:h-6 md:w-6" />
@@ -133,16 +133,16 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                   </div>
                 ) : (
                   <Link href="/login">
-                    <button className="p-1 md:p-2 hover:bg-amber-50 rounded-lg transition-colors duration-200">
-                      <User className="h-4 w-4 md:h-6 md:w-6 text-amber-800" />
+                    <button className="p-1 md:p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
+                      <User className="h-4 w-4 md:h-6 md:w-6 text-gray-700" />
                     </button>
                   </Link>
                 )}
               </div>
 
               {/* Wishlist Heart */}
-              <button className="p-1 md:p-2 hover:bg-amber-50 rounded-lg">
-                <Heart className="h-4 w-4 md:h-6 md:w-6 text-amber-800" />
+              <button className="p-1 md:p-2 hover:bg-gray-50 rounded-lg">
+                <Heart className="h-4 w-4 md:h-6 md:w-6 text-gray-700" />
               </button>
 
               {/* Cart with Badge */}
@@ -154,10 +154,10 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
 
           {/* Search Bar Row - Hidden on mobile, shown on tablet and up */}
           <div className="hidden md:block pb-4">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-2xl mx-auto">
               <div className="relative">
                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Search className="h-5 w-5 text-amber-700" />
+                  <Search className="h-5 w-5 text-gray-500" />
                 </div>
                 <Input
                   type="text"
@@ -165,15 +165,15 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={handleSearchKeyPress}
-                  className="w-full h-12 pl-12 pr-20 rounded-full bg-amber-50 border-amber-200 text-amber-800 placeholder-amber-600 focus:bg-white focus:ring-2 focus:ring-amber-200 focus:border-amber-300"
+                  className="w-full h-12 pl-12 pr-20 rounded-full bg-white border-gray-200 text-gray-700 placeholder-gray-500 focus:bg-white focus:ring-2 focus:ring-gray-200 focus:border-gray-300"
                   data-testid="search-input"
                 />
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
-                  <button className="p-1 hover:bg-amber-100 rounded">
-                    <Camera className="h-5 w-5 text-amber-700" />
+                  <button className="p-1 hover:bg-gray-50 rounded">
+                    <Camera className="h-5 w-5 text-gray-500" />
                   </button>
-                  <button className="p-1 hover:bg-amber-100 rounded">
-                    <Mic className="h-5 w-5 text-amber-700" />
+                  <button className="p-1 hover:bg-gray-50 rounded">
+                    <Mic className="h-5 w-5 text-gray-500" />
                   </button>
                 </div>
               </div>
