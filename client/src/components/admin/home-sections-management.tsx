@@ -302,7 +302,10 @@ function CreateSectionDialog({
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button data-testid="create-section-button">
+        <Button 
+          className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 font-light"
+          data-testid="create-section-button"
+        >
           <Plus className="h-4 w-4 mr-2" />
           Create Section
         </Button>

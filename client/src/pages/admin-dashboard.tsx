@@ -474,13 +474,13 @@ export default function AdminDashboard() {
                 <div className="space-y-4">
                   {/* Search Bills */}
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-amber-600 h-4 w-4" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-600 h-4 w-4" />
                     <input
                       type="text"
                       placeholder="Search by customer name, mobile number, or bill number..."
                       value={billSearchTerm}
                       onChange={(e) => setBillSearchTerm(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2 border border-amber-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-400 text-amber-800"
+                      className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-400 text-gray-700"
                       data-testid="input-search-bills"
                     />
                   </div>
@@ -490,15 +490,15 @@ export default function AdminDashboard() {
                     </p>
                   ) : (
                     <div className="overflow-x-auto">
-                      <table className="w-full bg-white rounded-lg border border-amber-200">
-                        <thead className="bg-amber-50">
+                      <table className="w-full bg-white rounded-lg border border-gray-200">
+                        <thead className="bg-gray-50">
                           <tr>
-                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Bill No.</th>
-                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Customer</th>
-                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Date</th>
-                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Amount</th>
-                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Currency</th>
-                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Actions</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-gray-700">Bill No.</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-gray-700">Customer</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-gray-700">Date</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-gray-700">Amount</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-gray-700">Currency</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-gray-700">Actions</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
@@ -513,16 +513,16 @@ export default function AdminDashboard() {
                               );
                             })
                             .map((bill) => (
-                            <tr key={bill.id} className="hover:bg-amber-50" data-testid={`row-bill-${bill.id}`}>
-                              <td className="px-4 py-3 text-sm font-light text-amber-900">{bill.billNumber}</td>
-                              <td className="px-4 py-3 text-sm font-light text-amber-800">{bill.customerName}</td>
-                              <td className="px-4 py-3 text-sm font-light text-amber-800">
+                            <tr key={bill.id} className="hover:bg-gray-50" data-testid={`row-bill-${bill.id}`}>
+                              <td className="px-4 py-3 text-sm font-light text-gray-700">{bill.billNumber}</td>
+                              <td className="px-4 py-3 text-sm font-light text-gray-700">{bill.customerName}</td>
+                              <td className="px-4 py-3 text-sm font-light text-gray-700">
                                 {new Date(bill.createdAt!).toLocaleDateString()}
                               </td>
-                              <td className="px-4 py-3 text-sm font-light text-amber-900">
+                              <td className="px-4 py-3 text-sm font-light text-gray-700">
                                 {bill.currency === 'INR' ? '₹' : 'BD'} {parseFloat(bill.total).toLocaleString()}
                               </td>
-                              <td className="px-4 py-3 text-sm font-light text-amber-800">{bill.currency}</td>
+                              <td className="px-4 py-3 text-sm font-light text-gray-700">{bill.currency}</td>
                               <td className="px-4 py-3 text-sm">
                                 <div className="flex items-center space-x-2">
                                   <Button
@@ -606,10 +606,10 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="barcodes" className="space-y-6">
-            <Card data-testid="card-barcode-management" className="bg-white shadow-sm border border-amber-200">
+            <Card data-testid="card-barcode-management" className="bg-white shadow-sm border border-gray-200">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-amber-800 font-light" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
-                  <QrCode className="h-5 w-5 text-amber-700" />
+                <CardTitle className="flex items-center gap-2 text-gray-700 font-light" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+                  <QrCode className="h-5 w-5 text-gray-700" />
                   Product QR Code Management
                 </CardTitle>
               </CardHeader>
@@ -617,11 +617,11 @@ export default function AdminDashboard() {
                 <div className="space-y-6">
                   {products.length === 0 ? (
                     <div className="text-center py-8">
-                      <QrCode className="h-16 w-16 mx-auto text-amber-400 mb-4" />
-                      <p className="text-amber-600 font-light" data-testid="message-no-products">
+                      <QrCode className="h-16 w-16 mx-auto text-gray-400 mb-4" />
+                      <p className="text-gray-600 font-light" data-testid="message-no-products">
                         No products available for QR code generation.
                       </p>
-                      <p className="text-sm text-amber-500 font-light">
+                      <p className="text-sm text-gray-500 font-light">
                         Add products first to generate QR codes.
                       </p>
                     </div>
@@ -728,7 +728,7 @@ export default function AdminDashboard() {
                           <Button
                             onClick={printSelectedQRCodes}
                             disabled={selectedProducts.size === 0}
-                            className="bg-rose-600 hover:bg-rose-700 text-white text-sm"
+                            className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 text-sm"
                           >
                             <Printer className="w-4 h-4 mr-2" />
                             Print Selected ({selectedProducts.size})

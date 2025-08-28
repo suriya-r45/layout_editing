@@ -21,13 +21,13 @@ export function EstimatesPage() {
   }, [location]);
 
   return (
-    <div className="min-h-screen luxury-bg py-8">
+    <div className="min-h-screen py-8" style={{ background: '#ffffff' }}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="mb-8">
           <Button
             variant="outline"
             onClick={() => setLocation('/admin')}
-            className="mb-4 border-amber-800 text-amber-800 hover:bg-amber-100 w-full sm:w-auto text-sm px-3 py-2"
+            className="mb-4 border-gray-200 text-gray-700 hover:bg-gray-50 w-full sm:w-auto text-sm px-3 py-2 font-light"
             data-testid="button-back-to-dashboard"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />
@@ -40,12 +40,12 @@ export function EstimatesPage() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8 bg-amber-100 gap-1 p-1">
-            <TabsTrigger value="list" className="flex items-center justify-center space-x-1 md:space-x-2 data-[state=active]:bg-amber-800 data-[state=active]:text-white text-amber-700 px-2 py-2 text-xs md:text-sm rounded-md">
+          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8 bg-gray-100 gap-1 p-1">
+            <TabsTrigger value="list" className="flex items-center justify-center space-x-1 md:space-x-2 data-[state=active]:bg-white data-[state=active]:text-gray-700 text-gray-600 px-2 py-2 text-xs md:text-sm rounded-md font-light">
               <List className="h-3 w-3 md:h-4 md:w-4" />
               <span>View Estimates</span>
             </TabsTrigger>
-            <TabsTrigger value="create" className="flex items-center justify-center space-x-1 md:space-x-2 data-[state=active]:bg-amber-800 data-[state=active]:text-white text-amber-700 px-2 py-2 text-xs md:text-sm rounded-md">
+            <TabsTrigger value="create" className="flex items-center justify-center space-x-1 md:space-x-2 data-[state=active]:bg-white data-[state=active]:text-gray-700 text-gray-600 px-2 py-2 text-xs md:text-sm rounded-md font-light">
               <Plus className="h-3 w-3 md:h-4 md:w-4" />
               <span>Create Estimate</span>
             </TabsTrigger>

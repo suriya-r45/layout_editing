@@ -238,7 +238,7 @@ export function EstimatesList() {
                       setLocation('/admin/estimates');
                     }}
                     variant="outline"
-                    className="border-blue-600 text-blue-600 hover:bg-blue-50"
+                    className="border-gray-200 text-gray-700 hover:bg-gray-50 font-light"
                   >
                     <Edit className="h-4 w-4 mr-2" />
                     Edit Estimate
@@ -246,7 +246,7 @@ export function EstimatesList() {
                   <Button
                     onClick={() => sendToWhatsAppMutation.mutate(estimate.id)}
                     disabled={sendToWhatsAppMutation.isPending}
-                    className="bg-green-600 hover:bg-green-700 text-white"
+                    className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 font-light"
                   >
                     <MessageCircle className="h-4 w-4 mr-2" />
                     {sendToWhatsAppMutation.isPending

@@ -654,7 +654,7 @@ function ProductForm({ currency }: ProductFormProps) {
 
             <Button
               type="submit"
-              className="w-full bg-gradient-to-r from-amber-800 to-yellow-700 hover:from-amber-900 hover:to-yellow-800 text-white font-semibold py-3 rounded-lg shadow-lg border border-amber-700 transition-all"
+              className="w-full bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 font-light py-3 rounded-lg shadow-lg transition-all"
               disabled={addProductMutation.isPending}
               data-testid="button-add-product"
             >
@@ -665,7 +665,7 @@ function ProductForm({ currency }: ProductFormProps) {
       </Card>
 
       {/* Product List */}
-      <Card data-testid="card-product-inventory" className="bg-white shadow-sm border border-amber-200">
+      <Card data-testid="card-product-inventory" className="bg-white shadow-sm border border-gray-200">
         <CardHeader>
           <CardTitle className="text-gray-700 font-light" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Product Inventory</CardTitle>
         </CardHeader>

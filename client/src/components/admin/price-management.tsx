@@ -295,7 +295,7 @@ export default function PriceManagement() {
                   variant="outline"
                   size="sm"
                   onClick={() => handlePercentageUpdate(5)}
-                  className="text-green-600"
+                  className="text-gray-700 border-gray-200 hover:bg-gray-50 font-light"
                 >
                   <TrendingUp className="h-3 w-3 mr-1" />
                   +5%
@@ -305,7 +305,7 @@ export default function PriceManagement() {
                   variant="outline"
                   size="sm"
                   onClick={() => handlePercentageUpdate(10)}
-                  className="text-green-600"
+                  className="text-gray-700 border-gray-200 hover:bg-gray-50 font-light"
                 >
                   <TrendingUp className="h-3 w-3 mr-1" />
                   +10%
@@ -315,7 +315,7 @@ export default function PriceManagement() {
                   variant="outline"
                   size="sm"
                   onClick={() => handlePercentageUpdate(-5)}
-                  className="text-red-600"
+                  className="text-gray-700 border-gray-200 hover:bg-gray-50 font-light"
                 >
                   <TrendingDown className="h-3 w-3 mr-1" />
                   -5%
@@ -325,7 +325,7 @@ export default function PriceManagement() {
                   variant="outline"
                   size="sm"
                   onClick={() => handlePercentageUpdate(-10)}
-                  className="text-red-600"
+                  className="text-gray-700 border-gray-200 hover:bg-gray-50 font-light"
                 >
                   <TrendingDown className="h-3 w-3 mr-1" />
                   -10%

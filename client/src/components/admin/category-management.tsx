@@ -562,6 +562,7 @@ export default function CategoryManagement() {
                   setEditingCategory(null);
                   setFormData(defaultFormData);
                 }}
+                className="bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 font-light"
                 data-testid="button-add-category"
               >
                 <Plus className="h-4 w-4 mr-2" />
