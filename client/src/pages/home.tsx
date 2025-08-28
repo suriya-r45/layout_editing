@@ -19,12 +19,12 @@ interface HomeSectionWithItems extends HomeSection {
 interface HomeSectionItemWithProduct extends HomeSectionItem {
   product: Product;
 }
-import pendantsImage from '@assets/pendants_luxury.png';
+import pendantsImage from '@assets/new_pendants.png';
 import earringsImage from '@assets/new_earrings.png';
-import braceletsImage from '@assets/bracelets_luxury.png';
+import braceletsImage from '@assets/new_bracelets.png';
 import necklacesImage from '@assets/necklaces_luxury_new.png';
 import chainsImage from '@assets/chains_luxury.png';
-import banglesImage from '@assets/bangles_luxury.png';
+import banglesImage from '@assets/new_bangles.png';
 import watchesImage from '@assets/watches_luxury.png';
 import mensJewelryImage from '@assets/mens_jewelry_luxury.png';
 import childrenJewelryImage from '@assets/children_jewelry_luxury.png';
