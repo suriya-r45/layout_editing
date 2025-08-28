@@ -436,14 +436,14 @@ export default function CollectionsPage({ material, category }: CollectionsPageP
   const IconComponent = getCollectionIcon();
 
   return (
-    <div className="min-h-screen" data-testid="page-collections" style={{ background: 'linear-gradient(135deg, #fdfbf7 0%, #fff9e6 100%)' }}>
+    <div className="min-h-screen" data-testid="page-collections" style={{ background: '#ffffff' }}>
       <Header
         selectedCurrency={selectedCurrency}
         onCurrencyChange={setSelectedCurrency}
       />
 
       {/* Collection Header */}
-      <section className="py-8" style={{ background: 'linear-gradient(135deg, #fff8e1 0%, #fffbf0 100%)' }}>
+      <section className="py-8" style={{ background: '#ffffff' }}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between mb-4">
             <Button
@@ -459,12 +459,12 @@ export default function CollectionsPage({ material, category }: CollectionsPageP
           <div className="text-center">
             <div className="flex items-center justify-center mb-6">
               <IconComponent className="h-8 w-8 mr-4" style={{ color: '#b8860b' }} />
-              <h1 className="text-3xl md:text-5xl font-bold" style={{ color: '#8b4513' }}>
+              <h1 className="text-3xl md:text-5xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                 {getCollectionTitle()}
               </h1>
               <IconComponent className="h-8 w-8 ml-4" style={{ color: '#b8860b' }} />
             </div>
-            <p className="text-xl text-black mb-6">
+            <p className="text-xl font-medium text-gray-700 mb-6" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
               Explore our complete {material?.toLowerCase()} jewelry collection
             </p>
           </div>
@@ -472,7 +472,7 @@ export default function CollectionsPage({ material, category }: CollectionsPageP
       </section>
 
       {/* Advanced Filters and Search Section - Desktop */}
-      <section className="py-4 bg-gray-50 hidden md:block">
+      <section className="py-4 hidden md:block" style={{ background: '#ffffff' }}>
         <div className="container mx-auto px-4">
           <div className="flex gap-6 items-center justify-between mb-6">
             {/* Search Bar */}
@@ -491,7 +491,7 @@ export default function CollectionsPage({ material, category }: CollectionsPageP
 
             {/* Sort Dropdown */}
             <div className="flex items-center gap-4">
-              <span className="text-sm font-medium text-gray-700">Sort by:</span>
+              <span className="text-sm font-semibold text-gray-900">Sort by:</span>
               <Select value={sortBy} onValueChange={setSortBy}>
                 <SelectTrigger className="w-48">
                   <SelectValue placeholder="Sort by" />
@@ -636,7 +636,7 @@ export default function CollectionsPage({ material, category }: CollectionsPageP
       </section>
 
       {/* Products Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16" style={{ background: '#ffffff' }}>
         <div className="container mx-auto px-0.5 sm:px-4">
           <div className="w-full">
             {/* Products Section */}
@@ -687,13 +687,13 @@ export default function CollectionsPage({ material, category }: CollectionsPageP
                   )}
 
                   <div className="flex justify-between items-center mb-4">
-                    <p className="text-gray-600">
+                    <p className="font-medium text-gray-700">
                       Showing {((currentPage - 1) * itemsPerPage) + 1}-{Math.min(currentPage * itemsPerPage, filteredProducts.length)} of {filteredProducts.length} products
                       {selectedMobileFilters.length > 0 && (
                         <span className="text-rose-600 font-medium"> (filtered)</span>
                       )}
                     </p>
-                    <p className="text-gray-600">
+                    <p className="font-medium text-gray-700">
                       Page {currentPage} of {totalPages}
                     </p>
                   </div>
@@ -752,8 +752,8 @@ export default function CollectionsPage({ material, category }: CollectionsPageP
                   {filteredProducts.length === 0 && (
                     <div className="text-center py-12" data-testid="empty-products">
                       <div className="text-6xl mb-4">💍</div>
-                      <h3 className="text-xl font-semibold text-black mb-2">No products found</h3>
-                      <p className="text-gray-600 mb-4">Try adjusting your filters to see more results</p>
+                      <h3 className="text-xl font-semibold text-gray-900 mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>No products found</h3>
+                      <p className="font-medium text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Try adjusting your filters to see more results</p>
                       <Button
                         onClick={() => {
                           setFilters({ material });
