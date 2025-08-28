@@ -288,11 +288,11 @@ export default function Home() {
             >
               {/* Section Header */}
               <div className="text-center mb-8">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   {section.title}
                 </h2>
                 {section.description && (
-                  <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                  <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                     {section.description}
                   </p>
                 )}
@@ -306,7 +306,7 @@ export default function Home() {
                   style={{ backgroundColor: section.splitLeftColor || '#E0F2FE' }}
                 >
                   <div className="text-center">
-                    <h3 className="text-2xl md:text-3xl font-light text-gray-700 mb-6">
+                    <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6">
                       {section.splitLeftTitle || 'Category 1'}
                     </h3>
                     <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
@@ -329,7 +329,7 @@ export default function Home() {
                   style={{ backgroundColor: section.splitRightColor || '#F0FDF4' }}
                 >
                   <div className="text-center">
-                    <h3 className="text-2xl md:text-3xl font-light text-gray-700 mb-6">
+                    <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6">
                       {section.splitRightTitle || 'Category 2'}
                     </h3>
                     <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
@@ -362,11 +362,11 @@ export default function Home() {
           >
             <div className="container mx-auto px-4">
               <div className="text-center mb-10">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   {section.title}
                 </h2>
                 {section.description && (
-                  <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
+                  <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
                 )}
               </div>
               <div className={`grid gap-4 md:gap-6 mb-10 ${getLayoutClasses(section.layoutType, section.items.length)}`}>
@@ -402,8 +402,8 @@ export default function Home() {
         <section className="py-12" data-testid="section-new-arrivals" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>New Arrivals</h2>
-              <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Latest additions to our collection</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>New Arrivals</h2>
+              <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Latest additions to our collection</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {newArrivalProducts.map((product) => (
@@ -436,8 +436,8 @@ export default function Home() {
         <section className="py-12" data-testid="section-gold-plated-silver-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gold Plated Silver</h2>
-              <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Affordable luxury with gold plated silver elegance</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gold Plated Silver</h2>
+              <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Affordable luxury with gold plated silver elegance</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {goldPlatedSilverProducts.map((product) => (
@@ -472,8 +472,8 @@ export default function Home() {
         <section className="py-12" data-testid="section-gold-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gold Collection</h2>
-              <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Exquisite gold jewelry crafted to perfection</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gold Collection</h2>
+              <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Exquisite gold jewelry crafted to perfection</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {goldProducts.map((product) => (
@@ -506,8 +506,8 @@ export default function Home() {
         <section className="py-12" data-testid="section-silver-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Silver Collection</h2>
-              <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Elegant silver jewelry for every occasion</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Silver Collection</h2>
+              <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Elegant silver jewelry for every occasion</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {silverProducts.map((product) => (
@@ -540,8 +540,8 @@ export default function Home() {
         <section className="py-12" data-testid="section-diamond-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Diamond Collection</h2>
-              <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Brilliant diamonds for life's special moments</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Diamond Collection</h2>
+              <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Brilliant diamonds for life's special moments</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {diamondProducts.map((product) => (
@@ -571,7 +571,7 @@ export default function Home() {
         <section className="py-12" data-testid="section-platinum-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4">Platinum Collection</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Platinum Collection</h2>
               <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Premium platinum jewelry for discerning taste</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
@@ -601,7 +601,7 @@ export default function Home() {
         <section className="py-12" data-testid="section-gemstone-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4">Gemstone Collection</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Gemstone Collection</h2>
               <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Colorful gemstones for vibrant elegance</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
@@ -631,7 +631,7 @@ export default function Home() {
         <section className="py-12" data-testid="section-pearl-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4">Pearl Collection</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Pearl Collection</h2>
               <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Timeless pearls for classic beauty</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
@@ -662,7 +662,7 @@ export default function Home() {
         <section className="py-12" data-testid="section-other-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4">Other Materials Collection</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Other Materials Collection</h2>
               <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Unique materials for distinctive styles</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
