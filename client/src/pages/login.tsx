@@ -125,20 +125,20 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4" data-testid="page-login" style={{ background: 'linear-gradient(135deg, #fefefe 0%, #f8f6f0 50%, #fef7ed 100%)' }}>
+    <div className="min-h-screen flex items-center justify-center px-4" data-testid="page-login" style={{ background: '#ffffff' }}>
       <div className="w-full max-w-md">
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'login' | 'register')} className="w-full">
           {/* Login Tab */}
           <TabsContent value="login" className="space-y-0">
-            <Card className="border-0 shadow-lg bg-white border border-amber-200">
+            <Card className="border-0 shadow-lg bg-white border border-gray-200">
               <CardContent className="p-8">
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-light text-amber-800 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Log In Using</h1>
+                  <h1 className="text-2xl font-light text-gray-700 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Log In Using</h1>
                 </div>
 
                 <form onSubmit={handleLogin} className="space-y-6">
                   <div>
-                    <Label htmlFor="email" className="text-base font-light text-amber-800 mb-2 block">
+                    <Label htmlFor="email" className="text-base font-light text-gray-700 mb-2 block">
                       Email Address / Mobile Number*
                     </Label>
                     <Input
@@ -147,14 +147,14 @@ export default function Login() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="h-14 text-base border-amber-200 rounded-lg focus:border-amber-700 focus:ring-amber-200 text-amber-800"
+                      className="h-14 text-base border-gray-200 rounded-lg focus:border-gray-700 focus:ring-gray-200 text-gray-700"
                       data-testid="input-email"
                       placeholder="Enter email or mobile number"
                     />
                   </div>
                   
                   <div>
-                    <Label htmlFor="password" className="text-base font-light text-amber-800 mb-2 block">
+                    <Label htmlFor="password" className="text-base font-light text-gray-700 mb-2 block">
                       Enter Password*
                     </Label>
                     <div className="relative">
@@ -164,14 +164,14 @@ export default function Login() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        className="h-14 text-base border-amber-200 rounded-lg focus:border-amber-700 focus:ring-amber-200 pr-16 text-amber-800"
+                        className="h-14 text-base border-gray-200 rounded-lg focus:border-gray-700 focus:ring-gray-200 pr-16 text-gray-700"
                         data-testid="input-password"
                       />
                       <Button
                         type="button"
                         variant="ghost"
                         size="sm"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-amber-700 hover:text-amber-800"
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-700 hover:text-gray-500"
                         onClick={() => setShowPassword(!showPassword)}
                       >
                         {showPassword ? "HIDE" : "SHOW"}
@@ -181,7 +181,7 @@ export default function Login() {
                   
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-gradient-to-r from-amber-800 to-yellow-700 hover:from-amber-900 hover:to-yellow-800 text-white text-lg font-semibold rounded-lg mt-8"
+                    className="w-full h-14 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 text-lg font-light rounded-lg mt-8"
                     disabled={isLoading}
                     data-testid="button-submit-login"
                   >
@@ -192,7 +192,7 @@ export default function Login() {
                 <div className="flex justify-between items-center mt-8">
                   <Button 
                     variant="link" 
-                    className="text-amber-800 hover:text-yellow-800 font-semibold p-0"
+                    className="text-gray-700 hover:text-gray-500 font-light p-0"
                     onClick={() => {
                       toast({
                         title: "Feature Coming Soon",
@@ -204,7 +204,7 @@ export default function Login() {
                   </Button>
                   <Button 
                     variant="link" 
-                    className="text-amber-800 hover:text-yellow-800 font-semibold p-0"
+                    className="text-gray-700 hover:text-gray-500 font-light p-0"
                     onClick={() => setActiveTab('register')}
                   >
                     Create New Account
@@ -216,10 +216,10 @@ export default function Login() {
 
           {/* Register Tab */}
           <TabsContent value="register" className="space-y-0">
-            <Card className="border-0 shadow-lg bg-white border border-amber-200">
+            <Card className="border-0 shadow-lg bg-white border border-gray-200">
               <CardContent className="p-8">
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-light text-amber-800 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Sign Up With Palaniappa</h1>
+                  <h1 className="text-2xl font-light text-gray-700 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Sign Up With Palaniappa</h1>
                 </div>
 
                 <form onSubmit={handleRegister} className="space-y-6">
@@ -247,7 +247,7 @@ export default function Login() {
                           setRegisterForm({...registerForm, name: `${e.target.value} ${lastName}`.trim()});
                         }}
                         required
-                        className="flex-1 h-14 text-base border-gray-300 rounded-lg focus:border-rose-900 focus:ring-rose-900"
+                        className="flex-1 h-14 text-base border-gray-200 rounded-lg focus:border-gray-700 focus:ring-gray-200"
                       />
                     </div>
                   </div>
@@ -265,7 +265,7 @@ export default function Login() {
                         setRegisterForm({...registerForm, name: `${firstName} ${e.target.value}`.trim()});
                       }}
                       required
-                      className="h-14 text-base border-gray-300 rounded-lg focus:border-rose-900 focus:ring-rose-900"
+                      className="h-14 text-base border-gray-200 rounded-lg focus:border-gray-700 focus:ring-gray-200"
                     />
                   </div>
                   
@@ -279,7 +279,7 @@ export default function Login() {
                       value={registerForm.email}
                       onChange={(e) => setRegisterForm({...registerForm, email: e.target.value})}
                       required
-                      className="h-14 text-base border-gray-300 rounded-lg focus:border-rose-900 focus:ring-rose-900"
+                      className="h-14 text-base border-gray-200 rounded-lg focus:border-gray-700 focus:ring-gray-200"
                     />
                   </div>
                   
@@ -288,7 +288,7 @@ export default function Login() {
                       Mobile No*
                     </Label>
                     <div className="flex">
-                      <div className="flex items-center px-3 border border-r-0 border-gray-300 rounded-l-lg bg-gray-50">
+                      <div className="flex items-center px-3 border border-r-0 border-gray-200 rounded-l-lg bg-gray-50">
                         <svg className="w-6 h-4 mr-2" viewBox="0 0 24 24" fill="none">
                           <rect width="24" height="8" fill="#FF9933"/>
                           <rect y="8" width="24" height="8" fill="#FFFFFF"/>
@@ -302,7 +302,7 @@ export default function Login() {
                         value={registerForm.phone.replace('+91', '')}
                         onChange={(e) => setRegisterForm({...registerForm, phone: `+91${e.target.value}`})}
                         required
-                        className="h-14 text-base border-gray-300 rounded-l-none rounded-r-lg focus:border-rose-900 focus:ring-rose-900"
+                        className="h-14 text-base border-gray-200 rounded-l-none rounded-r-lg focus:border-gray-700 focus:ring-gray-200"
                         placeholder="Mobile number"
                       />
                     </div>
@@ -320,7 +320,7 @@ export default function Login() {
                           value={registerForm.password}
                           onChange={(e) => setRegisterForm({...registerForm, password: e.target.value})}
                           required
-                          className="h-14 text-base border-gray-300 rounded-lg focus:border-rose-900 focus:ring-rose-900 pr-16"
+                          className="h-14 text-base border-gray-200 rounded-lg focus:border-gray-700 focus:ring-gray-200 pr-16"
                         />
                         <Button
                           type="button"
@@ -344,7 +344,7 @@ export default function Login() {
                           value={registerForm.confirmPassword}
                           onChange={(e) => setRegisterForm({...registerForm, confirmPassword: e.target.value})}
                           required
-                          className="h-14 text-base border-gray-300 rounded-lg focus:border-rose-900 focus:ring-rose-900 pr-16"
+                          className="h-14 text-base border-gray-200 rounded-lg focus:border-gray-700 focus:ring-gray-200 pr-16"
                         />
                         <Button
                           type="button"
@@ -361,7 +361,7 @@ export default function Login() {
                   
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-gradient-to-r from-amber-800 to-yellow-700 hover:from-amber-900 hover:to-yellow-800 text-white text-lg font-semibold rounded-lg mt-8"
+                    className="w-full h-14 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 text-lg font-light rounded-lg mt-8"
                     disabled={isRegistering}
                   >
                     {isRegistering ? 'CREATING ACCOUNT...' : 'REGISTER TO CONTINUE'}
@@ -372,7 +372,7 @@ export default function Login() {
                   <span className="text-gray-600">Already have an account? </span>
                   <Button 
                     variant="link" 
-                    className="text-amber-800 hover:text-yellow-800 font-semibold p-0"
+                    className="text-gray-700 hover:text-gray-500 font-light p-0"
                     onClick={() => setActiveTab('login')}
                   >
                     Log In!
