@@ -307,8 +307,8 @@ export default function AdminDashboard() {
                     <Package className="h-6 w-6 md:h-8 md:w-8 text-amber-700" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-medium text-gray-600">Total Products</p>
-                    <p className="text-xl md:text-2xl font-bold text-gray-900">{totalProducts}</p>
+                    <p className="text-xs md:text-sm font-light text-amber-800">Total Products</p>
+                    <p className="text-xl md:text-2xl font-light text-amber-900">{totalProducts}</p>
                   </div>
                 </div>
               </div>
@@ -319,12 +319,12 @@ export default function AdminDashboard() {
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="bg-yellow-50 p-3 rounded-lg">
-                    <FileText className="h-6 w-6 md:h-8 md:w-8 text-yellow-700" />
+                  <div className="bg-amber-50 p-3 rounded-lg">
+                    <FileText className="h-6 w-6 md:h-8 md:w-8 text-amber-700" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-medium text-gray-600">Total Bills</p>
-                    <p className="text-xl md:text-2xl font-bold text-gray-900">{bills.length}</p>
+                    <p className="text-xs md:text-sm font-light text-amber-800">Total Bills</p>
+                    <p className="text-xl md:text-2xl font-light text-amber-900">{bills.length}</p>
                   </div>
                 </div>
               </div>
@@ -339,8 +339,8 @@ export default function AdminDashboard() {
                     <TrendingUp className="h-6 w-6 md:h-8 md:w-8 text-amber-600" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-medium text-gray-600">Total Revenue</p>
-                    <p className="text-lg md:text-2xl font-bold text-gray-900">
+                    <p className="text-xs md:text-sm font-light text-amber-800">Total Revenue</p>
+                    <p className="text-lg md:text-2xl font-light text-amber-900">
                       {selectedCurrency === 'INR' ? '₹' : 'BD'} {totalRevenue.toLocaleString()}
                     </p>
                   </div>
@@ -353,12 +353,12 @@ export default function AdminDashboard() {
             <CardContent className="p-4 md:p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                  <div className="bg-orange-50 p-3 rounded-lg">
-                    <Users className="h-6 w-6 md:h-8 md:w-8 text-orange-600" />
+                  <div className="bg-amber-50 p-3 rounded-lg">
+                    <Users className="h-6 w-6 md:h-8 md:w-8 text-amber-700" />
                   </div>
                   <div className="ml-3 md:ml-4">
-                    <p className="text-xs md:text-sm font-medium text-gray-600">Low Stock Items</p>
-                    <p className="text-xl md:text-2xl font-bold text-gray-900">{lowStockProducts}</p>
+                    <p className="text-xs md:text-sm font-light text-amber-800">Low Stock Items</p>
+                    <p className="text-xl md:text-2xl font-light text-amber-900">{lowStockProducts}</p>
                   </div>
                 </div>
               </div>
@@ -466,21 +466,21 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="bills" className="space-y-6">
-            <Card data-testid="card-bills-history">
+            <Card data-testid="card-bills-history" className="bg-white shadow-sm border border-amber-200">
               <CardHeader>
-                <CardTitle>Bills History</CardTitle>
+                <CardTitle className="text-amber-800 font-light" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Bills History</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
                   {/* Search Bills */}
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-amber-600 h-4 w-4" />
                     <input
                       type="text"
                       placeholder="Search by customer name, mobile number, or bill number..."
                       value={billSearchTerm}
                       onChange={(e) => setBillSearchTerm(e.target.value)}
-                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                      className="w-full pl-10 pr-4 py-2 border border-amber-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:border-amber-400 text-amber-800"
                       data-testid="input-search-bills"
                     />
                   </div>
@@ -490,15 +490,15 @@ export default function AdminDashboard() {
                     </p>
                   ) : (
                     <div className="overflow-x-auto">
-                      <table className="w-full bg-white rounded-lg">
-                        <thead className="bg-gray-50">
+                      <table className="w-full bg-white rounded-lg border border-amber-200">
+                        <thead className="bg-amber-50">
                           <tr>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Bill No.</th>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Customer</th>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Date</th>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Amount</th>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Currency</th>
-                            <th className="px-4 py-3 text-left text-sm font-medium text-gray-700">Actions</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Bill No.</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Customer</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Date</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Amount</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Currency</th>
+                            <th className="px-4 py-3 text-left text-sm font-light text-amber-800">Actions</th>
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-200">
@@ -513,16 +513,16 @@ export default function AdminDashboard() {
                               );
                             })
                             .map((bill) => (
-                            <tr key={bill.id} className="hover:bg-gray-50" data-testid={`row-bill-${bill.id}`}>
-                              <td className="px-4 py-3 text-sm font-medium text-black">{bill.billNumber}</td>
-                              <td className="px-4 py-3 text-sm text-gray-700">{bill.customerName}</td>
-                              <td className="px-4 py-3 text-sm text-gray-700">
+                            <tr key={bill.id} className="hover:bg-amber-50" data-testid={`row-bill-${bill.id}`}>
+                              <td className="px-4 py-3 text-sm font-light text-amber-900">{bill.billNumber}</td>
+                              <td className="px-4 py-3 text-sm font-light text-amber-800">{bill.customerName}</td>
+                              <td className="px-4 py-3 text-sm font-light text-amber-800">
                                 {new Date(bill.createdAt!).toLocaleDateString()}
                               </td>
-                              <td className="px-4 py-3 text-sm font-medium text-black">
+                              <td className="px-4 py-3 text-sm font-light text-amber-900">
                                 {bill.currency === 'INR' ? '₹' : 'BD'} {parseFloat(bill.total).toLocaleString()}
                               </td>
-                              <td className="px-4 py-3 text-sm text-gray-700">{bill.currency}</td>
+                              <td className="px-4 py-3 text-sm font-light text-amber-800">{bill.currency}</td>
                               <td className="px-4 py-3 text-sm">
                                 <div className="flex items-center space-x-2">
                                   <Button
@@ -606,10 +606,10 @@ export default function AdminDashboard() {
           </TabsContent>
 
           <TabsContent value="barcodes" className="space-y-6">
-            <Card data-testid="card-barcode-management">
+            <Card data-testid="card-barcode-management" className="bg-white shadow-sm border border-amber-200">
               <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <QrCode className="h-5 w-5" />
+                <CardTitle className="flex items-center gap-2 text-amber-800 font-light" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>
+                  <QrCode className="h-5 w-5 text-amber-700" />
                   Product QR Code Management
                 </CardTitle>
               </CardHeader>
@@ -617,11 +617,11 @@ export default function AdminDashboard() {
                 <div className="space-y-6">
                   {products.length === 0 ? (
                     <div className="text-center py-8">
-                      <QrCode className="h-16 w-16 mx-auto text-gray-400 mb-4" />
-                      <p className="text-gray-500" data-testid="message-no-products">
+                      <QrCode className="h-16 w-16 mx-auto text-amber-400 mb-4" />
+                      <p className="text-amber-600 font-light" data-testid="message-no-products">
                         No products available for QR code generation.
                       </p>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-sm text-amber-500 font-light">
                         Add products first to generate QR codes.
                       </p>
                     </div>
