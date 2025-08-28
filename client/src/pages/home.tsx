@@ -194,6 +194,8 @@ export default function Home() {
         return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
       case 'mixed':
         return 'grid-cols-3 md:grid-cols-3 lg:grid-cols-4';
+      case 'split':
+        return 'grid-cols-1 md:grid-cols-2 gap-0'; // Split layout uses flex instead
       default:
         return 'grid-cols-3 md:grid-cols-3 lg:grid-cols-4';
     }
@@ -269,6 +271,83 @@ export default function Home() {
       {homeSections.length > 0 && homeSections.map((section) => {
         if (section.items.length === 0) return null;
         
+        // Split layout rendering
+        if (section.layoutType === 'split') {
+          const leftItems = section.items.slice(0, Math.ceil(section.items.length / 2));
+          const rightItems = section.items.slice(Math.ceil(section.items.length / 2));
+          
+          return (
+            <section 
+              key={section.id} 
+              className="py-16 relative" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ background: '#f5f5f0' }}
+            >
+              {/* Section Header */}
+              <div className="text-center mb-8">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-700 mb-4">
+                  {section.title}
+                </h2>
+                {section.description && (
+                  <p className="text-lg text-gray-600 max-w-3xl mx-auto font-light">
+                    {section.description}
+                  </p>
+                )}
+              </div>
+              
+              {/* Split Layout Container */}
+              <div className="flex flex-col md:flex-row h-auto md:h-96">
+                {/* Left Section */}
+                <div 
+                  className="flex-1 relative overflow-hidden flex items-center justify-center p-8"
+                  style={{ backgroundColor: section.splitLeftColor || '#E0F2FE' }}
+                >
+                  <div className="text-center">
+                    <h3 className="text-2xl md:text-3xl font-light text-gray-700 mb-6">
+                      {section.splitLeftTitle || 'Category 1'}
+                    </h3>
+                    <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+                      {leftItems.slice(0, 4).map((item) => (
+                        <div key={item.id} className="transform hover:scale-105 transition-transform duration-300">
+                          <ProductCard
+                            product={item.product}
+                            currency={selectedCurrency}
+                            showActions={true}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Right Section */}
+                <div 
+                  className="flex-1 relative overflow-hidden flex items-center justify-center p-8"
+                  style={{ backgroundColor: section.splitRightColor || '#F0FDF4' }}
+                >
+                  <div className="text-center">
+                    <h3 className="text-2xl md:text-3xl font-light text-gray-700 mb-6">
+                      {section.splitRightTitle || 'Category 2'}
+                    </h3>
+                    <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
+                      {rightItems.slice(0, 4).map((item) => (
+                        <div key={item.id} className="transform hover:scale-105 transition-transform duration-300">
+                          <ProductCard
+                            product={item.product}
+                            currency={selectedCurrency}
+                            showActions={true}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+        
+        // Regular layout rendering
         return (
           <section 
             key={section.id} 
