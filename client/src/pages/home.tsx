@@ -10,7 +10,7 @@ import { Product, HomeSection, HomeSectionItem } from '@shared/schema';
 import { Currency } from '@/lib/currency';
 import { ProductFilters as IProductFilters } from '@shared/cart-schema';
 import { ArrowRight, Star, Sparkles, Crown, Gem, Heart, Watch, Users, Baby, Palette, Wrench } from "lucide-react";
-import ringsImage from '@assets/rings-new.png';
+import ringsImage from '@assets/rings_luxury.png';
 
 interface HomeSectionWithItems extends HomeSection {
   items: HomeSectionItemWithProduct[];
@@ -20,7 +20,7 @@ interface HomeSectionItemWithProduct extends HomeSectionItem {
   product: Product;
 }
 import pendantsImage from '@assets/pendants_luxury.png';
-import earringsImage from '@assets/earrings-new.png';
+import earringsImage from '@assets/earrings_luxury.png';
 import braceletsImage from '@assets/bracelets_luxury.png';
 import necklacesImage from '@assets/necklaces_luxury_new.png';
 import chainsImage from '@assets/chains_luxury.png';
