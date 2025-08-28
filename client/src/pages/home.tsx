@@ -217,52 +217,43 @@ export default function Home() {
         onCurrencyChange={setSelectedCurrency}
       />
 
-      {/* 1. Explore Our Collections - New Carousel Design */}
-      <section className="pt-8 pb-12" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #fefefe 0%, #f8f6f0 50%, #fef7ed 100%)' }}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold bg-gradient-to-r from-amber-900 via-yellow-800 to-amber-900 bg-clip-text text-transparent drop-shadow-lg mb-2">Explore Our Collections</h2>
-            <p className="text-amber-700 text-lg font-medium opacity-90">Discover our exquisite jewelry crafted with precision and care</p>
-          </div>
-          
-          {/* Category Carousel */}
-          <div className="relative">
-            
-            {/* Category Items Container */}
-            <div 
-              id="category-carousel"
-              className="flex overflow-x-auto scrollbar-hide gap-6 px-4 py-6"
-              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            >
-              {categories.map((category, index) => (
+      {/* Categories Grid - Mobile Optimized */}
+      <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #fefefe 0%, #f8f6f0 50%, #fef7ed 100%)' }}>
+        <div className="container mx-auto px-2 md:px-4">
+          {/* Categories Grid - 4x5 layout on mobile, responsive on larger screens */}
+          <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-1 md:gap-3">
+            {categories.slice(0, 20).map((category, index) => (
+              <div 
+                key={category.key}
+                className="flex flex-col items-center cursor-pointer hover:transform hover:scale-105 transition-all duration-200"
+                onClick={() => handleViewAllClick(category.key)}
+                data-testid={`category-card-${category.key}`}
+              >
+                {/* Category Image */}
                 <div 
-                  key={category.key}
-                  className="flex-shrink-0 cursor-pointer hover:transform hover:scale-110 transition-all duration-300 hover:shadow-2xl"
-                  onClick={() => handleViewAllClick(category.key)}
-                  data-testid={`category-card-${category.key}`}
+                  className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full shadow-lg overflow-hidden mb-1.5 md:mb-2 bg-gradient-to-br from-white to-gray-50"
+                  style={{
+                    backgroundImage: `url(${category.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
+                  }}
+                />
+                
+                {/* Category Name */}
+                <h3 
+                  className="text-[10px] md:text-xs lg:text-sm font-medium text-center leading-tight text-amber-800 px-1" 
+                  style={{ 
+                    display: '-webkit-box',
+                    WebkitLineClamp: 2,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}
                 >
-                  <div className="flex flex-col items-center">
-                    {/* Category Image */}
-                    <div 
-                      className="w-24 h-24 md:w-32 md:h-32 rounded-full shadow-xl overflow-hidden mb-3 bg-gradient-to-br from-white to-gray-50 ring-4 ring-white ring-opacity-50"
-                      style={{
-                        backgroundImage: `url(${category.image})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                      }}
-                    />
-                    
-                    {/* Category Name */}
-                    <h3 
-                      className="text-sm md:text-base font-bold text-center max-w-[100px] leading-tight bg-gradient-to-r from-amber-800 to-yellow-700 bg-clip-text text-transparent drop-shadow-sm" 
-                    >
-                      {category.name}
-                    </h3>
-                  </div>
-                </div>
-              ))}
-            </div>
+                  {category.name}
+                </h3>
+              </div>
+            ))}
           </div>
         </div>
       </section>
