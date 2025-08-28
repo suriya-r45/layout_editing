@@ -14,14 +14,14 @@ export default function CartButton() {
       <Button
         variant="ghost"
         onClick={() => setIsOpen(true)}
-        className="relative p-2 text-black hover:bg-gray-100 rounded-lg transition-all duration-200"
+        className="relative p-1 md:p-2 text-black hover:bg-gray-100 rounded-lg transition-all duration-200"
         data-testid="button-cart"
       >
-        <ShoppingCart className="h-6 w-6" />
+        <ShoppingCart className="h-4 w-4 md:h-6 md:w-6" />
         {totalItems > 0 && (
           <Badge
             variant="destructive"
-            className="absolute -top-1 -right-1 h-5 w-5 rounded-full p-0 flex items-center justify-center text-xs bg-black text-white"
+            className="absolute -top-0.5 -right-0.5 md:-top-1 md:-right-1 h-4 w-4 md:h-5 md:w-5 rounded-full p-0 flex items-center justify-center text-[10px] md:text-xs bg-black text-white"
             data-testid="badge-cart-count"
           >
             {totalItems}

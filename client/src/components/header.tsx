@@ -42,45 +42,45 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
     <>
       {/* Main Header */}
       <header className="bg-gradient-to-r from-amber-50 to-orange-50 shadow-sm sticky top-0 z-50 border-b border-amber-100" data-testid="header-main">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-2 md:px-4">
           {/* Top Row */}
-          <div className="flex items-center justify-between h-16 md:h-20">
+          <div className="flex items-center justify-between h-14 md:h-20">
             {/* Left Section - Mobile Menu & Brand */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 md:space-x-4 flex-1 min-w-0">
               {/* Hamburger Menu - Mobile Only */}
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 text-black hover:bg-gray-100"
+                className="md:hidden p-1 text-black hover:bg-gray-100 flex-shrink-0"
               >
-                <Menu className="h-6 w-6" />
+                <Menu className="h-5 w-5" />
               </Button>
 
               {/* Brand with Logo */}
-              <Link href="/" className="flex items-center space-x-2 md:space-x-3" data-testid="link-home">
-                <div className="w-8 h-8 md:w-12 md:h-12 rounded-full overflow-hidden border border-gray-300">
+              <Link href="/" className="flex items-center space-x-1 md:space-x-3 min-w-0 flex-1" data-testid="link-home">
+                <div className="w-6 h-6 md:w-12 md:h-12 rounded-full overflow-hidden border border-gray-300 flex-shrink-0">
                   <img 
                     src={logoPath} 
                     alt="Palaniappa Jewellers Logo" 
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div>
-                  <h1 className="text-lg md:text-2xl font-bold text-black tracking-wide">PALANIAPPA JEWELLERS</h1>
-                  <p className="text-xs text-black font-medium">Since 2025</p>
+                <div className="min-w-0 flex-1">
+                  <h1 className="text-sm md:text-2xl font-bold text-black tracking-wide truncate">PALANIAPPA JEWELLERS</h1>
+                  <p className="text-[10px] md:text-xs text-black font-medium">Since 2025</p>
                 </div>
               </Link>
             </div>
 
             {/* Right Section - Icons */}
-            <div className="flex items-center space-x-2 md:space-x-4">
+            <div className="flex items-center space-x-1 md:space-x-4 flex-shrink-0">
               {/* Currency Selection */}
               <Select value={selectedCurrency} onValueChange={onCurrencyChange} data-testid="select-currency">
-                <SelectTrigger className="bg-transparent border-0 text-black hover:text-gray-700 p-0 h-auto transition-colors duration-200 w-16 md:w-20">
+                <SelectTrigger className="bg-transparent border-0 text-black hover:text-gray-700 p-0 h-auto transition-colors duration-200 w-12 md:w-20">
                   <div className="flex flex-col items-center cursor-pointer w-full">
-                    <span className="text-[8px] md:text-xs whitespace-nowrap mb-0.5">Country</span>
-                    <div className="text-center text-[9px] md:text-xs font-medium">
+                    <span className="text-[7px] md:text-xs whitespace-nowrap mb-0.5">Country</span>
+                    <div className="text-center text-[8px] md:text-xs font-medium">
                       <SelectValue />
                     </div>
                   </div>
@@ -111,13 +111,13 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
               </Select>
 
               {/* Login/Profile */}
-              <div className="flex flex-col items-center px-1">
+              <div className="flex flex-col items-center">
                 {user ? (
-                  <div className="flex items-center space-x-1 md:space-x-2">
+                  <div className="flex items-center space-x-1">
                     {isAdmin && (
                       <Link href="/admin">
-                        <Button variant="ghost" size="sm" className="text-black hover:text-gray-700 hover:bg-gray-100 transition-all duration-200 px-2 py-1" data-testid="button-admin-dashboard">
-                          <span className="text-xs">Dashboard</span>
+                        <Button variant="ghost" size="sm" className="text-black hover:text-gray-700 hover:bg-gray-100 transition-all duration-200 px-1 md:px-2 py-1" data-testid="button-admin-dashboard">
+                          <span className="text-[10px] md:text-xs">Dashboard</span>
                         </Button>
                       </Link>
                     )}
@@ -125,24 +125,24 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                       variant="ghost"
                       size="sm"
                       onClick={handleLogout}
-                      className="p-2 text-black hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
+                      className="p-1 md:p-2 text-black hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-all duration-200"
                       data-testid="button-logout"
                     >
-                      <LogOut className="h-6 w-6" />
+                      <LogOut className="h-4 w-4 md:h-6 md:w-6" />
                     </Button>
                   </div>
                 ) : (
                   <Link href="/login">
-                    <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
-                      <User className="h-6 w-6 text-black" />
+                    <button className="p-1 md:p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200">
+                      <User className="h-4 w-4 md:h-6 md:w-6 text-black" />
                     </button>
                   </Link>
                 )}
               </div>
 
               {/* Wishlist Heart */}
-              <button className="p-2 hover:bg-gray-100 rounded-lg">
-                <Heart className="h-6 w-6 text-black" />
+              <button className="p-1 md:p-2 hover:bg-gray-100 rounded-lg">
+                <Heart className="h-4 w-4 md:h-6 md:w-6 text-black" />
               </button>
 
               {/* Cart with Badge */}
@@ -152,8 +152,8 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
             </div>
           </div>
 
-          {/* Search Bar Row */}
-          <div className="pb-4">
+          {/* Search Bar Row - Hidden on mobile, shown on tablet and up */}
+          <div className="hidden md:block pb-4">
             <div className="max-w-4xl mx-auto">
               <div className="relative">
                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
@@ -176,6 +176,32 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                     <Mic className="h-5 w-5 text-black" />
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Search Bar - Only shown on mobile */}
+          <div className="md:hidden pb-2">
+            <div className="relative">
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                <Search className="h-4 w-4 text-black" />
+              </div>
+              <Input
+                type="text"
+                placeholder="Search for Gold Jewellery, Diamond Je..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleSearchKeyPress}
+                className="w-full h-9 pl-10 pr-16 rounded-full bg-gray-50 border-gray-200 text-black placeholder-gray-500 focus:bg-white focus:ring-2 focus:ring-gray-200 focus:border-gray-300 text-sm"
+                data-testid="search-input-mobile"
+              />
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
+                <button className="p-0.5 hover:bg-gray-200 rounded">
+                  <Camera className="h-4 w-4 text-black" />
+                </button>
+                <button className="p-0.5 hover:bg-gray-200 rounded">
+                  <Mic className="h-4 w-4 text-black" />
+                </button>
               </div>
             </div>
           </div>
