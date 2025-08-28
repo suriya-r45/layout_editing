@@ -44,7 +44,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
       <header className="shadow-sm sticky top-0 z-50 border-b border-gray-200" data-testid="header-main" style={{ background: '#ffffff' }}>
         <div className="container mx-auto px-2 md:px-4">
           {/* Top Row */}
-          <div className="flex items-center justify-between h-14 md:h-20">
+          <div className="flex items-center justify-between h-14 md:h-16">
             {/* Left Section - Mobile Menu & Brand */}
             <div className="flex items-center space-x-2 md:space-x-4 flex-1 min-w-0">
               {/* Hamburger Menu - Mobile Only */}
@@ -67,17 +67,43 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h1 className="text-sm md:text-2xl font-light text-gray-700 tracking-wide truncate" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>PALANIAPPA JEWELLERS</h1>
-                  <p className="text-[10px] md:text-xs text-gray-500 font-light">Since 2025</p>
+                  <h1 className="text-sm md:text-2xl font-light text-gray-800 tracking-wide truncate" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>PALANIAPPA JEWELLERS</h1>
+                  <p className="text-[10px] md:text-xs text-gray-600 font-light">Since 2025</p>
                 </div>
               </Link>
+            </div>
+
+            {/* Center Section - Search Bar (Desktop Only) */}
+            <div className="hidden lg:flex flex-1 max-w-md mx-8">
+              <div className="relative w-full">
+                <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                  <Search className="h-4 w-4 text-gray-600" />
+                </div>
+                <Input
+                  type="text"
+                  placeholder="Search jewelry..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={handleSearchKeyPress}
+                  className="w-full h-9 pl-10 pr-16 rounded-full bg-white border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
+                  data-testid="search-input-header"
+                />
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
+                  <button className="p-0.5 hover:bg-gray-100 rounded">
+                    <Camera className="h-4 w-4 text-gray-600" />
+                  </button>
+                  <button className="p-0.5 hover:bg-gray-100 rounded">
+                    <Mic className="h-4 w-4 text-gray-600" />
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* Right Section - Icons */}
             <div className="flex items-center space-x-1 md:space-x-4 flex-shrink-0">
               {/* Currency Selection */}
               <Select value={selectedCurrency} onValueChange={onCurrencyChange} data-testid="select-currency">
-                <SelectTrigger className="bg-transparent border-0 text-gray-700 hover:text-gray-500 p-0 h-auto transition-colors duration-200 w-12 md:w-20">
+                <SelectTrigger className="bg-transparent border-0 text-gray-800 hover:text-gray-600 p-0 h-auto transition-colors duration-200 w-12 md:w-20">
                   <div className="flex flex-col items-center cursor-pointer w-full">
                     <span className="text-[7px] md:text-xs whitespace-nowrap mb-0.5">Country</span>
                     <div className="text-center text-[8px] md:text-xs font-medium">
@@ -116,7 +142,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                   <div className="flex items-center space-x-1">
                     {isAdmin && (
                       <Link href="/admin">
-                        <Button variant="ghost" size="sm" className="text-gray-700 hover:text-gray-500 hover:bg-gray-50 transition-all duration-200 px-1 md:px-2 py-1" data-testid="button-admin-dashboard">
+                        <Button variant="ghost" size="sm" className="text-gray-800 hover:text-gray-600 hover:bg-gray-50 transition-all duration-200 px-1 md:px-2 py-1" data-testid="button-admin-dashboard">
                           <span className="text-[10px] md:text-xs">Dashboard</span>
                         </Button>
                       </Link>
@@ -125,7 +151,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                       variant="ghost"
                       size="sm"
                       onClick={handleLogout}
-                      className="p-1 md:p-2 text-gray-700 hover:text-gray-500 hover:bg-gray-50 rounded-lg transition-all duration-200"
+                      className="p-1 md:p-2 text-gray-800 hover:text-gray-600 hover:bg-gray-50 rounded-lg transition-all duration-200"
                       data-testid="button-logout"
                     >
                       <LogOut className="h-4 w-4 md:h-6 md:w-6" />
@@ -134,7 +160,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                 ) : (
                   <Link href="/login">
                     <button className="p-1 md:p-2 hover:bg-gray-50 rounded-lg transition-colors duration-200">
-                      <User className="h-4 w-4 md:h-6 md:w-6 text-gray-700" />
+                      <User className="h-4 w-4 md:h-6 md:w-6 text-gray-800" />
                     </button>
                   </Link>
                 )}
@@ -142,7 +168,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
 
               {/* Wishlist Heart */}
               <button className="p-1 md:p-2 hover:bg-gray-50 rounded-lg">
-                <Heart className="h-4 w-4 md:h-6 md:w-6 text-gray-700" />
+                <Heart className="h-4 w-4 md:h-6 md:w-6 text-gray-800" />
               </button>
 
               {/* Cart with Badge */}
@@ -152,12 +178,12 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
             </div>
           </div>
 
-          {/* Search Bar Row - Hidden on mobile, shown on tablet and up */}
-          <div className="hidden md:block pb-4">
+          {/* Search Bar Row - Only for tablets, hidden on desktop and mobile */}
+          <div className="hidden md:block lg:hidden pb-4">
             <div className="max-w-2xl mx-auto">
               <div className="relative">
                 <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Search className="h-5 w-5 text-gray-500" />
+                  <Search className="h-5 w-5 text-gray-600" />
                 </div>
                 <Input
                   type="text"
@@ -165,15 +191,15 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={handleSearchKeyPress}
-                  className="w-full h-12 pl-12 pr-20 rounded-full bg-white border-gray-200 text-gray-700 placeholder-gray-500 focus:bg-white focus:ring-2 focus:ring-gray-200 focus:border-gray-300"
+                  className="w-full h-12 pl-12 pr-20 rounded-full bg-white border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400"
                   data-testid="search-input"
                 />
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
-                  <button className="p-1 hover:bg-gray-50 rounded">
-                    <Camera className="h-5 w-5 text-gray-500" />
+                  <button className="p-1 hover:bg-gray-100 rounded">
+                    <Camera className="h-5 w-5 text-gray-600" />
                   </button>
-                  <button className="p-1 hover:bg-gray-50 rounded">
-                    <Mic className="h-5 w-5 text-gray-500" />
+                  <button className="p-1 hover:bg-gray-100 rounded">
+                    <Mic className="h-5 w-5 text-gray-600" />
                   </button>
                 </div>
               </div>
@@ -184,7 +210,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
           <div className="md:hidden pb-2">
             <div className="relative">
               <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                <Search className="h-4 w-4 text-amber-700" />
+                <Search className="h-4 w-4 text-gray-600" />
               </div>
               <Input
                 type="text"
@@ -192,15 +218,15 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={handleSearchKeyPress}
-                className="w-full h-9 pl-10 pr-16 rounded-full bg-amber-50 border-amber-200 text-amber-800 placeholder-amber-600 focus:bg-white focus:ring-2 focus:ring-amber-200 focus:border-amber-300 text-sm"
+                className="w-full h-9 pl-10 pr-16 rounded-full bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
                 data-testid="search-input-mobile"
               />
               <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
-                <button className="p-0.5 hover:bg-amber-100 rounded">
-                  <Camera className="h-4 w-4 text-amber-700" />
+                <button className="p-0.5 hover:bg-gray-100 rounded">
+                  <Camera className="h-4 w-4 text-gray-600" />
                 </button>
-                <button className="p-0.5 hover:bg-amber-100 rounded">
-                  <Mic className="h-4 w-4 text-amber-700" />
+                <button className="p-0.5 hover:bg-gray-100 rounded">
+                  <Mic className="h-4 w-4 text-gray-600" />
                 </button>
               </div>
             </div>

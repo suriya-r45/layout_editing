@@ -23,11 +23,11 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <h3 className="text-lg font-light text-gray-700">PALANIAPPA JEWELLERS</h3>
-                <p className="text-xs font-light text-gray-500">Since 2025</p>
+                <h3 className="text-lg font-light text-gray-800">PALANIAPPA JEWELLERS</h3>
+                <p className="text-xs font-light text-gray-600">Since 2025</p>
               </div>
             </div>
-            <p className="text-sm font-light text-gray-500">
+            <p className="text-sm font-light text-gray-600">
               Premium jewelry crafted with precision and elegance for discerning customers worldwide.
             </p>
           </div>
@@ -43,27 +43,27 @@ export default function Footer() {
           </div> */}
 
           <div>
-            <h4 className="text-lg font-light mb-4 text-gray-700">Categories</h4>
+            <h4 className="text-lg font-light mb-4 text-gray-800">Categories</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-gray-500 font-light" data-testid="link-category-gold">Gold Jewelry</a></li>
-              <li><a href="#" className="text-gray-500 font-light" data-testid="link-category-diamond">Diamond Jewelry</a></li>
-              <li><a href="#" className="text-gray-500 font-light" data-testid="link-category-silver">Silver Jewelry</a></li>
-              <li><a href="#" className="text-gray-500 font-light" data-testid="link-category-custom">Custom Designs</a></li>
+              <li><a href="#" className="text-gray-600 font-light hover:text-gray-800 transition-colors" data-testid="link-category-gold">Gold Jewelry</a></li>
+              <li><a href="#" className="text-gray-600 font-light hover:text-gray-800 transition-colors" data-testid="link-category-diamond">Diamond Jewelry</a></li>
+              <li><a href="#" className="text-gray-600 font-light hover:text-gray-800 transition-colors" data-testid="link-category-silver">Silver Jewelry</a></li>
+              <li><a href="#" className="text-gray-600 font-light hover:text-gray-800 transition-colors" data-testid="link-category-custom">Custom Designs</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-lg font-light mb-4 text-gray-700">Contact Info</h4>
-            <div className="space-y-2 text-sm text-gray-500">
+            <h4 className="text-lg font-light mb-4 text-gray-800">Contact Info</h4>
+            <div className="space-y-2 text-sm text-gray-600">
               <a 
                 href="https://wa.me/919597201554?text=Hi!%20I'm%20interested%20in%20your%20jewelry%20collection.%20Could%20you%20please%20help%20me%20with%20more%20information?"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 text-white hover:text-green-400 transition-colors cursor-pointer" 
+                className="flex items-center space-x-2 text-gray-600 hover:text-green-600 transition-colors cursor-pointer" 
                 data-testid="link-whatsapp-phone"
               >
                 <FaWhatsapp className="h-4 w-4 text-green-500" />
-                <span className="text-green-400">+91 959 720 1554</span>
+                <span className="text-green-600">+91 959 720 1554</span>
               </a>
               <a
                 href="https://instagram.com/palaniappa.bh"
@@ -76,7 +76,7 @@ export default function Footer() {
                 <span>Instagram</span>
               </a>
               <p className="flex items-center space-x-2" data-testid="text-email">
-                <Mail className="h-4 w-4 text-white" />
+                <Mail className="h-4 w-4 text-gray-600" />
                 <span>jewelerypalaniappa@gmail.com</span>
               </p>
               {/* <p className="flex items-center space-x-2" data-testid="text-address">
@@ -86,27 +86,27 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Locations</h4>
+            <h4 className="text-lg font-light mb-4 text-gray-800">Locations</h4>
             <div className="space-y-4">
               <div className="flex items-start space-x-2">
-                <MapPin className="h-4 w-4 text-white mt-1" />
+                <MapPin className="h-4 w-4 text-gray-600 mt-1" />
                 <div>
-                  <h4 className="font-medium text-white">India</h4>
-                  <p className="text-sm text-white">Salem, Tamil Nadu</p>
+                  <h4 className="font-medium text-gray-800">India</h4>
+                  <p className="text-sm text-gray-600">Salem, Tamil Nadu</p>
                 </div>
               </div>
               <div className="flex items-start space-x-2">
-                <MapPin className="h-4 w-4 text-white mt-1" />
+                <MapPin className="h-4 w-4 text-gray-600 mt-1" />
                 <div>
-                  <h4 className="font-medium text-white">Bahrain</h4>
-                  <p className="text-sm text-white">Gold City, Manama</p>
+                  <h4 className="font-medium text-gray-800">Bahrain</h4>
+                  <p className="text-sm text-gray-600">Gold City, Manama</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 text-center text-sm border-t-2 border-white text-white">
+        <div className="mt-8 pt-8 text-center text-sm border-t-2 border-gray-200 text-gray-600">
           <p>&copy; 2025 Palaniappa Jewellers. All rights reserved.</p>
         </div>
       </div>
