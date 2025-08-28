@@ -85,7 +85,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={handleSearchKeyPress}
-                  className="w-full h-9 pl-10 pr-16 rounded-full bg-white border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
+                  className="w-full h-10 pl-12 pr-18 rounded-full bg-white border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
                   data-testid="search-input-header"
                 />
                 <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
@@ -187,11 +187,11 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                 </div>
                 <Input
                   type="text"
-                  placeholder="Search for Gold Jewellery, Diamond Je..."
+                  placeholder="Search for Gold Jewellery..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={handleSearchKeyPress}
-                  className="w-full h-12 pl-12 pr-20 rounded-full bg-white border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400"
+                  className="w-full h-12 pl-16 pr-24 rounded-full bg-white border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400"
                   data-testid="search-input"
                 />
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
@@ -209,23 +209,23 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
           {/* Mobile Search Bar - Only shown on mobile */}
           <div className="md:hidden pb-2">
             <div className="relative">
-              <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
+              <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
                 <Search className="h-4 w-4 text-gray-600" />
               </div>
               <Input
                 type="text"
-                placeholder="Search for Gold Jewellery, Diamond Je..."
+                placeholder="Search for Gold Jewellery..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={handleSearchKeyPress}
-                className="w-full h-10 pl-12 pr-16 rounded-full bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
+                className="w-full h-12 pl-16 pr-20 rounded-full bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
                 data-testid="search-input-mobile"
               />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
-                <button className="p-0.5 hover:bg-gray-100 rounded">
+              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+                <button className="p-1 hover:bg-gray-100 rounded">
                   <Camera className="h-4 w-4 text-gray-600" />
                 </button>
-                <button className="p-0.5 hover:bg-gray-100 rounded">
+                <button className="p-1 hover:bg-gray-100 rounded">
                   <Mic className="h-4 w-4 text-gray-600" />
                 </button>
               </div>

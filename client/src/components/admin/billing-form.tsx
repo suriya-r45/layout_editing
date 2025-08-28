@@ -561,13 +561,13 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
             {/* Search Input */}
             <div className="mb-4">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
                   type="text"
-                  placeholder="Search products by name, description, or category..."
+                  placeholder="Search products..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="pl-12 h-10"
                   data-testid="input-search-products"
                 />
               </div>
@@ -642,18 +642,9 @@ export default function BillingForm({ currency, products }: BillingFormProps) {
           <div className="flex space-x-4">
             <Button
               type="submit"
-              className="flex-1 text-white font-bold py-4 text-lg relative overflow-hidden"
               disabled={createBillMutation.isPending || selectedProducts.size === 0}
               data-testid="button-create-bill"
-              style={{
-                background: 'linear-gradient(45deg, #d97706, #f59e0b, #eab308, #facc15) !important',
-                boxShadow: '0 0 30px #d97706, 0 8px 25px rgba(217, 119, 6, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important',
-                border: '3px solid #d97706 !important',
-                textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)',
-                animation: 'brightPulse 1.5s ease-in-out infinite alternate',
-                transform: 'scale(1.02)',
-                filter: 'brightness(1.2) saturate(1.5)',
-              }}
+              className="flex-1 bg-green-600 border border-green-600 text-white hover:bg-green-700 font-medium py-4 text-lg rounded-lg shadow-lg transition-all"
             >
               <FileText className="h-6 w-6 mr-2" />
               {createBillMutation.isPending ? 'Creating...' : (isEditMode ? 'Update Bill' : 'Generate Bill')}

@@ -484,7 +484,7 @@ export default function CollectionsPage({ material, category }: CollectionsPageP
                   placeholder="Search jewelry..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10"
+                  className="pl-12 h-10"
                 />
               </div>
             </div>
