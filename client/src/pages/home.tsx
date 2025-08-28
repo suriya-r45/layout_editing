@@ -285,11 +285,11 @@ export default function Home() {
             >
               {/* Section Header */}
               <div className="text-center mb-8">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-gray-700 mb-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   {section.title}
                 </h2>
                 {section.description && (
-                  <p className="text-lg text-gray-600 max-w-3xl mx-auto font-light">
+                  <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                     {section.description}
                   </p>
                 )}
@@ -359,11 +359,11 @@ export default function Home() {
           >
             <div className="container mx-auto px-4">
               <div className="text-center mb-10">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   {section.title}
                 </h2>
                 {section.description && (
-                  <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">{section.description}</p>
+                  <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
                 )}
               </div>
               <div className={`grid gap-4 md:gap-6 mb-10 ${getLayoutClasses(section.layoutType, section.items.length)}`}>
@@ -379,7 +379,8 @@ export default function Home() {
               </div>
               <div className="text-center">
                 <Button 
-                  className="bg-white border border-gray-200 text-gray-600 px-6 py-2 text-sm font-light rounded hover:bg-gray-50 transition-colors duration-200" 
+                  className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
                   onClick={() => window.location.href = '/collections'}
                 >
                   View All <ArrowRight className="ml-2 h-3 w-3" />
@@ -395,8 +396,8 @@ export default function Home() {
         <section className="py-12" data-testid="section-new-arrivals" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4">New Arrivals</h2>
-              <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Latest additions to our collection</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>New Arrivals</h2>
+              <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Latest additions to our collection</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {newArrivalProducts.map((product) => (
@@ -410,7 +411,8 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                className="bg-white border border-gray-200 text-gray-600 px-6 py-2 text-sm font-light rounded hover:bg-gray-50 transition-colors duration-200" 
+                className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
                 onClick={() => window.location.href = '/collections?category=new-arrivals'}
               >
                 View All New Arrivals <ArrowRight className="ml-2 h-3 w-3" />
@@ -425,8 +427,8 @@ export default function Home() {
         <section className="py-12" data-testid="section-gold-plated-silver-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4">Gold Plated Silver</h2>
-              <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Affordable luxury with gold plated silver elegance</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gold Plated Silver</h2>
+              <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Affordable luxury with gold plated silver elegance</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {goldPlatedSilverProducts.map((product) => (
@@ -440,7 +442,8 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                className="bg-white border border-gray-200 text-gray-600 px-6 py-2 text-sm font-light rounded hover:bg-gray-50 transition-colors duration-200" 
+                className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
                 onClick={() => window.location.href = '/collections?material=gold-plated-silver'}
               >
                 View Collection <ArrowRight className="ml-2 h-3 w-3" />
@@ -457,8 +460,8 @@ export default function Home() {
         <section className="py-12" data-testid="section-gold-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4">Gold Collection</h2>
-              <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Exquisite gold jewelry crafted to perfection</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gold Collection</h2>
+              <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Exquisite gold jewelry crafted to perfection</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {goldProducts.map((product) => (
@@ -472,7 +475,8 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                className="bg-white border border-gray-200 text-gray-600 px-6 py-2 text-sm font-light rounded hover:bg-gray-50 transition-colors duration-200" 
+                className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
                 onClick={() => window.location.href = '/collections?material=gold'}
               >
                 View Gold Collection <ArrowRight className="ml-2 h-3 w-3" />
@@ -487,8 +491,8 @@ export default function Home() {
         <section className="py-12" data-testid="section-silver-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4">Silver Collection</h2>
-              <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Elegant silver jewelry for every occasion</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Silver Collection</h2>
+              <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Elegant silver jewelry for every occasion</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {silverProducts.map((product) => (
@@ -502,7 +506,8 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                className="bg-white border border-gray-200 text-gray-600 px-6 py-2 text-sm font-light rounded hover:bg-gray-50 transition-colors duration-200" 
+                className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
                 onClick={() => window.location.href = '/collections?material=silver'}
               >
                 View Silver Collection <ArrowRight className="ml-2 h-3 w-3" />
@@ -517,8 +522,8 @@ export default function Home() {
         <section className="py-12" data-testid="section-diamond-collection" style={{ background: '#ffffff' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4">Diamond Collection</h2>
-              <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Brilliant diamonds for life's special moments</p>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-gray-700 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Diamond Collection</h2>
+              <p className="text-base font-normal text-gray-500 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Brilliant diamonds for life's special moments</p>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {diamondProducts.map((product) => (
@@ -532,7 +537,8 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                className="bg-white border border-gray-200 text-gray-600 px-6 py-2 text-sm font-light rounded hover:bg-gray-50 transition-colors duration-200" 
+                className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
                 onClick={() => window.location.href = '/collections?material=diamond'}
               >
                 View Diamond Collection <ArrowRight className="ml-2 h-3 w-3" />
