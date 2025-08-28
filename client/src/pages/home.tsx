@@ -217,15 +217,22 @@ export default function Home() {
         onCurrencyChange={setSelectedCurrency}
       />
 
-      {/* Categories Grid - Mobile Optimized */}
+      {/* Categories Horizontal Scroll */}
       <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #fefefe 0%, #f8f6f0 50%, #fef7ed 100%)' }}>
         <div className="container mx-auto px-2 md:px-4">
-          {/* Categories Grid - 4x5 layout on mobile, responsive on larger screens */}
-          <div className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-1 md:gap-3">
-            {categories.slice(0, 20).map((category, index) => (
+          {/* Horizontally Scrollable Categories */}
+          <div 
+            className="flex overflow-x-auto scrollbar-hide gap-3 md:gap-4 pb-2"
+            style={{ 
+              scrollbarWidth: 'none', 
+              msOverflowStyle: 'none',
+              scrollBehavior: 'smooth'
+            }}
+          >
+            {categories.map((category, index) => (
               <div 
                 key={category.key}
-                className="flex flex-col items-center cursor-pointer hover:transform hover:scale-105 transition-all duration-200"
+                className="flex-shrink-0 flex flex-col items-center cursor-pointer hover:transform hover:scale-105 transition-all duration-200"
                 onClick={() => handleViewAllClick(category.key)}
                 data-testid={`category-card-${category.key}`}
               >
@@ -242,7 +249,7 @@ export default function Home() {
                 
                 {/* Category Name */}
                 <h3 
-                  className="text-[10px] md:text-xs lg:text-sm font-medium text-center leading-tight text-amber-800 px-1" 
+                  className="text-[10px] md:text-xs lg:text-sm font-medium text-center leading-tight text-amber-800 px-1 w-16 md:w-20 lg:w-24" 
                   style={{ 
                     display: '-webkit-box',
                     WebkitLineClamp: 2,
