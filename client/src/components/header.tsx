@@ -41,7 +41,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
   return (
     <>
       {/* Main Header */}
-      <header className="shadow-sm sticky top-0 z-50 border-b border-amber-100" data-testid="header-main" style={{ background: 'linear-gradient(135deg, #fefefe 0%, #f8f6f0 50%, #fef7ed 100%)' }}>
+      <header className="shadow-sm sticky top-0 z-50 border-b border-gray-200" data-testid="header-main" style={{ background: '#ffffff' }}>
         <div className="container mx-auto px-2 md:px-4">
           {/* Top Row */}
           <div className="flex items-center justify-between h-14 md:h-20">
@@ -52,7 +52,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-1 text-amber-800 hover:bg-amber-50 flex-shrink-0"
+                className="md:hidden p-1 text-gray-700 hover:bg-gray-50 flex-shrink-0"
               >
                 <Menu className="h-5 w-5" />
               </Button>
@@ -67,8 +67,8 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h1 className="text-sm md:text-2xl font-light text-amber-800 tracking-wide truncate" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>PALANIAPPA JEWELLERS</h1>
-                  <p className="text-[10px] md:text-xs text-amber-700 font-light">Since 2025</p>
+                  <h1 className="text-sm md:text-2xl font-light text-gray-700 tracking-wide truncate" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>PALANIAPPA JEWELLERS</h1>
+                  <p className="text-[10px] md:text-xs text-gray-500 font-light">Since 2025</p>
                 </div>
               </Link>
             </div>
@@ -77,7 +77,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
             <div className="flex items-center space-x-1 md:space-x-4 flex-shrink-0">
               {/* Currency Selection */}
               <Select value={selectedCurrency} onValueChange={onCurrencyChange} data-testid="select-currency">
-                <SelectTrigger className="bg-transparent border-0 text-amber-800 hover:text-amber-700 p-0 h-auto transition-colors duration-200 w-12 md:w-20">
+                <SelectTrigger className="bg-transparent border-0 text-gray-700 hover:text-gray-500 p-0 h-auto transition-colors duration-200 w-12 md:w-20">
                   <div className="flex flex-col items-center cursor-pointer w-full">
                     <span className="text-[7px] md:text-xs whitespace-nowrap mb-0.5">Country</span>
                     <div className="text-center text-[8px] md:text-xs font-medium">

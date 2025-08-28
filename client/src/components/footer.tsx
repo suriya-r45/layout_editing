@@ -7,15 +7,15 @@ import logoPath from '@assets/1000284180_1755240849891_1755886428742.jpg';
 export default function Footer() {
   return (
     <footer className="py-12 border-t-2" data-testid="footer-main" style={{
-      backgroundColor: '#000000',
-      borderTopColor: '#FFFFFF',
-      color: '#FFFFFF'
+      backgroundColor: '#ffffff',
+      borderTopColor: '#E5E5E5',
+      color: '#374151'
     }}>
-      <div className="container mx-auto px-4" style={{backgroundColor: '#000000'}}>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8" style={{backgroundColor: '#000000'}}>
+      <div className="container mx-auto px-4" style={{backgroundColor: '#ffffff'}}>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8" style={{backgroundColor: '#ffffff'}}>
           <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white">
+              <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200">
                 <img
                   src={logoPath}
                   alt="Palaniappa Jewellers Logo"
@@ -23,11 +23,11 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white">PALANIAPPA JEWELLERS</h3>
-                <p className="text-xs text-white">Since 2025</p>
+                <h3 className="text-lg font-light text-gray-700">PALANIAPPA JEWELLERS</h3>
+                <p className="text-xs font-light text-gray-500">Since 2025</p>
               </div>
             </div>
-            <p className="text-sm text-white">
+            <p className="text-sm font-light text-gray-500">
               Premium jewelry crafted with precision and elegance for discerning customers worldwide.
             </p>
           </div>
@@ -43,18 +43,18 @@ export default function Footer() {
           </div> */}
 
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Categories</h4>
+            <h4 className="text-lg font-light mb-4 text-gray-700">Categories</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-white" data-testid="link-category-gold">Gold Jewelry</a></li>
-              <li><a href="#" className="text-white" data-testid="link-category-diamond">Diamond Jewelry</a></li>
-              <li><a href="#" className="text-white" data-testid="link-category-silver">Silver Jewelry</a></li>
-              <li><a href="#" className="text-white" data-testid="link-category-custom">Custom Designs</a></li>
+              <li><a href="#" className="text-gray-500 font-light" data-testid="link-category-gold">Gold Jewelry</a></li>
+              <li><a href="#" className="text-gray-500 font-light" data-testid="link-category-diamond">Diamond Jewelry</a></li>
+              <li><a href="#" className="text-gray-500 font-light" data-testid="link-category-silver">Silver Jewelry</a></li>
+              <li><a href="#" className="text-gray-500 font-light" data-testid="link-category-custom">Custom Designs</a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-white">Contact Info</h4>
-            <div className="space-y-2 text-sm text-white">
+            <h4 className="text-lg font-light mb-4 text-gray-700">Contact Info</h4>
+            <div className="space-y-2 text-sm text-gray-500">
               <a 
                 href="https://wa.me/919597201554?text=Hi!%20I'm%20interested%20in%20your%20jewelry%20collection.%20Could%20you%20please%20help%20me%20with%20more%20information?"
                 target="_blank"

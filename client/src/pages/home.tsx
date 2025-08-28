@@ -220,7 +220,7 @@ export default function Home() {
       />
 
       {/* Categories Horizontal Scroll */}
-      <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #fefefe 0%, #f8f6f0 50%, #fef7ed 100%)' }}>
+      <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: '#ffffff' }}>
         <div className="container mx-auto px-2 md:px-4">
           {/* Horizontally Scrollable Categories */}
           <div 
@@ -251,7 +251,7 @@ export default function Home() {
                 
                 {/* Category Name */}
                 <h3 
-                  className="text-[10px] md:text-xs lg:text-sm font-medium text-center leading-tight text-amber-800 px-1 w-16 md:w-20 lg:w-24" 
+                  className="text-[10px] md:text-xs lg:text-sm font-light text-center leading-tight text-gray-700 px-1 w-16 md:w-20 lg:w-24" 
                   style={{ 
                     display: '-webkit-box',
                     WebkitLineClamp: 2,
