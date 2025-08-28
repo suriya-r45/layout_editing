@@ -181,7 +181,7 @@ export default function Login() {
                   
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-gradient-to-r from-rose-900 to-red-900 hover:from-rose-800 hover:to-red-800 text-white text-lg font-semibold rounded-lg mt-8"
+                    className="w-full h-14 bg-gradient-to-r from-amber-800 to-yellow-700 hover:from-amber-900 hover:to-yellow-800 text-white text-lg font-semibold rounded-lg mt-8"
                     disabled={isLoading}
                     data-testid="button-submit-login"
                   >
@@ -192,7 +192,7 @@ export default function Login() {
                 <div className="flex justify-between items-center mt-8">
                   <Button 
                     variant="link" 
-                    className="text-rose-900 hover:text-red-900 font-semibold p-0"
+                    className="text-amber-800 hover:text-yellow-800 font-semibold p-0"
                     onClick={() => {
                       toast({
                         title: "Feature Coming Soon",
@@ -204,7 +204,7 @@ export default function Login() {
                   </Button>
                   <Button 
                     variant="link" 
-                    className="text-rose-900 hover:text-red-900 font-semibold p-0"
+                    className="text-amber-800 hover:text-yellow-800 font-semibold p-0"
                     onClick={() => setActiveTab('register')}
                   >
                     Create New Account
@@ -361,7 +361,7 @@ export default function Login() {
                   
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-gradient-to-r from-rose-900 to-red-900 hover:from-rose-800 hover:to-red-800 text-white text-lg font-semibold rounded-lg mt-8"
+                    className="w-full h-14 bg-gradient-to-r from-amber-800 to-yellow-700 hover:from-amber-900 hover:to-yellow-800 text-white text-lg font-semibold rounded-lg mt-8"
                     disabled={isRegistering}
                   >
                     {isRegistering ? 'CREATING ACCOUNT...' : 'REGISTER TO CONTINUE'}
@@ -372,7 +372,7 @@ export default function Login() {
                   <span className="text-gray-600">Already have an account? </span>
                   <Button 
                     variant="link" 
-                    className="text-rose-900 hover:text-red-900 font-semibold p-0"
+                    className="text-amber-800 hover:text-yellow-800 font-semibold p-0"
                     onClick={() => setActiveTab('login')}
                   >
                     Log In!
