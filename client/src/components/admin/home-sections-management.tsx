@@ -355,12 +355,17 @@ function CreateSectionDialog({
       
       const uploadResponse = await fetch('/api/upload-festival-image', {
         method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
         body: imageFormData,
       });
       
       if (uploadResponse.ok) {
         const { imagePath } = await uploadResponse.json();
         sectionData.festivalImage = imagePath;
+      } else {
+        throw new Error('Failed to upload festival image');
       }
     }
 
