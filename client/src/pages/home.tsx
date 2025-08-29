@@ -528,66 +528,18 @@ export default function Home() {
                               key={item.id} 
                               className="w-full bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 cursor-pointer group border border-white/30"
                             >
-                              <div className="h-32 relative overflow-hidden">
+                              <div className="h-20 relative overflow-hidden">
                                 <img
                                   src={product.images[0] || '/api/placeholder/200/200'}
                                   alt={product.name}
                                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                                
-                                {/* Price Badge */}
-                                <div className="absolute top-2 left-2">
-                                  <div className="bg-white/90 backdrop-blur-sm px-2 py-1 rounded-full shadow-lg">
-                                    <span className="text-gray-900 text-xs font-bold">
-                                      {selectedCurrency === 'INR' 
-                                        ? `₹${product.priceInr.toLocaleString()}`
-                                        : `BD ${product.priceBhd}`
-                                      }
-                                    </span>
-                                  </div>
-                                </div>
-
-                                {/* Discount Badge */}
-                                <div className="absolute top-2 right-2">
-                                  <div className="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-bold">
-                                    20% OFF
-                                  </div>
-                                </div>
                               </div>
                               
-                              <div className="p-4">
-                                <h4 className="font-semibold text-base text-gray-900 leading-tight mb-2 line-clamp-2 min-h-[2.5rem]" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                              <div className="p-3">
+                                <h4 className="font-semibold text-sm text-gray-900 leading-tight text-center" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                                   {product.name}
                                 </h4>
-                                
-                                <div className="space-y-2">
-                                  <div className="flex items-center justify-between">
-                                    <p className="text-xs text-gray-500 line-through">
-                                      {selectedCurrency === 'INR' 
-                                        ? `₹${(Number(product.priceInr) * 1.25).toLocaleString()}`
-                                        : `BD ${(Number(product.priceBhd) * 1.25).toFixed(3)}`
-                                      }
-                                    </p>
-                                    <div className="flex items-center gap-1">
-                                      <span className="text-amber-400">★</span>
-                                      <span className="text-gray-600 text-xs">4.9</span>
-                                    </div>
-                                  </div>
-                                  
-                                  <div className="flex items-center justify-between text-xs">
-                                    <div className="flex items-center gap-1 text-gray-600">
-                                      <span className="inline-block w-1.5 h-1.5 bg-yellow-400 rounded-full"></span>
-                                      <span>{product.grossWeight}g • {product.purity || '22K'}</span>
-                                    </div>
-                                    <span className="text-green-600 font-medium">In Stock</span>
-                                  </div>
-
-                                  {/* Action Button */}
-                                  <button className="w-full bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white py-2 px-3 rounded-full text-xs font-medium transition-all duration-300 hover:scale-105 shadow-lg">
-                                    Quick View
-                                  </button>
-                                </div>
                               </div>
                             </div>
                           );
