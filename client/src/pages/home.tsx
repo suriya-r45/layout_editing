@@ -516,17 +516,24 @@ export default function Home() {
                       <div className="w-20 h-1 bg-white/60 rounded-full mx-auto lg:mx-0 mt-4"></div>
                     </div>
 
-                    {/* 1x3 Product Grid */}
+                    {/* Swipeable Product Carousel */}
                     <div className="relative">
-                      <div className="grid grid-cols-3 gap-4">
-                        {section.items.slice(0, 3).map((item, index) => {
+                      <div 
+                        className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory"
+                        style={{ 
+                          scrollbarWidth: 'none', 
+                          msOverflowStyle: 'none',
+                          scrollBehavior: 'smooth'
+                        }}
+                      >
+                        {section.items.map((item, index) => {
                           const product = allProducts.find(p => p.id === item.productId);
                           if (!product) return null;
                           
                           return (
                             <div 
                               key={item.id} 
-                              className="w-full bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 cursor-pointer group border border-white/30"
+                              className="flex-shrink-0 w-32 bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 cursor-pointer group border border-white/30 snap-center"
                             >
                               <div className="h-20 relative overflow-hidden">
                                 <img
@@ -536,8 +543,8 @@ export default function Home() {
                                 />
                               </div>
                               
-                              <div className="p-3">
-                                <h4 className="font-semibold text-sm text-gray-900 leading-tight text-center" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                              <div className="p-2">
+                                <h4 className="font-semibold text-xs text-gray-900 leading-tight text-center line-clamp-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                                   {product.name}
                                 </h4>
                               </div>
