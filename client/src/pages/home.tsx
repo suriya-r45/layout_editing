@@ -274,160 +274,243 @@ export default function Home() {
       {homeSections.length > 0 && homeSections.map((section) => {
         if (section.items.length === 0) return null;
         
-        // Split layout rendering - Clean and elegant design matching user's screenshot
+        // Split layout rendering - Premium and sophisticated design
         if (section.layoutType === 'split') {
           return (
             <section 
               key={section.id} 
-              className="py-16 px-4 relative" 
+              className="py-20 px-4 relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
-              style={{ background: 'linear-gradient(135deg, #C8B99C 0%, #D4C5A9 100%)' }}
+              style={{ 
+                background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)',
+              }}
             >
+              {/* Decorative Background Elements */}
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-10 right-10 w-96 h-96 bg-gradient-to-br from-amber-100/30 to-amber-200/20 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-10 left-10 w-80 h-80 bg-gradient-to-tr from-rose-100/30 to-rose-200/20 rounded-full blur-3xl"></div>
+              </div>
+
               {/* Gold Rings Images in Top Right Corner */}
-              <div className="absolute top-8 right-8 z-20 opacity-90">
+              <div className="absolute top-12 right-12 z-20 opacity-80">
                 <img
                   src={ringsImage}
                   alt="Gold Rings"
-                  className="w-32 h-32 md:w-40 md:h-40 object-contain filter drop-shadow-2xl transform rotate-12"
+                  className="w-36 h-36 md:w-44 md:h-44 object-contain filter drop-shadow-2xl transform rotate-12 hover:rotate-6 transition-transform duration-700"
                 />
               </div>
 
-              {/* Section Header */}
-              <div className="text-left mb-12 max-w-2xl">
-                <div className="flex items-center gap-3 mb-4">
-                  <h2 className="text-4xl md:text-5xl font-light text-white" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              {/* Section Header with Better Typography */}
+              <div className="relative z-10 text-left mb-16 max-w-3xl mx-auto">
+                <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
+                  <h2 className="text-5xl md:text-6xl lg:text-7xl font-extralight text-gray-800 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                     {section.title || 'New Arrivals'}
                   </h2>
-                  <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
-                    🛍️ 300+ New Items
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="bg-gradient-to-r from-amber-100 to-amber-200 text-amber-800 px-4 py-2 rounded-full text-sm font-semibold shadow-lg backdrop-blur-sm">
+                      ✨ 300+ New Items
+                    </span>
+                  </div>
                 </div>
-                <p className="text-white/90 text-lg font-light leading-relaxed">
+                <p className="text-gray-700 text-xl font-light leading-relaxed max-w-2xl" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   {section.description || 'New Arrivals Dropping Daily, Monday through Friday, Explore the Latest Launches Now!'}
                 </p>
               </div>
               
-              {/* Clean Half-and-Half Split Layout */}
-              <div className="max-w-7xl mx-auto">
-                <div className="flex flex-col lg:flex-row shadow-2xl rounded-3xl overflow-hidden bg-white min-h-[400px]">
+              {/* Premium Split Layout Container */}
+              <div className="relative z-10 max-w-6xl mx-auto">
+                <div className="grid lg:grid-cols-2 gap-0 shadow-2xl rounded-3xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20">
                   
-                  {/* Left Half - Mangalsutra (Blue Background) */}
+                  {/* Left Half - Mangalsutra with Sophisticated Design */}
                   <div 
-                    className="flex-1 relative cursor-pointer group transition-all duration-300 hover:scale-[1.02]"
+                    className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.02] min-h-[500px]"
                     onClick={() => handleViewAllClick('mangalsutra')}
-                    style={{ background: 'linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%)' }}
+                    style={{ 
+                      background: 'linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #1e40af 100%)',
+                    }}
                   >
-                    <div className="p-8 h-full flex flex-col justify-between relative z-10">
-                      {/* Category Label at Bottom Left */}
-                      <div className="flex-1 flex items-center justify-center">
-                        <img
-                          src={mangalsutraImage}
-                          alt="Mangalsutra Collection"
-                          className="max-w-full h-64 object-contain filter drop-shadow-xl transform transition-transform duration-500 group-hover:scale-110"
-                        />
+                    {/* Decorative Pattern Overlay */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-32 -translate-y-32"></div>
+                      <div className="absolute bottom-0 right-0 w-48 h-48 bg-white rounded-full translate-x-24 translate-y-24"></div>
+                      <div className="absolute top-1/2 left-1/2 w-32 h-32 bg-white rounded-full -translate-x-16 -translate-y-16"></div>
+                    </div>
+                    
+                    <div className="relative z-10 p-12 h-full flex flex-col">
+                      {/* Image Container with Better Positioning */}
+                      <div className="flex-1 flex items-center justify-center mb-8">
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-white/10 rounded-3xl blur-2xl transform scale-110"></div>
+                          <img
+                            src={mangalsutraImage}
+                            alt="Mangalsutra Collection"
+                            className="relative max-w-full h-72 object-contain filter drop-shadow-2xl transform transition-all duration-700 group-hover:scale-110 group-hover:rotate-2"
+                          />
+                        </div>
                       </div>
+                      
+                      {/* Enhanced Text Section */}
                       <div className="text-left">
-                        <h3 className="text-3xl md:text-4xl font-light text-white mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        <h3 className="text-4xl md:text-5xl font-light text-white mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                           Mangalsutra
                         </h3>
-                        <div className="w-16 h-1 bg-white/60 rounded-full"></div>
+                        <div className="w-20 h-1 bg-gradient-to-r from-white to-white/50 rounded-full mb-3"></div>
+                        <p className="text-white/80 text-lg font-light">Sacred jewelry for special moments</p>
                       </div>
                     </div>
                     
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
+                    {/* Premium Hover Effects */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                   </div>
 
-                  {/* Right Half - Pendants (Green Background) */}
+                  {/* Right Half - Pendants with Sophisticated Design */}
                   <div 
-                    className="flex-1 relative cursor-pointer group transition-all duration-300 hover:scale-[1.02]"
+                    className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.02] min-h-[500px]"
                     onClick={() => handleViewAllClick('pendants')}
-                    style={{ background: 'linear-gradient(135deg, #059669 0%, #047857 100%)' }}
+                    style={{ 
+                      background: 'linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%)',
+                    }}
                   >
-                    <div className="p-8 h-full flex flex-col justify-between relative z-10">
-                      {/* Category Label at Bottom Left */}
-                      <div className="flex-1 flex items-center justify-center">
-                        <img
-                          src={pendantsImage}
-                          alt="Pendants Collection"
-                          className="max-w-full h-64 object-contain filter drop-shadow-xl transform transition-transform duration-500 group-hover:scale-110"
-                        />
+                    {/* Decorative Pattern Overlay */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="absolute top-0 right-0 w-56 h-56 bg-white rounded-full translate-x-28 -translate-y-28"></div>
+                      <div className="absolute bottom-0 left-0 w-40 h-40 bg-white rounded-full -translate-x-20 translate-y-20"></div>
+                      <div className="absolute top-1/3 right-1/3 w-24 h-24 bg-white rounded-full"></div>
+                    </div>
+                    
+                    <div className="relative z-10 p-12 h-full flex flex-col">
+                      {/* Image Container with Better Positioning */}
+                      <div className="flex-1 flex items-center justify-center mb-8">
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-white/10 rounded-3xl blur-2xl transform scale-110"></div>
+                          <img
+                            src={pendantsImage}
+                            alt="Pendants Collection"
+                            className="relative max-w-full h-72 object-contain filter drop-shadow-2xl transform transition-all duration-700 group-hover:scale-110 group-hover:-rotate-2"
+                          />
+                        </div>
                       </div>
+                      
+                      {/* Enhanced Text Section */}
                       <div className="text-left">
-                        <h3 className="text-3xl md:text-4xl font-light text-white mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        <h3 className="text-4xl md:text-5xl font-light text-white mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                           Pendants
                         </h3>
-                        <div className="w-16 h-1 bg-white/60 rounded-full"></div>
+                        <div className="w-20 h-1 bg-gradient-to-r from-white to-white/50 rounded-full mb-3"></div>
+                        <p className="text-white/80 text-lg font-light">Elegant pieces for every occasion</p>
                       </div>
                     </div>
                     
-                    {/* Hover Overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
+                    {/* Premium Hover Effects */}
+                    <div className="absolute inset-0 bg-gradient-to-l from-green-600/0 to-teal-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                   </div>
 
+                </div>
+                
+                {/* Bottom Decorative Element */}
+                <div className="text-center mt-8">
+                  <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    <span className="text-gray-700 font-medium">Discover Our Premium Collections</span>
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse delay-500"></div>
+                  </div>
                 </div>
               </div>
             </section>
           );
         }
 
-        // Festival layout rendering
+        // Festival layout rendering - Premium and sophisticated design
         if (section.layoutType === 'festival') {
           return (
             <section 
               key={section.id} 
-              className="py-8 relative" 
+              className="py-16 relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
-              style={{ backgroundColor: section.backgroundColor || '#ffffff' }}
+              style={{ 
+                background: 'linear-gradient(135deg, #fafafa 0%, #f5f5f5 100%)'
+              }}
             >
-              <div className="container mx-auto px-4">
-                {/* Festival Banner Layout */}
-                <div className="flex flex-col lg:flex-row gap-6 items-center">
-                  {/* Left: Festival Image - Made Larger */}
-                  <div className="lg:w-2/3 relative">
+              {/* Background Decoration */}
+              <div className="absolute inset-0">
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-purple-100/40 to-pink-100/40 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-blue-100/40 to-indigo-100/40 rounded-full blur-3xl"></div>
+              </div>
+
+              <div className="relative z-10 container mx-auto px-6">
+                {/* Enhanced Festival Banner Layout */}
+                <div className="grid lg:grid-cols-3 gap-8 items-stretch">
+                  
+                  {/* Left: Festival Image - Enhanced Design */}
+                  <div className="lg:col-span-2 relative">
                     {section.festivalImage ? (
-                      <div 
-                        className="rounded-2xl overflow-hidden shadow-xl h-64 md:h-80 lg:h-96 bg-cover bg-center relative"
-                        style={{
-                          backgroundImage: `url(${section.festivalImage})`,
-                          backgroundSize: 'cover',
-                          backgroundPosition: 'center'
-                        }}
-                      >
-                        {/* Overlay with title and subtitle */}
-                        <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-center items-start p-8">
-                          <h2 
-                            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2"
-                            style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                          >
-                            {section.title}
-                          </h2>
-                          {section.subtitle && (
-                            <p 
-                              className="text-lg md:text-xl text-white opacity-90 italic"
-                              style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                            >
-                              {section.subtitle}
-                            </p>
-                          )}
-                          {section.description && (
-                            <p className="text-white opacity-80 mt-4 max-w-md">
-                              {section.description}
-                            </p>
-                          )}
+                      <div className="relative group overflow-hidden rounded-3xl shadow-2xl">
+                        <div 
+                          className="h-80 lg:h-96 bg-cover bg-center relative transform transition-transform duration-700 group-hover:scale-105"
+                          style={{
+                            backgroundImage: `url(${section.festivalImage})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                          }}
+                        >
+                          {/* Gradient Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent"></div>
+                          
+                          {/* Content Overlay */}
+                          <div className="absolute inset-0 flex flex-col justify-center items-start p-8 lg:p-12">
+                            <div className="max-w-lg">
+                              <h2 
+                                className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-4 tracking-wide"
+                                style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                              >
+                                {section.title}
+                              </h2>
+                              {section.subtitle && (
+                                <p 
+                                  className="text-xl md:text-2xl text-white/90 italic mb-4"
+                                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                                >
+                                  {section.subtitle}
+                                </p>
+                              )}
+                              {section.description && (
+                                <p className="text-white/80 text-lg leading-relaxed mb-6 max-w-md">
+                                  {section.description}
+                                </p>
+                              )}
+                              
+                              {/* Call to Action */}
+                              <div className="flex items-center gap-4">
+                                <Button 
+                                  className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30 px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105"
+                                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                                  onClick={() => window.location.href = '/collections'}
+                                >
+                                  Explore Collection
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Decorative Corner Element */}
+                          <div className="absolute top-4 right-4">
+                            <div className="w-16 h-16 border-2 border-white/30 rounded-full flex items-center justify-center backdrop-blur-sm">
+                              <span className="text-white text-xs font-semibold">NEW</span>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     ) : (
-                      <div className="rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 h-64 md:h-80 lg:h-96 flex flex-col justify-center items-center p-8">
+                      <div className="h-80 lg:h-96 rounded-3xl bg-gradient-to-br from-purple-100 via-pink-50 to-blue-100 flex flex-col justify-center items-center p-12 shadow-xl border border-white/50">
                         <h2 
-                          className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-2 text-center"
+                          className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-800 mb-4 text-center tracking-wide"
                           style={{ fontFamily: 'Cormorant Garamond, serif' }}
                         >
                           {section.title}
                         </h2>
                         {section.subtitle && (
                           <p 
-                            className="text-lg md:text-xl text-gray-600 italic text-center"
+                            className="text-xl md:text-2xl text-gray-600 italic text-center"
                             style={{ fontFamily: 'Cormorant Garamond, serif' }}
                           >
                             {section.subtitle}
@@ -437,11 +520,20 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Right: Swipeable Products Grid - 4 items per row with larger images */}
-                  <div className="lg:w-1/3">
-                    <div className="h-64 md:h-80 lg:h-96 p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl">
+                  {/* Right: Premium Products Showcase */}
+                  <div className="flex flex-col">
+                    {/* Header */}
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-light text-gray-800 mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        Featured Products
+                      </h3>
+                      <div className="w-12 h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
+                    </div>
+
+                    {/* Products Container */}
+                    <div className="flex-1 bg-white/70 backdrop-blur-sm rounded-3xl p-6 shadow-xl border border-white/50">
                       <div 
-                        className="flex gap-4 h-full overflow-x-auto scrollbar-hide"
+                        className="flex gap-4 h-full overflow-x-auto scrollbar-hide pb-2"
                         style={{ 
                           scrollbarWidth: 'none', 
                           msOverflowStyle: 'none',
@@ -455,20 +547,21 @@ export default function Home() {
                           return (
                             <div 
                               key={item.id} 
-                              className="flex-shrink-0 w-36 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
+                              className="flex-shrink-0 w-40 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer group border border-gray-100"
                             >
-                              <div className="h-32 relative">
+                              <div className="h-36 relative overflow-hidden">
                                 <img
                                   src={product.images[0] || '/api/placeholder/200/200'}
                                   alt={product.name}
-                                  className="w-full h-full object-cover"
+                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                               </div>
-                              <div className="p-3">
-                                <h4 className="font-semibold text-sm text-gray-900 leading-tight mb-1 line-clamp-2">
+                              <div className="p-4">
+                                <h4 className="font-semibold text-sm text-gray-900 leading-tight mb-2 line-clamp-2 min-h-[2.5rem]">
                                   {product.name}
                                 </h4>
-                                <div className="flex flex-col gap-1">
+                                <div className="space-y-1">
                                   <p className="text-lg font-bold text-purple-600">
                                     {selectedCurrency === 'INR' 
                                       ? `₹${product.priceInr.toLocaleString()}`
@@ -477,13 +570,14 @@ export default function Home() {
                                   </p>
                                   <p className="text-xs text-gray-500 line-through">
                                     {selectedCurrency === 'INR' 
-                                      ? `₹${(Number(product.priceInr) * 1.2).toLocaleString()}`
-                                      : `BD ${(Number(product.priceBhd) * 1.2).toFixed(3)}`
+                                      ? `₹${(Number(product.priceInr) * 1.25).toLocaleString()}`
+                                      : `BD ${(Number(product.priceBhd) * 1.25).toFixed(3)}`
                                     }
                                   </p>
-                                  <p className="text-xs text-gray-600">
-                                    {product.grossWeight}g • {product.purity || '22K'}
-                                  </p>
+                                  <div className="flex items-center gap-1 text-xs text-gray-600">
+                                    <span className="inline-block w-2 h-2 bg-yellow-400 rounded-full"></span>
+                                    <span>{product.grossWeight}g • {product.purity || '22K'}</span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -492,27 +586,31 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* Navigation and View Full Collection */}
-                    <div className="flex justify-between items-center mt-4">
-                      <div className="flex gap-2">
-                        <button className="w-10 h-10 rounded-full bg-white border-2 border-purple-200 hover:bg-purple-50 flex items-center justify-center transition-colors">
-                          <span className="text-purple-600">‹</span>
+                    {/* Enhanced Navigation and CTA */}
+                    <div className="mt-6 space-y-4">
+                      <div className="flex justify-center gap-3">
+                        <button className="w-12 h-12 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200 hover:bg-purple-50 hover:border-purple-300 flex items-center justify-center transition-all duration-300 shadow-lg">
+                          <span className="text-purple-600 text-xl">‹</span>
                         </button>
-                        <span className="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold">
-                          1
-                        </span>
-                        <button className="w-10 h-10 rounded-full bg-white border-2 border-purple-200 hover:bg-purple-50 flex items-center justify-center transition-colors">
-                          <span className="text-purple-600">›</span>
+                        <div className="flex items-center gap-2">
+                          <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white flex items-center justify-center font-bold shadow-lg">
+                            1
+                          </div>
+                        </div>
+                        <button className="w-12 h-12 rounded-full bg-white/80 backdrop-blur-sm border border-purple-200 hover:bg-purple-50 hover:border-purple-300 flex items-center justify-center transition-all duration-300 shadow-lg">
+                          <span className="text-purple-600 text-xl">›</span>
                         </button>
                       </div>
                       
-                      <Button 
-                        className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition-colors duration-200" 
-                        style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                        onClick={() => window.location.href = '/collections'}
-                      >
-                        View Full Collection
-                      </Button>
+                      <div className="text-center">
+                        <Button 
+                          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white px-8 py-3 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-lg" 
+                          style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                          onClick={() => window.location.href = '/collections'}
+                        >
+                          View Full Collection
+                        </Button>
+                      </div>
                     </div>
                   </div>
                 </div>
