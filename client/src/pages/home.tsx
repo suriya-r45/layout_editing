@@ -518,7 +518,7 @@ export default function Home() {
 
                     {/* 1x3 Product Grid */}
                     <div className="relative">
-                      <div className="grid grid-cols-1 gap-4">
+                      <div className="grid grid-cols-3 gap-4">
                         {section.items.slice(0, 3).map((item, index) => {
                           const product = allProducts.find(p => p.id === item.productId);
                           if (!product) return null;
