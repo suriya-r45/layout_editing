@@ -274,129 +274,104 @@ export default function Home() {
       {homeSections.length > 0 && homeSections.map((section) => {
         if (section.items.length === 0) return null;
         
-        // Split layout rendering
+        // Split layout rendering - Enhanced to match user's screenshot
         if (section.layoutType === 'split') {
-          const leftItems = section.items.slice(0, Math.ceil(section.items.length / 2));
-          const rightItems = section.items.slice(Math.ceil(section.items.length / 2));
-          
           return (
             <section 
               key={section.id} 
-              className="py-16 relative" 
+              className="py-16 px-4 relative" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
-              style={{ background: '#f5f5f0' }}
+              style={{ background: 'linear-gradient(135deg, #C8B99C 0%, #D4C5A9 100%)' }}
             >
+              {/* Decorative Rings in Top Right Corner */}
+              <div className="absolute top-8 right-8 opacity-30">
+                <div className="w-24 h-24 border-8 border-amber-400 rounded-full"></div>
+                <div className="w-16 h-16 border-6 border-amber-300 rounded-full absolute -top-4 -right-4"></div>
+              </div>
+
               {/* Section Header */}
-              <div className="text-center mb-8">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                  {section.title}
-                </h2>
-                {section.description && (
-                  <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                    {section.description}
-                  </p>
-                )}
+              <div className="text-left mb-12 max-w-2xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <h2 className="text-4xl md:text-5xl font-light text-white" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title || 'New Arrivals'}
+                  </h2>
+                  <span className="bg-white/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium">
+                    🛍️ 300+ New Items
+                  </span>
+                </div>
+                <p className="text-white/90 text-lg font-light leading-relaxed">
+                  {section.description || 'New Arrivals Dropping Daily, Monday through Friday, Explore the Latest Launches Now!'}
+                </p>
               </div>
               
-              {/* Enhanced Split Layout Container */}
-              <div className="relative">
-                <div className="flex flex-col lg:flex-row min-h-[500px] overflow-hidden rounded-3xl shadow-2xl mx-4">
-                  {/* Left Section - Enhanced */}
-                  <div 
-                    className="flex-1 relative overflow-hidden flex items-center justify-center p-12 min-h-[250px] lg:min-h-[500px]"
-                    style={{ 
-                      background: `linear-gradient(135deg, ${section.splitLeftColor || '#E0F2FE'} 0%, ${section.splitLeftColor ? `${section.splitLeftColor}CC` : '#BAE6FD'} 100%)`,
-                    }}
-                  >
-                    {/* Decorative Elements */}
-                    <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -translate-x-16 -translate-y-16"></div>
-                    <div className="absolute bottom-0 right-0 w-24 h-24 bg-white/10 rounded-full translate-x-12 translate-y-12"></div>
-                    
-                    <div className="text-center relative z-10">
-                      <div className="mb-8">
-                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                          {section.splitLeftTitle || 'Premium Collection'}
-                        </h3>
-                        <div className="w-16 h-1 bg-amber-600 mx-auto rounded-full"></div>
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-6 max-w-lg mx-auto">
-                        {leftItems.slice(0, 4).map((item) => (
-                          <div key={item.id} className="group relative">
-                            <div className="bg-white/95 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                              <div className="aspect-square relative overflow-hidden">
-                                <img
-                                  src={item.product.images[0] || '/api/placeholder/200/200'}
-                                  alt={item.product.name}
-                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                              </div>
-                              <div className="p-3">
-                                <h4 className="font-semibold text-sm text-gray-900 truncate">{item.product.name}</h4>
-                                <p className="text-amber-600 font-bold text-sm mt-1">
-                                  {selectedCurrency === 'INR' 
-                                    ? `₹${item.product.priceInr.toLocaleString('en-IN')}`
-                                    : `BD ${item.product.priceBhd}`
-                                  }
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+              {/* Two Category Cards */}
+              <div className="flex flex-col lg:flex-row gap-6 max-w-6xl mx-auto">
+                {/* Left Card - Mangalsutra */}
+                <div 
+                  className="flex-1 relative overflow-hidden rounded-3xl group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl min-h-[400px]"
+                  onClick={() => handleViewAllClick('mangalsutra')}
+                  style={{ 
+                    background: 'linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%)'
+                  }}
+                >
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-0 left-0 w-32 h-32 bg-white rounded-full -translate-x-16 -translate-y-16"></div>
+                    <div className="absolute bottom-0 right-0 w-48 h-48 bg-white rounded-full translate-x-24 translate-y-24"></div>
                   </div>
                   
-                  {/* Center Divider */}
-                  <div className="w-full lg:w-px bg-gradient-to-b from-transparent via-white/30 to-transparent self-stretch"></div>
-                  
-                  {/* Right Section - Enhanced */}
-                  <div 
-                    className="flex-1 relative overflow-hidden flex items-center justify-center p-12 min-h-[250px] lg:min-h-[500px]"
-                    style={{ 
-                      background: `linear-gradient(135deg, ${section.splitRightColor || '#F0FDF4'} 0%, ${section.splitRightColor ? `${section.splitRightColor}CC` : '#DCFCE7'} 100%)`,
-                    }}
-                  >
-                    {/* Decorative Elements */}
-                    <div className="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full translate-x-14 -translate-y-14"></div>
-                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-white/10 rounded-full -translate-x-10 translate-y-10"></div>
-                    
-                    <div className="text-center relative z-10">
-                      <div className="mb-8">
-                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                          {section.splitRightTitle || 'Exclusive Selection'}
-                        </h3>
-                        <div className="w-16 h-1 bg-emerald-600 mx-auto rounded-full"></div>
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-6 max-w-lg mx-auto">
-                        {rightItems.slice(0, 4).map((item) => (
-                          <div key={item.id} className="group relative">
-                            <div className="bg-white/95 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                              <div className="aspect-square relative overflow-hidden">
-                                <img
-                                  src={item.product.images[0] || '/api/placeholder/200/200'}
-                                  alt={item.product.name}
-                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                              </div>
-                              <div className="p-3">
-                                <h4 className="font-semibold text-sm text-gray-900 truncate">{item.product.name}</h4>
-                                <p className="text-emerald-600 font-bold text-sm mt-1">
-                                  {selectedCurrency === 'INR' 
-                                    ? `₹${item.product.priceInr.toLocaleString('en-IN')}`
-                                    : `BD ${item.product.priceBhd}`
-                                  }
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                  {/* Category Image */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <img
+                      src={mangalsutraImage}
+                      alt="Mangalsutra Collection"
+                      className="w-80 h-80 object-contain filter drop-shadow-2xl transform transition-transform duration-500 group-hover:scale-110"
+                    />
                   </div>
+                  
+                  {/* Category Label */}
+                  <div className="absolute bottom-8 left-8 z-10">
+                    <h3 className="text-3xl md:text-4xl font-light text-white" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                      Mangalsutra
+                    </h3>
+                  </div>
+                  
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+                </div>
+
+                {/* Right Card - Pendants */}
+                <div 
+                  className="flex-1 relative overflow-hidden rounded-3xl group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl min-h-[400px]"
+                  onClick={() => handleViewAllClick('pendants')}
+                  style={{ 
+                    background: 'linear-gradient(135deg, #059669 0%, #047857 100%)'
+                  }}
+                >
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 opacity-10">
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-white rounded-full translate-x-20 -translate-y-20"></div>
+                    <div className="absolute bottom-0 left-0 w-36 h-36 bg-white rounded-full -translate-x-18 translate-y-18"></div>
+                  </div>
+                  
+                  {/* Category Image */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <img
+                      src={pendantsImage}
+                      alt="Pendants Collection"
+                      className="w-80 h-80 object-contain filter drop-shadow-2xl transform transition-transform duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  
+                  {/* Category Label */}
+                  <div className="absolute bottom-8 left-8 z-10">
+                    <h3 className="text-3xl md:text-4xl font-light text-white" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                      Pendants
+                    </h3>
+                  </div>
+                  
+                  {/* Hover Overlay */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
                 </div>
               </div>
             </section>
