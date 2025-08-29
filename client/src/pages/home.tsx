@@ -298,50 +298,103 @@ export default function Home() {
                 )}
               </div>
               
-              {/* Split Layout Container */}
-              <div className="flex flex-col md:flex-row h-auto md:h-96">
-                {/* Left Section */}
-                <div 
-                  className="flex-1 relative overflow-hidden flex items-center justify-center p-8"
-                  style={{ backgroundColor: section.splitLeftColor || '#E0F2FE' }}
-                >
-                  <div className="text-center">
-                    <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6">
-                      {section.splitLeftTitle || 'Category 1'}
-                    </h3>
-                    <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-                      {leftItems.slice(0, 4).map((item) => (
-                        <div key={item.id} className="transform hover:scale-105 transition-transform duration-300">
-                          <ProductCard
-                            product={item.product}
-                            currency={selectedCurrency}
-                            showActions={true}
-                          />
-                        </div>
-                      ))}
+              {/* Enhanced Split Layout Container */}
+              <div className="relative">
+                <div className="flex flex-col lg:flex-row min-h-[500px] overflow-hidden rounded-3xl shadow-2xl mx-4">
+                  {/* Left Section - Enhanced */}
+                  <div 
+                    className="flex-1 relative overflow-hidden flex items-center justify-center p-12 min-h-[250px] lg:min-h-[500px]"
+                    style={{ 
+                      background: `linear-gradient(135deg, ${section.splitLeftColor || '#E0F2FE'} 0%, ${section.splitLeftColor ? `${section.splitLeftColor}CC` : '#BAE6FD'} 100%)`,
+                    }}
+                  >
+                    {/* Decorative Elements */}
+                    <div className="absolute top-0 left-0 w-32 h-32 bg-white/10 rounded-full -translate-x-16 -translate-y-16"></div>
+                    <div className="absolute bottom-0 right-0 w-24 h-24 bg-white/10 rounded-full translate-x-12 translate-y-12"></div>
+                    
+                    <div className="text-center relative z-10">
+                      <div className="mb-8">
+                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                          {section.splitLeftTitle || 'Premium Collection'}
+                        </h3>
+                        <div className="w-16 h-1 bg-amber-600 mx-auto rounded-full"></div>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-6 max-w-lg mx-auto">
+                        {leftItems.slice(0, 4).map((item) => (
+                          <div key={item.id} className="group relative">
+                            <div className="bg-white/95 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                              <div className="aspect-square relative overflow-hidden">
+                                <img
+                                  src={item.product.images[0] || '/api/placeholder/200/200'}
+                                  alt={item.product.name}
+                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                              </div>
+                              <div className="p-3">
+                                <h4 className="font-semibold text-sm text-gray-900 truncate">{item.product.name}</h4>
+                                <p className="text-amber-600 font-bold text-sm mt-1">
+                                  {selectedCurrency === 'INR' 
+                                    ? `₹${item.product.priceInr.toLocaleString('en-IN')}`
+                                    : `BD ${item.product.priceBhd}`
+                                  }
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
-                
-                {/* Right Section */}
-                <div 
-                  className="flex-1 relative overflow-hidden flex items-center justify-center p-8"
-                  style={{ backgroundColor: section.splitRightColor || '#F0FDF4' }}
-                >
-                  <div className="text-center">
-                    <h3 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-6">
-                      {section.splitRightTitle || 'Category 2'}
-                    </h3>
-                    <div className="grid grid-cols-2 gap-4 max-w-md mx-auto">
-                      {rightItems.slice(0, 4).map((item) => (
-                        <div key={item.id} className="transform hover:scale-105 transition-transform duration-300">
-                          <ProductCard
-                            product={item.product}
-                            currency={selectedCurrency}
-                            showActions={true}
-                          />
-                        </div>
-                      ))}
+                  
+                  {/* Center Divider */}
+                  <div className="w-full lg:w-px bg-gradient-to-b from-transparent via-white/30 to-transparent self-stretch"></div>
+                  
+                  {/* Right Section - Enhanced */}
+                  <div 
+                    className="flex-1 relative overflow-hidden flex items-center justify-center p-12 min-h-[250px] lg:min-h-[500px]"
+                    style={{ 
+                      background: `linear-gradient(135deg, ${section.splitRightColor || '#F0FDF4'} 0%, ${section.splitRightColor ? `${section.splitRightColor}CC` : '#DCFCE7'} 100%)`,
+                    }}
+                  >
+                    {/* Decorative Elements */}
+                    <div className="absolute top-0 right-0 w-28 h-28 bg-white/10 rounded-full translate-x-14 -translate-y-14"></div>
+                    <div className="absolute bottom-0 left-0 w-20 h-20 bg-white/10 rounded-full -translate-x-10 translate-y-10"></div>
+                    
+                    <div className="text-center relative z-10">
+                      <div className="mb-8">
+                        <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                          {section.splitRightTitle || 'Exclusive Selection'}
+                        </h3>
+                        <div className="w-16 h-1 bg-emerald-600 mx-auto rounded-full"></div>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-6 max-w-lg mx-auto">
+                        {rightItems.slice(0, 4).map((item) => (
+                          <div key={item.id} className="group relative">
+                            <div className="bg-white/95 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                              <div className="aspect-square relative overflow-hidden">
+                                <img
+                                  src={item.product.images[0] || '/api/placeholder/200/200'}
+                                  alt={item.product.name}
+                                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                              </div>
+                              <div className="p-3">
+                                <h4 className="font-semibold text-sm text-gray-900 truncate">{item.product.name}</h4>
+                                <p className="text-emerald-600 font-bold text-sm mt-1">
+                                  {selectedCurrency === 'INR' 
+                                    ? `₹${item.product.priceInr.toLocaleString('en-IN')}`
+                                    : `BD ${item.product.priceBhd}`
+                                  }
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -436,8 +489,8 @@ export default function Home() {
                                   className="w-full h-full object-cover"
                                 />
                               </div>
-                              <div className="p-2">
-                                <h4 className="font-medium text-xs text-gray-900 text-center leading-tight">
+                              <div className="p-3 bg-white">
+                                <h4 className="font-medium text-sm text-gray-900 text-center leading-tight">
                                   {product.name}
                                 </h4>
                               </div>
