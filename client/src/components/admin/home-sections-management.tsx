@@ -30,7 +30,7 @@ interface CreateHomeSectionData {
   title: string;
   subtitle: string;
   description: string;
-  layoutType: 'grid' | 'featured' | 'mixed' | 'split';
+  layoutType: 'grid' | 'featured' | 'mixed' | 'split' | 'festival';
   isActive: boolean;
   displayOrder: number;
   backgroundColor: string;
@@ -39,6 +39,7 @@ interface CreateHomeSectionData {
   splitRightColor?: string;
   splitLeftTitle?: string;
   splitRightTitle?: string;
+  festivalImage?: string;
 }
 
 interface AddSectionItemData {
@@ -346,6 +347,7 @@ function CreateSectionDialog({
                   <SelectItem value="featured">Featured Layout</SelectItem>
                   <SelectItem value="mixed">Mixed Layout</SelectItem>
                   <SelectItem value="split">Split Layout (Two Categories)</SelectItem>
+                  <SelectItem value="festival">Festival Banner (Image + Products)</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -414,6 +416,42 @@ function CreateSectionDialog({
                       type="color"
                       value={formData.splitRightColor || '#F0FDF4'}
                       onChange={(e) => setFormData(prev => ({ ...prev, splitRightColor: e.target.value }))}
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : formData.layoutType === 'festival' ? (
+            <>
+              <div className="space-y-4">
+                <h4 className="font-medium text-sm">Festival Banner Configuration</h4>
+                <div className="space-y-2">
+                  <Label htmlFor="festivalImage">Festival Image URL</Label>
+                  <Input
+                    id="festivalImage"
+                    value={formData.festivalImage || ''}
+                    onChange={(e) => setFormData(prev => ({ ...prev, festivalImage: e.target.value }))}
+                    placeholder="Enter the URL of your festival banner image"
+                  />
+                  <p className="text-xs text-gray-500">Upload your festival image to the uploads folder and use the relative path (e.g., /uploads/festival-banner.jpg)</p>
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="backgroundColor">Background Color</Label>
+                    <Input
+                      id="backgroundColor"
+                      type="color"
+                      value={formData.backgroundColor}
+                      onChange={(e) => setFormData(prev => ({ ...prev, backgroundColor: e.target.value }))}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="textColor">Text Color</Label>
+                    <Input
+                      id="textColor"
+                      type="color"
+                      value={formData.textColor}
+                      onChange={(e) => setFormData(prev => ({ ...prev, textColor: e.target.value }))}
                     />
                   </div>
                 </div>

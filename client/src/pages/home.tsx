@@ -349,6 +349,119 @@ export default function Home() {
             </section>
           );
         }
+
+        // Festival layout rendering
+        if (section.layoutType === 'festival') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-8 relative" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ backgroundColor: section.backgroundColor || '#ffffff' }}
+            >
+              <div className="container mx-auto px-4">
+                {/* Festival Banner Layout */}
+                <div className="flex flex-col lg:flex-row gap-8 items-center">
+                  {/* Left: Festival Image */}
+                  <div className="lg:w-1/2 relative">
+                    {section.festivalImage ? (
+                      <div 
+                        className="rounded-2xl overflow-hidden shadow-xl h-64 md:h-80 lg:h-96 bg-cover bg-center relative"
+                        style={{
+                          backgroundImage: `url(${section.festivalImage})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center'
+                        }}
+                      >
+                        {/* Overlay with title and subtitle */}
+                        <div className="absolute inset-0 bg-black bg-opacity-30 flex flex-col justify-center items-start p-8">
+                          <h2 
+                            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2"
+                            style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                          >
+                            {section.title}
+                          </h2>
+                          {section.subtitle && (
+                            <p 
+                              className="text-lg md:text-xl text-white opacity-90 italic"
+                              style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                            >
+                              {section.subtitle}
+                            </p>
+                          )}
+                          {section.description && (
+                            <p className="text-white opacity-80 mt-4 max-w-md">
+                              {section.description}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 h-64 md:h-80 lg:h-96 flex flex-col justify-center items-center p-8">
+                        <h2 
+                          className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-2 text-center"
+                          style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                        >
+                          {section.title}
+                        </h2>
+                        {section.subtitle && (
+                          <p 
+                            className="text-lg md:text-xl text-gray-600 italic text-center"
+                            style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                          >
+                            {section.subtitle}
+                          </p>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Right: Products Grid */}
+                  <div className="lg:w-1/2">
+                    <div className="grid grid-cols-2 gap-4 md:gap-6">
+                      {section.items.slice(0, 4).map((item) => (
+                        <div 
+                          key={item.id} 
+                          className="transform hover:scale-105 transition-transform duration-300"
+                        >
+                          <ProductCard
+                            product={item.product}
+                            currency={selectedCurrency}
+                            showActions={true}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {/* Navigation Arrows */}
+                    <div className="flex justify-center gap-2 mt-6">
+                      <button className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
+                        <span className="text-gray-600">&lt;</span>
+                      </button>
+                      <button className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center">
+                        1
+                      </button>
+                      <button className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
+                        <span className="text-gray-600">&gt;</span>
+                      </button>
+                    </div>
+
+                    {/* View Full Collection Button */}
+                    <div className="text-center mt-6">
+                      <Button 
+                        className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-200" 
+                        style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                        onClick={() => window.location.href = '/collections'}
+                      >
+                        View Full Collection
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
         
         // Regular layout rendering
         return (
