@@ -420,165 +420,128 @@ export default function Home() {
           );
         }
 
-        // Festival layout rendering - Luxury magazine-style design
+        // Festival layout rendering - Full page banner design
         if (section.layoutType === 'festival') {
           return (
             <section 
               key={section.id} 
-              className="py-8 md:py-16 relative overflow-hidden" 
+              className="w-full relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
-              style={{ 
-                background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 30%, #CD853F 70%, #DEB887 100%)'
-              }}
             >
-              {/* Elegant Background Pattern */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute top-0 left-0 w-full h-full" 
-                     style={{ 
-                       backgroundImage: `radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%), 
-                                       radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%)`
-                     }}></div>
-              </div>
-
-              <div className="relative z-10 w-full px-3 md:px-6">
-                {/* Luxury Festival Layout */}
-                <div className="flex flex-col lg:flex-row gap-6 md:gap-8 items-stretch min-h-[500px] md:min-h-[600px]">
-                  
-                  {/* Left: Elegant Festival Content */}
-                  <div className="w-full lg:w-2/3 relative">
-                    {section.festivalImage ? (
-                      <div className="relative overflow-hidden rounded-2xl md:rounded-3xl h-full">
-                        <div 
-                          className="h-80 md:h-96 lg:h-[500px] bg-cover bg-center relative"
-                          style={{
-                            backgroundImage: `url(${section.festivalImage})`,
-                            backgroundSize: 'cover',
-                            backgroundPosition: 'center'
-                          }}
-                        >
-                          {/* Elegant Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/20"></div>
-                          
-                          {/* Content positioned at bottom left */}
-                          <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8 right-6 md:right-8">
-                            <div className="max-w-2xl">
-                              <h2 
-                                className="text-3xl md:text-4xl lg:text-6xl font-light text-white mb-3 md:mb-4 leading-tight"
-                                style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                              >
-                                {section.title}
-                              </h2>
-                              {section.subtitle && (
-                                <p 
-                                  className="text-xl md:text-xl lg:text-2xl text-white/90 italic mb-4 md:mb-6 font-light"
-                                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                                >
-                                  {section.subtitle}
-                                </p>
-                              )}
-                              {section.description && (
-                                <p className="text-white/80 text-base md:text-lg leading-relaxed mb-4 md:mb-6 line-clamp-3 md:line-clamp-none">
-                                  {section.description}
-                                </p>
-                              )}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="h-80 md:h-96 lg:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-br from-amber-100 to-amber-200 flex flex-col justify-center items-center p-8 md:p-12">
+              {section.festivalImage ? (
+                <div className="relative w-full">
+                  <div 
+                    className="h-[60vh] md:h-[70vh] lg:h-[80vh] bg-cover bg-center relative w-full"
+                    style={{
+                      backgroundImage: `url(${section.festivalImage})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundAttachment: 'fixed'
+                    }}
+                  >
+                    {/* Dark overlay for better text readability */}
+                    <div className="absolute inset-0 bg-black/40"></div>
+                    
+                    {/* Content overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center text-white px-4 md:px-8 max-w-4xl mx-auto">
                         <h2 
-                          className="text-3xl md:text-4xl lg:text-6xl font-light text-amber-900 mb-3 md:mb-4 text-center"
+                          className="text-4xl md:text-6xl lg:text-8xl font-light mb-6 md:mb-8 leading-tight"
                           style={{ fontFamily: 'Cormorant Garamond, serif' }}
                         >
                           {section.title}
                         </h2>
                         {section.subtitle && (
                           <p 
-                            className="text-xl md:text-xl lg:text-2xl text-amber-800 italic text-center font-light"
+                            className="text-xl md:text-3xl lg:text-4xl text-white/90 italic mb-6 md:mb-8 font-light"
                             style={{ fontFamily: 'Cormorant Garamond, serif' }}
                           >
                             {section.subtitle}
                           </p>
                         )}
+                        {section.description && (
+                          <p className="text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed mb-8 md:mb-12 max-w-3xl mx-auto">
+                            {section.description}
+                          </p>
+                        )}
+                        
+                        {/* Call to Action Button */}
+                        <Button 
+                          className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-2 border-white/40 hover:border-white/60 px-8 md:px-12 py-3 md:py-4 rounded-full text-lg md:text-xl font-medium transition-all duration-300 hover:scale-105 shadow-lg" 
+                          style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                          onClick={() => window.location.href = '/collections'}
+                        >
+                          Explore Collection →
+                        </Button>
                       </div>
-                    )}
-                  </div>
-
-                  {/* Right: Luxury Product Carousel */}
-                  <div className="w-full lg:w-1/3 flex flex-col justify-between">
-                    {/* Elegant Header */}
-                    <div className="mb-6 md:mb-8 text-center lg:text-left">
-                      <h3 className="text-2xl md:text-3xl font-light text-white mb-2 md:mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                        Festive Treasures
-                      </h3>
-                      <p className="text-white/80 text-base md:text-lg">styled to perfection!</p>
-                      <div className="w-16 md:w-20 h-0.5 md:h-1 bg-white/60 rounded-full mx-auto lg:mx-0 mt-3 md:mt-4"></div>
-                    </div>
-
-                    {/* Swipeable Product Carousel */}
-                    <div className="relative flex-1">
-                      <div 
-                        className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-3 md:pb-4 snap-x snap-mandatory"
-                        style={{ 
-                          scrollbarWidth: 'none', 
-                          msOverflowStyle: 'none',
-                          scrollBehavior: 'smooth'
-                        }}
-                      >
-                        {section.items.map((item, index) => {
-                          const product = allProducts.find(p => p.id === item.productId);
-                          if (!product) return null;
-                          
-                          return (
-                            <div 
-                              key={item.id} 
-                              className="flex-shrink-0 w-32 md:w-32 bg-white/95 backdrop-blur-sm rounded-2xl md:rounded-3xl overflow-hidden shadow-xl md:shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 cursor-pointer group border border-white/30 snap-center"
-                            >
-                              <div className="h-20 md:h-20 relative overflow-hidden">
-                                <img
-                                  src={product.images[0] || '/api/placeholder/200/200'}
-                                  alt={product.name}
-                                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                              </div>
-                              
-                              <div className="p-2 md:p-2">
-                                <h4 className="font-semibold text-xs text-gray-900 leading-tight text-center line-clamp-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                                  {product.name}
-                                </h4>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
-                      
-                      {/* Navigation Dots - Hidden on mobile */}
-                      <div className="hidden md:flex justify-center gap-2 mt-6">
-                        {[1, 2, 3].map((dot, index) => (
-                          <button 
-                            key={dot}
-                            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                              index === 0 ? 'bg-white' : 'bg-white/40 hover:bg-white/60'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Call to Action */}
-                    <div className="mt-6 md:mt-8 text-center">
-                      <Button 
-                        className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-2 border-white/40 hover:border-white/60 px-6 md:px-8 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 hover:scale-105 shadow-lg" 
-                        style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                        onClick={() => window.location.href = '/collections'}
-                      >
-                        View Full Collection →
-                      </Button>
                     </div>
                   </div>
+                  
+                  {/* Product showcase below the banner */}
+                  {section.items.length > 0 && (
+                    <div className="w-full py-12 md:py-16" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+                      <div className="container mx-auto px-4">
+                        <div className="text-center mb-12">
+                          <h3 className="text-3xl md:text-4xl font-light text-gray-800 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                            Featured Products
+                          </h3>
+                          <div className="w-20 h-1 bg-amber-600 rounded-full mx-auto"></div>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                          {section.items.slice(0, 8).map((item, index) => {
+                            const product = allProducts.find(p => p.id === item.productId);
+                            if (!product) return null;
+                            
+                            return (
+                              <div 
+                                key={item.id} 
+                                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer group"
+                              >
+                                <div className="aspect-square relative overflow-hidden">
+                                  <img
+                                    src={product.images[0] || '/api/placeholder/300/300'}
+                                    alt={product.name}
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                  />
+                                </div>
+                                
+                                <div className="p-4">
+                                  <h4 className="font-semibold text-sm md:text-base text-gray-800 leading-tight text-center line-clamp-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                                    {product.name}
+                                  </h4>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
+              ) : (
+                <div 
+                  className="h-[60vh] md:h-[70vh] lg:h-[80vh] w-full flex flex-col justify-center items-center text-center px-4 md:px-8"
+                  style={{ 
+                    background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 30%, #CD853F 70%, #DEB887 100%)'
+                  }}
+                >
+                  <h2 
+                    className="text-4xl md:text-6xl lg:text-8xl font-light text-white mb-6 md:mb-8 leading-tight"
+                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                  >
+                    {section.title}
+                  </h2>
+                  {section.subtitle && (
+                    <p 
+                      className="text-xl md:text-3xl lg:text-4xl text-white/90 italic font-light"
+                      style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                    >
+                      {section.subtitle}
+                    </p>
+                  )}
+                </div>
+              )}
             </section>
           );
         }
