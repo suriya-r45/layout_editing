@@ -416,21 +416,23 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Right: Products Grid - Made Smaller */}
+                  {/* Right: Products Grid - Matching Image Height */}
                   <div className="lg:w-1/3">
-                    <div className="grid grid-cols-2 gap-2 md:gap-3">
-                      {section.items.slice(0, 4).map((item) => (
-                        <div 
-                          key={item.id} 
-                          className="transform hover:scale-105 transition-transform duration-300"
-                        >
-                          <ProductCard
-                            product={item.product}
-                            currency={selectedCurrency}
-                            showActions={true}
-                          />
-                        </div>
-                      ))}
+                    <div className="h-64 md:h-80 lg:h-96 flex flex-col justify-between">
+                      <div className="grid grid-cols-2 gap-2 md:gap-3 h-full">
+                        {section.items.slice(0, 4).map((item) => (
+                          <div 
+                            key={item.id} 
+                            className="transform hover:scale-105 transition-transform duration-300 h-full"
+                          >
+                            <ProductCard
+                              product={item.product}
+                              currency={selectedCurrency}
+                              showActions={true}
+                            />
+                          </div>
+                        ))}
+                      </div>
                     </div>
                     
                     {/* Navigation Arrows */}
