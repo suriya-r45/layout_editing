@@ -64,7 +64,7 @@ export default function Cart() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(135deg, #f8f6e6 0%, #fff2cc 100%)' }}>
+    <div className="min-h-screen flex flex-col" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
       <Header selectedCurrency={currency} onCurrencyChange={setCurrency} />
       
       <main className="flex-1 py-8">

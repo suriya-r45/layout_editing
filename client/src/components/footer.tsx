@@ -7,12 +7,12 @@ import logoPath from '@assets/1000284180_1755240849891_1755886428742.jpg';
 export default function Footer() {
   return (
     <footer className="py-4 border-t-2" data-testid="footer-main" style={{
-      backgroundColor: '#ffffff',
+      background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)',
       borderTopColor: '#E5E5E5',
       color: '#374151'
     }}>
-      <div className="container mx-auto px-4" style={{backgroundColor: '#ffffff'}}>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8" style={{backgroundColor: '#ffffff'}}>
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-gray-200">

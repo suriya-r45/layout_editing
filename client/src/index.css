@@ -51,37 +51,37 @@
 }
 
 :root {
-  --background: hsl(48, 15%, 98%);
+  --background: linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%);
   --foreground: hsl(210, 25%, 7.8431%);
-  --card: hsl(50, 20%, 97%);
+  --card: rgba(248, 244, 240, 0.95);
   --card-foreground: hsl(210, 25%, 7.8431%);
-  --popover: hsl(48, 15%, 98%);
+  --popover: rgba(248, 244, 240, 0.98);
   --popover-foreground: hsl(210, 25%, 7.8431%);
   --primary: hsl(0, 45%, 25%);
   --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(45, 25%, 92%);
+  --secondary: rgba(232, 221, 212, 0.8);
   --secondary-foreground: hsl(210, 25%, 7.8431%);
-  --muted: hsl(45, 20%, 90%);
+  --muted: rgba(212, 197, 169, 0.6);
   --muted-foreground: hsl(215, 6%, 46%);
-  --accent: hsl(43, 30%, 85%);
+  --accent: rgba(212, 197, 169, 0.8);
   --accent-foreground: hsl(210, 25%, 7.8431%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(45, 15%, 85%);
-  --input: hsl(45, 15%, 90%);
+  --border: rgba(212, 197, 169, 0.4);
+  --input: rgba(232, 221, 212, 0.9);
   --ring: hsl(43, 50%, 50%);
   --chart-1: hsl(0, 60%, 50%);
   --chart-2: hsl(43, 80%, 55%);
   --chart-3: hsl(50, 70%, 50%);
   --chart-4: hsl(43, 74%, 66%);
   --chart-5: hsl(27, 87%, 67%);
-  --sidebar: hsl(48, 15%, 98%);
+  --sidebar: linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%);
   --sidebar-foreground: hsl(210, 25%, 7.8431%);
   --sidebar-primary: hsl(0, 45%, 25%);
   --sidebar-primary-foreground: hsl(0, 0%, 100%);
-  --sidebar-accent: hsl(45, 20%, 90%);
+  --sidebar-accent: rgba(212, 197, 169, 0.6);
   --sidebar-accent-foreground: hsl(210, 25%, 7.8431%);
-  --sidebar-border: hsl(220, 13%, 91%);
+  --sidebar-border: rgba(212, 197, 169, 0.4);
   --sidebar-ring: hsl(210, 25%, 7.8431%);
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-serif: 'Cormorant Garamond', Georgia, serif;
@@ -127,7 +127,9 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply text-foreground font-sans antialiased;
+    background: linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%);
+    min-height: 100vh;
   }
 }
 

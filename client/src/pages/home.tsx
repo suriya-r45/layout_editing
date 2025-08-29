@@ -213,14 +213,14 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen" data-testid="page-home" style={{ background: '#ffffff' }}>
+    <div className="min-h-screen" data-testid="page-home" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
       <Header
         selectedCurrency={selectedCurrency}
         onCurrencyChange={setSelectedCurrency}
       />
 
       {/* Categories Horizontal Scroll */}
-      <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: '#ffffff' }}>
+      <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
         <div className="container mx-auto px-2 md:px-4">
           {/* Horizontally Scrollable Categories */}
           <div 

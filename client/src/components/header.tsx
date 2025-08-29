@@ -41,7 +41,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
   return (
     <>
       {/* Main Header */}
-      <header className="shadow-sm sticky top-0 z-50 border-b border-gray-200" data-testid="header-main" style={{ background: '#ffffff' }}>
+      <header className="shadow-sm sticky top-0 z-50 border-b border-gray-200" data-testid="header-main" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
         <div className="container mx-auto px-2 md:px-4">
           {/* Top Row */}
           <div className="flex items-center justify-between h-14 md:h-16">

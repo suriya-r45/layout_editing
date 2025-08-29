@@ -277,7 +277,7 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="min-h-screen" data-testid="page-admin-dashboard" style={{ background: '#ffffff' }}>
+    <div className="min-h-screen" data-testid="page-admin-dashboard" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
       <Header 
         selectedCurrency={selectedCurrency} 
         onCurrencyChange={setSelectedCurrency} 

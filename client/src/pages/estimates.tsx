@@ -21,7 +21,7 @@ export function EstimatesPage() {
   }, [location]);
 
   return (
-    <div className="min-h-screen py-8" style={{ background: '#ffffff' }}>
+    <div className="min-h-screen py-8" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="mb-8">
           <Button
