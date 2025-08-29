@@ -319,11 +319,11 @@ export default function Home() {
               
               {/* Premium Split Layout Container */}
               <div className="relative z-10 max-w-6xl mx-auto px-2">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 md:gap-0 shadow-2xl rounded-2xl md:rounded-3xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-0 shadow-2xl rounded-2xl md:rounded-3xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20">
                   
                   {/* Left Half - Mangalsutra with Sophisticated Design */}
                   <div 
-                    className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.01] md:hover:scale-[1.02] min-h-[300px] md:min-h-[500px]"
+                    className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.01] md:hover:scale-[1.02] min-h-[450px] md:min-h-[500px]"
                     onClick={() => handleViewAllClick('mangalsutra')}
                     style={{ 
                       background: 'linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #1e40af 100%)',
@@ -331,31 +331,31 @@ export default function Home() {
                   >
                     {/* Decorative Pattern Overlay */}
                     <div className="absolute inset-0 opacity-10">
-                      <div className="absolute top-0 left-0 w-32 h-32 md:w-64 md:h-64 bg-white rounded-full -translate-x-16 -translate-y-16 md:-translate-x-32 md:-translate-y-32"></div>
-                      <div className="absolute bottom-0 right-0 w-24 h-24 md:w-48 md:h-48 bg-white rounded-full translate-x-12 translate-y-12 md:translate-x-24 md:translate-y-24"></div>
-                      <div className="absolute top-1/2 left-1/2 w-16 h-16 md:w-32 md:h-32 bg-white rounded-full -translate-x-8 -translate-y-8 md:-translate-x-16 md:-translate-y-16"></div>
+                      <div className="absolute top-0 left-0 w-40 h-40 md:w-64 md:h-64 bg-white rounded-full -translate-x-20 -translate-y-20 md:-translate-x-32 md:-translate-y-32"></div>
+                      <div className="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-white rounded-full translate-x-16 translate-y-16 md:translate-x-24 md:translate-y-24"></div>
+                      <div className="absolute top-1/2 left-1/2 w-24 h-24 md:w-32 md:h-32 bg-white rounded-full -translate-x-12 -translate-y-12 md:-translate-x-16 md:-translate-y-16"></div>
                     </div>
                     
-                    <div className="relative z-10 p-4 md:p-12 h-full flex flex-col">
+                    <div className="relative z-10 p-6 md:p-12 h-full flex flex-col">
                       {/* Image Container with Better Positioning */}
-                      <div className="flex-1 flex items-center justify-center mb-4 md:mb-8">
+                      <div className="flex-1 flex items-center justify-center mb-6 md:mb-8">
                         <div className="relative">
                           <div className="absolute inset-0 bg-white/10 rounded-2xl md:rounded-3xl blur-xl md:blur-2xl transform scale-110"></div>
                           <img
                             src={mangalsutraImage}
                             alt="Mangalsutra Collection"
-                            className="relative max-w-full h-32 md:h-72 object-contain filter drop-shadow-2xl transform transition-all duration-700 group-hover:scale-110 group-hover:rotate-2"
+                            className="relative max-w-full h-48 md:h-72 object-contain filter drop-shadow-2xl transform transition-all duration-700 group-hover:scale-110 group-hover:rotate-2"
                           />
                         </div>
                       </div>
                       
                       {/* Enhanced Text Section */}
                       <div className="text-center md:text-left">
-                        <h3 className="text-2xl md:text-4xl lg:text-5xl font-light text-white mb-2 md:mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-3 md:mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                           Mangalsutra
                         </h3>
-                        <div className="w-12 md:w-20 h-0.5 md:h-1 bg-gradient-to-r from-white to-white/50 rounded-full mb-2 md:mb-3 mx-auto md:mx-0"></div>
-                        <p className="text-white/80 text-sm md:text-lg font-light">Sacred jewelry for special moments</p>
+                        <div className="w-16 md:w-20 h-0.5 md:h-1 bg-gradient-to-r from-white to-white/50 rounded-full mb-3 md:mb-3 mx-auto md:mx-0"></div>
+                        <p className="text-white/80 text-base md:text-lg font-light">Sacred jewelry for special moments</p>
                       </div>
                     </div>
                     
@@ -365,7 +365,7 @@ export default function Home() {
 
                   {/* Right Half - Pendants with Sophisticated Design */}
                   <div 
-                    className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.01] md:hover:scale-[1.02] min-h-[300px] md:min-h-[500px]"
+                    className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.01] md:hover:scale-[1.02] min-h-[450px] md:min-h-[500px]"
                     onClick={() => handleViewAllClick('pendants')}
                     style={{ 
                       background: 'linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%)',
@@ -373,31 +373,31 @@ export default function Home() {
                   >
                     {/* Decorative Pattern Overlay */}
                     <div className="absolute inset-0 opacity-10">
-                      <div className="absolute top-0 right-0 w-28 h-28 md:w-56 md:h-56 bg-white rounded-full translate-x-14 -translate-y-14 md:translate-x-28 md:-translate-y-28"></div>
-                      <div className="absolute bottom-0 left-0 w-20 h-20 md:w-40 md:h-40 bg-white rounded-full -translate-x-10 translate-y-10 md:-translate-x-20 md:translate-y-20"></div>
-                      <div className="absolute top-1/3 right-1/3 w-12 h-12 md:w-24 md:h-24 bg-white rounded-full"></div>
+                      <div className="absolute top-0 right-0 w-36 h-36 md:w-56 md:h-56 bg-white rounded-full translate-x-18 -translate-y-18 md:translate-x-28 md:-translate-y-28"></div>
+                      <div className="absolute bottom-0 left-0 w-28 h-28 md:w-40 md:h-40 bg-white rounded-full -translate-x-14 translate-y-14 md:-translate-x-20 md:translate-y-20"></div>
+                      <div className="absolute top-1/3 right-1/3 w-16 h-16 md:w-24 md:h-24 bg-white rounded-full"></div>
                     </div>
                     
-                    <div className="relative z-10 p-4 md:p-12 h-full flex flex-col">
+                    <div className="relative z-10 p-6 md:p-12 h-full flex flex-col">
                       {/* Image Container with Better Positioning */}
-                      <div className="flex-1 flex items-center justify-center mb-4 md:mb-8">
+                      <div className="flex-1 flex items-center justify-center mb-6 md:mb-8">
                         <div className="relative">
                           <div className="absolute inset-0 bg-white/10 rounded-2xl md:rounded-3xl blur-xl md:blur-2xl transform scale-110"></div>
                           <img
                             src={pendantsImage}
                             alt="Pendants Collection"
-                            className="relative max-w-full h-32 md:h-72 object-contain filter drop-shadow-2xl transform transition-all duration-700 group-hover:scale-110 group-hover:-rotate-2"
+                            className="relative max-w-full h-48 md:h-72 object-contain filter drop-shadow-2xl transform transition-all duration-700 group-hover:scale-110 group-hover:-rotate-2"
                           />
                         </div>
                       </div>
                       
                       {/* Enhanced Text Section */}
                       <div className="text-center md:text-left">
-                        <h3 className="text-2xl md:text-4xl lg:text-5xl font-light text-white mb-2 md:mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-3 md:mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                           Pendants
                         </h3>
-                        <div className="w-12 md:w-20 h-0.5 md:h-1 bg-gradient-to-r from-white to-white/50 rounded-full mb-2 md:mb-3 mx-auto md:mx-0"></div>
-                        <p className="text-white/80 text-sm md:text-lg font-light">Elegant pieces for every occasion</p>
+                        <div className="w-16 md:w-20 h-0.5 md:h-1 bg-gradient-to-r from-white to-white/50 rounded-full mb-3 md:mb-3 mx-auto md:mx-0"></div>
+                        <p className="text-white/80 text-base md:text-lg font-light">Elegant pieces for every occasion</p>
                       </div>
                     </div>
                     
@@ -440,16 +440,16 @@ export default function Home() {
                      }}></div>
               </div>
 
-              <div className="relative z-10 w-full px-2 md:px-6">
+              <div className="relative z-10 w-full px-3 md:px-6">
                 {/* Luxury Festival Layout */}
-                <div className="flex flex-col lg:flex-row gap-4 md:gap-8 items-center min-h-[400px] md:min-h-[600px]">
+                <div className="flex flex-col lg:flex-row gap-6 md:gap-8 items-stretch min-h-[500px] md:min-h-[600px]">
                   
                   {/* Left: Elegant Festival Content */}
                   <div className="w-full lg:w-2/3 relative">
                     {section.festivalImage ? (
-                      <div className="relative overflow-hidden rounded-2xl md:rounded-3xl">
+                      <div className="relative overflow-hidden rounded-2xl md:rounded-3xl h-full">
                         <div 
-                          className="h-60 md:h-96 lg:h-[500px] bg-cover bg-center relative"
+                          className="h-80 md:h-96 lg:h-[500px] bg-cover bg-center relative"
                           style={{
                             backgroundImage: `url(${section.festivalImage})`,
                             backgroundSize: 'cover',
@@ -460,24 +460,24 @@ export default function Home() {
                           <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/20"></div>
                           
                           {/* Content positioned at bottom left */}
-                          <div className="absolute bottom-4 md:bottom-8 left-4 md:left-8 right-4 md:right-8">
+                          <div className="absolute bottom-6 md:bottom-8 left-6 md:left-8 right-6 md:right-8">
                             <div className="max-w-2xl">
                               <h2 
-                                className="text-2xl md:text-4xl lg:text-6xl font-light text-white mb-2 md:mb-4 leading-tight"
+                                className="text-3xl md:text-4xl lg:text-6xl font-light text-white mb-3 md:mb-4 leading-tight"
                                 style={{ fontFamily: 'Cormorant Garamond, serif' }}
                               >
                                 {section.title}
                               </h2>
                               {section.subtitle && (
                                 <p 
-                                  className="text-lg md:text-xl lg:text-2xl text-white/90 italic mb-3 md:mb-6 font-light"
+                                  className="text-xl md:text-xl lg:text-2xl text-white/90 italic mb-4 md:mb-6 font-light"
                                   style={{ fontFamily: 'Cormorant Garamond, serif' }}
                                 >
                                   {section.subtitle}
                                 </p>
                               )}
                               {section.description && (
-                                <p className="text-white/80 text-sm md:text-lg leading-relaxed mb-3 md:mb-6 line-clamp-2 md:line-clamp-none">
+                                <p className="text-white/80 text-base md:text-lg leading-relaxed mb-4 md:mb-6 line-clamp-3 md:line-clamp-none">
                                   {section.description}
                                 </p>
                               )}
@@ -486,16 +486,16 @@ export default function Home() {
                         </div>
                       </div>
                     ) : (
-                      <div className="h-60 md:h-96 lg:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-br from-amber-100 to-amber-200 flex flex-col justify-center items-center p-6 md:p-12">
+                      <div className="h-80 md:h-96 lg:h-[500px] rounded-2xl md:rounded-3xl bg-gradient-to-br from-amber-100 to-amber-200 flex flex-col justify-center items-center p-8 md:p-12">
                         <h2 
-                          className="text-2xl md:text-4xl lg:text-6xl font-light text-amber-900 mb-2 md:mb-4 text-center"
+                          className="text-3xl md:text-4xl lg:text-6xl font-light text-amber-900 mb-3 md:mb-4 text-center"
                           style={{ fontFamily: 'Cormorant Garamond, serif' }}
                         >
                           {section.title}
                         </h2>
                         {section.subtitle && (
                           <p 
-                            className="text-lg md:text-xl lg:text-2xl text-amber-800 italic text-center font-light"
+                            className="text-xl md:text-xl lg:text-2xl text-amber-800 italic text-center font-light"
                             style={{ fontFamily: 'Cormorant Garamond, serif' }}
                           >
                             {section.subtitle}
@@ -506,20 +506,20 @@ export default function Home() {
                   </div>
 
                   {/* Right: Luxury Product Carousel */}
-                  <div className="w-full lg:w-1/3 h-full">
+                  <div className="w-full lg:w-1/3 flex flex-col justify-between">
                     {/* Elegant Header */}
-                    <div className="mb-4 md:mb-8 text-center lg:text-left">
-                      <h3 className="text-xl md:text-3xl font-light text-white mb-1 md:mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    <div className="mb-6 md:mb-8 text-center lg:text-left">
+                      <h3 className="text-2xl md:text-3xl font-light text-white mb-2 md:mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                         Festive Treasures
                       </h3>
-                      <p className="text-white/80 text-sm md:text-lg">styled to perfection!</p>
-                      <div className="w-12 md:w-20 h-0.5 md:h-1 bg-white/60 rounded-full mx-auto lg:mx-0 mt-2 md:mt-4"></div>
+                      <p className="text-white/80 text-base md:text-lg">styled to perfection!</p>
+                      <div className="w-16 md:w-20 h-0.5 md:h-1 bg-white/60 rounded-full mx-auto lg:mx-0 mt-3 md:mt-4"></div>
                     </div>
 
                     {/* Swipeable Product Carousel */}
-                    <div className="relative">
+                    <div className="relative flex-1">
                       <div 
-                        className="flex gap-2 md:gap-4 overflow-x-auto scrollbar-hide pb-2 md:pb-4 snap-x snap-mandatory"
+                        className="flex gap-3 md:gap-4 overflow-x-auto scrollbar-hide pb-3 md:pb-4 snap-x snap-mandatory"
                         style={{ 
                           scrollbarWidth: 'none', 
                           msOverflowStyle: 'none',
@@ -533,9 +533,9 @@ export default function Home() {
                           return (
                             <div 
                               key={item.id} 
-                              className="flex-shrink-0 w-24 md:w-32 bg-white/95 backdrop-blur-sm rounded-2xl md:rounded-3xl overflow-hidden shadow-xl md:shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 cursor-pointer group border border-white/30 snap-center"
+                              className="flex-shrink-0 w-32 md:w-32 bg-white/95 backdrop-blur-sm rounded-2xl md:rounded-3xl overflow-hidden shadow-xl md:shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 cursor-pointer group border border-white/30 snap-center"
                             >
-                              <div className="h-16 md:h-20 relative overflow-hidden">
+                              <div className="h-20 md:h-20 relative overflow-hidden">
                                 <img
                                   src={product.images[0] || '/api/placeholder/200/200'}
                                   alt={product.name}
@@ -543,7 +543,7 @@ export default function Home() {
                                 />
                               </div>
                               
-                              <div className="p-1.5 md:p-2">
+                              <div className="p-2 md:p-2">
                                 <h4 className="font-semibold text-xs text-gray-900 leading-tight text-center line-clamp-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                                   {product.name}
                                 </h4>
@@ -567,9 +567,9 @@ export default function Home() {
                     </div>
 
                     {/* Call to Action */}
-                    <div className="mt-4 md:mt-8 text-center">
+                    <div className="mt-6 md:mt-8 text-center">
                       <Button 
-                        className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-2 border-white/40 hover:border-white/60 px-4 md:px-8 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 hover:scale-105 shadow-lg" 
+                        className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-2 border-white/40 hover:border-white/60 px-6 md:px-8 py-2 md:py-3 rounded-full text-sm md:text-base font-medium transition-all duration-300 hover:scale-105 shadow-lg" 
                         style={{ fontFamily: 'Cormorant Garamond, serif' }}
                         onClick={() => window.location.href = '/collections'}
                       >
