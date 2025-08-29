@@ -283,10 +283,13 @@ export default function Home() {
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ background: 'linear-gradient(135deg, #C8B99C 0%, #D4C5A9 100%)' }}
             >
-              {/* Decorative Rings in Top Right Corner */}
-              <div className="absolute top-8 right-8 opacity-30">
-                <div className="w-24 h-24 border-8 border-amber-400 rounded-full"></div>
-                <div className="w-16 h-16 border-6 border-amber-300 rounded-full absolute -top-4 -right-4"></div>
+              {/* Gold Rings Images in Top Right Corner */}
+              <div className="absolute top-8 right-8 z-20 opacity-90">
+                <img
+                  src={ringsImage}
+                  alt="Gold Rings"
+                  className="w-32 h-32 md:w-40 md:h-40 object-contain filter drop-shadow-2xl transform rotate-12"
+                />
               </div>
 
               {/* Section Header */}
@@ -444,18 +447,25 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Right: Products Grid - Matching Image Height */}
+                  {/* Right: Swipeable Products Grid - 3 items per row */}
                   <div className="lg:w-1/3">
-                    <div className="h-64 md:h-80 lg:h-96 flex flex-col justify-between">
-                      <div className="grid grid-cols-2 gap-2 md:gap-3 h-full">
-                        {section.items.slice(0, 4).map((item) => {
+                    <div className="h-64 md:h-80 lg:h-96 overflow-hidden">
+                      <div 
+                        className="flex gap-3 h-full overflow-x-auto scrollbar-hide pb-2"
+                        style={{ 
+                          scrollbarWidth: 'none', 
+                          msOverflowStyle: 'none',
+                          scrollBehavior: 'smooth'
+                        }}
+                      >
+                        {section.items.map((item) => {
                           const product = allProducts.find(p => p.id === item.productId);
                           if (!product) return null;
                           
                           return (
                             <div 
                               key={item.id} 
-                              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 h-full flex flex-col"
+                              className="flex-shrink-0 w-28 bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 h-full flex flex-col"
                             >
                               <div className="flex-1 relative">
                                 <img
@@ -464,28 +474,21 @@ export default function Home() {
                                   className="w-full h-full object-cover"
                                 />
                               </div>
-                              <div className="p-3 bg-white">
-                                <h4 className="font-medium text-sm text-gray-900 text-center leading-tight">
+                              <div className="p-2 bg-white">
+                                <h4 className="font-medium text-xs text-gray-900 text-center leading-tight line-clamp-2">
                                   {product.name}
                                 </h4>
+                                <p className="text-xs text-amber-600 font-bold mt-1 text-center">
+                                  {selectedCurrency === 'INR' 
+                                    ? `₹${product.priceInr.toLocaleString()}`
+                                    : `BD ${product.priceBhd}`
+                                  }
+                                </p>
                               </div>
                             </div>
                           );
                         })}
                       </div>
-                    </div>
-                    
-                    {/* Navigation Arrows */}
-                    <div className="flex justify-center gap-2 mt-4">
-                      <button className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
-                        <span className="text-gray-600">&lt;</span>
-                      </button>
-                      <button className="w-8 h-8 rounded-full bg-purple-600 text-white flex items-center justify-center">
-                        1
-                      </button>
-                      <button className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
-                        <span className="text-gray-600">&gt;</span>
-                      </button>
                     </div>
 
                     {/* View Full Collection Button */}
