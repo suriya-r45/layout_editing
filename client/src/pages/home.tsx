@@ -361,9 +361,9 @@ export default function Home() {
             >
               <div className="container mx-auto px-4">
                 {/* Festival Banner Layout */}
-                <div className="flex flex-col lg:flex-row gap-8 items-center">
-                  {/* Left: Festival Image */}
-                  <div className="lg:w-1/2 relative">
+                <div className="flex flex-col lg:flex-row gap-6 items-center">
+                  {/* Left: Festival Image - Made Larger */}
+                  <div className="lg:w-2/3 relative">
                     {section.festivalImage ? (
                       <div 
                         className="rounded-2xl overflow-hidden shadow-xl h-64 md:h-80 lg:h-96 bg-cover bg-center relative"
@@ -416,9 +416,9 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Right: Products Grid */}
-                  <div className="lg:w-1/2">
-                    <div className="grid grid-cols-2 gap-4 md:gap-6">
+                  {/* Right: Products Grid - Made Smaller */}
+                  <div className="lg:w-1/3">
+                    <div className="grid grid-cols-2 gap-2 md:gap-3">
                       {section.items.slice(0, 4).map((item) => (
                         <div 
                           key={item.id} 
@@ -434,7 +434,7 @@ export default function Home() {
                     </div>
                     
                     {/* Navigation Arrows */}
-                    <div className="flex justify-center gap-2 mt-6">
+                    <div className="flex justify-center gap-2 mt-4">
                       <button className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center transition-colors">
                         <span className="text-gray-600">&lt;</span>
                       </button>
@@ -447,7 +447,7 @@ export default function Home() {
                     </div>
 
                     {/* View Full Collection Button */}
-                    <div className="text-center mt-6">
+                    <div className="text-center mt-4">
                       <Button 
                         className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-200" 
                         style={{ fontFamily: 'Cormorant Garamond, serif' }}
