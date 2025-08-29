@@ -420,18 +420,30 @@ export default function Home() {
                   <div className="lg:w-1/3">
                     <div className="h-64 md:h-80 lg:h-96 flex flex-col justify-between">
                       <div className="grid grid-cols-2 gap-2 md:gap-3 h-full">
-                        {section.items.slice(0, 4).map((item) => (
-                          <div 
-                            key={item.id} 
-                            className="transform hover:scale-105 transition-transform duration-300 h-full"
-                          >
-                            <ProductCard
-                              product={item.product}
-                              currency={selectedCurrency}
-                              showActions={true}
-                            />
-                          </div>
-                        ))}
+                        {section.items.slice(0, 4).map((item) => {
+                          const product = allProducts.find(p => p.id === item.productId);
+                          if (!product) return null;
+                          
+                          return (
+                            <div 
+                              key={item.id} 
+                              className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 h-full flex flex-col"
+                            >
+                              <div className="flex-1 relative">
+                                <img
+                                  src={product.images[0] || '/api/placeholder/200/200'}
+                                  alt={product.name}
+                                  className="w-full h-full object-cover"
+                                />
+                              </div>
+                              <div className="p-2">
+                                <h4 className="font-medium text-xs text-gray-900 text-center leading-tight">
+                                  {product.name}
+                                </h4>
+                              </div>
+                            </div>
+                          );
+                        })}
                       </div>
                     </div>
                     
