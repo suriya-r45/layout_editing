@@ -272,6 +272,7 @@ function CreateSectionDialog({
   isLoading: boolean;
 }) {
   const [open, setOpen] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [formData, setFormData] = useState<CreateHomeSectionData>({
     title: "",
     subtitle: "",
@@ -283,21 +284,87 @@ function CreateSectionDialog({
     textColor: "#8b4513"
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    onCreate(formData);
-    setOpen(false);
-    // Reset form
-    setFormData({
-      title: "",
-      subtitle: "",
-      description: "",
-      layoutType: "grid",
-      isActive: true,
-      displayOrder: 0,
-      backgroundColor: "#fff8e1",
-      textColor: "#8b4513"
+    
+    // Create FormData to handle file uploads
+    const submissionData = new FormData();
+    
+    // Add all form fields
+    Object.entries(formData).forEach(([key, value]) => {
+      if (typeof value === 'boolean') {
+        submissionData.append(key, value ? 'true' : 'false');
+      } else {
+        submissionData.append(key, String(value));
+      }
     });
+    
+    // Add festival image if selected
+    if (selectedFile) {
+      submissionData.append('festivalImage', selectedFile);
+    }
+    
+    // Submit the data
+    try {
+      await submitSectionWithImage(submissionData);
+      setOpen(false);
+      // Reset form
+      setFormData({
+        title: "",
+        subtitle: "",
+        description: "",
+        layoutType: "grid",
+        isActive: true,
+        displayOrder: 0,
+        backgroundColor: "#fff8e1",
+        textColor: "#8b4513"
+      });
+      setSelectedFile(null);
+    } catch (error) {
+      console.error('Error creating section:', error);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setSelectedFile(e.target.files[0]);
+    }
+  };
+
+  const submitSectionWithImage = async (formData: FormData) => {
+    // First create the section without the image
+    const sectionData: CreateHomeSectionData = {
+      title: formData.get('title') as string,
+      subtitle: formData.get('subtitle') as string,
+      description: formData.get('description') as string,
+      layoutType: formData.get('layoutType') as any,
+      isActive: formData.get('isActive') === 'true',
+      displayOrder: parseInt(formData.get('displayOrder') as string),
+      backgroundColor: formData.get('backgroundColor') as string,
+      textColor: formData.get('textColor') as string,
+      splitLeftColor: formData.get('splitLeftColor') as string,
+      splitRightColor: formData.get('splitRightColor') as string,
+      splitLeftTitle: formData.get('splitLeftTitle') as string,
+      splitRightTitle: formData.get('splitRightTitle') as string,
+    };
+
+    // Upload image if provided
+    if (selectedFile) {
+      const imageFormData = new FormData();
+      imageFormData.append('festivalImage', selectedFile);
+      
+      const uploadResponse = await fetch('/api/upload-festival-image', {
+        method: 'POST',
+        body: imageFormData,
+      });
+      
+      if (uploadResponse.ok) {
+        const { imagePath } = await uploadResponse.json();
+        sectionData.festivalImage = imagePath;
+      }
+    }
+
+    onCreate(sectionData);
   };
 
   return (
@@ -426,14 +493,18 @@ function CreateSectionDialog({
               <div className="space-y-4">
                 <h4 className="font-medium text-sm">Festival Banner Configuration</h4>
                 <div className="space-y-2">
-                  <Label htmlFor="festivalImage">Festival Image URL</Label>
+                  <Label htmlFor="festivalImage">Festival Banner Image</Label>
                   <Input
                     id="festivalImage"
-                    value={formData.festivalImage || ''}
-                    onChange={(e) => setFormData(prev => ({ ...prev, festivalImage: e.target.value }))}
-                    placeholder="Enter the URL of your festival banner image"
+                    type="file"
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className="file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-medium file:bg-gray-50 hover:file:bg-gray-100"
                   />
-                  <p className="text-xs text-gray-500">Upload your festival image to the uploads folder and use the relative path (e.g., /uploads/festival-banner.jpg)</p>
+                  {selectedFile && (
+                    <p className="text-xs text-green-600">Selected: {selectedFile.name}</p>
+                  )}
+                  <p className="text-xs text-gray-500">Choose an image file for your festival banner. Supported formats: JPG, PNG, WebP</p>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">

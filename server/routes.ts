@@ -1865,6 +1865,25 @@ For any queries, please contact us.`;
     }
   });
 
+  // Upload festival image (Admin only)
+  app.post("/api/upload-festival-image", authenticateToken, requireAdmin, upload.single('festivalImage'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'No file uploaded' });
+      }
+
+      const filename = `festival-${Date.now()}-${req.file.originalname}`;
+      const filepath = path.join(uploadsDir, filename);
+      await fs.promises.rename(req.file.path, filepath);
+      
+      const imagePath = `/uploads/${filename}`;
+      res.json({ imagePath });
+    } catch (error) {
+      console.error('Error uploading festival image:', error);
+      res.status(500).json({ error: 'Failed to upload festival image' });
+    }
+  });
+
   // === END HOME SECTIONS MANAGEMENT ROUTES ===
 
   // === SHIPPING & LOGISTICS API ROUTES ===
