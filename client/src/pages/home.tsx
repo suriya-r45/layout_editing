@@ -274,7 +274,7 @@ export default function Home() {
       {homeSections.length > 0 && homeSections.map((section) => {
         if (section.items.length === 0) return null;
         
-        // Split layout rendering - Enhanced to match user's screenshot
+        // Split layout rendering - Clean and elegant design matching user's screenshot
         if (section.layoutType === 'split') {
           return (
             <section 
@@ -307,74 +307,64 @@ export default function Home() {
                 </p>
               </div>
               
-              {/* Two Category Cards */}
-              <div className="flex flex-col lg:flex-row gap-6 max-w-6xl mx-auto">
-                {/* Left Card - Mangalsutra */}
-                <div 
-                  className="flex-1 relative overflow-hidden rounded-3xl group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl min-h-[400px]"
-                  onClick={() => handleViewAllClick('mangalsutra')}
-                  style={{ 
-                    background: 'linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%)'
-                  }}
-                >
-                  {/* Background Pattern */}
-                  <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 left-0 w-32 h-32 bg-white rounded-full -translate-x-16 -translate-y-16"></div>
-                    <div className="absolute bottom-0 right-0 w-48 h-48 bg-white rounded-full translate-x-24 translate-y-24"></div>
-                  </div>
+              {/* Clean Half-and-Half Split Layout */}
+              <div className="max-w-7xl mx-auto">
+                <div className="flex flex-col lg:flex-row shadow-2xl rounded-3xl overflow-hidden bg-white min-h-[400px]">
                   
-                  {/* Category Image */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <img
-                      src={mangalsutraImage}
-                      alt="Mangalsutra Collection"
-                      className="w-80 h-80 object-contain filter drop-shadow-2xl transform transition-transform duration-500 group-hover:scale-110"
-                    />
+                  {/* Left Half - Mangalsutra (Blue Background) */}
+                  <div 
+                    className="flex-1 relative cursor-pointer group transition-all duration-300 hover:scale-[1.02]"
+                    onClick={() => handleViewAllClick('mangalsutra')}
+                    style={{ background: 'linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%)' }}
+                  >
+                    <div className="p-8 h-full flex flex-col justify-between relative z-10">
+                      {/* Category Label at Bottom Left */}
+                      <div className="flex-1 flex items-center justify-center">
+                        <img
+                          src={mangalsutraImage}
+                          alt="Mangalsutra Collection"
+                          className="max-w-full h-64 object-contain filter drop-shadow-xl transform transition-transform duration-500 group-hover:scale-110"
+                        />
+                      </div>
+                      <div className="text-left">
+                        <h3 className="text-3xl md:text-4xl font-light text-white mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                          Mangalsutra
+                        </h3>
+                        <div className="w-16 h-1 bg-white/60 rounded-full"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
                   </div>
-                  
-                  {/* Category Label */}
-                  <div className="absolute bottom-8 left-8 z-10">
-                    <h3 className="text-3xl md:text-4xl font-light text-white" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                      Mangalsutra
-                    </h3>
-                  </div>
-                  
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
-                </div>
 
-                {/* Right Card - Pendants */}
-                <div 
-                  className="flex-1 relative overflow-hidden rounded-3xl group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl min-h-[400px]"
-                  onClick={() => handleViewAllClick('pendants')}
-                  style={{ 
-                    background: 'linear-gradient(135deg, #059669 0%, #047857 100%)'
-                  }}
-                >
-                  {/* Background Pattern */}
-                  <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-0 right-0 w-40 h-40 bg-white rounded-full translate-x-20 -translate-y-20"></div>
-                    <div className="absolute bottom-0 left-0 w-36 h-36 bg-white rounded-full -translate-x-18 translate-y-18"></div>
+                  {/* Right Half - Pendants (Green Background) */}
+                  <div 
+                    className="flex-1 relative cursor-pointer group transition-all duration-300 hover:scale-[1.02]"
+                    onClick={() => handleViewAllClick('pendants')}
+                    style={{ background: 'linear-gradient(135deg, #059669 0%, #047857 100%)' }}
+                  >
+                    <div className="p-8 h-full flex flex-col justify-between relative z-10">
+                      {/* Category Label at Bottom Left */}
+                      <div className="flex-1 flex items-center justify-center">
+                        <img
+                          src={pendantsImage}
+                          alt="Pendants Collection"
+                          className="max-w-full h-64 object-contain filter drop-shadow-xl transform transition-transform duration-500 group-hover:scale-110"
+                        />
+                      </div>
+                      <div className="text-left">
+                        <h3 className="text-3xl md:text-4xl font-light text-white mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                          Pendants
+                        </h3>
+                        <div className="w-16 h-1 bg-white/60 rounded-full"></div>
+                      </div>
+                    </div>
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-all duration-300"></div>
                   </div>
-                  
-                  {/* Category Image */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <img
-                      src={pendantsImage}
-                      alt="Pendants Collection"
-                      className="w-80 h-80 object-contain filter drop-shadow-2xl transform transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                  
-                  {/* Category Label */}
-                  <div className="absolute bottom-8 left-8 z-10">
-                    <h3 className="text-3xl md:text-4xl font-light text-white" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                      Pendants
-                    </h3>
-                  </div>
-                  
-                  {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300"></div>
+
                 </div>
               </div>
             </section>
@@ -447,11 +437,11 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Right: Swipeable Products Grid - 3 items per row */}
+                  {/* Right: Swipeable Products Grid - 4 items per row with larger images */}
                   <div className="lg:w-1/3">
-                    <div className="h-64 md:h-80 lg:h-96 overflow-hidden">
+                    <div className="h-64 md:h-80 lg:h-96 p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl">
                       <div 
-                        className="flex gap-3 h-full overflow-x-auto scrollbar-hide pb-2"
+                        className="flex gap-4 h-full overflow-x-auto scrollbar-hide"
                         style={{ 
                           scrollbarWidth: 'none', 
                           msOverflowStyle: 'none',
@@ -465,25 +455,36 @@ export default function Home() {
                           return (
                             <div 
                               key={item.id} 
-                              className="flex-shrink-0 w-28 bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 h-full flex flex-col"
+                              className="flex-shrink-0 w-36 bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer"
                             >
-                              <div className="flex-1 relative">
+                              <div className="h-32 relative">
                                 <img
                                   src={product.images[0] || '/api/placeholder/200/200'}
                                   alt={product.name}
                                   className="w-full h-full object-cover"
                                 />
                               </div>
-                              <div className="p-2 bg-white">
-                                <h4 className="font-medium text-xs text-gray-900 text-center leading-tight line-clamp-2">
+                              <div className="p-3">
+                                <h4 className="font-semibold text-sm text-gray-900 leading-tight mb-1 line-clamp-2">
                                   {product.name}
                                 </h4>
-                                <p className="text-xs text-amber-600 font-bold mt-1 text-center">
-                                  {selectedCurrency === 'INR' 
-                                    ? `₹${product.priceInr.toLocaleString()}`
-                                    : `BD ${product.priceBhd}`
-                                  }
-                                </p>
+                                <div className="flex flex-col gap-1">
+                                  <p className="text-lg font-bold text-purple-600">
+                                    {selectedCurrency === 'INR' 
+                                      ? `₹${product.priceInr.toLocaleString()}`
+                                      : `BD ${product.priceBhd}`
+                                    }
+                                  </p>
+                                  <p className="text-xs text-gray-500 line-through">
+                                    {selectedCurrency === 'INR' 
+                                      ? `₹${(Number(product.priceInr) * 1.2).toLocaleString()}`
+                                      : `BD ${(Number(product.priceBhd) * 1.2).toFixed(3)}`
+                                    }
+                                  </p>
+                                  <p className="text-xs text-gray-600">
+                                    {product.grossWeight}g • {product.purity || '22K'}
+                                  </p>
+                                </div>
                               </div>
                             </div>
                           );
@@ -491,10 +492,22 @@ export default function Home() {
                       </div>
                     </div>
 
-                    {/* View Full Collection Button */}
-                    <div className="text-center mt-4">
+                    {/* Navigation and View Full Collection */}
+                    <div className="flex justify-between items-center mt-4">
+                      <div className="flex gap-2">
+                        <button className="w-10 h-10 rounded-full bg-white border-2 border-purple-200 hover:bg-purple-50 flex items-center justify-center transition-colors">
+                          <span className="text-purple-600">‹</span>
+                        </button>
+                        <span className="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold">
+                          1
+                        </span>
+                        <button className="w-10 h-10 rounded-full bg-white border-2 border-purple-200 hover:bg-purple-50 flex items-center justify-center transition-colors">
+                          <span className="text-purple-600">›</span>
+                        </button>
+                      </div>
+                      
                       <Button 
-                        className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-medium transition-colors duration-200" 
+                        className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2 rounded-full font-medium transition-colors duration-200" 
                         style={{ fontFamily: 'Cormorant Garamond, serif' }}
                         onClick={() => window.location.href = '/collections'}
                       >
