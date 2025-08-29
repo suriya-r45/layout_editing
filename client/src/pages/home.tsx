@@ -590,7 +590,7 @@ export default function Home() {
             className="py-12" 
             data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
             style={{ 
-              background: '#ffffff'
+              background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)'
             }}
           >
             <div className="container mx-auto px-4">
@@ -632,7 +632,7 @@ export default function Home() {
 
       {/* New Arrivals */}
       {newArrivalProducts.length > 0 && (
-        <section className="py-12" data-testid="section-new-arrivals" style={{ background: '#ffffff' }}>
+        <section className="py-12" data-testid="section-new-arrivals" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>New Arrivals</h2>
@@ -666,7 +666,7 @@ export default function Home() {
 
       {/* Gold Plated Silver Collection */}
       {goldPlatedSilverProducts.length > 0 && (
-        <section className="py-12" data-testid="section-gold-plated-silver-collection" style={{ background: '#ffffff' }}>
+        <section className="py-12" data-testid="section-gold-plated-silver-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gold Plated Silver</h2>
@@ -702,7 +702,7 @@ export default function Home() {
       
       {/* Gold Collection */}
       {goldProducts.length > 0 && (
-        <section className="py-12" data-testid="section-gold-collection" style={{ background: '#ffffff' }}>
+        <section className="py-12" data-testid="section-gold-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gold Collection</h2>
@@ -736,7 +736,7 @@ export default function Home() {
 
       {/* Silver Collection */}
       {silverProducts.length > 0 && (
-        <section className="py-12" data-testid="section-silver-collection" style={{ background: '#ffffff' }}>
+        <section className="py-12" data-testid="section-silver-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Silver Collection</h2>
@@ -770,7 +770,7 @@ export default function Home() {
 
       {/* Diamond Collection */}
       {diamondProducts.length > 0 && (
-        <section className="py-12" data-testid="section-diamond-collection" style={{ background: '#ffffff' }}>
+        <section className="py-12" data-testid="section-diamond-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Diamond Collection</h2>
@@ -801,7 +801,7 @@ export default function Home() {
 
       {/* Platinum Collection */}
       {platinumProducts.length > 0 && (
-        <section className="py-12" data-testid="section-platinum-collection" style={{ background: '#ffffff' }}>
+        <section className="py-12" data-testid="section-platinum-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Platinum Collection</h2>
@@ -831,7 +831,7 @@ export default function Home() {
 
       {/* Gemstone Collection */}
       {gemstoneProducts.length > 0 && (
-        <section className="py-12" data-testid="section-gemstone-collection" style={{ background: '#ffffff' }}>
+        <section className="py-12" data-testid="section-gemstone-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Gemstone Collection</h2>
@@ -861,7 +861,7 @@ export default function Home() {
 
       {/* Pearl Collection */}
       {pearlProducts.length > 0 && (
-        <section className="py-12" data-testid="section-pearl-collection" style={{ background: '#ffffff' }}>
+        <section className="py-12" data-testid="section-pearl-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Pearl Collection</h2>
@@ -892,7 +892,7 @@ export default function Home() {
 
       {/* Other Materials Collection */}
       {otherProducts.length > 0 && (
-        <section className="py-12" data-testid="section-other-collection" style={{ background: '#ffffff' }}>
+        <section className="py-12" data-testid="section-other-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Other Materials Collection</h2>
