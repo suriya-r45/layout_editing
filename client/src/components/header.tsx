@@ -209,7 +209,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
           {/* Mobile Search Bar - Only shown on mobile */}
           <div className="md:hidden pb-2">
             <div className="relative">
-              <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
                 <Search className="h-4 w-4 text-gray-600" />
               </div>
               <Input
@@ -218,10 +218,10 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={handleSearchKeyPress}
-                className="w-full h-12 pl-24 pr-20 rounded-full bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
+                className="w-full h-12 pl-12 pr-16 rounded-full bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
                 data-testid="search-input-mobile"
               />
-              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
+              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
                 <button className="p-1 hover:bg-gray-100 rounded">
                   <Camera className="h-4 w-4 text-gray-600" />
                 </button>
