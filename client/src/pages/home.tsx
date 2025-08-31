@@ -428,7 +428,7 @@ export default function Home() {
                     className="h-[85vh] sm:h-[87vh] md:h-[90vh] lg:h-[92vh] relative w-full"
                     style={{
                       backgroundImage: `url(${section.festivalImage})`,
-                      backgroundSize: 'cover',
+                      backgroundSize: 'contain',
                       backgroundPosition: 'center center',
                       backgroundRepeat: 'no-repeat'
                     }}
