@@ -84,6 +84,7 @@ export function HomeSectionsManagement() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/home-sections"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/home-sections/public"] }); // Refresh public home sections
       queryClient.invalidateQueries({ queryKey: ["/api/products"] }); // Refresh products too
       toast({ title: "Success", description: "Home section created successfully" });
     },
@@ -99,6 +100,7 @@ export function HomeSectionsManagement() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/home-sections"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/home-sections/public"] }); // Refresh public home sections
       toast({ title: "Success", description: "Home section updated successfully" });
       setEditingSectionId(null);
     },
@@ -114,6 +116,7 @@ export function HomeSectionsManagement() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/home-sections"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/home-sections/public"] }); // Refresh public home sections
       toast({ title: "Success", description: "Home section deleted successfully" });
     },
     onError: () => {
@@ -128,6 +131,7 @@ export function HomeSectionsManagement() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/home-sections"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/home-sections/public"] }); // Refresh public home sections
       toast({ title: "Success", description: "Product added to section successfully" });
       setAddingItemToSection("");
     },
@@ -143,6 +147,7 @@ export function HomeSectionsManagement() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/home-sections"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/home-sections/public"] }); // Refresh public home sections
       toast({ title: "Success", description: "Product removed from section successfully" });
     },
     onError: () => {
