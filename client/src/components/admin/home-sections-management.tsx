@@ -412,7 +412,7 @@ function CreateSectionDialog({
               <Label htmlFor="layoutType" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Layout Type *</Label>
               <Select
                 value={formData.layoutType}
-                onValueChange={(value: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine') => 
+                onValueChange={(value: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine' | 'diamond' | 'floating' | 'radial' | 'artistic') => 
                   setFormData(prev => ({ ...prev, layoutType: value }))
                 }
               >
@@ -429,6 +429,10 @@ function CreateSectionDialog({
                   <SelectItem value="mosaic">🎨 Mosaic - Pinterest Style Masonry</SelectItem>
                   <SelectItem value="luxury">💎 Luxury - Hero Product Display</SelectItem>
                   <SelectItem value="magazine">📖 Magazine - Editorial Layout</SelectItem>
+                  <SelectItem value="diamond">💠 Diamond - Revolutionary Crystal Formation</SelectItem>
+                  <SelectItem value="floating">🌟 Floating - 3D Levitating Cards</SelectItem>
+                  <SelectItem value="radial">🌌 Radial - Celestial Constellation</SelectItem>
+                  <SelectItem value="artistic">🎭 Artistic - Creative Collage Vision</SelectItem>
                 </SelectContent>
               </Select>
             </div>

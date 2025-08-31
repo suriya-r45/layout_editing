@@ -933,6 +933,293 @@ export default function Home() {
             </section>
           );
         }
+
+        // Diamond layout rendering - Revolutionary diamond-shaped jewelry display
+        if (section.layoutType === 'diamond') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-16 md:py-24 overflow-hidden relative" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'radial-gradient(ellipse at center, #0a0a0a 0%, #1a1a2e 30%, #2d1b69 60%, #0f0f23 100%)',
+              }}
+            >
+              {/* Cosmic Background Effects */}
+              <div className="absolute inset-0">
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-400/20 to-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-tl from-purple-400/15 to-blue-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+              </div>
+
+              <div className="max-w-6xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl md:text-7xl font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 to-orange-300 mb-6 tracking-widest" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title || 'DIAMOND COLLECTION'}
+                  </h2>
+                  <div className="w-32 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-6"></div>
+                  <p className="text-white/90 text-xl font-light max-w-2xl mx-auto">{section.description || 'Discover the brilliance of our exclusive diamond-shaped showcase'}</p>
+                </div>
+
+                <div className="relative">
+                  <div className="flex justify-center mb-8">
+                    <div 
+                      className="w-64 h-64 md:w-80 md:h-80 transform rotate-45 relative group cursor-pointer transition-all duration-1000 hover:scale-110"
+                      onClick={() => section.items[0] && handleViewAllClick('featured')}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-amber-400/30 via-orange-500/20 to-yellow-600/10 rounded-3xl animate-pulse"></div>
+                      <div className="absolute inset-2 bg-gradient-to-tl from-white/10 to-transparent rounded-2xl"></div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-48 h-48 md:w-60 md:h-60 -rotate-45 overflow-hidden rounded-2xl shadow-2xl">
+                          {section.items[0] && (
+                            <img
+                              src={section.items[0].product.images?.[0] || ringsImage}
+                              alt="Featured Diamond Piece"
+                              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
+                            />
+                          )}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
+                            <div className="text-center w-full">
+                              <h3 className="text-white font-light text-lg mb-2">FEATURED</h3>
+                              <div className="w-12 h-0.5 bg-white/70 mx-auto"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                    {section.items.slice(1, 5).map((item, index) => (
+                      <div key={item.id} className="flex justify-center">
+                        <div 
+                          className="w-32 h-32 md:w-40 md:h-40 transform rotate-45 relative group cursor-pointer transition-all duration-700 hover:scale-110"
+                          onClick={() => handleViewAllClick('rings')}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-500/15 to-indigo-600/10 rounded-2xl animate-pulse" style={{ animationDelay: `${index * 200}ms` }}></div>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-24 h-24 md:w-32 md:h-32 -rotate-45 overflow-hidden rounded-xl shadow-xl">
+                              <img
+                                src={item.product.images?.[0] || [necklacesImage, earringsImage, pendantsImage, banglesImage][index]}
+                                alt={`Diamond ${index + 1}`}
+                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Floating layout rendering - 3D floating cards with depth
+        if (section.layoutType === 'floating') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-20 md:py-32 relative overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+              }}
+            >
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-xl transform rotate-12"></div>
+                <div className="absolute bottom-32 right-32 w-48 h-48 bg-gradient-to-tl from-white/15 to-transparent rounded-full blur-lg transform -rotate-12"></div>
+              </div>
+
+              <div className="max-w-7xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-20">
+                  <h2 className="text-5xl md:text-8xl font-extralight text-white mb-8 tracking-widest" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title || 'FLOATING ELEGANCE'}
+                  </h2>
+                  <p className="text-white/90 text-2xl font-light max-w-3xl mx-auto">{section.description || 'Experience jewelry that defies gravity'}</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 perspective-1000">
+                  {section.items.slice(0, 6).map((item, index) => (
+                    <div 
+                      key={item.id}
+                      className="relative group cursor-pointer"
+                      style={{
+                        transform: `translateZ(${(index % 3) * 50}px) rotateX(${5 - (index % 3) * 2}deg) rotateY(${(index % 2) * 10 - 5}deg)`,
+                        transformStyle: 'preserve-3d',
+                      }}
+                    >
+                      <div className="absolute -inset-4 bg-black/20 rounded-3xl blur-xl transform translate-y-8 scale-95 group-hover:scale-105 transition-all duration-700"></div>
+                      
+                      <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20 transform transition-all duration-700 group-hover:translateZ-20 group-hover:scale-105">
+                        <div className="aspect-square mb-6 overflow-hidden rounded-2xl">
+                          <img
+                            src={item.product.images?.[0] || ringsImage}
+                            alt={item.product.name}
+                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                          />
+                        </div>
+                        <h3 className="text-white text-xl font-light mb-4 text-center">{item.product.name}</h3>
+                        <div className="text-center">
+                          <span className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium">
+                            VIEW DETAILS
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Radial layout rendering - Circular jewelry constellation
+        if (section.layoutType === 'radial') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-24 md:py-36 relative overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'conic-gradient(from 0deg, #000428 0%, #004e92 25%, #009ffd 50%, #004e92 75%, #000428 100%)',
+              }}
+            >
+              <div className="max-w-6xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-20">
+                  <h2 className="text-6xl md:text-9xl font-extralight text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-cyan-300 mb-8 tracking-widest" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title || 'CONSTELLATION'}
+                  </h2>
+                  <p className="text-white/95 text-2xl font-light max-w-3xl mx-auto">{section.description || 'A celestial arrangement of precious treasures'}</p>
+                </div>
+
+                <div className="relative w-96 h-96 md:w-[600px] md:h-[600px] mx-auto">
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-48 md:h-48">
+                    <div className="relative group cursor-pointer">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full animate-pulse"></div>
+                      <div className="w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white/30">
+                        {section.items[0] && (
+                          <img
+                            src={section.items[0].product.images?.[0] || ringsImage}
+                            alt="Center Constellation"
+                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {section.items.slice(1, 9).map((item, index) => {
+                    const angle = (index * 45) * (Math.PI / 180);
+                    const radius = 120;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    
+                    return (
+                      <div 
+                        key={item.id}
+                        className="absolute w-20 h-20 md:w-28 md:h-28 group cursor-pointer"
+                        style={{
+                          left: '50%',
+                          top: '50%',
+                          transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                          animation: `orbit 20s linear infinite`,
+                          animationDelay: `${index * 0.5}s`,
+                        }}
+                      >
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-blue-500/10 rounded-full blur-sm animate-pulse"></div>
+                          <div className="w-full h-full rounded-full overflow-hidden shadow-xl border-2 border-white/20">
+                            <img
+                              src={item.product.images?.[0] || [necklacesImage, earringsImage, pendantsImage, banglesImage][index % 4]}
+                              alt={`Orbit ${index + 1}`}
+                              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <style jsx>{`
+                @keyframes orbit {
+                  from {
+                    transform: translate(calc(-50% + 120px), -50%) rotate(0deg) translate(-120px, 0) rotate(0deg);
+                  }
+                  to {
+                    transform: translate(calc(-50% + 120px), -50%) rotate(360deg) translate(-120px, 0) rotate(-360deg);
+                  }
+                }
+              `}</style>
+            </section>
+          );
+        }
+
+        // Artistic layout rendering - Asymmetric creative collage
+        if (section.layoutType === 'artistic') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-20 md:py-32 relative overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(45deg, #ff9a9e 0%, #fecfef 25%, #fecfef 75%, #ff9a9e 100%)',
+              }}
+            >
+              <div className="max-w-7xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-16">
+                  <h2 className="text-5xl md:text-8xl font-extralight text-gray-800 mb-6 tracking-widest" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title || 'ARTISTIC VISION'}
+                  </h2>
+                  <p className="text-gray-700 text-xl font-light max-w-3xl mx-auto">{section.description || 'Where creativity meets craftsmanship'}</p>
+                </div>
+
+                <div className="relative h-screen max-h-[800px]">
+                  {section.items.slice(0, 8).map((item, index) => {
+                    const positions = [
+                      { top: '10%', left: '15%', rotate: '-15deg', size: 'w-48 h-64' },
+                      { top: '5%', right: '20%', rotate: '12deg', size: 'w-56 h-72' },
+                      { top: '35%', left: '5%', rotate: '8deg', size: 'w-44 h-56' },
+                      { top: '40%', right: '10%', rotate: '-8deg', size: 'w-52 h-68' },
+                      { bottom: '25%', left: '25%', rotate: '15deg', size: 'w-40 h-52' },
+                      { bottom: '20%', right: '25%', rotate: '-12deg', size: 'w-48 h-60' },
+                      { top: '55%', left: '45%', rotate: '5deg', size: 'w-36 h-48' },
+                      { bottom: '45%', right: '45%', rotate: '-5deg', size: 'w-44 h-56' },
+                    ];
+
+                    const position = positions[index] || positions[0];
+
+                    return (
+                      <div 
+                        key={item.id}
+                        className={`absolute group cursor-pointer ${position.size} transition-all duration-700 hover:scale-110 hover:z-50`}
+                        style={{
+                          ...position,
+                          transform: `rotate(${position.rotate})`,
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-black/20 rounded-2xl blur-lg transform translate-x-2 translate-y-2"></div>
+                        
+                        <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden border-4 border-white transform transition-all duration-700 group-hover:rotate-0">
+                          <img
+                            src={item.product.images?.[0] || [ringsImage, necklacesImage, earringsImage, pendantsImage][index % 4]}
+                            alt={item.product.name}
+                            className="w-full h-4/5 object-cover"
+                          />
+                          <div className="p-4">
+                            <h3 className="text-gray-800 font-light text-center text-sm">{item.product.name}</h3>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+          );
+        }
         
         // Regular layout rendering
         return (
