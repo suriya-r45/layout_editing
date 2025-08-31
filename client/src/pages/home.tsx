@@ -271,145 +271,214 @@ export default function Home() {
       {homeSections.length > 0 && homeSections.map((section) => {
         if (section.items.length === 0) return null;
         
-        // Split layout rendering - Premium and sophisticated design
+        // Split layout rendering - Next-Gen Ultra-Premium Design
         if (section.layoutType === 'split') {
           return (
             <section 
               key={section.id} 
-              className="py-8 md:py-20 px-2 md:px-4 relative overflow-hidden" 
+              className="py-16 md:py-32 px-2 md:px-4 relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)',
+                background: 'radial-gradient(ellipse at top, #0a0a0a 0%, #1a0033 25%, #001122 50%, #000511 100%)',
               }}
             >
-              {/* Decorative Background Elements */}
+              {/* Revolutionary Animated Background with Cinematic Effects */}
               <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-10 right-10 w-48 h-48 md:w-96 md:h-96 bg-gradient-to-br from-amber-100/30 to-amber-200/20 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-10 left-10 w-40 h-40 md:w-80 md:h-80 bg-gradient-to-tr from-rose-100/30 to-rose-200/20 rounded-full blur-3xl"></div>
+                {/* Primary cosmic orbs */}
+                <div className="absolute top-10 right-10 w-72 h-72 md:w-[600px] md:h-[600px] bg-gradient-to-br from-violet-500/25 via-purple-600/20 to-indigo-700/15 rounded-full blur-3xl animate-pulse opacity-60 transform rotate-45"></div>
+                <div className="absolute bottom-10 left-10 w-56 h-56 md:w-[450px] md:h-[450px] bg-gradient-to-tr from-amber-500/25 via-orange-600/20 to-red-700/15 rounded-full blur-3xl animate-pulse delay-1000 opacity-70 transform -rotate-45"></div>
+                <div className="absolute top-1/3 left-1/3 w-40 h-40 md:w-80 md:h-80 bg-gradient-to-br from-emerald-500/20 via-teal-600/15 to-cyan-700/10 rounded-full blur-2xl animate-pulse delay-500 opacity-50"></div>
+                
+                {/* Secondary ethereal effects */}
+                <div className="absolute top-1/4 right-1/4 w-32 h-32 md:w-64 md:h-64 bg-gradient-to-r from-rose-400/15 to-pink-500/10 rounded-full blur-xl animate-pulse delay-700"></div>
+                <div className="absolute bottom-1/3 right-1/3 w-28 h-28 md:w-56 md:h-56 bg-gradient-to-l from-blue-400/15 to-indigo-500/10 rounded-full blur-xl animate-pulse delay-1200"></div>
               </div>
 
-              {/* Gold Rings Images in Top Right Corner - Hidden on mobile */}
-              <div className="hidden md:block absolute top-12 right-12 z-20 opacity-80">
-                <img
-                  src={ringsImage}
-                  alt="Gold Rings"
-                  className="w-36 h-36 md:w-44 md:h-44 object-contain filter drop-shadow-2xl transform rotate-12 hover:rotate-6 transition-transform duration-700"
-                />
+              {/* Next-Gen Floating Elements with 3D Effects */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-20 left-20 w-6 h-6 bg-gradient-to-r from-white/40 to-amber-300/60 rounded-full animate-bounce delay-300 shadow-2xl"></div>
+                <div className="absolute top-40 right-40 w-4 h-4 bg-gradient-to-r from-purple-400/50 to-blue-500/40 rounded-full animate-bounce delay-700 shadow-xl"></div>
+                <div className="absolute bottom-32 left-32 w-3 h-3 bg-gradient-to-r from-emerald-400/60 to-teal-500/50 rounded-full animate-bounce delay-1000 shadow-lg"></div>
+                <div className="absolute bottom-20 right-20 w-5 h-5 bg-gradient-to-r from-rose-400/50 to-pink-500/40 rounded-full animate-bounce delay-500 shadow-xl"></div>
+                
+                {/* Geometric diamond shapes */}
+                <div className="absolute top-28 left-1/2 w-4 h-4 bg-gradient-to-br from-white/30 to-amber-300/40 transform rotate-45 animate-spin" style={{ animationDuration: '8s' }}></div>
+                <div className="absolute bottom-40 left-16 w-3 h-3 bg-gradient-to-br from-purple-400/40 to-blue-500/30 transform rotate-45 animate-spin delay-1000" style={{ animationDuration: '12s' }}></div>
               </div>
 
-              {/* Section Header with Better Typography */}
-              <div className="relative z-10 text-left mb-8 md:mb-16 max-w-3xl mx-auto px-2">
-                <div className="flex flex-col gap-3 md:gap-4 mb-4 md:mb-6">
-                  <h2 className="text-3xl md:text-5xl lg:text-7xl font-extralight text-gray-800 tracking-wide text-center md:text-left" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                    {section.title || 'New Arrivals'}
-                  </h2>
-                  <div className="flex justify-center md:justify-start">
-                    <span className="bg-gradient-to-r from-amber-100 to-amber-200 text-amber-800 px-3 md:px-4 py-1 md:py-2 rounded-full text-xs md:text-sm font-semibold shadow-lg backdrop-blur-sm">
-                      ✨ 300+ New Items
-                    </span>
+              {/* Cinematic Floating Jewelry Elements */}
+              <div className="hidden md:block absolute top-20 right-20 z-20">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-400/40 via-orange-500/30 to-yellow-400/20 rounded-full blur-2xl animate-pulse"></div>
+                  <div className="absolute inset-2 bg-gradient-to-r from-purple-400/20 via-blue-500/15 to-indigo-400/10 rounded-full blur-xl animate-pulse delay-500"></div>
+                  <img
+                    src={ringsImage}
+                    alt="Luxury Gold Rings"
+                    className="relative w-48 h-48 md:w-64 md:h-64 object-contain filter drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)] transform rotate-12 group-hover:rotate-6 group-hover:scale-125 transition-all duration-1000 ease-out"
+                  />
+                </div>
+              </div>
+
+              {/* Revolutionary Section Header with Cinematic Typography */}
+              <div className="relative z-10 text-center mb-16 md:mb-28 max-w-5xl mx-auto px-2">
+                <div className="flex flex-col gap-6 md:gap-8 mb-8 md:mb-12">
+                  <div className="relative">
+                    <h2 className="text-5xl md:text-7xl lg:text-9xl font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 to-orange-300 tracking-widest drop-shadow-2xl" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                      {section.title || 'LUXURY COLLECTIONS'}
+                    </h2>
+                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-32 md:w-48 h-1 bg-gradient-to-r from-transparent via-amber-400 via-white via-purple-400 to-transparent opacity-70 rounded-full"></div>
+                    <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-16 md:w-24 h-0.5 bg-gradient-to-r from-transparent via-white to-transparent opacity-40 rounded-full"></div>
+                  </div>
+                  <div className="flex justify-center">
+                    <div className="relative group">
+                      <div className="absolute -inset-1 bg-gradient-to-r from-amber-500/50 via-purple-500/40 via-blue-500/50 to-emerald-500/40 rounded-full blur-sm group-hover:blur-md transition-all duration-500"></div>
+                      <span className="relative block overflow-hidden bg-gradient-to-r from-black/80 via-gray-900/90 to-black/80 text-white border border-white/30 px-6 md:px-10 py-3 md:py-4 rounded-full text-base md:text-lg font-light shadow-2xl backdrop-blur-lg">
+                        <div className="absolute inset-0 bg-gradient-to-r from-amber-400/5 via-purple-400/5 to-blue-400/5 animate-pulse"></div>
+                        <span className="relative tracking-wide">✦ EXCLUSIVE ARTISAN CRAFTED • LIMITED MASTERPIECES ✦</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
-                <p className="text-gray-700 text-base md:text-xl font-light leading-relaxed max-w-2xl text-center md:text-left" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                  {section.description || 'New Arrivals Dropping Daily, Monday through Friday, Explore the Latest Launches Now!'}
+                <p className="text-white/95 text-xl md:text-3xl font-extralight leading-relaxed max-w-4xl mx-auto tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                  {section.description || 'Experience the pinnacle of jewelry artistry, where centuries-old traditions merge with avant-garde design philosophy'}
                 </p>
               </div>
               
-              {/* Premium Split Layout Container */}
-              <div className="relative z-10 max-w-6xl mx-auto px-2">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-0 shadow-2xl rounded-2xl md:rounded-3xl overflow-hidden bg-white/10 backdrop-blur-sm border border-white/20">
+              {/* Revolutionary 3D Split Layout Container */}
+              <div className="relative z-10 max-w-8xl mx-auto px-2">
+                <div className="relative group perspective-1000">
+                  {/* Multi-Layer Glowing Border Effects */}
+                  <div className="absolute -inset-2 bg-gradient-to-r from-amber-500/40 via-purple-500/30 via-blue-500/40 via-emerald-500/30 to-rose-500/40 rounded-[3rem] md:rounded-[4rem] blur-xl group-hover:blur-2xl transition-all duration-700 animate-pulse"></div>
+                  <div className="absolute -inset-1 bg-gradient-to-br from-white/20 via-transparent to-white/10 rounded-[2.5rem] md:rounded-[3.5rem] blur-md group-hover:blur-lg transition-all duration-500"></div>
+                  <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-0 shadow-[0_40px_80px_-12px_rgba(0,0,0,0.4)] rounded-[2rem] md:rounded-[3rem] overflow-hidden bg-gradient-to-br from-black/20 via-gray-900/30 to-black/40 backdrop-blur-xl border border-white/20 transform group-hover:scale-[1.01] transition-all duration-700">
                   
-                  {/* Left Half - Mangalsutra with Sophisticated Design */}
-                  <div 
-                    className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.01] md:hover:scale-[1.02] min-h-[450px] md:min-h-[500px]"
-                    onClick={() => handleViewAllClick('mangalsutra')}
-                    style={{ 
-                      background: 'linear-gradient(135deg, #1e3a8a 0%, #3730a3 50%, #1e40af 100%)',
-                    }}
-                  >
-                    {/* Decorative Pattern Overlay */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="absolute top-0 left-0 w-40 h-40 md:w-64 md:h-64 bg-white rounded-full -translate-x-20 -translate-y-20 md:-translate-x-32 md:-translate-y-32"></div>
-                      <div className="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-white rounded-full translate-x-16 translate-y-16 md:translate-x-24 md:translate-y-24"></div>
-                      <div className="absolute top-1/2 left-1/2 w-24 h-24 md:w-32 md:h-32 bg-white rounded-full -translate-x-12 -translate-y-12 md:-translate-x-16 md:-translate-y-16"></div>
-                    </div>
+                    {/* Left Half - Mangalsutra with Next-Gen 3D Design */}
+                    <div 
+                      className="relative cursor-pointer group transition-all duration-1000 hover:scale-[1.03] md:hover:scale-[1.05] min-h-[600px] md:min-h-[700px] overflow-hidden transform-gpu"
+                      onClick={() => handleViewAllClick('mangalsutra')}
+                      style={{ 
+                        background: 'conic-gradient(from 45deg, #0a0a23 0%, #1a1a3a 25%, #2d1b69 50%, #4c1d95 75%, #1e1b4b 100%)',
+                      }}
+                    >
+                      {/* Revolutionary Holographic Pattern Overlay */}
+                      <div className="absolute inset-0 opacity-20">
+                        <div className="absolute top-0 left-0 w-56 h-56 md:w-96 md:h-96 bg-gradient-to-br from-cyan-300 via-blue-400 to-purple-500 rounded-full -translate-x-28 -translate-y-28 md:-translate-x-48 md:-translate-y-48 animate-pulse filter blur-2xl"></div>
+                        <div className="absolute bottom-0 right-0 w-48 h-48 md:w-80 md:h-80 bg-gradient-to-tl from-violet-300 via-purple-400 to-indigo-500 rounded-full translate-x-24 translate-y-24 md:translate-x-40 md:translate-y-40 animate-pulse delay-500 filter blur-xl"></div>
+                        <div className="absolute top-1/2 left-1/2 w-40 h-40 md:w-64 md:h-64 bg-gradient-to-br from-blue-300 via-indigo-400 to-purple-500 rounded-full -translate-x-20 -translate-y-20 md:-translate-x-32 md:-translate-y-32 animate-pulse delay-1000 filter blur-xl"></div>
+                      </div>
+                      
+                      {/* Mesmerizing Particle System */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-gradient-to-r from-white to-cyan-300 rounded-full animate-ping delay-200 shadow-2xl"></div>
+                        <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-gradient-to-r from-blue-300 to-purple-400 rounded-full animate-ping delay-700 shadow-xl"></div>
+                        <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-gradient-to-r from-purple-300 to-indigo-400 rounded-full animate-ping delay-1200 shadow-lg"></div>
+                        <div className="absolute top-1/3 left-1/2 w-1.5 h-1.5 bg-gradient-to-r from-cyan-400 to-blue-300 rounded-full animate-ping delay-800 shadow-lg"></div>
+                        
+                        {/* Diamond sparkles */}
+                        <div className="absolute top-20 left-20 w-3 h-3 bg-white/60 transform rotate-45 animate-pulse delay-300" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}></div>
+                        <div className="absolute bottom-24 right-24 w-2 h-2 bg-cyan-300/70 transform rotate-45 animate-pulse delay-900" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}></div>
+                      </div>
                     
-                    <div className="relative z-10 p-6 md:p-12 h-full flex flex-col">
-                      {/* Image Container with Better Positioning */}
-                      <div className="flex-1 flex items-center justify-center mb-6 md:mb-8">
-                        <div className="relative">
-                          <div className="absolute inset-0 bg-white/10 rounded-2xl md:rounded-3xl blur-xl md:blur-2xl transform scale-110"></div>
-                          <img
-                            src={mangalsutraImage}
-                            alt="Mangalsutra Collection"
-                            className="relative max-w-full h-48 md:h-72 object-contain filter drop-shadow-2xl transform transition-all duration-700 group-hover:scale-110 group-hover:rotate-2"
-                          />
+                      <div className="relative z-10 p-8 md:p-16 h-full flex flex-col">
+                        {/* Revolutionary Image Container with 3D Effects */}
+                        <div className="flex-1 flex items-center justify-center mb-8 md:mb-12">
+                          <div className="relative group/image">
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-cyan-400/10 to-purple-400/15 rounded-3xl md:rounded-[2rem] blur-2xl md:blur-3xl transform scale-125 group-hover:scale-150 transition-all duration-1000"></div>
+                            <div className="absolute inset-2 bg-gradient-to-tl from-blue-400/10 via-transparent to-purple-400/10 rounded-2xl md:rounded-3xl blur-xl transform scale-110 group-hover:scale-125 transition-all duration-700 delay-200"></div>
+                            <img
+                              src={mangalsutraImage}
+                              alt="Sacred Mangalsutra Collection"
+                              className="relative max-w-full h-56 md:h-80 object-contain filter drop-shadow-[0_35px_60px_rgba(59,130,246,0.4)] transform transition-all duration-1000 group-hover:scale-125 group-hover:rotate-3 group-hover:drop-shadow-[0_45px_80px_rgba(147,51,234,0.6)]"
+                            />
+                            
+                            {/* Magical aura effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
+                          </div>
+                        </div>
+                        
+                        {/* Ultra-Luxury Text Section */}
+                        <div className="text-center md:text-left">
+                          <h3 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-cyan-200 to-blue-300 mb-4 md:mb-6 tracking-wider drop-shadow-lg" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                            Mangalsutra
+                          </h3>
+                          <div className="w-20 md:w-28 h-1 md:h-1.5 bg-gradient-to-r from-cyan-400 via-white to-purple-400 rounded-full mb-4 md:mb-6 mx-auto md:mx-0 shadow-lg"></div>
+                          <p className="text-white/90 text-lg md:text-xl font-light leading-relaxed tracking-wide">Sacred jewelry embodying eternal bonds and divine blessings</p>
                         </div>
                       </div>
                       
-                      {/* Enhanced Text Section */}
-                      <div className="text-center md:text-left">
-                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-3 md:mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                          Mangalsutra
-                        </h3>
-                        <div className="w-16 md:w-20 h-0.5 md:h-1 bg-gradient-to-r from-white to-white/50 rounded-full mb-3 md:mb-3 mx-auto md:mx-0"></div>
-                        <p className="text-white/80 text-base md:text-lg font-light">Sacred jewelry for special moments</p>
-                      </div>
-                    </div>
-                    
-                    {/* Premium Hover Effects */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-blue-600/0 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                      {/* Ultra-Premium Hover Effects */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-blue-600/5 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-all duration-700 backdrop-blur-[1px]"></div>
+                      <div className="absolute inset-0 bg-gradient-to-tl from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                   </div>
 
-                  {/* Right Half - Pendants with Sophisticated Design */}
-                  <div 
-                    className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.01] md:hover:scale-[1.02] min-h-[450px] md:min-h-[500px]"
-                    onClick={() => handleViewAllClick('pendants')}
-                    style={{ 
-                      background: 'linear-gradient(135deg, #064e3b 0%, #065f46 50%, #047857 100%)',
-                    }}
-                  >
-                    {/* Decorative Pattern Overlay */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="absolute top-0 right-0 w-36 h-36 md:w-56 md:h-56 bg-white rounded-full translate-x-18 -translate-y-18 md:translate-x-28 md:-translate-y-28"></div>
-                      <div className="absolute bottom-0 left-0 w-28 h-28 md:w-40 md:h-40 bg-white rounded-full -translate-x-14 translate-y-14 md:-translate-x-20 md:translate-y-20"></div>
-                      <div className="absolute top-1/3 right-1/3 w-16 h-16 md:w-24 md:h-24 bg-white rounded-full"></div>
-                    </div>
-                    
-                    <div className="relative z-10 p-6 md:p-12 h-full flex flex-col">
-                      {/* Image Container with Better Positioning */}
-                      <div className="flex-1 flex items-center justify-center mb-6 md:mb-8">
-                        <div className="relative">
-                          <div className="absolute inset-0 bg-white/10 rounded-2xl md:rounded-3xl blur-xl md:blur-2xl transform scale-110"></div>
-                          <img
-                            src={pendantsImage}
-                            alt="Pendants Collection"
-                            className="relative max-w-full h-48 md:h-72 object-contain filter drop-shadow-2xl transform transition-all duration-700 group-hover:scale-110 group-hover:-rotate-2"
-                          />
+                    {/* Right Half - Pendants with Next-Gen Luxury Design */}
+                    <div 
+                      className="relative cursor-pointer group transition-all duration-1000 hover:scale-[1.03] md:hover:scale-[1.05] min-h-[600px] md:min-h-[700px] overflow-hidden transform-gpu"
+                      onClick={() => handleViewAllClick('pendants')}
+                      style={{ 
+                        background: 'conic-gradient(from 225deg, #0f2027 0%, #203a43 25%, #2c5530 50%, #0d4f3c 75%, #064e3b 100%)',
+                      }}
+                    >
+                      {/* Revolutionary Forest-Inspired Pattern Overlay */}
+                      <div className="absolute inset-0 opacity-20">
+                        <div className="absolute top-0 right-0 w-52 h-52 md:w-88 md:h-88 bg-gradient-to-br from-emerald-300 via-teal-400 to-green-500 rounded-full translate-x-26 -translate-y-26 md:translate-x-44 md:-translate-y-44 animate-pulse filter blur-2xl"></div>
+                        <div className="absolute bottom-0 left-0 w-44 h-44 md:w-72 md:h-72 bg-gradient-to-tl from-jade-300 via-emerald-400 to-teal-500 rounded-full -translate-x-22 translate-y-22 md:-translate-x-36 md:translate-y-36 animate-pulse delay-500 filter blur-xl"></div>
+                        <div className="absolute top-1/3 right-1/3 w-36 h-36 md:w-56 md:h-56 bg-gradient-to-br from-teal-300 via-green-400 to-emerald-500 rounded-full animate-pulse delay-1000 filter blur-xl"></div>
+                      </div>
+                      
+                      {/* Enchanted Particle System */}
+                      <div className="absolute inset-0 pointer-events-none">
+                        <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-gradient-to-r from-white to-emerald-300 rounded-full animate-ping delay-200 shadow-2xl"></div>
+                        <div className="absolute top-3/4 left-1/4 w-2.5 h-2.5 bg-gradient-to-r from-teal-300 to-green-400 rounded-full animate-ping delay-700 shadow-xl"></div>
+                        <div className="absolute top-1/2 left-1/3 w-2 h-2 bg-gradient-to-r from-emerald-300 to-jade-400 rounded-full animate-ping delay-1200 shadow-lg"></div>
+                        <div className="absolute top-1/3 right-1/2 w-1.5 h-1.5 bg-gradient-to-r from-green-400 to-teal-300 rounded-full animate-ping delay-800 shadow-lg"></div>
+                        
+                        {/* Emerald sparkles */}
+                        <div className="absolute top-24 right-20 w-3 h-3 bg-emerald-300/70 transform rotate-45 animate-pulse delay-300" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}></div>
+                        <div className="absolute bottom-20 left-24 w-2 h-2 bg-teal-300/80 transform rotate-45 animate-pulse delay-900" style={{ clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)' }}></div>
+                      </div>
+                      
+                      <div className="relative z-10 p-8 md:p-16 h-full flex flex-col">
+                        {/* Revolutionary Image Container with Nature-Inspired Effects */}
+                        <div className="flex-1 flex items-center justify-center mb-8 md:mb-12">
+                          <div className="relative group/image">
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/15 via-emerald-400/10 to-teal-400/15 rounded-3xl md:rounded-[2rem] blur-2xl md:blur-3xl transform scale-125 group-hover:scale-150 transition-all duration-1000"></div>
+                            <div className="absolute inset-2 bg-gradient-to-tl from-teal-400/10 via-transparent to-emerald-400/10 rounded-2xl md:rounded-3xl blur-xl transform scale-110 group-hover:scale-125 transition-all duration-700 delay-200"></div>
+                            <img
+                              src={pendantsImage}
+                              alt="Exquisite Pendants Collection"
+                              className="relative max-w-full h-56 md:h-80 object-contain filter drop-shadow-[0_35px_60px_rgba(16,185,129,0.4)] transform transition-all duration-1000 group-hover:scale-125 group-hover:-rotate-3 group-hover:drop-shadow-[0_45px_80px_rgba(5,150,105,0.6)]"
+                            />
+                            
+                            {/* Mystical aura effect */}
+                            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/5 to-transparent animate-pulse opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl"></div>
+                          </div>
+                        </div>
+                        
+                        {/* Ultra-Luxury Text Section */}
+                        <div className="text-center md:text-left">
+                          <h3 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-emerald-200 to-teal-300 mb-4 md:mb-6 tracking-wider drop-shadow-lg" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                            Pendants
+                          </h3>
+                          <div className="w-20 md:w-28 h-1 md:h-1.5 bg-gradient-to-r from-emerald-400 via-white to-teal-400 rounded-full mb-4 md:mb-6 mx-auto md:mx-0 shadow-lg"></div>
+                          <p className="text-white/90 text-lg md:text-xl font-light leading-relaxed tracking-wide">Timeless elegance that captures every precious moment</p>
                         </div>
                       </div>
                       
-                      {/* Enhanced Text Section */}
-                      <div className="text-center md:text-left">
-                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-3 md:mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                          Pendants
-                        </h3>
-                        <div className="w-16 md:w-20 h-0.5 md:h-1 bg-gradient-to-r from-white to-white/50 rounded-full mb-3 md:mb-3 mx-auto md:mx-0"></div>
-                        <p className="text-white/80 text-base md:text-lg font-light">Elegant pieces for every occasion</p>
-                      </div>
+                      {/* Ultra-Premium Hover Effects */}
+                      <div className="absolute inset-0 bg-gradient-to-bl from-emerald-500/0 via-teal-600/5 to-green-600/10 opacity-0 group-hover:opacity-100 transition-all duration-700 backdrop-blur-[1px]"></div>
+                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/2 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                     </div>
-                    
-                    {/* Premium Hover Effects */}
-                    <div className="absolute inset-0 bg-gradient-to-l from-green-600/0 to-teal-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                  </div>
 
+                  </div>
                 </div>
                 
-                {/* Bottom Decorative Element */}
-                <div className="text-center mt-8">
-                  <div className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-                    <span className="text-gray-700 font-medium">Discover Our Premium Collections</span>
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse delay-500"></div>
+                {/* Enhanced Bottom Decorative Element */}
+                <div className="text-center mt-12 md:mt-16">
+                  <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-8 py-4 rounded-full shadow-2xl border border-white/20">
+                    <div className="w-3 h-3 bg-gradient-to-r from-amber-400 to-orange-400 rounded-full animate-pulse"></div>
+                    <span className="text-white font-light text-lg">Discover Our Premium Collections</span>
+                    <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full animate-pulse delay-500"></div>
                   </div>
                 </div>
               </div>
