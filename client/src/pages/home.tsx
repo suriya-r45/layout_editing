@@ -538,43 +538,171 @@ export default function Home() {
           );
         }
 
-        // Mosaic layout rendering - Pinterest-style masonry with varying sizes
+        // Mosaic layout rendering - Sophisticated jewelry store grid layout
         if (section.layoutType === 'mosaic') {
           return (
             <section 
               key={section.id} 
-              className="py-16" 
+              className="py-12 md:py-20" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)'
+                background: 'linear-gradient(135deg, #f5f1ec 0%, #ebe3d8 50%, #e0d5c7 100%)'
               }}
             >
-              <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-5xl font-light text-gray-800 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                    {section.title}
+              <div className="max-w-7xl mx-auto px-4 md:px-6">
+                {/* Section Header */}
+                <div className="text-center mb-8 md:mb-16">
+                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-light text-gray-800 mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title || 'Featured Collections'}
                   </h2>
                   {section.description && (
-                    <p className="text-lg font-light text-gray-600 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
+                    <p className="text-lg md:text-xl font-light text-gray-600 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                      {section.description}
+                    </p>
                   )}
                 </div>
                 
-                {/* Masonry Grid */}
-                <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
-                  {section.items.map((item, index) => (
-                    <div key={item.id} className={`break-inside-avoid ${index % 3 === 0 ? 'mb-8' : index % 3 === 1 ? 'mb-6' : 'mb-4'}`}>
-                      <div className="relative group">
-                        <div className="absolute inset-0 bg-gradient-to-br from-rose-200/20 to-amber-200/20 rounded-xl transform -rotate-1 transition-transform group-hover:rotate-1"></div>
-                        <div className="relative bg-white rounded-xl shadow-lg p-4 transition-all duration-300 group-hover:shadow-xl">
-                          <ProductCard
-                            product={item.product}
-                            currency={selectedCurrency}
-                            showActions={true}
-                          />
-                        </div>
-                      </div>
+                {/* Revolutionary Mosaic Grid */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
+                  {/* Top Row - Two Large Blocks */}
+                  
+                  {/* Block 1: Bridal Collection */}
+                  <div 
+                    className="relative group cursor-pointer h-64 md:h-80 lg:h-96 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl"
+                    onClick={() => handleViewAllClick('bridal-collections')}
+                    style={{
+                      background: 'linear-gradient(135deg, #8B6914 0%, #B8860B 50%, #DAA520 100%)'
+                    }}
+                  >
+                    {/* Background Pattern */}
+                    <div className="absolute inset-0 opacity-10">
+                      <div className="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 bg-white rounded-full -translate-x-16 -translate-y-16 md:-translate-x-24 md:-translate-y-24"></div>
+                      <div className="absolute bottom-0 right-0 w-24 h-24 md:w-36 md:h-36 bg-white rounded-full translate-x-12 translate-y-12 md:translate-x-18 md:translate-y-18"></div>
                     </div>
-                  ))}
+                    
+                    {/* Lifestyle Image */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent">
+                      <img
+                        src={bridalCollectionsImage}
+                        alt="Bridal Collection"
+                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                      />
+                    </div>
+                    
+                    {/* Content Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex flex-col justify-end p-6 md:p-8">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-3 md:mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        BRIDAL COLLECTION
+                      </h3>
+                      <button className="bg-white/90 backdrop-blur-sm text-gray-800 px-6 md:px-8 py-2 md:py-3 rounded-full font-medium text-sm md:text-base hover:bg-white transition-all duration-300 self-start shadow-lg">
+                        SHOP NOW
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Block 2: Necklaces */}
+                  <div 
+                    className="relative group cursor-pointer h-64 md:h-80 lg:h-96 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl"
+                    onClick={() => handleViewAllClick('necklaces')}
+                    style={{
+                      background: 'linear-gradient(135deg, #D2B48C 0%, #DEB887 50%, #F5DEB3 100%)'
+                    }}
+                  >
+                    {/* Product Image */}
+                    <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12">
+                      <img
+                        src={necklacesImage}
+                        alt="Premium Necklaces"
+                        className="max-w-full max-h-full object-contain transition-all duration-700 group-hover:scale-110 filter drop-shadow-2xl"
+                      />
+                    </div>
+                    
+                    {/* Content Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex flex-col justify-end p-6 md:p-8">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-3 md:mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        NECKLACES
+                      </h3>
+                      <button className="bg-gray-800/90 backdrop-blur-sm text-white px-6 md:px-8 py-2 md:py-3 rounded-full font-medium text-sm md:text-base hover:bg-gray-800 transition-all duration-300 self-start shadow-lg">
+                        SHOP NOW
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Row - Three Equal Blocks */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                  
+                  {/* Block 3: Earrings */}
+                  <div 
+                    className="relative group cursor-pointer h-48 md:h-64 lg:h-72 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl"
+                    onClick={() => handleViewAllClick('earrings')}
+                    style={{
+                      background: 'linear-gradient(135deg, #DEB887 0%, #F5DEB3 50%, #FFF8DC 100%)'
+                    }}
+                  >
+                    {/* Product Image */}
+                    <div className="absolute inset-0 flex items-center justify-center p-6 md:p-8">
+                      <img
+                        src={earringsImage}
+                        alt="Elegant Earrings"
+                        className="max-w-full max-h-full object-contain transition-all duration-700 group-hover:scale-110 filter drop-shadow-2xl"
+                      />
+                    </div>
+                    
+                    {/* Content Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-end p-4 md:p-6">
+                      <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-gray-800 mb-2 md:mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        EARRINGS
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Block 4: Festive Offers */}
+                  <div className="relative group cursor-pointer h-48 md:h-64 lg:h-72 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl bg-gradient-to-br from-amber-600 via-orange-500 to-red-500">
+                    {/* Decorative Elements */}
+                    <div className="absolute inset-0 opacity-15">
+                      <div className="absolute top-0 right-0 w-20 h-20 md:w-32 md:h-32 bg-white rounded-full translate-x-10 -translate-y-10 md:translate-x-16 md:-translate-y-16"></div>
+                      <div className="absolute bottom-0 left-0 w-16 h-16 md:w-24 md:h-24 bg-white rounded-full -translate-x-8 translate-y-8 md:-translate-x-12 md:translate-y-12"></div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-6">
+                      <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2 md:mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        FESTIVE
+                      </h3>
+                      <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-3 md:mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        OFFERS
+                      </h3>
+                      <button className="bg-white/90 backdrop-blur-sm text-gray-800 px-4 md:px-6 py-2 md:py-3 rounded-full font-medium text-sm md:text-base hover:bg-white transition-all duration-300 shadow-lg">
+                        SHOP NOW
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Block 5: Bangles */}
+                  <div 
+                    className="relative group cursor-pointer h-48 md:h-64 lg:h-72 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl"
+                    onClick={() => handleViewAllClick('bangles')}
+                    style={{
+                      background: 'linear-gradient(135deg, #CD853F 0%, #D2691E 50%, #A0522D 100%)'
+                    }}
+                  >
+                    {/* Lifestyle Image */}
+                    <div className="absolute inset-0">
+                      <img
+                        src={banglesImage}
+                        alt="Beautiful Bangles"
+                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                      />
+                    </div>
+                    
+                    {/* Content Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex flex-col justify-end p-4 md:p-6">
+                      <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2 md:mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        BANGLES
+                      </h3>
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
