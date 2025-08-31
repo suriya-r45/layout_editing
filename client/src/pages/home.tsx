@@ -431,12 +431,11 @@ export default function Home() {
               {section.festivalImage ? (
                 <div className="relative w-full">
                   <div 
-                    className="h-[60vh] md:h-[70vh] lg:h-[80vh] bg-cover bg-center relative w-full"
+                    className="h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] bg-cover bg-center relative w-full"
                     style={{
                       backgroundImage: `url(${section.festivalImage})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      backgroundAttachment: 'fixed'
+                      backgroundPosition: 'center'
                     }}
                   >
                     {/* Dark overlay for better text readability */}
@@ -476,48 +475,6 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Product showcase below the banner */}
-                  {section.items.length > 0 && (
-                    <div className="w-full py-12 md:py-16" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
-                      <div className="container mx-auto px-4">
-                        <div className="text-center mb-12">
-                          <h3 className="text-3xl md:text-4xl font-light text-gray-800 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                            Featured Products
-                          </h3>
-                          <div className="w-20 h-1 bg-amber-600 rounded-full mx-auto"></div>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                          {section.items.slice(0, 8).map((item, index) => {
-                            const product = allProducts.find(p => p.id === item.productId);
-                            if (!product) return null;
-                            
-                            return (
-                              <div 
-                                key={item.id} 
-                                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 cursor-pointer group"
-                              >
-                                <div className="aspect-square relative overflow-hidden">
-                                  <img
-                                    src={product.images[0] || '/api/placeholder/300/300'}
-                                    alt={product.name}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                  />
-                                </div>
-                                
-                                <div className="p-4">
-                                  <h4 className="font-semibold text-sm md:text-base text-gray-800 leading-tight text-center line-clamp-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                                    {product.name}
-                                  </h4>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  )}
                 </div>
               ) : (
                 <div 

@@ -191,7 +191,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={handleSearchKeyPress}
-                  className="w-full h-12 pl-16 pr-24 rounded-full bg-white border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400"
+                  className="w-full h-12 pl-20 pr-24 rounded-full bg-white border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400"
                   data-testid="search-input"
                 />
                 <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
@@ -218,7 +218,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyPress={handleSearchKeyPress}
-                className="w-full h-12 pl-16 pr-20 rounded-full bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
+                className="w-full h-12 pl-24 pr-20 rounded-full bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
                 data-testid="search-input-mobile"
               />
               <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
