@@ -30,7 +30,7 @@ interface CreateHomeSectionData {
   title: string;
   subtitle: string;
   description: string;
-  layoutType: 'grid' | 'featured' | 'mixed' | 'split' | 'festival';
+  layoutType: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine';
   isActive: boolean;
   displayOrder: number;
   backgroundColor: string;
@@ -407,7 +407,7 @@ function CreateSectionDialog({
               <Label htmlFor="layoutType" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Layout Type *</Label>
               <Select
                 value={formData.layoutType}
-                onValueChange={(value: 'grid' | 'featured' | 'mixed' | 'split') => 
+                onValueChange={(value: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine') => 
                   setFormData(prev => ({ ...prev, layoutType: value }))
                 }
               >
@@ -420,6 +420,10 @@ function CreateSectionDialog({
                   <SelectItem value="mixed">Mixed Layout</SelectItem>
                   <SelectItem value="split">Split Layout (Two Categories)</SelectItem>
                   <SelectItem value="festival">Festival Banner (Image + Products)</SelectItem>
+                  <SelectItem value="carousel">🎠 Carousel - Elegant Sliding Showcase</SelectItem>
+                  <SelectItem value="mosaic">🎨 Mosaic - Pinterest Style Masonry</SelectItem>
+                  <SelectItem value="luxury">💎 Luxury - Hero Product Display</SelectItem>
+                  <SelectItem value="magazine">📖 Magazine - Editorial Layout</SelectItem>
                 </SelectContent>
               </Select>
             </div>

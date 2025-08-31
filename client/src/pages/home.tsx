@@ -414,6 +414,242 @@ export default function Home() {
           );
         }
 
+        // Carousel layout rendering - Elegant horizontal sliding showcase
+        if (section.layoutType === 'carousel') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-16 overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)'
+              }}
+            >
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-5xl font-light text-gray-800 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title}
+                  </h2>
+                  {section.description && (
+                    <p className="text-lg font-light text-gray-600 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
+                  )}
+                </div>
+                
+                {/* Horizontal Scrolling Carousel */}
+                <div className="relative">
+                  <div className="flex space-x-6 overflow-x-auto pb-6 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                    {section.items.map((item, index) => (
+                      <div key={item.id} className="flex-none w-72 md:w-80">
+                        <div className="relative group">
+                          <div className="absolute inset-0 bg-gradient-to-br from-amber-200/30 to-amber-400/20 rounded-2xl transform rotate-1 transition-transform group-hover:rotate-2"></div>
+                          <div className="relative bg-white rounded-2xl shadow-xl p-6 transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2">
+                            <ProductCard
+                              product={item.product}
+                              currency={selectedCurrency}
+                              showActions={true}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Scroll Indicators */}
+                  <div className="flex justify-center mt-6 space-x-2">
+                    {section.items.map((_, index) => (
+                      <div key={index} className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Mosaic layout rendering - Pinterest-style masonry with varying sizes
+        if (section.layoutType === 'mosaic') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-16" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)'
+              }}
+            >
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-5xl font-light text-gray-800 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title}
+                  </h2>
+                  {section.description && (
+                    <p className="text-lg font-light text-gray-600 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
+                  )}
+                </div>
+                
+                {/* Masonry Grid */}
+                <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-6 space-y-6">
+                  {section.items.map((item, index) => (
+                    <div key={item.id} className={`break-inside-avoid ${index % 3 === 0 ? 'mb-8' : index % 3 === 1 ? 'mb-6' : 'mb-4'}`}>
+                      <div className="relative group">
+                        <div className="absolute inset-0 bg-gradient-to-br from-rose-200/20 to-amber-200/20 rounded-xl transform -rotate-1 transition-transform group-hover:rotate-1"></div>
+                        <div className="relative bg-white rounded-xl shadow-lg p-4 transition-all duration-300 group-hover:shadow-xl">
+                          <ProductCard
+                            product={item.product}
+                            currency={selectedCurrency}
+                            showActions={true}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Luxury layout rendering - Hero product with elegant arrangement
+        if (section.layoutType === 'luxury') {
+          const heroProduct = section.items[0];
+          const otherProducts = section.items.slice(1);
+          
+          return (
+            <section 
+              key={section.id} 
+              className="py-20" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)'
+              }}
+            >
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl md:text-6xl font-light text-gray-800 mb-6" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title}
+                  </h2>
+                  {section.description && (
+                    <p className="text-xl font-light text-gray-600 max-w-3xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
+                  )}
+                </div>
+                
+                {heroProduct && (
+                  <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                    {/* Hero Product */}
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-amber-300/30 to-yellow-400/20 rounded-3xl transform rotate-3"></div>
+                      <div className="absolute inset-0 bg-gradient-to-tl from-rose-300/20 to-pink-400/10 rounded-3xl transform -rotate-2"></div>
+                      <div className="relative bg-white rounded-3xl shadow-2xl p-8 transform transition-all duration-500 hover:scale-105">
+                        <ProductCard
+                          product={heroProduct.product}
+                          currency={selectedCurrency}
+                          showActions={true}
+                        />
+                        <div className="absolute -top-4 -right-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                          Featured
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Supporting Content */}
+                    <div className="space-y-8">
+                      <div className="text-center lg:text-left">
+                        <h3 className="text-2xl md:text-3xl font-light text-gray-800 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                          Exquisite Craftsmanship
+                        </h3>
+                        <p className="text-gray-600 text-lg leading-relaxed">
+                          Discover our premium collection featuring the finest materials and exceptional artistry.
+                        </p>
+                      </div>
+                      
+                      {/* Mini Gallery */}
+                      <div className="grid grid-cols-2 gap-4">
+                        {otherProducts.slice(0, 4).map((item) => (
+                          <div key={item.id} className="bg-white rounded-xl shadow-md p-3 hover:shadow-lg transition-shadow">
+                            <ProductCard
+                              product={item.product}
+                              currency={selectedCurrency}
+                              showActions={true}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
+          );
+        }
+
+        // Magazine layout rendering - Editorial asymmetric design
+        if (section.layoutType === 'magazine') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-20" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)'
+              }}
+            >
+              <div className="container mx-auto px-4">
+                {/* Magazine Header */}
+                <div className="flex flex-col lg:flex-row items-end justify-between mb-16 border-b-2 border-gray-300 pb-8">
+                  <div>
+                    <h2 className="text-5xl md:text-7xl font-light text-gray-800 leading-none" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                      {section.title}
+                    </h2>
+                    {section.description && (
+                      <p className="text-lg font-light text-gray-600 mt-4 max-w-xl" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
+                    )}
+                  </div>
+                  <div className="text-right mt-4 lg:mt-0">
+                    <div className="text-sm text-gray-500 uppercase tracking-wider">Collection</div>
+                    <div className="text-2xl font-light text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>2025</div>
+                  </div>
+                </div>
+                
+                {/* Magazine Grid */}
+                <div className="grid grid-cols-12 gap-6">
+                  {section.items.map((item, index) => {
+                    // Create asymmetric layout pattern
+                    const layouts = [
+                      'col-span-12 md:col-span-8', // Large feature
+                      'col-span-12 md:col-span-4', // Small sidebar
+                      'col-span-12 md:col-span-6', // Medium
+                      'col-span-12 md:col-span-6', // Medium
+                      'col-span-12 md:col-span-4', // Small
+                      'col-span-12 md:col-span-8', // Large
+                    ];
+                    
+                    const layoutClass = layouts[index % layouts.length];
+                    
+                    return (
+                      <div key={item.id} className={layoutClass}>
+                        <div className="relative group h-full">
+                          <div className={`bg-white rounded-lg shadow-lg overflow-hidden h-full transition-all duration-300 group-hover:shadow-xl ${index === 0 ? 'md:min-h-96' : ''}`}>
+                            <ProductCard
+                              product={item.product}
+                              currency={selectedCurrency}
+                              showActions={true}
+                            />
+                            {index === 0 && (
+                              <div className="absolute top-4 left-4 bg-black text-white px-3 py-1 rounded text-xs font-semibold uppercase tracking-wide">
+                                Editor's Choice
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+          );
+        }
+
         // Festival layout rendering - Full page banner design
         if (section.layoutType === 'festival') {
           return (
