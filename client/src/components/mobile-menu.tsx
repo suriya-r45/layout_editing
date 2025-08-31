@@ -193,10 +193,10 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
       />
       
       {/* Menu Panel */}
-      <div className="fixed inset-y-0 left-0 w-80 bg-white shadow-xl border-r border-gray-200">
+      <div className="fixed inset-y-0 left-0 w-80 shadow-xl border-r border-gray-200" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="bg-white border-b border-gray-100 px-6 py-4">
+          <div className="border-b border-gray-300 px-6 py-4" style={{ background: '#ffffff' }}>
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 {currentView === 'subcategory' && (
@@ -206,10 +206,10 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
                     onClick={handleBackClick}
                     className="p-2 mr-2 hover:bg-gray-100 rounded-full"
                   >
-                    <ChevronLeft className="h-5 w-5 text-gray-600" />
+                    <ChevronLeft className="h-5 w-5 text-gray-700" />
                   </Button>
                 )}
-                <h2 className="text-xl font-semibold text-gray-900">
+                <h2 className="text-xl font-light text-gray-800" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   {currentView === 'main' ? 'Categories' : selectedCategory?.name}
                 </h2>
               </div>
@@ -222,7 +222,7 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
                 }}
                 className="p-2 hover:bg-gray-100 rounded-full"
               >
-                <X className="h-5 w-5 text-gray-600" />
+                <X className="h-5 w-5 text-gray-700" />
               </Button>
             </div>
           </div>
@@ -237,17 +237,17 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
                     <button
                       key={index}
                       onClick={() => handleCategoryClick(category)}
-                      className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 transition-colors border-b border-gray-100 group"
+                      className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-white/30 transition-colors border-b border-gray-300 group"
                     >
                       <div className="flex items-center">
-                        <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mr-4">
-                          <IconComponent className="h-5 w-5 text-gray-600" />
+                        <div className="w-10 h-10 bg-white/50 rounded-lg flex items-center justify-center mr-4">
+                          <IconComponent className="h-5 w-5 text-gray-700" />
                         </div>
-                        <span className="text-base font-medium text-gray-900">
+                        <span className="text-base font-light text-gray-800" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                           {category.name}
                         </span>
                       </div>
-                      <ChevronRight className="h-5 w-5 text-gray-400" />
+                      <ChevronRight className="h-5 w-5 text-gray-500" />
                     </button>
                   );
                 })
@@ -256,15 +256,15 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
                   <button
                     key={index}
                     onClick={() => handleSubcategoryClick(subcategory)}
-                    className="w-full flex items-center justify-between px-6 py-3 text-left hover:bg-gray-50 transition-colors border-b border-gray-100"
+                    className="w-full flex items-center justify-between px-6 py-3 text-left hover:bg-white/30 transition-colors border-b border-gray-300"
                   >
                     <div className="flex items-center">
-                      <div className="w-2 h-2 bg-gray-400 rounded-full mr-4"></div>
-                      <span className="text-base font-medium text-gray-800">
+                      <div className="w-2 h-2 bg-gray-500 rounded-full mr-4"></div>
+                      <span className="text-base font-light text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                         {subcategory}
                       </span>
                     </div>
-                    <ChevronRight className="h-4 w-4 text-gray-400" />
+                    <ChevronRight className="h-4 w-4 text-gray-500" />
                   </button>
                 ))
               )}
@@ -272,19 +272,20 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
           </div>
           
           {/* Login/Sign Up Buttons */}
-          <div className="p-4 border-t border-gray-200 bg-gray-50">
+          <div className="p-4 border-t border-gray-300 bg-white/20">
             {user ? (
               <div className="text-center">
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-gray-700 mb-3" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                   Welcome, {user.name}!
                 </p>
                 <Button
                   variant="outline"
-                  className="w-full"
+                  className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 font-light"
                   onClick={() => {
                     resetMenu();
                     onToggle();
                   }}
+                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
                 >
                   Close Menu
                 </Button>
@@ -293,11 +294,12 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
               <div className="flex space-x-3">
                 <Link href="/login" className="flex-1">
                   <Button
-                    className="w-full bg-rose-800 hover:bg-rose-900 text-white font-medium py-2.5 rounded-lg transition-colors"
+                    className="w-full bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 font-light py-2.5 rounded-lg transition-colors"
                     onClick={() => {
                       resetMenu();
                       onToggle();
                     }}
+                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
                   >
                     Login
                   </Button>
@@ -305,11 +307,12 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
                 <Link href="/login" className="flex-1">
                   <Button
                     variant="outline"
-                    className="w-full border-rose-800 text-rose-800 hover:bg-rose-50 font-medium py-2.5 rounded-lg transition-colors"
+                    className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 font-light py-2.5 rounded-lg transition-colors"
                     onClick={() => {
                       resetMenu();
                       onToggle();
                     }}
+                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
                   >
                     Sign Up
                   </Button>

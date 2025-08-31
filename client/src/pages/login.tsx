@@ -125,15 +125,15 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4" data-testid="page-login" style={{ background: '#ffffff' }}>
+    <div className="min-h-screen flex items-center justify-center px-4" data-testid="page-login" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
       <div className="w-full max-w-md">
         <Tabs value={activeTab} onValueChange={(value) => setActiveTab(value as 'login' | 'register')} className="w-full">
           {/* Login Tab */}
           <TabsContent value="login" className="space-y-0">
-            <Card className="border-0 shadow-lg bg-white border border-gray-200">
+            <Card className="border-0 shadow-lg bg-white border border-gray-300">
               <CardContent className="p-8">
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-medium text-gray-800 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Log In Using</h1>
+                  <h1 className="text-2xl font-light text-gray-800 mb-6" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Log In Using</h1>
                 </div>
 
                 <form onSubmit={handleLogin} className="space-y-6">
@@ -181,9 +181,10 @@ export default function Login() {
                   
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-blue-600 border border-blue-600 text-white hover:bg-blue-700 text-lg font-medium rounded-lg mt-8"
+                    className="w-full h-14 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 text-lg font-light rounded-lg mt-8"
                     disabled={isLoading}
                     data-testid="button-submit-login"
+                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
                   >
                     {isLoading ? 'SIGNING IN...' : 'LOGIN TO CONTINUE'}
                   </Button>
@@ -199,6 +200,7 @@ export default function Login() {
                         description: "Password reset functionality will be available soon.",
                       });
                     }}
+                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
                   >
                     Forgot Password?
                   </Button>
@@ -206,6 +208,7 @@ export default function Login() {
                     variant="link" 
                     className="text-gray-700 hover:text-gray-500 font-light p-0"
                     onClick={() => setActiveTab('register')}
+                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
                   >
                     Create New Account
                   </Button>
@@ -216,10 +219,10 @@ export default function Login() {
 
           {/* Register Tab */}
           <TabsContent value="register" className="space-y-0">
-            <Card className="border-0 shadow-lg bg-white border border-gray-200">
+            <Card className="border-0 shadow-lg bg-white border border-gray-300">
               <CardContent className="p-8">
                 <div className="text-center mb-8">
-                  <h1 className="text-2xl font-medium text-gray-800 mb-6" style={{ fontFamily: 'Inter, system-ui, sans-serif' }}>Sign Up With Palaniappa</h1>
+                  <h1 className="text-2xl font-light text-gray-800 mb-6" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Sign Up With Palaniappa</h1>
                 </div>
 
                 <form onSubmit={handleRegister} className="space-y-6">
@@ -361,19 +364,21 @@ export default function Login() {
                   
                   <Button
                     type="submit"
-                    className="w-full h-14 bg-green-600 border border-green-600 text-white hover:bg-green-700 text-lg font-medium rounded-lg mt-8"
+                    className="w-full h-14 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 text-lg font-light rounded-lg mt-8"
                     disabled={isRegistering}
+                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
                   >
                     {isRegistering ? 'CREATING ACCOUNT...' : 'REGISTER TO CONTINUE'}
                   </Button>
                 </form>
 
                 <div className="text-center mt-6">
-                  <span className="text-gray-600">Already have an account? </span>
+                  <span className="text-gray-600" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Already have an account? </span>
                   <Button 
                     variant="link" 
                     className="text-gray-700 hover:text-gray-500 font-light p-0"
                     onClick={() => setActiveTab('login')}
+                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
                   >
                     Log In!
                   </Button>
