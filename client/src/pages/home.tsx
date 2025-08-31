@@ -221,10 +221,10 @@ export default function Home() {
 
       {/* Categories Horizontal Scroll */}
       <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
-        <div className="container mx-auto px-2 md:px-4">
+        <div className="px-2 md:px-6 lg:px-8">
           {/* Horizontally Scrollable Categories */}
           <div 
-            className="flex overflow-x-auto scrollbar-hide gap-3 md:gap-4 pb-2"
+            className="flex overflow-x-auto scrollbar-hide gap-2 md:gap-4 lg:gap-6 pb-2"
             style={{ 
               scrollbarWidth: 'none', 
               msOverflowStyle: 'none',
@@ -251,13 +251,7 @@ export default function Home() {
                 
                 {/* Category Name */}
                 <h3 
-                  className="text-[10px] md:text-xs lg:text-sm font-light text-center leading-tight text-gray-700 px-1 w-16 md:w-20 lg:w-24" 
-                  style={{ 
-                    display: '-webkit-box',
-                    WebkitLineClamp: 2,
-                    WebkitBoxOrient: 'vertical',
-                    overflow: 'hidden'
-                  }}
+                  className="text-[9px] md:text-xs lg:text-sm font-light text-center leading-tight text-gray-700 px-0.5 w-20 md:w-24 lg:w-28 min-h-[28px] md:min-h-[32px] flex items-center justify-center"
                 >
                   {category.name}
                 </h3>
