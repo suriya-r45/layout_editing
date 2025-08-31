@@ -425,7 +425,7 @@ export default function Home() {
               {section.festivalImage ? (
                 <div className="relative w-full">
                   <div 
-                    className="h-[70vh] sm:h-[75vh] md:h-[80vh] lg:h-[85vh] relative w-full"
+                    className="h-[85vh] sm:h-[87vh] md:h-[90vh] lg:h-[92vh] relative w-full"
                     style={{
                       backgroundImage: `url(${section.festivalImage})`,
                       backgroundSize: 'cover',
