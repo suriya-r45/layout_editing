@@ -87,6 +87,9 @@ export default function Home() {
       const data = await response.json();
       return data;
     },
+    staleTime: 0, // Always fetch fresh data
+    refetchOnWindowFocus: true, // Refetch when user focuses the window
+    refetchInterval: 2000, // Auto-refetch every 2 seconds to catch admin updates
   });
 
   // Simple filtering for home page (not used directly but keeps type consistency)
