@@ -12,6 +12,7 @@ import Stripe from "stripe";
 import { MetalRatesService } from "./services/testmetalRatesService.js";
 import twilio from "twilio";
 import { generateProductCode, generateBarcode, generateQRCode, ProductBarcodeData } from "./utils/barcode";
+import sharp from "sharp";
 
 // Initialize Stripe only if key is provided
 let stripe: Stripe | undefined;
@@ -1872,9 +1873,23 @@ For any queries, please contact us.`;
         return res.status(400).json({ error: 'No file uploaded' });
       }
 
-      const filename = `festival-${Date.now()}-${req.file.originalname}`;
+      const filename = `festival-${Date.now()}-${req.file.originalname.split('.')[0]}.webp`;
       const filepath = path.join(uploadsDir, filename);
-      await fs.promises.rename(req.file.path, filepath);
+      
+      // Process image with Sharp to maintain quality and optimize size
+      await sharp(req.file.path)
+        .resize(1920, 1080, { 
+          fit: 'inside', 
+          withoutEnlargement: true 
+        })
+        .webp({ 
+          quality: 90, 
+          effort: 4 
+        })
+        .toFile(filepath);
+      
+      // Clean up temp file
+      await fs.promises.unlink(req.file.path);
       
       const imagePath = `/uploads/${filename}`;
       res.json({ imagePath });

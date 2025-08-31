@@ -267,6 +267,14 @@ export class DatabaseStorage implements IStorage {
       .insert(products)
       .values({
         ...product,
+        priceInr: product.priceInr.toString(),
+        priceBhd: product.priceBhd.toString(),
+        grossWeight: product.grossWeight.toString(),
+        netWeight: product.netWeight.toString(),
+        makingChargesPercentage: product.makingChargesPercentage?.toString() || "15.00",
+        customPriceInr: product.customPriceInr?.toString(),
+        customPriceBhd: product.customPriceBhd?.toString(),
+        goldRateAtCreation: product.goldRateAtCreation?.toString(),
         isActive: product.isActive ?? true
       })
       .returning();
@@ -275,9 +283,21 @@ export class DatabaseStorage implements IStorage {
 
 
   async updateProduct(id: string, product: Partial<InsertProduct>): Promise<Product | undefined> {
+    const updateData: any = { ...product };
+    
+    // Convert numeric fields to strings for database
+    if (updateData.priceInr !== undefined) updateData.priceInr = updateData.priceInr.toString();
+    if (updateData.priceBhd !== undefined) updateData.priceBhd = updateData.priceBhd.toString();
+    if (updateData.grossWeight !== undefined) updateData.grossWeight = updateData.grossWeight.toString();
+    if (updateData.netWeight !== undefined) updateData.netWeight = updateData.netWeight.toString();
+    if (updateData.makingChargesPercentage !== undefined) updateData.makingChargesPercentage = updateData.makingChargesPercentage.toString();
+    if (updateData.customPriceInr !== undefined) updateData.customPriceInr = updateData.customPriceInr.toString();
+    if (updateData.customPriceBhd !== undefined) updateData.customPriceBhd = updateData.customPriceBhd.toString();
+    if (updateData.goldRateAtCreation !== undefined) updateData.goldRateAtCreation = updateData.goldRateAtCreation.toString();
+    
     const [updatedProduct] = await db
       .update(products)
-      .set(product)
+      .set(updateData)
       .where(eq(products.id, id))
       .returning();
     return updatedProduct || undefined;
@@ -335,11 +355,19 @@ export class DatabaseStorage implements IStorage {
   async updateBill(id: string, billData: Partial<InsertBill>): Promise<Bill | undefined> {
     const total = Number(billData.subtotal || 0) + Number(billData.makingCharges || 0) + Number(billData.gst || 0) - Number(billData.discount || 0);
     
+    const updateData: any = { ...billData };
+    
+    // Convert numeric fields to strings for database
+    if (updateData.subtotal !== undefined) updateData.subtotal = updateData.subtotal.toString();
+    if (updateData.makingCharges !== undefined) updateData.makingCharges = updateData.makingCharges.toString();
+    if (updateData.gst !== undefined) updateData.gst = updateData.gst.toString();
+    if (updateData.discount !== undefined) updateData.discount = updateData.discount.toString();
+    
     const [updatedBill] = await db
       .update(bills)
       .set({
-        ...billData,
-        total,
+        ...updateData,
+        total: total.toString(),
         updatedAt: new Date(),
       })
       .where(eq(bills.id, id))
@@ -357,6 +385,10 @@ export class DatabaseStorage implements IStorage {
       .insert(bills)
       .values({
         ...bill,
+        subtotal: bill.subtotal.toString(),
+        makingCharges: bill.makingCharges.toString(), 
+        gst: bill.gst.toString(),
+        discount: bill.discount?.toString() || "0",
         total: total.toString(),
         createdAt: new Date(),
         updatedAt: new Date(),
