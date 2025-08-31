@@ -425,11 +425,11 @@ export default function Home() {
               {section.festivalImage ? (
                 <div className="relative w-full">
                   <div 
-                    className="h-[85vh] sm:h-[87vh] md:h-[90vh] lg:h-[92vh] relative w-full"
+                    className="h-[75vh] sm:h-[80vh] md:h-[85vh] lg:h-[90vh] relative w-full"
                     style={{
                       backgroundImage: `url(${section.festivalImage})`,
                       backgroundSize: 'cover',
-                      backgroundPosition: 'center 30%',
+                      backgroundPosition: 'center 40%',
                       backgroundRepeat: 'no-repeat'
                     }}
                   >
