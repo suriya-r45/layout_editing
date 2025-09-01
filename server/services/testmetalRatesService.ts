@@ -69,6 +69,13 @@ export class MetalRatesService {
 
   static async initializeFallbackRates() {
     try {
+      // First check if rates already exist in the database
+      const existingRates = await db.select().from(metalRates).limit(1);
+      if (existingRates.length > 0) {
+        console.log("✅ Metal rates already exist in database, skipping initialization");
+        return;
+      }
+
       const exchangeRates = { INR: 83.5, BHD: 0.376 };
 
       const updatePromises = [
