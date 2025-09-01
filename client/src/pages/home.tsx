@@ -338,9 +338,6 @@ export default function Home() {
                   <div 
                     className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.02] min-h-[300px] md:min-h-[400px] overflow-hidden rounded-2xl md:rounded-3xl"
                     onClick={() => handleViewAllClick(section.items[0]?.product?.category || 'mangalsutra')}
-                    style={{ 
-                      background: 'linear-gradient(135deg, #4A90E2 0%, #357ABD 50%, #2A5F94 100%)',
-                    }}
                   >
                     {/* Content Container */}
                     <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-between">
@@ -355,11 +352,19 @@ export default function Home() {
                         </div>
                       </div>
                       
-                      {/* Category Title */}
-                      <div className="text-center">
-                        <h3 className="text-2xl md:text-3xl font-light text-white mb-2 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                          {section.items[0]?.product?.category || 'Mangalsutra'}
-                        </h3>
+                      {/* Category Title - Compact Blue Section at Bottom */}
+                      <div className="relative">
+                        <div 
+                          className="absolute inset-0 rounded-xl"
+                          style={{ 
+                            background: 'linear-gradient(135deg, #4A90E2 0%, #357ABD 50%, #2A5F94 100%)',
+                          }}
+                        ></div>
+                        <div className="relative text-center py-3 px-4">
+                          <h3 className="text-lg md:text-xl font-light text-white tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                            {section.items[0]?.product?.category || 'Bracelets'}
+                          </h3>
+                        </div>
                       </div>
                     </div>
                     
@@ -371,9 +376,6 @@ export default function Home() {
                   <div 
                     className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.02] min-h-[300px] md:min-h-[400px] overflow-hidden rounded-2xl md:rounded-3xl"
                     onClick={() => handleViewAllClick(section.items[1]?.product?.category || 'pendants')}
-                    style={{ 
-                      background: 'linear-gradient(135deg, #2D3748 0%, #1A202C 50%, #171923 100%)',
-                    }}
                   >
                     {/* Content Container */}
                     <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-between">
@@ -388,11 +390,19 @@ export default function Home() {
                         </div>
                       </div>
                       
-                      {/* Category Title */}
-                      <div className="text-center">
-                        <h3 className="text-2xl md:text-3xl font-light text-white mb-2 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                          {section.items[1]?.product?.category || 'Pendants'}
-                        </h3>
+                      {/* Category Title - Compact Dark Section at Bottom */}
+                      <div className="relative">
+                        <div 
+                          className="absolute inset-0 rounded-xl"
+                          style={{ 
+                            background: 'linear-gradient(135deg, #2D3748 0%, #1A202C 50%, #171923 100%)',
+                          }}
+                        ></div>
+                        <div className="relative text-center py-3 px-4">
+                          <h3 className="text-lg md:text-xl font-light text-white tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                            {section.items[1]?.product?.category || 'Nose Jewellery'}
+                          </h3>
+                        </div>
                       </div>
                     </div>
                     
