@@ -112,7 +112,7 @@ function CategoriesScrollSection({ categories, handleViewAllClick }: { categorie
   );
 }
 
-// Separate component for festival auto-scrolling layout
+// Separate component for festival auto-scrolling 1x4 grid layout
 function FestivalScrollSection({ items, selectedCurrency, handleViewAllClick }: { items: any[]; selectedCurrency: Currency; handleViewAllClick: (category: string) => void }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   
@@ -128,12 +128,13 @@ function FestivalScrollSection({ items, selectedCurrency, handleViewAllClick }: 
         // Reset to start if at the end
         scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        // Scroll right by 280px (width of one product card)
-        scrollContainer.scrollBy({ left: 280, behavior: 'smooth' });
+        // Scroll right by container width (4 products)
+        const containerWidth = scrollContainer.clientWidth;
+        scrollContainer.scrollBy({ left: containerWidth, behavior: 'smooth' });
       }
     };
 
-    const interval = setInterval(autoScroll, 3000); // Auto-scroll every 3 seconds
+    const interval = setInterval(autoScroll, 4000); // Auto-scroll every 4 seconds
     
     return () => clearInterval(interval);
   }, []);
@@ -143,57 +144,55 @@ function FestivalScrollSection({ items, selectedCurrency, handleViewAllClick }: 
       {items.length > 0 ? (
         <div 
           ref={scrollContainerRef}
-          className="flex overflow-x-auto scrollbar-hide gap-3 md:gap-4 pb-2"
+          className="flex overflow-x-auto scrollbar-hide gap-2 md:gap-3 pb-2"
           style={{ 
             scrollbarWidth: 'none', 
             msOverflowStyle: 'none',
             scrollBehavior: 'smooth'
           }}
         >
-          {items.map((item, index) => (
+          {/* Create groups of 4 products */}
+          {Array.from({ length: Math.ceil(items.length / 4) }, (_, groupIndex) => (
+            <div key={groupIndex} className="flex-shrink-0 grid grid-cols-4 gap-2 md:gap-3 w-full">
+              {items.slice(groupIndex * 4, (groupIndex + 1) * 4).map((item, index) => (
             <div 
               key={item.id}
-              className="flex-shrink-0 w-64 md:w-72 group cursor-pointer transform transition-all duration-300 hover:scale-105"
+                className="w-full group cursor-pointer transform transition-all duration-300 hover:scale-105"
               onClick={() => handleViewAllClick(item.product.category)}
             >
-              <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50 h-full">
-                {/* Product Image */}
-                <div className="aspect-square mb-3 overflow-hidden rounded-xl bg-gradient-to-br from-purple-50 to-pink-50">
-                  <img
-                    src={item.product.images?.[0] || ringsImage}
-                    alt={item.product.name}
-                    className="w-full h-full object-contain transform transition-all duration-500 group-hover:scale-110"
-                  />
-                </div>
-                
-                {/* Product Info */}
-                <div className="text-center">
-                  <div className="flex items-center justify-center gap-1 mb-2">
-                    <span className="text-amber-500 text-lg">₹</span>
-                    <span className="text-lg md:text-xl font-semibold text-gray-800">
-                      {item.product.priceInr?.toLocaleString()}
-                    </span>
+                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-1.5 md:p-2 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50 h-full">
+                  {/* Product Image */}
+                  <div className="aspect-square mb-1.5 overflow-hidden rounded-md bg-gradient-to-br from-purple-50 to-pink-50">
+                    <img
+                      src={item.product.images?.[0] || ringsImage}
+                      alt={item.product.name}
+                      className="w-full h-full object-contain transform transition-all duration-500 group-hover:scale-110"
+                    />
                   </div>
-                  <p className="text-xs md:text-sm text-gray-600 font-medium line-clamp-2">
-                    {item.product.name}
-                  </p>
+                  
+                  {/* Product Info */}
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-0.5 mb-1">
+                      <span className="text-amber-500 text-xs">₹</span>
+                      <span className="text-xs md:text-sm font-semibold text-gray-800">
+                        {item.product.priceInr?.toLocaleString()}
+                      </span>
+                    </div>
+                    <p className="text-[10px] md:text-xs text-gray-600 font-medium line-clamp-2">
+                      {item.product.name}
+                    </p>
+                  </div>
                 </div>
               </div>
+              ))}
             </div>
           ))}
         </div>
       ) : (
-        <div 
-          className="flex overflow-x-auto scrollbar-hide gap-3 md:gap-4 pb-2"
-          style={{ 
-            scrollbarWidth: 'none', 
-            msOverflowStyle: 'none',
-            scrollBehavior: 'smooth'
-          }}
-        >
-          {[...Array(3)].map((_, index) => (
-            <div key={index} className="flex-shrink-0 w-64 md:w-72 bg-white/95 backdrop-blur-sm rounded-2xl p-3 md:p-4 shadow-lg border border-white/50">
-              <div className="aspect-square mb-3 overflow-hidden rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center">
+        <div className="grid grid-cols-4 gap-2 md:gap-3">
+          {[...Array(4)].map((_, index) => (
+            <div key={index} className="w-full bg-white/95 backdrop-blur-sm rounded-lg p-1.5 md:p-2 shadow-lg border border-white/50">
+              <div className="aspect-square mb-1.5 overflow-hidden rounded-md bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center">
                 <div className="text-gray-400 text-xs">No Image</div>
               </div>
               <div className="text-center">
