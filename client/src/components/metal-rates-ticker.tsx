@@ -87,7 +87,7 @@ export function MetalRatesTicker() {
           }
         `}
       </style>
-      <div className="bg-gradient-to-r from-amber-600 to-amber-700 text-white py-1.5 overflow-hidden relative">
+      <div className="bg-gradient-to-r from-yellow-600 via-amber-600 to-orange-600 text-white py-2 overflow-hidden relative shadow-lg border-b-2 border-amber-300">
         <div className="ticker-scroll whitespace-nowrap">
           <div className="inline-flex items-center space-x-8">
             {/* Duplicate the rates to create seamless loop */}
