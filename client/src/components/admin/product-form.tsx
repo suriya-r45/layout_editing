@@ -269,7 +269,8 @@ function ProductForm({ currency }: ProductFormProps) {
         return oldData ? [newProduct, ...oldData] : [newProduct];
       });
       
-      // Only invalidate categories if needed (less expensive)
+      // Invalidate home sections to refresh homepage immediately
+      queryClient.invalidateQueries({ queryKey: ['/api/home-sections/public'] });
       queryClient.invalidateQueries({ queryKey: ['/api/categories'] });
       
       toast({
@@ -277,6 +278,15 @@ function ProductForm({ currency }: ProductFormProps) {
         description: "Product added successfully!",
       });
       resetForm();
+      
+      // Auto-refresh homepage if it's open in another tab
+      if (typeof window !== 'undefined') {
+        setTimeout(() => {
+          // Trigger a storage event to notify other tabs
+          window.localStorage.setItem('homepage-refresh', Date.now().toString());
+          window.localStorage.removeItem('homepage-refresh');
+        }, 500);
+      }
     },
     onError: () => {
       toast({
