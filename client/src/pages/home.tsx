@@ -93,41 +93,6 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
           </p>
         </div>
 
-        {/* Horizontal Scrolling Container */}
-        <div className="relative">
-          <div 
-            ref={scrollContainerRef}
-            className="flex gap-6 md:gap-8 overflow-x-auto pb-4 scrollbar-hide"
-            style={{ 
-              scrollBehavior: 'smooth',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none'
-            }}
-          >
-            {section.items.map((item, index) => (
-              <div key={item.id} className="flex-none w-48 md:w-56">
-                <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-3 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-white/30">
-                  {/* Product Image */}
-                  <div className="aspect-square mb-2 overflow-hidden rounded-lg">
-                    <img
-                      src={item.product.imageUrl || '/placeholder-product.png'}
-                      alt={item.product.name}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  {/* Product Name */}
-                  <h3 className="text-sm font-medium text-gray-800 text-center leading-tight line-clamp-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                    {item.product.name}
-                  </h3>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Gradient Fade Effects */}
-          <div className="absolute top-0 left-0 w-16 md:w-24 h-full bg-gradient-to-r from-black/20 to-transparent pointer-events-none"></div>
-          <div className="absolute top-0 right-0 w-16 md:w-24 h-full bg-gradient-to-l from-black/20 to-transparent pointer-events-none"></div>
-        </div>
 
         {/* View All Button */}
         <div className="text-center mt-12">
