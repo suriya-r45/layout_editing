@@ -22,13 +22,18 @@ export function MetalRatesTicker() {
     const rates: string[] = [];
     
     metalRates.forEach(rate => {
+      const countryFlag = rate.market === 'INDIA' ? '🇮🇳 IN' : '🇧🇭 BH';
+      const currency = rate.market === 'INDIA' ? '₹' : 'BD';
+      const price = parseFloat(rate.market === 'INDIA' ? rate.pricePerGramInr : rate.pricePerGramBhd);
+      const decimals = rate.market === 'INDIA' ? 0 : 3;
+      
       if (rate.metal === 'GOLD' && (rate.purity === '22K' || rate.purity === '18K')) {
         rates.push(
-          `${rate.market === 'INDIA' ? '🇮🇳' : '🇧🇭'} Gold ${rate.purity}: ${rate.market === 'INDIA' ? '₹' : 'BD'} ${parseFloat(rate.market === 'INDIA' ? rate.pricePerGramInr : rate.pricePerGramBhd).toFixed(rate.market === 'INDIA' ? 0 : 3)}/g`
+          `${countryFlag} Gold ${rate.purity}: ${currency} ${price.toFixed(decimals)}/g`
         );
-      } else if (rate.metal === 'SILVER' && rate.purity === 'PURE') {
+      } else if (rate.metal === 'SILVER' && rate.purity === '925') {
         rates.push(
-          `${rate.market === 'INDIA' ? '🇮🇳' : '🇧🇭'} Silver: ${rate.market === 'INDIA' ? '₹' : 'BD'} ${parseFloat(rate.market === 'INDIA' ? rate.pricePerGramInr : rate.pricePerGramBhd).toFixed(rate.market === 'INDIA' ? 0 : 3)}/g`
+          `${countryFlag} Silver 925: ${currency} ${price.toFixed(decimals)}/g`
         );
       }
     });
