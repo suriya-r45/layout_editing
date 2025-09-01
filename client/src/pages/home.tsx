@@ -73,11 +73,11 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
       data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
       style={{
         backgroundImage: `url(${newArrivalsBackgroundNew})`,
-        backgroundSize: 'contain',
+        backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        minHeight: '60vh',
-        height: 'auto'
+        height: '50vh',
+        minHeight: '400px'
       }}
     >
       {/* Background Overlay - Lighter for better background visibility */}
