@@ -88,7 +88,8 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
           <img 
             src={newArrivalsBackgroundNew} 
             alt="New Arrivals - Ganesh Chaturthi Offer" 
-            className="w-full h-auto rounded-lg shadow-lg"
+            className="w-full h-auto max-w-none rounded-lg shadow-lg"
+            style={{ minHeight: 'auto', objectFit: 'contain' }}
           />
         </div>
         
