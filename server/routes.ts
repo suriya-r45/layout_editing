@@ -25,7 +25,13 @@ if (process.env.STRIPE_SECRET_KEY) {
 }
 
 // JWT secret
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
+const JWT_SECRET = process.env.JWT_SECRET;
+if (!JWT_SECRET) {
+  throw new Error("JWT_SECRET environment variable is required");
+}
+
+// Type assertion for JWT_SECRET since we've validated it exists
+const jwtSecret: string = JWT_SECRET;
 
 // Twilio configuration - optional for development
 let twilioClient: twilio.Twilio | undefined;
@@ -35,11 +41,11 @@ if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN) {
   console.warn('⚠️  Twilio credentials not found. SMS features will be disabled.');
 }
 
-// Admin credentials
+// Admin credentials from environment variables
 const ADMIN_CREDENTIALS = {
-  email: "raveena",
-  mobile: "9597201554",
-  password: "zxcvbnm"
+  email: process.env.ADMIN_EMAIL || "admin@palaniappajewellers.com",
+  mobile: process.env.ADMIN_MOBILE || "admin",
+  password: process.env.ADMIN_PASSWORD || "change-this-password"
 };
 
 // WhatsApp messaging function
@@ -198,7 +204,7 @@ const authenticateToken = (req: any, res: any, next: any) => {
     return res.sendStatus(401);
   }
 
-  jwt.verify(token, JWT_SECRET, (err: any, user: any) => {
+  jwt.verify(token, jwtSecret, (err: any, user: any) => {
     if (err) return res.sendStatus(403);
     req.user = user;
     next();
@@ -225,7 +231,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if ((email === ADMIN_CREDENTIALS.email || email === ADMIN_CREDENTIALS.mobile) && password === ADMIN_CREDENTIALS.password) {
         const token = jwt.sign(
           { id: "admin", email: ADMIN_CREDENTIALS.email, role: "admin", name: "Admin" },
-          JWT_SECRET,
+          jwtSecret,
           { expiresIn: '24h' }
         );
         return res.json({
@@ -242,7 +248,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const token = jwt.sign(
         { id: user.id, email: user.email, role: user.role, name: user.name },
-        JWT_SECRET,
+        jwtSecret,
         { expiresIn: '24h' }
       );
 
@@ -279,7 +285,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const token = jwt.sign(
         { id: user.id, email: user.email, role: user.role, name: user.name },
-        JWT_SECRET,
+        jwtSecret,
         { expiresIn: '24h' }
       );
 
@@ -325,9 +331,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ 
         success: true, 
         message: "OTP sent to your phone number via SMS",
-        phone: phone,
-        // Temporary debug info - remove in production
-        debug: process.env.NODE_ENV === 'development' ? { otp: otpCode } : undefined
+        phone: phone
       });
     } catch (error) {
       console.error("Error sending OTP:", error);
@@ -364,7 +368,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       // Generate JWT token for direct login
       const token = jwt.sign(
         { id: user.id, email: user.email, role: user.role, name: user.name },
-        JWT_SECRET,
+        jwtSecret,
         { expiresIn: '24h' }
       );
 
