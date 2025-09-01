@@ -1887,14 +1887,17 @@ For any queries, please contact us.`;
       const filepath = path.join(uploadsDir, filename);
       
       try {
-        // Try Sharp processing first
+        // Check if Sharp can handle this file format first
+        const metadata = await sharp(req.file.path).metadata();
+        
+        // If we got metadata, proceed with Sharp processing
         let sharpInstance = sharp(req.file.path)
           .resize(1920, 1080, { 
             fit: 'inside', 
             withoutEnlargement: true 
           });
         
-        if (useWebp) {
+        if (useWebp && metadata.format && ['jpeg', 'jpg', 'png'].includes(metadata.format)) {
           sharpInstance = sharpInstance.webp({ 
             quality: 90, 
             effort: 4 
@@ -1904,8 +1907,17 @@ For any queries, please contact us.`;
         await sharpInstance.toFile(filepath);
       } catch (sharpError) {
         console.warn('Sharp processing failed, using direct file copy:', sharpError);
-        // Fallback: just copy the file if Sharp fails
-        await fs.promises.copyFile(req.file.path, filepath);
+        // Fallback: just copy the file with original extension if Sharp fails
+        const fallbackFilename = `festival-${Date.now()}-${req.file.originalname}`;
+        const fallbackFilepath = path.join(uploadsDir, fallbackFilename);
+        await fs.promises.copyFile(req.file.path, fallbackFilepath);
+        // Update the response path
+        const imagePath = `/uploads/${fallbackFilename}`;
+        
+        // Clean up temp file
+        await fs.promises.unlink(req.file.path);
+        
+        return res.json({ imagePath });
       }
       
       // Clean up temp file
