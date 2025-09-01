@@ -115,12 +115,17 @@ function CategoriesScrollSection({ categories, handleViewAllClick }: { categorie
 // Separate component for festival auto-scrolling 1x4 grid layout
 function FestivalScrollSection({ items, selectedCurrency, handleViewAllClick }: { items: any[]; selectedCurrency: Currency; handleViewAllClick: (category: string) => void }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
+  const userScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
 
     const autoScroll = () => {
+      // Don't auto-scroll if user is manually scrolling
+      if (isUserScrolling) return;
+      
       const currentScrollLeft = scrollContainer.scrollLeft;
       const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
       
@@ -134,10 +139,55 @@ function FestivalScrollSection({ items, selectedCurrency, handleViewAllClick }: 
       }
     };
 
+    // Handle user scroll interaction
+    const handleUserScroll = () => {
+      setIsUserScrolling(true);
+      
+      // Clear existing timeout
+      if (userScrollTimeoutRef.current) {
+        clearTimeout(userScrollTimeoutRef.current);
+      }
+      
+      // Resume auto-scroll after 3 seconds of no user interaction
+      userScrollTimeoutRef.current = setTimeout(() => {
+        setIsUserScrolling(false);
+      }, 3000);
+    };
+
+    // Handle touch events for mobile
+    const handleTouchStart = () => {
+      setIsUserScrolling(true);
+    };
+
+    const handleTouchEnd = () => {
+      // Clear existing timeout
+      if (userScrollTimeoutRef.current) {
+        clearTimeout(userScrollTimeoutRef.current);
+      }
+      
+      // Resume auto-scroll after 3 seconds of no touch
+      userScrollTimeoutRef.current = setTimeout(() => {
+        setIsUserScrolling(false);
+      }, 3000);
+    };
+
     const interval = setInterval(autoScroll, 4000); // Auto-scroll every 4 seconds
     
-    return () => clearInterval(interval);
-  }, []);
+    // Add event listeners
+    scrollContainer.addEventListener('scroll', handleUserScroll);
+    scrollContainer.addEventListener('touchstart', handleTouchStart);
+    scrollContainer.addEventListener('touchend', handleTouchEnd);
+    
+    return () => {
+      clearInterval(interval);
+      if (userScrollTimeoutRef.current) {
+        clearTimeout(userScrollTimeoutRef.current);
+      }
+      scrollContainer.removeEventListener('scroll', handleUserScroll);
+      scrollContainer.removeEventListener('touchstart', handleTouchStart);
+      scrollContainer.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isUserScrolling]);
 
   return (
     <div className="relative z-10">
@@ -249,24 +299,25 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
           </p>
         </div>
         
-        {/* Promotional Image */}
-        <div className="mb-8">
+        {/* Promotional Image with Overlay Button */}
+        <div className="mb-8 relative">
           <img 
             src={newArrivalsBackgroundNew} 
             alt="New Arrivals - Ganesh Chaturthi Offer" 
             className="w-full h-auto max-w-none rounded-lg shadow-lg"
             style={{ minHeight: 'auto', objectFit: 'contain' }}
           />
-        </div>
-        
-        <div className="text-center">
-          <Button 
-            className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
-            style={{ fontFamily: 'Cormorant Garamond, serif' }}
-            onClick={() => window.location.href = '/collections?category=new-arrivals'}
-          >
-            View All New Arrivals <ArrowRight className="ml-2 h-3 w-3" />
-          </Button>
+          
+          {/* Overlay Button */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+            <Button 
+              className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200 shadow-lg" 
+              style={{ fontFamily: 'Cormorant Garamond, serif' }}
+              onClick={() => window.location.href = '/collections?category=new-arrivals'}
+            >
+              View All New Arrivals <ArrowRight className="ml-2 h-3 w-3" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>
