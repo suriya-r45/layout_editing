@@ -998,7 +998,7 @@ export default function Home() {
                 <div 
                   className="relative w-full min-h-[400px] md:min-h-[500px]"
                   style={{
-                    backgroundImage: `url(${section.festivalImage})`,
+                    backgroundImage: `url("${section.festivalImage}")`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
