@@ -69,40 +69,26 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
 
   return (
     <section 
-      className="py-16 md:py-20 relative overflow-hidden" 
+      className="py-12" 
       data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
-      style={{
-        backgroundColor: '#c5a882',
-        backgroundImage: `url(${newArrivalsBackgroundNew})`,
-        backgroundSize: 'contain',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
-      }}
+      style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}
     >
-      {/* Background Overlay - Lighter for better background visibility */}
-      <div className="absolute inset-0 bg-black/20"></div>
-      
-      {/* Content Container */}
-      <div className="relative max-w-7xl mx-auto px-4 md:px-6">
-        {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl font-light text-white mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
             {section.title || 'New Arrivals'}
           </h2>
-          <p className="text-lg md:text-xl font-light text-white/90 max-w-4xl mx-auto leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+          <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
             {section.description || 'New Arrivals Dropping Daily, Monday through Friday. Explore the Latest Launches Now!'}
           </p>
         </div>
-
-
-        {/* View All Button */}
-        <div className="text-center mt-12">
+        <div className="text-center">
           <Button 
-            className="bg-white/90 backdrop-blur-sm border border-white/30 text-gray-800 px-8 py-3 text-lg font-medium rounded-full hover:bg-white hover:shadow-xl transition-all duration-300 shadow-lg" 
+            className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
             style={{ fontFamily: 'Cormorant Garamond, serif' }}
             onClick={() => window.location.href = '/collections?category=new-arrivals'}
           >
-            View All New Arrivals <ArrowRight className="ml-2 h-5 w-5" />
+            View All New Arrivals <ArrowRight className="ml-2 h-3 w-3" />
           </Button>
         </div>
       </div>
