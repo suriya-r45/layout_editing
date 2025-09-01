@@ -201,6 +201,12 @@ function ProductForm({ currency }: ProductFormProps) {
   const queryClient = useQueryClient();
   const [, setLocation] = useLocation();
 
+  // Fetch current metal rates for automatic calculation
+  const { data: metalRates = [] } = useQuery<MetalRate[]>({
+    queryKey: ['/api/metal-rates'],
+    refetchInterval: 60000, // Refresh every minute
+  });
+
   const [formData, setFormData] = useState({
     name: '',
     description: '',
@@ -218,6 +224,61 @@ function ProductForm({ currency }: ProductFormProps) {
     isNewArrival: false,
     isMetalPriceBased: false
   });
+
+  // Auto-calculate prices when weight or material changes
+  const calculatePrices = (grossWeight: string, material: string, purity: string) => {
+    if (!grossWeight || !metalRates.length) return { priceInr: '', priceBhd: '' };
+    
+    const weight = parseFloat(grossWeight);
+    if (isNaN(weight) || weight <= 0) return { priceInr: '', priceBhd: '' };
+
+    // Find the appropriate metal rate
+    let metalType = 'GOLD';
+    if (material.includes('SILVER')) metalType = 'SILVER';
+    else if (material.includes('GOLD')) metalType = 'GOLD';
+    else return { priceInr: '', priceBhd: '' }; // Only calculate for gold/silver
+
+    // Find rates for the metal type and purity
+    const indiaRate = metalRates.find(rate => 
+      rate.country === 'INDIA' && 
+      rate.metalType === metalType && 
+      rate.purity === purity
+    );
+    const bahrainRate = metalRates.find(rate => 
+      rate.country === 'BAHRAIN' && 
+      rate.metalType === metalType && 
+      rate.purity === purity
+    );
+
+    if (!indiaRate || !bahrainRate) return { priceInr: '', priceBhd: '' };
+
+    // Calculate prices (weight * rate per gram)
+    const priceInr = (weight * indiaRate.rate).toFixed(0);
+    const priceBhd = (weight * bahrainRate.rate).toFixed(3);
+
+    return { priceInr, priceBhd };
+  };
+
+  // Update prices when weight or material changes
+  const updateFormData = (updates: Partial<typeof formData>) => {
+    const newFormData = { ...formData, ...updates };
+    
+    // Auto-calculate if gross weight, material, or purity changed
+    if (updates.grossWeight !== undefined || updates.material !== undefined || updates.purity !== undefined) {
+      const calculatedPrices = calculatePrices(
+        updates.grossWeight ?? newFormData.grossWeight,
+        updates.material ?? newFormData.material,
+        updates.purity ?? newFormData.purity
+      );
+      
+      if (calculatedPrices.priceInr && calculatedPrices.priceBhd) {
+        newFormData.priceInr = calculatedPrices.priceInr;
+        newFormData.priceBhd = calculatedPrices.priceBhd;
+      }
+    }
+    
+    setFormData(newFormData);
+  };
 
   // Helper function to determine metalType from material
   const getMetalTypeFromMaterial = (material: string): string => {
@@ -447,8 +508,7 @@ function ProductForm({ currency }: ProductFormProps) {
                 <Label htmlFor="material" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Material</Label>
                 <Select 
                   value={formData.material} 
-                  onValueChange={(value) => setFormData({ 
-                    ...formData, 
+                  onValueChange={(value) => updateFormData({ 
                     material: value,
                     metalType: getMetalTypeFromMaterial(value) // Auto-set metalType
                   })}
@@ -492,7 +552,41 @@ function ProductForm({ currency }: ProductFormProps) {
               />
             </div>
 
-            {/* Editable price fields */}
+            {/* Weight fields moved above prices for easier calculation */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="grossWeight" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gross Weight (g)</Label>
+                <Input
+                  id="grossWeight"
+                  type="number"
+                  step="0.1"
+                  value={formData.grossWeight}
+                  onChange={(e) => updateFormData({ grossWeight: e.target.value })}
+                  placeholder="0.0"
+                  required
+                  data-testid="input-gross-weight"
+                  className="bg-white"
+                />
+                <p className="text-xs text-gray-500 mt-1">Prices auto-calculate based on current metal rates</p>
+              </div>
+              
+              <div>
+                <Label htmlFor="netWeight" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Net Weight (g)</Label>
+                <Input
+                  id="netWeight"
+                  type="number"
+                  step="0.1"
+                  value={formData.netWeight}
+                  onChange={(e) => updateFormData({ netWeight: e.target.value })}
+                  placeholder="0.0"
+                  required
+                  data-testid="input-net-weight"
+                  className="bg-white"
+                />
+              </div>
+            </div>
+
+            {/* Auto-calculated price fields */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="priceInr" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Price (INR)</Label>
@@ -502,11 +596,12 @@ function ProductForm({ currency }: ProductFormProps) {
                   step="0.01"
                   value={formData.priceInr}
                   onChange={(e) => setFormData({ ...formData, priceInr: e.target.value })}
-                  placeholder="Enter price in INR"
+                  placeholder="Auto-calculated or enter manually"
                   required
                   data-testid="input-price-inr"
                   className="bg-white"
                 />
+                <p className="text-xs text-green-600 mt-1">✓ Auto-calculated from weight × current rates</p>
               </div>
               
               <div>
@@ -517,41 +612,12 @@ function ProductForm({ currency }: ProductFormProps) {
                   step="0.001"
                   value={formData.priceBhd}
                   onChange={(e) => setFormData({ ...formData, priceBhd: e.target.value })}
-                  placeholder="Enter price in BHD"
+                  placeholder="Auto-calculated or enter manually"
                   required
                   data-testid="input-price-bhd"
                   className="bg-white"
                 />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="grossWeight" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gross Weight (g)</Label>
-                <Input
-                  id="grossWeight"
-                  type="number"
-                  step="0.1"
-                  value={formData.grossWeight}
-                  onChange={(e) => setFormData({ ...formData, grossWeight: e.target.value })}
-                  placeholder="0.0"
-                  required
-                  data-testid="input-gross-weight"
-                />
-              </div>
-              
-              <div>
-                <Label htmlFor="netWeight" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Net Weight (g)</Label>
-                <Input
-                  id="netWeight"
-                  type="number"
-                  step="0.1"
-                  value={formData.netWeight}
-                  onChange={(e) => setFormData({ ...formData, netWeight: e.target.value })}
-                  placeholder="0.0"
-                  required
-                  data-testid="input-net-weight"
-                />
+                <p className="text-xs text-green-600 mt-1">✓ Auto-calculated from weight × current rates</p>
               </div>
             </div>
 
@@ -560,7 +626,7 @@ function ProductForm({ currency }: ProductFormProps) {
                 <Label htmlFor="purity" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Purity</Label>
                 <Select 
                   value={formData.purity} 
-                  onValueChange={(value) => setFormData({ ...formData, purity: value })}
+                  onValueChange={(value) => updateFormData({ purity: value })}
                 >
                   <SelectTrigger data-testid="select-purity">
                     <SelectValue placeholder="Select Purity" />
