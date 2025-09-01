@@ -94,7 +94,7 @@ export function MetalRatesTicker() {
           }
         `}
       </style>
-      <div className="bg-gradient-to-r from-teal-700 via-green-700 to-emerald-700 text-white py-4 overflow-hidden relative shadow-xl border-b-2 border-teal-300 w-full">
+      <div className="bg-gradient-to-r from-amber-600 via-yellow-600 to-amber-700 text-white py-4 overflow-hidden relative shadow-xl border-b-2 border-amber-300 w-full">
         <div className="ticker-scroll whitespace-nowrap w-full">
           <div className="inline-flex items-center space-x-8 w-max">
             {/* Duplicate the rates to create seamless loop */}
@@ -102,13 +102,13 @@ export function MetalRatesTicker() {
               const isIndia = rate.includes('INDIA');
               const isBahrain = rate.includes('BAHRAIN');
               return (
-                <span key={index} className="text-sm font-bold px-5 py-2 bg-green-800/50 rounded-full border-2 border-teal-200/50 flex items-center gap-3 shadow-xl shadow-green-500/30 backdrop-blur-sm text-white">
+                <span key={index} className="text-sm font-bold px-5 py-2 bg-amber-800/60 rounded-full border-2 border-yellow-200/60 flex items-center gap-3 shadow-xl shadow-amber-500/40 backdrop-blur-sm text-white">
                   {isIndia && (
                     <span className="flex items-center gap-2">
                       <div className="w-8 h-5 border-2 border-gray-800 shadow-lg" style={{
                         background: 'linear-gradient(to bottom, #ff6600 33%, #ffffff 33%, #ffffff 67%, #00aa00 67%)'
                       }}></div>
-                      <span className="text-xs bg-orange-600 text-white px-2 py-1.5 rounded-md font-bold shadow-md">INDIA</span>
+                      <span className="text-xs bg-orange-700 text-white px-2 py-1.5 rounded-md font-bold shadow-md border border-orange-500">INDIA</span>
                     </span>
                   )}
                   {isBahrain && (
@@ -116,7 +116,7 @@ export function MetalRatesTicker() {
                       <div className="w-8 h-5 border-2 border-gray-800 shadow-lg" style={{
                         background: 'linear-gradient(to right, #cc0000 40%, #ffffff 40%, #ffffff 60%, #cc0000 60%)'
                       }}></div>
-                      <span className="text-xs bg-red-600 text-white px-2 py-1.5 rounded-md font-bold shadow-md">BAHRAIN</span>
+                      <span className="text-xs bg-red-700 text-white px-2 py-1.5 rounded-md font-bold shadow-md border border-red-500">BAHRAIN</span>
                     </span>
                   )}
                   <span>{rate.replace('🇮🇳 INDIA', '').replace('🇧🇭 BAHRAIN', '').trim()}</span>

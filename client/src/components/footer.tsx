@@ -2,7 +2,6 @@
 import { MessageCircle, Phone, Mail, MapPin, Instagram } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import logoPath from '@assets/1000284180_1755240849891_1755886428742.jpg';
-import { MetalRatesTicker } from './metal-rates-ticker';
 
 
 export default function Footer() {
@@ -105,11 +104,6 @@ export default function Footer() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Metal Rates Ticker Section */}
-        <div className="mt-8 -mx-4">
-          <MetalRatesTicker />
         </div>
 
         <div className="mt-8 pt-8 text-center text-sm border-t-2 border-gray-200 text-gray-600">
