@@ -340,30 +340,15 @@ export default function Home() {
                     onClick={() => handleViewAllClick(section.items[0]?.product?.category || 'mangalsutra')}
                   >
                     {/* Content Container */}
-                    <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-between">
+                    <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-center">
                       {/* Category Image */}
-                      <div className="flex-1 flex items-center justify-center mb-6">
+                      <div className="flex items-center justify-center">
                         <div className="relative">
                           <img
                             src={section.items[0]?.product?.images?.[0] || mangalsutraImage}
                             alt={section.items[0]?.product?.name || 'Mangalsutra'}
                             className="max-w-full h-40 md:h-56 object-contain filter drop-shadow-lg transform transition-all duration-500 group-hover:scale-110"
                           />
-                        </div>
-                      </div>
-                      
-                      {/* Category Title - Compact Blue Section at Bottom */}
-                      <div className="relative">
-                        <div 
-                          className="absolute inset-0 rounded-xl"
-                          style={{ 
-                            background: 'linear-gradient(135deg, #4A90E2 0%, #357ABD 50%, #2A5F94 100%)',
-                          }}
-                        ></div>
-                        <div className="relative text-center py-3 px-4">
-                          <h3 className="text-lg md:text-xl font-light text-white tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                            {section.items[0]?.product?.category || 'Bracelets'}
-                          </h3>
                         </div>
                       </div>
                     </div>
@@ -378,9 +363,9 @@ export default function Home() {
                     onClick={() => handleViewAllClick(section.items[1]?.product?.category || 'pendants')}
                   >
                     {/* Content Container */}
-                    <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-between">
+                    <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-center">
                       {/* Category Image */}
-                      <div className="flex-1 flex items-center justify-center mb-6">
+                      <div className="flex items-center justify-center">
                         <div className="relative">
                           <img
                             src={section.items[1]?.product?.images?.[0] || pendantsImage}
@@ -389,27 +374,49 @@ export default function Home() {
                           />
                         </div>
                       </div>
-                      
-                      {/* Category Title - Compact Dark Section at Bottom */}
-                      <div className="relative">
-                        <div 
-                          className="absolute inset-0 rounded-xl"
-                          style={{ 
-                            background: 'linear-gradient(135deg, #2D3748 0%, #1A202C 50%, #171923 100%)',
-                          }}
-                        ></div>
-                        <div className="relative text-center py-3 px-4">
-                          <h3 className="text-lg md:text-xl font-light text-white tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                            {section.items[1]?.product?.category || 'Nose Jewellery'}
-                          </h3>
-                        </div>
-                      </div>
                     </div>
                     
                     {/* Hover Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-bl from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                   </div>
 
+                </div>
+                
+                {/* Bottom Section Titles - Compact and Small */}
+                <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 max-w-7xl mx-auto">
+                  {/* Left Category Title - Blue */}
+                  <div 
+                    className="cursor-pointer"
+                    onClick={() => handleViewAllClick(section.items[0]?.product?.category || 'mangalsutra')}
+                  >
+                    <div 
+                      className="rounded-lg py-2 px-4"
+                      style={{ 
+                        background: 'linear-gradient(135deg, #4A90E2 0%, #357ABD 50%, #2A5F94 100%)',
+                      }}
+                    >
+                      <h3 className="text-sm md:text-base font-light text-white text-center tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        {section.items[0]?.product?.category || 'Bracelets'}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Right Category Title - Dark */}
+                  <div 
+                    className="cursor-pointer"
+                    onClick={() => handleViewAllClick(section.items[1]?.product?.category || 'pendants')}
+                  >
+                    <div 
+                      className="rounded-lg py-2 px-4"
+                      style={{ 
+                        background: 'linear-gradient(135deg, #2D3748 0%, #1A202C 50%, #171923 100%)',
+                      }}
+                    >
+                      <h3 className="text-sm md:text-base font-light text-white text-center tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        {section.items[1]?.product?.category || 'Nose Jewellery'}
+                      </h3>
+                    </div>
+                  </div>
                 </div>
               </div>
             </section>
