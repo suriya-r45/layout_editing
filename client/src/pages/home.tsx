@@ -122,6 +122,8 @@ function FestivalScrollSection({ items, selectedCurrency, handleViewAllClick }: 
     const scrollContainer = scrollContainerRef.current;
     if (!scrollContainer) return;
 
+    let scrollTimeout: NodeJS.Timeout;
+
     const autoScroll = () => {
       // Don't auto-scroll if user is manually scrolling
       if (isUserScrolling) return;
@@ -129,63 +131,96 @@ function FestivalScrollSection({ items, selectedCurrency, handleViewAllClick }: 
       const currentScrollLeft = scrollContainer.scrollLeft;
       const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
       
-      if (currentScrollLeft >= maxScrollLeft) {
+      // Enhanced mobile scrolling - scroll by single product width for smoother transition
+      const isMobile = window.innerWidth < 768;
+      const scrollDistance = isMobile ? scrollContainer.clientWidth / 4 : scrollContainer.clientWidth;
+      
+      if (currentScrollLeft >= maxScrollLeft - 10) { // Small buffer to handle rounding
         // Reset to start if at the end
         scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        // Scroll right by container width (4 products)
-        const containerWidth = scrollContainer.clientWidth;
-        scrollContainer.scrollBy({ left: containerWidth, behavior: 'smooth' });
+        // Scroll right by calculated distance
+        scrollContainer.scrollBy({ left: scrollDistance, behavior: 'smooth' });
       }
     };
 
-    // Handle user scroll interaction
+    // Enhanced user scroll detection
+    let scrollDetectionTimeout: NodeJS.Timeout;
     const handleUserScroll = () => {
       setIsUserScrolling(true);
       
+      // Clear existing timeouts
+      if (userScrollTimeoutRef.current) {
+        clearTimeout(userScrollTimeoutRef.current);
+      }
+      if (scrollDetectionTimeout) {
+        clearTimeout(scrollDetectionTimeout);
+      }
+      
+      // Use shorter timeout for mobile to detect scroll end more accurately
+      const isMobile = window.innerWidth < 768;
+      const timeoutDelay = isMobile ? 1500 : 3000;
+      
+      scrollDetectionTimeout = setTimeout(() => {
+        setIsUserScrolling(false);
+      }, 150); // Quick detection of scroll end
+      
+      // Resume auto-scroll after longer delay
+      userScrollTimeoutRef.current = setTimeout(() => {
+        setIsUserScrolling(false);
+      }, timeoutDelay);
+    };
+
+    // Enhanced touch events for mobile
+    const handleTouchStart = (e: TouchEvent) => {
+      setIsUserScrolling(true);
+      // Prevent momentum scrolling interference
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
       // Clear existing timeout
       if (userScrollTimeoutRef.current) {
         clearTimeout(userScrollTimeoutRef.current);
       }
       
-      // Resume auto-scroll after 3 seconds of no user interaction
-      userScrollTimeoutRef.current = setTimeout(() => {
+      // Resume auto-scroll after brief delay for mobile
+      scrollTimeout = setTimeout(() => {
         setIsUserScrolling(false);
-      }, 3000);
+      }, 2000);
     };
 
-    // Handle touch events for mobile
-    const handleTouchStart = () => {
+    // Enhanced mobile touch handling
+    const handleTouchMove = () => {
       setIsUserScrolling(true);
     };
 
-    const handleTouchEnd = () => {
-      // Clear existing timeout
-      if (userScrollTimeoutRef.current) {
-        clearTimeout(userScrollTimeoutRef.current);
-      }
-      
-      // Resume auto-scroll after 3 seconds of no touch
-      userScrollTimeoutRef.current = setTimeout(() => {
-        setIsUserScrolling(false);
-      }, 3000);
-    };
-
-    const interval = setInterval(autoScroll, 4000); // Auto-scroll every 4 seconds
+    // Auto-scroll interval - faster for mobile for better UX
+    const isMobile = window.innerWidth < 768;
+    const intervalDelay = isMobile ? 3000 : 4000;
+    const interval = setInterval(autoScroll, intervalDelay);
     
-    // Add event listeners
-    scrollContainer.addEventListener('scroll', handleUserScroll);
-    scrollContainer.addEventListener('touchstart', handleTouchStart);
-    scrollContainer.addEventListener('touchend', handleTouchEnd);
+    // Add event listeners with passive option for better mobile performance
+    scrollContainer.addEventListener('scroll', handleUserScroll, { passive: true });
+    scrollContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+    scrollContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
+    scrollContainer.addEventListener('touchmove', handleTouchMove, { passive: true });
     
     return () => {
       clearInterval(interval);
       if (userScrollTimeoutRef.current) {
         clearTimeout(userScrollTimeoutRef.current);
       }
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      if (scrollDetectionTimeout) {
+        clearTimeout(scrollDetectionTimeout);
+      }
       scrollContainer.removeEventListener('scroll', handleUserScroll);
       scrollContainer.removeEventListener('touchstart', handleTouchStart);
       scrollContainer.removeEventListener('touchend', handleTouchEnd);
+      scrollContainer.removeEventListener('touchmove', handleTouchMove);
     };
   }, [isUserScrolling]);
 
@@ -1058,7 +1093,8 @@ export default function Home() {
                   {/* Gradient overlay for readability */}
                   <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-purple-900/60"></div>
                   
-                  <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
+                  {/* Caption at top */}
+                  <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-4 md:pt-6">
                     <div className="text-center">
                       {/* Main Heading */}
                       <h2 
@@ -1086,6 +1122,9 @@ export default function Home() {
                       )}
                     </div>
                   </div>
+                  
+                  {/* Spacer to push content down */}
+                  <div className="flex-1"></div>
                 </div>
               ) : (
                 <div 
