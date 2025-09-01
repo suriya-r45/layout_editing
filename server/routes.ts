@@ -1202,7 +1202,6 @@ Premium quality, timeless beauty.`;
 
       // For now, create as a bill since we haven't migrated the schema yet
       const bill = await storage.createBill({
-        billNumber: orderNumber,
         customerName: orderData.customerName,
         customerEmail: orderData.customerEmail,
         customerPhone: orderData.customerPhone,
@@ -2073,7 +2072,10 @@ For any queries, please contact us.`;
   app.post("/api/shipping/zones", authenticateToken, requireAdmin, async (req, res) => {
     try {
       const validatedData = insertShippingZoneSchema.parse(req.body);
-      const zone = await storage.createShippingZone(validatedData);
+      const zone = await storage.createShippingZone({
+        ...validatedData,
+        countries: Array.isArray(validatedData.countries) ? validatedData.countries : []
+      });
       res.status(201).json(zone);
     } catch (error) {
       console.error('Error creating shipping zone:', error);
@@ -2088,7 +2090,10 @@ For any queries, please contact us.`;
     try {
       const { id } = req.params;
       const validatedData = insertShippingZoneSchema.partial().parse(req.body);
-      const zone = await storage.updateShippingZone(id, validatedData);
+      const zone = await storage.updateShippingZone(id, {
+        ...validatedData,
+        countries: Array.isArray(validatedData.countries) ? validatedData.countries : undefined
+      });
       if (!zone) {
         return res.status(404).json({ error: 'Shipping zone not found' });
       }
@@ -2140,7 +2145,10 @@ For any queries, please contact us.`;
   app.post("/api/shipping/methods", authenticateToken, requireAdmin, async (req, res) => {
     try {
       const validatedData = insertShippingMethodSchema.parse(req.body);
-      const method = await storage.createShippingMethod(validatedData);
+      const method = await storage.createShippingMethod({
+        ...validatedData,
+        description: validatedData.description || undefined
+      });
       res.status(201).json(method);
     } catch (error) {
       console.error('Error creating shipping method:', error);
@@ -2155,7 +2163,10 @@ For any queries, please contact us.`;
     try {
       const { id } = req.params;
       const validatedData = insertShippingMethodSchema.partial().parse(req.body);
-      const method = await storage.updateShippingMethod(id, validatedData);
+      const method = await storage.updateShippingMethod(id, {
+        ...validatedData,
+        description: validatedData.description || undefined
+      });
       if (!method) {
         return res.status(404).json({ error: 'Shipping method not found' });
       }
@@ -2239,7 +2250,10 @@ For any queries, please contact us.`;
   app.post("/api/shipments", authenticateToken, requireAdmin, async (req, res) => {
     try {
       const validatedData = insertShipmentSchema.parse(req.body);
-      const shipment = await storage.createShipment(validatedData);
+      const shipment = await storage.createShipment({
+        ...validatedData,
+        trackingNumber: validatedData.trackingNumber || undefined
+      });
       res.status(201).json(shipment);
     } catch (error) {
       console.error('Error creating shipment:', error);
@@ -2330,7 +2344,15 @@ For any queries, please contact us.`;
         ...req.body,
         shipmentId
       });
-      const attempt = await storage.createDeliveryAttempt(validatedData);
+      const attempt = await storage.createDeliveryAttempt({
+        ...validatedData,
+        reason: validatedData.reason || undefined,
+        notes: validatedData.notes || undefined,
+        nextAttemptDate: validatedData.nextAttemptDate || undefined,
+        deliveredTo: validatedData.deliveredTo || undefined,
+        signature: validatedData.signature || undefined,
+        photoProof: validatedData.photoProof || undefined
+      });
       res.status(201).json(attempt);
     } catch (error) {
       console.error('Error creating delivery attempt:', error);
