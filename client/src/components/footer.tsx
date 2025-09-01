@@ -108,7 +108,7 @@ export default function Footer() {
         </div>
 
         {/* Metal Rates Ticker Section */}
-        <div className="mt-8">
+        <div className="mt-8 -mx-4">
           <MetalRatesTicker />
         </div>
 

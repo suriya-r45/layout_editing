@@ -94,9 +94,9 @@ export function MetalRatesTicker() {
           }
         `}
       </style>
-      <div className="bg-gradient-to-r from-teal-700 via-green-700 to-emerald-700 text-white py-4 overflow-hidden relative shadow-xl border-b-2 border-teal-300">
-        <div className="ticker-scroll whitespace-nowrap">
-          <div className="inline-flex items-center space-x-8">
+      <div className="bg-gradient-to-r from-teal-700 via-green-700 to-emerald-700 text-white py-4 overflow-hidden relative shadow-xl border-b-2 border-teal-300 w-full">
+        <div className="ticker-scroll whitespace-nowrap w-full">
+          <div className="inline-flex items-center space-x-8 w-max">
             {/* Duplicate the rates to create seamless loop */}
             {[...rates, ...rates].map((rate, index) => {
               const isIndia = rate.includes('INDIA');
