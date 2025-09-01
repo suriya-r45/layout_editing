@@ -284,7 +284,7 @@ export default function AdminDashboard() {
         onCurrencyChange={setSelectedCurrency} 
       />
 
-      <div className="container mx-auto px-3 md:px-4 py-4 md:py-8">
+      <div className="px-3 md:px-6 lg:px-8 py-4 md:py-8">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 md:mb-8 gap-4">
           <div>
             <h1 className="text-2xl md:text-3xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Admin Dashboard</h1>
