@@ -241,18 +241,9 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-              {section.title || 'New Arrivals'}
-            </h2>
-            <Button 
-              className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200 mt-4 sm:mt-0" 
-              style={{ fontFamily: 'Cormorant Garamond, serif' }}
-              onClick={() => window.location.href = '/collections?category=new-arrivals'}
-            >
-              View All New Arrivals <ArrowRight className="ml-2 h-3 w-3" />
-            </Button>
-          </div>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            {section.title || 'New Arrivals'}
+          </h2>
           <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
             {section.description || 'New Arrivals Dropping Daily, Monday through Friday. Explore the Latest Launches Now!'}
           </p>
@@ -268,6 +259,15 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
           />
         </div>
         
+        <div className="text-center">
+          <Button 
+            className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+            style={{ fontFamily: 'Cormorant Garamond, serif' }}
+            onClick={() => window.location.href = '/collections?category=new-arrivals'}
+          >
+            View All New Arrivals <ArrowRight className="ml-2 h-3 w-3" />
+          </Button>
+        </div>
       </div>
     </section>
   );
@@ -1008,55 +1008,31 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-purple-900/60"></div>
                   
                   <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                    <div className="text-center">
+                      {/* Main Heading */}
+                      <h2 
+                        className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-3 leading-tight tracking-wide drop-shadow-lg"
+                        style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                      >
+                        {section.title}
+                      </h2>
                       
-                      {/* Left side - Text content */}
-                      <div className="relative z-20 text-left">
-                        {/* Main Heading */}
-                        <h2 
-                          className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-3 leading-tight tracking-wide drop-shadow-lg"
+                      {/* Italic subtitle */}
+                      {section.subtitle && (
+                        <p 
+                          className="text-2xl md:text-3xl text-white/90 italic mb-6 font-light drop-shadow-md"
                           style={{ fontFamily: 'Cormorant Garamond, serif' }}
                         >
-                          {section.title}
-                        </h2>
-                        
-                        {/* Italic subtitle */}
-                        {section.subtitle && (
-                          <p 
-                            className="text-2xl md:text-3xl text-white/90 italic mb-6 font-light drop-shadow-md"
-                            style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                          >
-                            {section.subtitle}
-                          </p>
-                        )}
-                        
-                        {/* Description */}
-                        {section.description && (
-                          <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8 max-w-lg drop-shadow-sm">
-                            {section.description}
-                          </p>
-                        )}
-                      </div>
+                          {section.subtitle}
+                        </p>
+                      )}
                       
-                      {/* Right side - Auto-scrolling 1x3 Product showcase */}
-                      <div className="relative z-10">
-                        <FestivalScrollSection 
-                          items={section.items} 
-                          selectedCurrency={selectedCurrency} 
-                          handleViewAllClick={handleViewAllClick} 
-                        />
-                        
-                        {/* Call to Action Button */}
-                        <div className="text-center mt-6">
-                          <Button 
-                            className="bg-white/20 hover:bg-white/30 text-white border-2 border-white/50 hover:border-white/70 px-6 md:px-8 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-all duration-300 hover:scale-105 shadow-lg backdrop-blur-sm" 
-                            style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                            onClick={() => window.location.href = '/collections'}
-                          >
-                            View Full Collection
-                          </Button>
-                        </div>
-                      </div>
+                      {/* Description */}
+                      {section.description && (
+                        <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8 max-w-lg mx-auto drop-shadow-sm">
+                          {section.description}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -1120,6 +1096,30 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+              )}
+              
+              {/* Products section after festival banner */}
+              {section.items && section.items.length > 0 && (
+                <section className="py-8 bg-white" data-testid={`${section.title.toLowerCase().replace(/\s+/g, '-')}-products`}>
+                  <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+                    <FestivalScrollSection 
+                      items={section.items} 
+                      selectedCurrency={selectedCurrency} 
+                      handleViewAllClick={handleViewAllClick} 
+                    />
+                    
+                    {/* Call to Action Button */}
+                    <div className="text-center mt-8">
+                      <Button 
+                        className="bg-gray-900 hover:bg-gray-800 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-all duration-300 hover:scale-105 shadow-lg" 
+                        style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                        onClick={() => window.location.href = '/collections'}
+                      >
+                        View Full Collection
+                      </Button>
+                    </div>
+                  </div>
+                </section>
               )}
             </section>
           );
