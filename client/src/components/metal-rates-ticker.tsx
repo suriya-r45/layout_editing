@@ -80,7 +80,7 @@ export function MetalRatesTicker() {
           }
           
           .ticker-scroll {
-            animation: scroll-ticker 45s linear infinite;
+            animation: scroll-ticker 25s linear infinite;
           }
           
           .ticker-scroll:hover {

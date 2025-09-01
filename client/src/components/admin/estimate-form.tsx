@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Calculator, Clock, DollarSign, ArrowLeft } from "lucide-react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
@@ -208,6 +208,102 @@ export function EstimateForm() {
   
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingEstimateId, setEditingEstimateId] = useState<string | null>(null);
+
+  // Fetch metal rates for auto-calculation
+  const { data: metalRates = [] } = useQuery<any[]>({
+    queryKey: ['/api/metal-rates'],
+    enabled: true
+  });
+
+  // Auto-calculation function like in product form
+  const calculateEstimatePrices = (grossWeight: string, purity: string, currency: string = 'INR') => {
+    if (!grossWeight || !metalRates.length) {
+      return { metalValue: '', makingCharges: '', wastageCharges: '', subtotal: '', totalAmount: '' };
+    }
+    
+    const weight = parseFloat(grossWeight);
+    if (isNaN(weight) || weight <= 0) {
+      return { metalValue: '', makingCharges: '', wastageCharges: '', subtotal: '', totalAmount: '' };
+    }
+
+    // Find appropriate metal rate (assume Gold for estimates)
+    const market = currency === 'BHD' ? 'BAHRAIN' : 'INDIA';
+    const metalRate = metalRates.find(rate => 
+      rate.market === market && 
+      rate.metal === 'GOLD' && 
+      rate.purity === purity
+    );
+
+    if (!metalRate) return { metalValue: '', makingCharges: '', wastageCharges: '', subtotal: '', totalAmount: '' };
+
+    // Calculate metal value
+    const pricePerGram = currency === 'BHD' ? parseFloat(metalRate.pricePerGramBhd) : parseFloat(metalRate.pricePerGramInr);
+    const metalValue = weight * pricePerGram;
+
+    // Calculate making charges (percentage of metal value)
+    const makingPercentage = parseFloat(formData.makingChargesPercentage) || 15;
+    const makingCharges = (metalValue * makingPercentage) / 100;
+
+    // Calculate wastage charges (percentage of metal value)
+    const wastagePercentage = parseFloat(formData.wastagePercentage) || 2;
+    const wastageCharges = (metalValue * wastagePercentage) / 100;
+
+    // Calculate stone/diamond charges
+    const stoneDiamondPercentage = parseFloat(formData.stoneDiamondChargesPercentage) || 0;
+    const stoneDiamondCharges = (metalValue * stoneDiamondPercentage) / 100;
+
+    // Calculate hallmarking charges (fixed amount)
+    const hallmarkingCharges = parseFloat(formData.hallmarkingCharges) || 450;
+
+    // Calculate subtotal
+    const subtotal = metalValue + makingCharges + wastageCharges + stoneDiamondCharges + hallmarkingCharges;
+
+    // Calculate GST and VAT
+    const gstPercentage = parseFloat(formData.gstPercentage) || 3;
+    const vatPercentage = parseFloat(formData.vatPercentage) || 1;
+    const gstAmount = (subtotal * gstPercentage) / 100;
+    const vatAmount = (subtotal * vatPercentage) / 100;
+
+    // Calculate total amount
+    const totalAmount = subtotal + gstAmount + vatAmount;
+
+    const decimals = currency === 'BHD' ? 3 : 0;
+
+    return {
+      metalValue: metalValue.toFixed(decimals),
+      makingCharges: makingCharges.toFixed(decimals),
+      wastageCharges: wastageCharges.toFixed(decimals),
+      stoneDiamondCharges: stoneDiamondCharges.toFixed(decimals),
+      gstAmount: gstAmount.toFixed(decimals),
+      vatAmount: vatAmount.toFixed(decimals),
+      subtotal: subtotal.toFixed(decimals),
+      totalAmount: totalAmount.toFixed(decimals)
+    };
+  };
+
+  // Update formData with auto-calculation
+  const updateFormData = (updates: Partial<EstimateFormData>) => {
+    const newFormData = { ...formData, ...updates };
+    
+    // Auto-calculate if gross weight, purity, or currency changed
+    if (updates.grossWeight !== undefined || updates.purity !== undefined || updates.currency !== undefined ||
+        updates.makingChargesPercentage !== undefined || updates.wastagePercentage !== undefined ||
+        updates.stoneDiamondChargesPercentage !== undefined || updates.hallmarkingCharges !== undefined ||
+        updates.gstPercentage !== undefined || updates.vatPercentage !== undefined) {
+      
+      const calculatedPrices = calculateEstimatePrices(
+        updates.grossWeight ?? newFormData.grossWeight,
+        updates.purity ?? newFormData.purity,
+        updates.currency ?? newFormData.currency
+      );
+      
+      if (calculatedPrices.metalValue) {
+        Object.assign(newFormData, calculatedPrices);
+      }
+    }
+    
+    setFormData(newFormData);
+  };
 
   const [formData, setFormData] = useState<EstimateFormData>({
     customerName: "",
