@@ -1085,7 +1085,7 @@ export default function Home() {
                   className="relative w-full min-h-[600px] md:min-h-[700px]"
                   style={{
                     backgroundImage: `url("${section.festivalImage}")`,
-                    backgroundSize: 'contain',
+                    backgroundSize: '120%',
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat'
                   }}
