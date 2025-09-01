@@ -69,13 +69,15 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
 
   return (
     <section 
-      className="py-16 md:py-20 relative overflow-hidden" 
+      className="relative overflow-hidden" 
       data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
       style={{
         backgroundImage: `url(${newArrivalsBackgroundNew})`,
-        backgroundSize: 'cover',
+        backgroundSize: 'contain',
         backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
+        minHeight: '60vh',
+        height: 'auto'
       }}
     >
       {/* Background Overlay - Lighter for better background visibility */}
