@@ -88,7 +88,7 @@ export function MetalRatesTicker() {
           }
         `}
       </style>
-      <div className="bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 text-gray-900 py-4 overflow-hidden relative shadow-xl border-b-2 border-amber-300">
+      <div className="bg-gradient-to-r from-teal-700 via-green-700 to-emerald-700 text-white py-4 overflow-hidden relative shadow-xl border-b-2 border-teal-300">
         <div className="ticker-scroll whitespace-nowrap">
           <div className="inline-flex items-center space-x-8">
             {/* Duplicate the rates to create seamless loop */}
@@ -96,17 +96,17 @@ export function MetalRatesTicker() {
               const isIndia = rate.includes('INDIA');
               const isBahrain = rate.includes('BAHRAIN');
               return (
-                <span key={index} className="text-sm font-bold px-5 py-2 bg-amber-600/30 rounded-full border-2 border-amber-200/60 flex items-center gap-2 shadow-xl shadow-amber-500/40 backdrop-blur-sm text-gray-900">
+                <span key={index} className="text-sm font-bold px-5 py-2 bg-green-800/50 rounded-full border-2 border-teal-200/50 flex items-center gap-3 shadow-xl shadow-green-500/30 backdrop-blur-sm text-white">
                   {isIndia && (
-                    <span className="inline-flex items-center gap-1">
-                      <span className="text-base">🇮🇳</span>
-                      <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded-md font-bold shadow-lg">IN</span>
+                    <span className="flex items-center gap-2">
+                      <div className="w-4 h-3 bg-gradient-to-b from-orange-500 via-white to-green-600 border border-gray-400 rounded-sm shadow-md"></div>
+                      <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded font-bold">IN</span>
                     </span>
                   )}
                   {isBahrain && (
-                    <span className="inline-flex items-center gap-1">
-                      <span className="text-base">🇧🇭</span>
-                      <span className="text-xs bg-red-600 text-white px-2 py-1 rounded-md font-bold shadow-lg">BH</span>
+                    <span className="flex items-center gap-2">
+                      <div className="w-4 h-3 bg-gradient-to-r from-red-600 via-white to-red-600 border border-gray-400 rounded-sm shadow-md"></div>
+                      <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold">BH</span>
                     </span>
                   )}
                   <span>{rate.replace('🇮🇳 INDIA', '').replace('🇧🇭 BAHRAIN', '').trim()}</span>
