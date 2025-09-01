@@ -82,6 +82,16 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
             {section.description || 'New Arrivals Dropping Daily, Monday through Friday. Explore the Latest Launches Now!'}
           </p>
         </div>
+        
+        {/* Promotional Image */}
+        <div className="mb-8">
+          <img 
+            src={newArrivalsBackgroundNew} 
+            alt="New Arrivals - Ganesh Chaturthi Offer" 
+            className="w-full h-auto rounded-lg shadow-lg"
+          />
+        </div>
+        
         <div className="text-center">
           <Button 
             className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
