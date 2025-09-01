@@ -4,8 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/hooks/use-toast";
-import { TrendingUp, RefreshCw, Clock, MapPin, Loader2 } from "lucide-react";
+import { TrendingUp, RefreshCw, Clock, MapPin, Loader2, Edit3, Save } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 
 interface MetalRate {
@@ -23,6 +26,16 @@ interface MetalRate {
 export function MetalRatesAdmin() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  
+  // Manual rate update form state
+  const [manualRates, setManualRates] = useState({
+    indiaGold22k: '',
+    indiaGold18k: '',
+    indiaSilver: '',
+    bahrainGold22k: '',
+    bahrainGold18k: '',
+    bahrainSilver: ''
+  });
 
   const { data: rates, isLoading } = useQuery<MetalRate[]>({
     queryKey: ["/api/metal-rates"],
@@ -57,6 +70,49 @@ export function MetalRatesAdmin() {
       toast({
         title: "Error",
         description: error.message || "Failed to update metal rates",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const manualUpdateMutation = useMutation({
+    mutationFn: async (rateData: any) => {
+      const response = await fetch("/api/metal-rates/manual-update", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(rateData),
+      });
+      
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to update rates manually");
+      }
+      
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["/api/metal-rates"] });
+      toast({
+        title: "Success",
+        description: "Metal rates updated manually",
+      });
+      // Reset form
+      setManualRates({
+        indiaGold22k: '',
+        indiaGold18k: '',
+        indiaSilver: '',
+        bahrainGold22k: '',
+        bahrainGold18k: '',
+        bahrainSilver: ''
+      });
+    },
+    onError: (error: Error) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to update metal rates manually",
         variant: "destructive",
       });
     },
@@ -101,6 +157,40 @@ export function MetalRatesAdmin() {
   const oldestRate = getOldestUpdate();
   const isStale = oldestRate && (Date.now() - new Date(oldestRate.lastUpdated).getTime()) > 6 * 60 * 60 * 1000; // 6 hours
 
+  const handleManualSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Validate rates
+    const requiredRates = [
+      'indiaGold22k', 'indiaGold18k', 'indiaSilver', 
+      'bahrainGold22k', 'bahrainGold18k', 'bahrainSilver'
+    ];
+    
+    const hasValidRates = requiredRates.some(key => 
+      manualRates[key as keyof typeof manualRates] && 
+      parseFloat(manualRates[key as keyof typeof manualRates]) > 0
+    );
+
+    if (!hasValidRates) {
+      toast({
+        title: "Error",
+        description: "Please enter at least one valid rate",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    manualUpdateMutation.mutate(manualRates);
+  };
+
+  const getCurrentRate = (market: string, metal: string, purity: string) => {
+    return rates?.find(rate => 
+      rate.market === market && 
+      rate.metal === metal && 
+      rate.purity === purity
+    );
+  };
+
   return (
     <Card className="w-full">
       <CardHeader>
@@ -131,16 +221,165 @@ export function MetalRatesAdmin() {
           </div>
         </div>
         <p className="text-sm text-muted-foreground">
-          Monitor and update live gold and silver prices for both markets
+          Monitor and update live gold and silver prices for both markets - all product prices update automatically based on weight
         </p>
       </CardHeader>
       <CardContent className="space-y-6">
-        {isLoading ? (
-          <div className="flex items-center justify-center p-8">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-            <span className="ml-2">Loading rates...</span>
-          </div>
-        ) : rates?.length ? (
+        
+        <Tabs defaultValue="view" className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="view">Current Rates</TabsTrigger>
+            <TabsTrigger value="manual">Manual Update</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="manual" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Edit3 className="h-4 w-4" />
+                  Manual Rate Update (Per Gram)
+                </CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Update metal rates manually. All product prices will automatically recalculate based on their weight.
+                </p>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleManualSubmit} className="space-y-6">
+                  
+                  {/* India Rates */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <Badge variant="outline" className="flex items-center gap-1">
+                        <MapPin className="h-3 w-3" />
+                        INDIA (INR per gram)
+                      </Badge>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="indiaGold22k">Gold 22K (₹/gram)</Label>
+                        <Input
+                          id="indiaGold22k"
+                          type="number"
+                          step="0.01"
+                          placeholder={getCurrentRate("INDIA", "GOLD", "22K")?.pricePerGramInr || "6563"}
+                          value={manualRates.indiaGold22k}
+                          onChange={(e) => setManualRates(prev => ({...prev, indiaGold22k: e.target.value}))}
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="indiaGold18k">Gold 18K (₹/gram)</Label>
+                        <Input
+                          id="indiaGold18k"
+                          type="number"
+                          step="0.01"
+                          placeholder={getCurrentRate("INDIA", "GOLD", "18K")?.pricePerGramInr || "5372"}
+                          value={manualRates.indiaGold18k}
+                          onChange={(e) => setManualRates(prev => ({...prev, indiaGold18k: e.target.value}))}
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="indiaSilver">Silver 925 (₹/gram)</Label>
+                        <Input
+                          id="indiaSilver"
+                          type="number"
+                          step="0.01"
+                          placeholder={getCurrentRate("INDIA", "SILVER", "925")?.pricePerGramInr || "95"}
+                          value={manualRates.indiaSilver}
+                          onChange={(e) => setManualRates(prev => ({...prev, indiaSilver: e.target.value}))}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  {/* Bahrain Rates */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <Badge variant="outline" className="flex items-center gap-1">
+                        <MapPin className="h-3 w-3" />
+                        BAHRAIN (BHD per gram)
+                      </Badge>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="bahrainGold22k">Gold 22K (BHD/gram)</Label>
+                        <Input
+                          id="bahrainGold22k"
+                          type="number"
+                          step="0.001"
+                          placeholder={getCurrentRate("BAHRAIN", "GOLD", "22K")?.pricePerGramBhd || "28.228"}
+                          value={manualRates.bahrainGold22k}
+                          onChange={(e) => setManualRates(prev => ({...prev, bahrainGold22k: e.target.value}))}
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="bahrainGold18k">Gold 18K (BHD/gram)</Label>
+                        <Input
+                          id="bahrainGold18k"
+                          type="number"
+                          step="0.001"
+                          placeholder={getCurrentRate("BAHRAIN", "GOLD", "18K")?.pricePerGramBhd || "23.090"}
+                          value={manualRates.bahrainGold18k}
+                          onChange={(e) => setManualRates(prev => ({...prev, bahrainGold18k: e.target.value}))}
+                        />
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="bahrainSilver">Silver 925 (BHD/gram)</Label>
+                        <Input
+                          id="bahrainSilver"
+                          type="number"
+                          step="0.001"
+                          placeholder={getCurrentRate("BAHRAIN", "SILVER", "925")?.pricePerGramBhd || "1.25"}
+                          value={manualRates.bahrainSilver}
+                          onChange={(e) => setManualRates(prev => ({...prev, bahrainSilver: e.target.value}))}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="pt-4">
+                    <Button 
+                      type="submit" 
+                      disabled={manualUpdateMutation.isPending}
+                      className="w-full flex items-center gap-2"
+                    >
+                      {manualUpdateMutation.isPending ? (
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                      ) : (
+                        <Save className="h-4 w-4" />
+                      )}
+                      {manualUpdateMutation.isPending ? "Updating Rates..." : "Update Metal Rates"}
+                    </Button>
+                  </div>
+                  
+                  <div className="text-xs text-muted-foreground bg-blue-50 p-3 rounded-lg">
+                    <p className="font-medium text-blue-900">📊 Impact of Rate Updates:</p>
+                    <ul className="mt-1 text-blue-800 space-y-1">
+                      <li>• All gold product prices will recalculate based on their weight in grams</li>
+                      <li>• Silver product prices will update automatically</li>
+                      <li>• Price changes apply immediately on the website</li>
+                      <li>• Leave fields empty to keep current rates unchanged</li>
+                    </ul>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          
+          <TabsContent value="view" className="space-y-6">
+            {isLoading ? (
+              <div className="flex items-center justify-center p-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                <span className="ml-2">Loading rates...</span>
+              </div>
+            ) : rates?.length ? (
           Object.entries(groupedRates).map(([key, metalRates]) => {
             const [market, metal] = key.split('-');
             const lastUpdated = getLastUpdated(metalRates);
@@ -213,31 +452,33 @@ export function MetalRatesAdmin() {
               </div>
             );
           })
-        ) : (
-          <div className="text-center text-muted-foreground p-8">
-            <TrendingUp className="h-12 w-12 mx-auto mb-4 opacity-50" />
-            <p>No metal rates available</p>
-            <Button 
-              onClick={() => updateRatesMutation.mutate()}
-              disabled={updateRatesMutation.isPending}
-              className="mt-4"
-            >
-              {updateRatesMutation.isPending ? "Fetching..." : "Fetch Initial Rates"}
-            </Button>
-          </div>
-        )}
-        
-        <div className="text-xs text-muted-foreground text-center pt-4 border-t space-y-2">
-          <p>
-            <strong>Auto-update:</strong> Rates are automatically updated every 6 hours
-          </p>
-          <p>
-            <strong>Manual update:</strong> Use the "Update Rates" button for immediate refresh
-          </p>
-          <p>
-            <strong>Sources:</strong> Live data from metals.live API with fallback to market approximations
-          </p>
-        </div>
+            ) : (
+              <div className="text-center text-muted-foreground p-8">
+                <TrendingUp className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                <p>No metal rates available</p>
+                <Button 
+                  onClick={() => updateRatesMutation.mutate()}
+                  disabled={updateRatesMutation.isPending}
+                  className="mt-4"
+                >
+                  {updateRatesMutation.isPending ? "Fetching..." : "Fetch Initial Rates"}
+                </Button>
+              </div>
+            )}
+            
+            <div className="text-xs text-muted-foreground text-center pt-4 border-t space-y-2">
+              <p>
+                <strong>Auto-update:</strong> Rates are automatically updated every 6 hours
+              </p>
+              <p>
+                <strong>Manual update:</strong> Use the "Update Rates" button for immediate refresh
+              </p>
+              <p>
+                <strong>Sources:</strong> Live data from metals.live API with fallback to market approximations
+              </p>
+            </div>
+          </TabsContent>
+        </Tabs>
       </CardContent>
     </Card>
   );

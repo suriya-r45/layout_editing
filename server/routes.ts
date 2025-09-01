@@ -1355,6 +1355,120 @@ Premium quality, timeless beauty.`;
     }
   });
 
+  // Manual update metal rates (admin only)
+  app.post("/api/metal-rates/manual-update", authenticateToken, requireAdmin, async (req, res) => {
+    try {
+      const { 
+        indiaGold22k, 
+        indiaGold18k, 
+        indiaSilver, 
+        bahrainGold22k, 
+        bahrainGold18k, 
+        bahrainSilver 
+      } = req.body;
+
+      const updatePromises = [];
+      const exchangeRates = { INR: 83.5, BHD: 0.376 }; // Basic exchange rates for conversion
+
+      // Update India rates if provided
+      if (indiaGold22k && parseFloat(indiaGold22k) > 0) {
+        updatePromises.push(MetalRatesService.upsertRate({
+          metal: "GOLD",
+          purity: "22K",
+          pricePerGramInr: indiaGold22k,
+          pricePerGramBhd: (parseFloat(indiaGold22k) / (exchangeRates.INR / exchangeRates.BHD)).toFixed(3),
+          pricePerGramUsd: (parseFloat(indiaGold22k) / exchangeRates.INR).toFixed(2),
+          market: "INDIA",
+          source: "Manual Admin Update - " + new Date().toLocaleString()
+        }));
+      }
+
+      if (indiaGold18k && parseFloat(indiaGold18k) > 0) {
+        updatePromises.push(MetalRatesService.upsertRate({
+          metal: "GOLD",
+          purity: "18K",
+          pricePerGramInr: indiaGold18k,
+          pricePerGramBhd: (parseFloat(indiaGold18k) / (exchangeRates.INR / exchangeRates.BHD)).toFixed(3),
+          pricePerGramUsd: (parseFloat(indiaGold18k) / exchangeRates.INR).toFixed(2),
+          market: "INDIA",
+          source: "Manual Admin Update - " + new Date().toLocaleString()
+        }));
+      }
+
+      if (indiaSilver && parseFloat(indiaSilver) > 0) {
+        updatePromises.push(MetalRatesService.upsertRate({
+          metal: "SILVER",
+          purity: "925",
+          pricePerGramInr: indiaSilver,
+          pricePerGramBhd: (parseFloat(indiaSilver) / (exchangeRates.INR / exchangeRates.BHD)).toFixed(3),
+          pricePerGramUsd: (parseFloat(indiaSilver) / exchangeRates.INR).toFixed(2),
+          market: "INDIA",
+          source: "Manual Admin Update - " + new Date().toLocaleString()
+        }));
+      }
+
+      // Update Bahrain rates if provided
+      if (bahrainGold22k && parseFloat(bahrainGold22k) > 0) {
+        updatePromises.push(MetalRatesService.upsertRate({
+          metal: "GOLD",
+          purity: "22K",
+          pricePerGramBhd: bahrainGold22k,
+          pricePerGramInr: (parseFloat(bahrainGold22k) * (exchangeRates.INR / exchangeRates.BHD)).toFixed(0),
+          pricePerGramUsd: (parseFloat(bahrainGold22k) / exchangeRates.BHD).toFixed(2),
+          market: "BAHRAIN",
+          source: "Manual Admin Update - " + new Date().toLocaleString()
+        }));
+      }
+
+      if (bahrainGold18k && parseFloat(bahrainGold18k) > 0) {
+        updatePromises.push(MetalRatesService.upsertRate({
+          metal: "GOLD",
+          purity: "18K",
+          pricePerGramBhd: bahrainGold18k,
+          pricePerGramInr: (parseFloat(bahrainGold18k) * (exchangeRates.INR / exchangeRates.BHD)).toFixed(0),
+          pricePerGramUsd: (parseFloat(bahrainGold18k) / exchangeRates.BHD).toFixed(2),
+          market: "BAHRAIN",
+          source: "Manual Admin Update - " + new Date().toLocaleString()
+        }));
+      }
+
+      if (bahrainSilver && parseFloat(bahrainSilver) > 0) {
+        updatePromises.push(MetalRatesService.upsertRate({
+          metal: "SILVER",
+          purity: "925",
+          pricePerGramBhd: bahrainSilver,
+          pricePerGramInr: (parseFloat(bahrainSilver) * (exchangeRates.INR / exchangeRates.BHD)).toFixed(0),
+          pricePerGramUsd: (parseFloat(bahrainSilver) / exchangeRates.BHD).toFixed(2),
+          market: "BAHRAIN",
+          source: "Manual Admin Update - " + new Date().toLocaleString()
+        }));
+      }
+
+      if (updatePromises.length === 0) {
+        return res.status(400).json({
+          message: "No valid rates provided for update"
+        });
+      }
+
+      await Promise.all(updatePromises);
+
+      // Get updated rates to return
+      const updatedRates = await MetalRatesService.getLatestRates();
+      
+      res.json({ 
+        message: "Metal rates updated manually", 
+        updatesCount: updatePromises.length,
+        rates: updatedRates
+      });
+    } catch (error: any) {
+      console.error("Error updating metal rates manually:", error);
+      res.status(500).json({ 
+        message: "Failed to update metal rates manually",
+        error: error.message 
+      });
+    }
+  });
+
   // Estimates routes
   app.get('/api/estimates', authenticateToken, requireAdmin, async (req, res) => {
     try {
