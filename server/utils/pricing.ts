@@ -98,8 +98,8 @@ export async function recalculateAllMetalBasedProducts(): Promise<{ updated: num
         const netWeight = parseFloat(product.netWeight.toString());
         const makingCharges = parseFloat(product.makingChargesPercentage?.toString() || '15');
 
-        // Calculate new prices for India market
-        const pricing = await calculateProductPricing(
+        // Calculate new prices for both markets
+        const indiaePricing = await calculateProductPricing(
           metalType,
           product.purity,
           grossWeight,
@@ -108,14 +108,23 @@ export async function recalculateAllMetalBasedProducts(): Promise<{ updated: num
           'INDIA'
         );
 
+        const bahrainPricing = await calculateProductPricing(
+          metalType,
+          product.purity,
+          grossWeight,
+          netWeight,
+          makingCharges,
+          'BAHRAIN'
+        );
+
         // Update product in database
         await storage.updateProduct(product.id, {
-          priceInr: pricing.priceInr,
-          priceBhd: pricing.priceBhd
+          priceInr: indiaePricing.priceInr,
+          priceBhd: bahrainPricing.priceBhd
         } as any);
 
         updated++;
-        console.log(`Updated pricing for product ${product.name}: ₹${pricing.priceInr} | BD ${pricing.priceBhd}`);
+        console.log(`Updated pricing for product ${product.name}: ₹${indiaePricing.priceInr} | BD ${bahrainPricing.priceBhd}`);
       } catch (error) {
         console.error(`Error updating product ${product.id}:`, error);
         errors++;
