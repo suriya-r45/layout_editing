@@ -227,53 +227,71 @@ function ProductForm({ currency }: ProductFormProps) {
 
   // Auto-calculate prices when weight or material changes
   const calculatePrices = (grossWeight: string, material: string, purity: string) => {
-    if (!grossWeight || !metalRates.length) return { priceInr: '', priceBhd: '' };
+    console.log('calculatePrices called with:', { grossWeight, material, purity, metalRatesLength: metalRates.length });
+    
+    if (!grossWeight || !metalRates.length) {
+      console.log('Early return: no weight or no metal rates');
+      return { priceInr: '', priceBhd: '' };
+    }
     
     const weight = parseFloat(grossWeight);
-    if (isNaN(weight) || weight <= 0) return { priceInr: '', priceBhd: '' };
+    if (isNaN(weight) || weight <= 0) {
+      console.log('Early return: invalid weight');
+      return { priceInr: '', priceBhd: '' };
+    }
 
-    // Find the appropriate metal rate
+    // Find the appropriate metal type from material
     let metalType = 'GOLD';
     if (material.includes('SILVER')) metalType = 'SILVER';
     else if (material.includes('GOLD')) metalType = 'GOLD';
-    else return { priceInr: '', priceBhd: '' }; // Only calculate for gold/silver
+    else {
+      console.log('Early return: unsupported material');
+      return { priceInr: '', priceBhd: '' }; // Only calculate for gold/silver
+    }
 
-    // Find rates for the metal type and purity
+    // Find rates for the metal type and purity (matching API response format)
     const indiaRate = metalRates.find(rate => 
-      rate.country === 'INDIA' && 
-      rate.metalType === metalType && 
+      rate.market === 'INDIA' && 
+      rate.metal === metalType && 
       rate.purity === purity
     );
     const bahrainRate = metalRates.find(rate => 
-      rate.country === 'BAHRAIN' && 
-      rate.metalType === metalType && 
+      rate.market === 'BAHRAIN' && 
+      rate.metal === metalType && 
       rate.purity === purity
     );
 
     if (!indiaRate || !bahrainRate) return { priceInr: '', priceBhd: '' };
 
-    // Calculate prices (weight * rate per gram)
-    const priceInr = (weight * indiaRate.rate).toFixed(0);
-    const priceBhd = (weight * bahrainRate.rate).toFixed(3);
+    // Calculate prices (weight * rate per gram) - using correct field names
+    const priceInr = (weight * parseFloat(indiaRate.pricePerGramInr)).toFixed(0);
+    const priceBhd = (weight * parseFloat(bahrainRate.pricePerGramBhd)).toFixed(3);
 
     return { priceInr, priceBhd };
   };
 
   // Update prices when weight or material changes
   const updateFormData = (updates: Partial<typeof formData>) => {
+    console.log('updateFormData called with:', updates);
     const newFormData = { ...formData, ...updates };
     
     // Auto-calculate if gross weight, material, or purity changed
     if (updates.grossWeight !== undefined || updates.material !== undefined || updates.purity !== undefined) {
+      console.log('Triggering calculation...');
       const calculatedPrices = calculatePrices(
         updates.grossWeight ?? newFormData.grossWeight,
         updates.material ?? newFormData.material,
         updates.purity ?? newFormData.purity
       );
       
+      console.log('Calculated result:', calculatedPrices);
+      
       if (calculatedPrices.priceInr && calculatedPrices.priceBhd) {
         newFormData.priceInr = calculatedPrices.priceInr;
         newFormData.priceBhd = calculatedPrices.priceBhd;
+        console.log('Prices updated in form data');
+      } else {
+        console.log('No prices calculated');
       }
     }
     
