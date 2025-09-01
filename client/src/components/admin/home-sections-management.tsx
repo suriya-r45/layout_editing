@@ -30,7 +30,7 @@ interface CreateHomeSectionData {
   title: string;
   subtitle: string;
   description: string;
-  layoutType: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine';
+  layoutType: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine' | 'new-arrivals' | 'diamond' | 'floating' | 'radial' | 'artistic';
   isActive: boolean;
   displayOrder: number;
   backgroundColor: string;
@@ -412,7 +412,7 @@ function CreateSectionDialog({
               <Label htmlFor="layoutType" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Layout Type *</Label>
               <Select
                 value={formData.layoutType}
-                onValueChange={(value: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine' | 'diamond' | 'floating' | 'radial' | 'artistic') => 
+                onValueChange={(value: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine' | 'diamond' | 'floating' | 'radial' | 'artistic' | 'new-arrivals') => 
                   setFormData(prev => ({ ...prev, layoutType: value }))
                 }
               >
@@ -433,6 +433,7 @@ function CreateSectionDialog({
                   <SelectItem value="floating">🌟 Floating - 3D Levitating Cards</SelectItem>
                   <SelectItem value="radial">🌌 Radial - Celestial Constellation</SelectItem>
                   <SelectItem value="artistic">🎭 Artistic - Creative Collage Vision</SelectItem>
+                  <SelectItem value="new-arrivals">✨ New Arrivals - Auto-scrolling Showcase</SelectItem>
                 </SelectContent>
               </Select>
             </div>

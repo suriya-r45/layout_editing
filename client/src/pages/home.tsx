@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
@@ -39,6 +39,7 @@ import ankletsImage from '@assets/anklets_new.png';
 import broochesImage from '@assets/brooches_new.png';
 import bridalCollectionsImage from '@assets/bridal_new.png';
 import newArrivalsBackground from '@assets/image_1756713608055.png';
+import newArrivalsBackgroundNew from '@assets/new_arrivals_bg.png';
 
 export default function Home() {
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>('BHD');
@@ -714,6 +715,103 @@ export default function Home() {
                     </div>
                   </div>
                 )}
+              </div>
+            </section>
+          );
+        }
+
+        // New Arrivals layout rendering - Horizontal auto-scrolling layout
+        if (section.layoutType === 'new-arrivals') {
+          const scrollContainerRef = useRef<HTMLDivElement>(null);
+          
+          useEffect(() => {
+            const scrollContainer = scrollContainerRef.current;
+            if (!scrollContainer) return;
+
+            const autoScroll = () => {
+              const currentScrollLeft = scrollContainer.scrollLeft;
+              const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+              
+              if (currentScrollLeft >= maxScrollLeft) {
+                // Reset to start if at the end
+                scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+              } else {
+                // Scroll right by 300px
+                scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
+              }
+            };
+
+            const interval = setInterval(autoScroll, 2000); // Auto-scroll every 2 seconds
+            
+            return () => clearInterval(interval);
+          }, []);
+
+          return (
+            <section 
+              key={section.id} 
+              className="py-16 md:py-20 relative overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{
+                backgroundImage: `url(${newArrivalsBackgroundNew})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+              }}
+            >
+              {/* Background Overlay */}
+              <div className="absolute inset-0 bg-black/40"></div>
+              
+              {/* Content Container */}
+              <div className="relative max-w-7xl mx-auto px-4 md:px-6">
+                {/* Section Header */}
+                <div className="text-center mb-12 md:mb-16">
+                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-light text-white mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title || 'New Arrivals'}
+                  </h2>
+                  <p className="text-lg md:text-xl font-light text-white/90 max-w-4xl mx-auto leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.description || 'New Arrivals Dropping Daily, Monday through Friday. Explore the Latest Launches Now!'}
+                  </p>
+                </div>
+
+                {/* Horizontal Scrolling Container */}
+                <div className="relative">
+                  <div 
+                    ref={scrollContainerRef}
+                    className="flex gap-6 md:gap-8 overflow-x-auto pb-4 scrollbar-hide"
+                    style={{ 
+                      scrollBehavior: 'smooth',
+                      scrollbarWidth: 'none',
+                      msOverflowStyle: 'none'
+                    }}
+                  >
+                    {section.items.map((item, index) => (
+                      <div key={item.id} className="flex-none w-72 md:w-80 lg:w-96">
+                        <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 transition-all duration-300 hover:shadow-3xl hover:-translate-y-2 hover:bg-white border border-white/20">
+                          <ProductCard
+                            product={item.product}
+                            currency={selectedCurrency}
+                            showActions={true}
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Gradient Fade Effects */}
+                  <div className="absolute top-0 left-0 w-16 md:w-24 h-full bg-gradient-to-r from-black/20 to-transparent pointer-events-none"></div>
+                  <div className="absolute top-0 right-0 w-16 md:w-24 h-full bg-gradient-to-l from-black/20 to-transparent pointer-events-none"></div>
+                </div>
+
+                {/* View All Button */}
+                <div className="text-center mt-12">
+                  <Button 
+                    className="bg-white/90 backdrop-blur-sm border border-white/30 text-gray-800 px-8 py-3 text-lg font-medium rounded-full hover:bg-white hover:shadow-xl transition-all duration-300 shadow-lg" 
+                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                    onClick={() => window.location.href = '/collections?category=new-arrivals'}
+                  >
+                    View All New Arrivals <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </div>
               </div>
             </section>
           );
