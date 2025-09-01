@@ -99,14 +99,18 @@ export function MetalRatesTicker() {
                 <span key={index} className="text-sm font-bold px-5 py-2 bg-green-800/50 rounded-full border-2 border-teal-200/50 flex items-center gap-3 shadow-xl shadow-green-500/30 backdrop-blur-sm text-white">
                   {isIndia && (
                     <span className="flex items-center gap-2">
-                      <div className="w-6 h-4 bg-gradient-to-b from-orange-500 via-white to-green-600 border-2 border-gray-600 rounded shadow-lg"></div>
-                      <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded-md font-bold shadow-md">INDIA</span>
+                      <div className="w-8 h-5 border-2 border-gray-800 shadow-lg" style={{
+                        background: 'linear-gradient(to bottom, #ff6600 33%, #ffffff 33%, #ffffff 67%, #00aa00 67%)'
+                      }}></div>
+                      <span className="text-xs bg-orange-600 text-white px-2 py-1.5 rounded-md font-bold shadow-md">INDIA</span>
                     </span>
                   )}
                   {isBahrain && (
                     <span className="flex items-center gap-2">
-                      <div className="w-6 h-4 bg-gradient-to-r from-red-600 via-white to-red-600 border-2 border-gray-600 rounded shadow-lg"></div>
-                      <span className="text-xs bg-red-600 text-white px-2 py-1 rounded-md font-bold shadow-md">BAHRAIN</span>
+                      <div className="w-8 h-5 border-2 border-gray-800 shadow-lg" style={{
+                        background: 'linear-gradient(to right, #cc0000 40%, #ffffff 40%, #ffffff 60%, #cc0000 60%)'
+                      }}></div>
+                      <span className="text-xs bg-red-600 text-white px-2 py-1.5 rounded-md font-bold shadow-md">BAHRAIN</span>
                     </span>
                   )}
                   <span>{rate.replace('🇮🇳 INDIA', '').replace('🇧🇭 BAHRAIN', '').trim()}</span>
