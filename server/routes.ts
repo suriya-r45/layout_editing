@@ -45,8 +45,8 @@ if (process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN) {
 // Admin credentials from environment variables
 const ADMIN_CREDENTIALS = {
   email: process.env.ADMIN_EMAIL || "admin@palaniappajewellers.com",
-  mobile: process.env.ADMIN_MOBILE || "admin",
-  password: process.env.ADMIN_PASSWORD || "change-this-password"
+  mobile: process.env.ADMIN_MOBILE || "9597201554",
+  password: process.env.ADMIN_PASSWORD || "zxcvbnm"
 };
 
 // WhatsApp messaging function
