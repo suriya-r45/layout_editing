@@ -5,6 +5,7 @@ import Footer from '@/components/footer';
 import ProductCard from '@/components/product-card';
 import ProductFilters from '@/components/product-filters';
 import WhatsAppFloat from '@/components/whatsapp-float';
+import { MetalRatesTicker } from '@/components/metal-rates-ticker';
 import { Button } from '@/components/ui/button';
 import { Product, HomeSection, HomeSectionItem } from '@shared/schema';
 import { Currency } from '@/lib/currency';
@@ -550,6 +551,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen" data-testid="page-home" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+      <MetalRatesTicker />
       <Header
         selectedCurrency={selectedCurrency}
         onCurrencyChange={setSelectedCurrency}
