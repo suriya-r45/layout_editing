@@ -38,6 +38,7 @@ import noseJewelryImage from '@assets/nosepins_new.png';
 import ankletsImage from '@assets/anklets_new.png';
 import broochesImage from '@assets/brooches_new.png';
 import bridalCollectionsImage from '@assets/bridal_new.png';
+import newArrivalsBackground from '@assets/image_1756713608055.png';
 
 export default function Home() {
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>('BHD');
@@ -235,6 +236,18 @@ export default function Home() {
         onCurrencyChange={setSelectedCurrency}
       />
 
+      {/* Hero Section - Find Your Perfect Match */}
+      <section className="py-8 md:py-12" data-testid="section-hero" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+        <div className="px-4 md:px-6 lg:px-8 text-center">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-light text-gray-800 mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            Find Your Perfect Match
+          </h1>
+          <p className="text-xl md:text-2xl font-light text-gray-600 mb-6">
+            Shop by Categories
+          </p>
+        </div>
+      </section>
+
       {/* Categories Horizontal Scroll */}
       <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
         <div className="px-2 md:px-6 lg:px-8">
@@ -292,17 +305,14 @@ export default function Home() {
               className="py-16 md:py-24 px-4 md:px-8 relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: 'linear-gradient(135deg, #D4AF8C 0%, #C9986A 50%, #B88659 100%)',
+                backgroundImage: `url(${newArrivalsBackground})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
               }}
             >
-              {/* Floating Rings for Background Decoration */}
-              <div className="absolute top-10 right-10 md:top-20 md:right-20 z-10 opacity-60">
-                <img
-                  src={ringsImage}
-                  alt="Decorative Rings"
-                  className="w-32 h-32 md:w-48 md:h-48 object-contain"
-                />
-              </div>
+              {/* Overlay for better text readability */}
+              <div className="absolute inset-0 bg-black/20"></div>
 
               {/* Section Header */}
               <div className="relative z-20 text-left mb-8 md:mb-16 max-w-7xl mx-auto">
