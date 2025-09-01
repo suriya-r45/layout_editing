@@ -570,7 +570,51 @@ function ProductForm({ currency }: ProductFormProps) {
               />
             </div>
 
-            {/* Weight fields moved above prices for easier calculation */}
+            {/* Purity and Stones - moved above weight for better calculation flow */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div>
+                <Label htmlFor="purity" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Purity</Label>
+                <Select 
+                  value={formData.purity} 
+                  onValueChange={(value) => updateFormData({ purity: value })}
+                >
+                  <SelectTrigger data-testid="select-purity">
+                    <SelectValue placeholder="Select Purity" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="24K">24K Gold</SelectItem>
+                    <SelectItem value="22K">22K Gold</SelectItem>
+                    <SelectItem value="18K">18K Gold</SelectItem>
+                    <SelectItem value="14K">14K Gold</SelectItem>
+                    <SelectItem value="925">925 Silver</SelectItem>
+                    <SelectItem value="999">999 Silver</SelectItem>
+                    <SelectItem value="PT950">PT950 Platinum</SelectItem>
+                    <SelectItem value="PT900">PT900 Platinum</SelectItem>
+                    <SelectItem value="VS1">VS1 Diamond</SelectItem>
+                    <SelectItem value="VS2">VS2 Diamond</SelectItem>
+                    <SelectItem value="VVS1">VVS1 Diamond</SelectItem>
+                    <SelectItem value="VVS2">VVS2 Diamond</SelectItem>
+                    <SelectItem value="FL">FL (Flawless) Diamond</SelectItem>
+                    <SelectItem value="IF">IF (Internally Flawless) Diamond</SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-blue-600 mt-1">Select purity for automatic price calculation</p>
+              </div>
+              
+              <div>
+                <Label htmlFor="stones" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Stones/Gems</Label>
+                <Input
+                  id="stones"
+                  value={formData.stones}
+                  onChange={(e) => setFormData({ ...formData, stones: e.target.value })}
+                  placeholder="None, Diamond, Ruby, etc."
+                  data-testid="input-stones"
+                  className="bg-white"
+                />
+              </div>
+            </div>
+
+            {/* Weight fields - for automatic price calculation */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="grossWeight" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gross Weight (g)</Label>
@@ -639,46 +683,6 @@ function ProductForm({ currency }: ProductFormProps) {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="purity" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Purity</Label>
-                <Select 
-                  value={formData.purity} 
-                  onValueChange={(value) => updateFormData({ purity: value })}
-                >
-                  <SelectTrigger data-testid="select-purity">
-                    <SelectValue placeholder="Select Purity" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="24K">24K Gold</SelectItem>
-                    <SelectItem value="22K">22K Gold</SelectItem>
-                    <SelectItem value="18K">18K Gold</SelectItem>
-                    <SelectItem value="14K">14K Gold</SelectItem>
-                    <SelectItem value="925">925 Silver</SelectItem>
-                    <SelectItem value="999">999 Silver</SelectItem>
-                    <SelectItem value="PT950">PT950 Platinum</SelectItem>
-                    <SelectItem value="PT900">PT900 Platinum</SelectItem>
-                    <SelectItem value="VS1">VS1 Diamond</SelectItem>
-                    <SelectItem value="VS2">VS2 Diamond</SelectItem>
-                    <SelectItem value="VVS1">VVS1 Diamond</SelectItem>
-                    <SelectItem value="VVS2">VVS2 Diamond</SelectItem>
-                    <SelectItem value="FL">FL (Flawless) Diamond</SelectItem>
-                    <SelectItem value="IF">IF (Internally Flawless) Diamond</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              
-              <div>
-                <Label htmlFor="stones" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Stones/Gems</Label>
-                <Input
-                  id="stones"
-                  value={formData.stones}
-                  onChange={(e) => setFormData({ ...formData, stones: e.target.value })}
-                  placeholder="None, Diamond, Ruby, etc."
-                  data-testid="input-stones"
-                />
-              </div>
-            </div>
 
 
             <div>
