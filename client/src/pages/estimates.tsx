@@ -6,11 +6,22 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calculator, FileText, Plus, List, ArrowLeft } from "lucide-react";
 import { useLocation } from "wouter";
+import { useAuth } from "@/lib/auth";
 
 export function EstimatesPage() {
   const [activeTab, setActiveTab] = useState("list");
   const [location, setLocation] = useLocation();
+  const { user, isAdmin } = useAuth();
   
+  // Check authentication and redirect if not admin
+  useEffect(() => {
+    if (user && !isAdmin) {
+      setLocation('/');
+    } else if (!user) {
+      setLocation('/login');
+    }
+  }, [user, isAdmin, setLocation]);
+
   // Handle URL tab parameter
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -19,6 +30,11 @@ export function EstimatesPage() {
       setActiveTab(tabParam);
     }
   }, [location]);
+
+  // Show loading or nothing while checking authentication
+  if (!user || !isAdmin) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen py-8" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
