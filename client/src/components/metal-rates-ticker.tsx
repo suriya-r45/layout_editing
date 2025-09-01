@@ -23,15 +23,16 @@ export function MetalRatesTicker() {
     
     // Helper function to format rate
     const formatRate = (rate: MetalRate) => {
-      const countryFlag = rate.market === 'INDIA' ? '🇮🇳 IN' : '🇧🇭 BH';
+      const countryFlag = rate.market === 'INDIA' ? '🇮🇳' : '🇧🇭';
+      const countryName = rate.market === 'INDIA' ? 'INDIA' : 'BAHRAIN';
       const currency = rate.market === 'INDIA' ? '₹' : 'BD';
       const price = parseFloat(rate.market === 'INDIA' ? rate.pricePerGramInr : rate.pricePerGramBhd);
       const decimals = rate.market === 'INDIA' ? 0 : 3;
       
       if (rate.metal === 'GOLD') {
-        return `${countryFlag} Gold ${rate.purity}: ${currency} ${price.toFixed(decimals)}/g`;
+        return `${countryFlag} ${countryName} Gold ${rate.purity}: ${currency} ${price.toFixed(decimals)}/g`;
       } else if (rate.metal === 'SILVER') {
-        return `${countryFlag} Silver 925: ${currency} ${price.toFixed(decimals)}/g`;
+        return `${countryFlag} ${countryName} Silver 925: ${currency} ${price.toFixed(decimals)}/g`;
       }
       return null;
     };
@@ -87,15 +88,31 @@ export function MetalRatesTicker() {
           }
         `}
       </style>
-      <div className="bg-gradient-to-r from-yellow-600 via-amber-600 to-orange-600 text-white py-2 overflow-hidden relative shadow-lg border-b-2 border-amber-300">
+      <div className="bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 text-gray-900 py-4 overflow-hidden relative shadow-xl border-b-2 border-amber-300">
         <div className="ticker-scroll whitespace-nowrap">
           <div className="inline-flex items-center space-x-8">
             {/* Duplicate the rates to create seamless loop */}
-            {[...rates, ...rates].map((rate, index) => (
-              <span key={index} className="text-sm font-medium">
-                {rate}
-              </span>
-            ))}
+            {[...rates, ...rates].map((rate, index) => {
+              const isIndia = rate.includes('INDIA');
+              const isBahrain = rate.includes('BAHRAIN');
+              return (
+                <span key={index} className="text-sm font-bold px-5 py-2 bg-amber-600/30 rounded-full border-2 border-amber-200/60 flex items-center gap-2 shadow-xl shadow-amber-500/40 backdrop-blur-sm text-gray-900">
+                  {isIndia && (
+                    <span className="inline-flex items-center gap-1">
+                      <span className="text-base">🇮🇳</span>
+                      <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded-md font-bold shadow-lg">IN</span>
+                    </span>
+                  )}
+                  {isBahrain && (
+                    <span className="inline-flex items-center gap-1">
+                      <span className="text-base">🇧🇭</span>
+                      <span className="text-xs bg-red-600 text-white px-2 py-1 rounded-md font-bold shadow-lg">BH</span>
+                    </span>
+                  )}
+                  <span>{rate.replace('🇮🇳 INDIA', '').replace('🇧🇭 BAHRAIN', '').trim()}</span>
+                </span>
+              );
+            })}
           </div>
         </div>
       </div>
