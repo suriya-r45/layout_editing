@@ -83,6 +83,12 @@ export function MetalRatesTicker() {
             animation: scroll-ticker 20s linear infinite;
           }
           
+          @media (max-width: 768px) {
+            .ticker-scroll {
+              animation: scroll-ticker 12s linear infinite;
+            }
+          }
+          
           .ticker-scroll:hover {
             animation-play-state: paused;
           }
