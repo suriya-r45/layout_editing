@@ -12,6 +12,7 @@ import Stripe from "stripe";
 import { MetalRatesService } from "./services/testmetalRatesService.js";
 import twilio from "twilio";
 import { generateProductCode, generateBarcode, generateQRCode, ProductBarcodeData } from "./utils/barcode";
+import { recalculateAllMetalBasedProducts } from "./utils/pricing.js";
 import sharp from "sharp";
 
 // Initialize Stripe only if key is provided
@@ -1452,11 +1453,20 @@ Premium quality, timeless beauty.`;
 
       await Promise.all(updatePromises);
 
+      // Trigger product price recalculation after rate updates
+      console.log("🔄 Triggering product price recalculation...");
+      try {
+        const recalcResult = await recalculateAllMetalBasedProducts();
+        console.log(`✅ Product prices updated: ${recalcResult.updated} products, ${recalcResult.errors} errors`);
+      } catch (error) {
+        console.error("❌ Error recalculating product prices:", error);
+      }
+
       // Get updated rates to return
       const updatedRates = await MetalRatesService.getLatestRates();
       
       res.json({ 
-        message: "Metal rates updated manually", 
+        message: "Metal rates updated manually and product prices recalculated", 
         updatesCount: updatePromises.length,
         rates: updatedRates
       });

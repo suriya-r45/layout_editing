@@ -215,7 +215,8 @@ function ProductForm({ currency }: ProductFormProps) {
     purity: '22K',
     stones: 'None',
     stock: '',
-    isNewArrival: false
+    isNewArrival: false,
+    isMetalPriceBased: false
   });
 
   // Helper function to determine metalType from material
@@ -358,7 +359,8 @@ function ProductForm({ currency }: ProductFormProps) {
       purity: '22K',
       stones: 'None',
       stock: '',
-      isNewArrival: false
+      isNewArrival: false,
+      isMetalPriceBased: false
     });
     setSelectedFiles([]);
     setEditingProduct(null);
@@ -608,16 +610,30 @@ function ProductForm({ currency }: ProductFormProps) {
               />
             </div>
 
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="isNewArrival"
-                checked={formData.isNewArrival === true}
-                onCheckedChange={(checked) => setFormData({ ...formData, isNewArrival: checked === true })}
-                data-testid="checkbox-new-arrival"
-              />
-              <Label htmlFor="isNewArrival" className="text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                Mark as New Arrival (will appear in New Arrivals section)
-              </Label>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="isNewArrival"
+                  checked={formData.isNewArrival === true}
+                  onCheckedChange={(checked) => setFormData({ ...formData, isNewArrival: checked === true })}
+                  data-testid="checkbox-new-arrival"
+                />
+                <Label htmlFor="isNewArrival" className="text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                  Mark as New Arrival (will appear in New Arrivals section)
+                </Label>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="isMetalPriceBased"
+                  checked={formData.isMetalPriceBased === true}
+                  onCheckedChange={(checked) => setFormData({ ...formData, isMetalPriceBased: checked === true })}
+                  data-testid="checkbox-metal-price-based"
+                />
+                <Label htmlFor="isMetalPriceBased" className="text-sm font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                  Calculate price based on current metal rates (weight-based pricing)
+                </Label>
+              </div>
             </div>
 
             <div>
