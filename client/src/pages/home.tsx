@@ -787,86 +787,135 @@ export default function Home() {
           );
         }
 
-        // Festival layout rendering - Full page banner design
+        // Festival layout rendering - Elegant banner with product showcase
         if (section.layoutType === 'festival') {
           return (
             <section 
               key={section.id} 
               className="w-full relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #B19CD9 0%, #C8A9DD 25%, #DEB4E2 50%, #E8BFE8 75%, #F0CAF0 100%)',
+              }}
             >
-              {section.festivalImage ? (
-                <div className="relative w-full">
-                  <div 
-                    className="h-[75vh] sm:h-[80vh] md:h-[85vh] lg:h-[90vh] relative w-full"
-                    style={{
-                      backgroundImage: `url(${section.festivalImage})`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center 40%',
-                      backgroundRepeat: 'no-repeat'
-                    }}
-                  >
-                    {/* Dark overlay for better text readability */}
-                    <div className="absolute inset-0 bg-black/40"></div>
+              <div className="relative w-full min-h-[400px] md:min-h-[500px]">
+                <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
                     
-                    {/* Content overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center text-white px-4 md:px-8 max-w-4xl mx-auto">
+                    {/* Left side - Text content with jewelry showcase */}
+                    <div className="relative z-10">
+                      {/* Festival Image Background (if provided) */}
+                      {section.festivalImage && (
+                        <div className="absolute -top-8 -left-8 w-80 h-80 md:w-96 md:h-96 opacity-30">
+                          <img
+                            src={section.festivalImage}
+                            alt="Festival Background"
+                            className="w-full h-full object-contain filter blur-sm"
+                          />
+                        </div>
+                      )}
+                      
+                      <div className="relative z-20 text-left">
+                        {/* Main Heading */}
                         <h2 
-                          className="text-4xl md:text-6xl lg:text-8xl font-light mb-6 md:mb-8 leading-tight"
+                          className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-800 mb-3 leading-tight tracking-wide"
                           style={{ fontFamily: 'Cormorant Garamond, serif' }}
                         >
                           {section.title}
                         </h2>
+                        
+                        {/* Italic subtitle */}
                         {section.subtitle && (
                           <p 
-                            className="text-xl md:text-3xl lg:text-4xl text-white/90 italic mb-6 md:mb-8 font-light"
+                            className="text-2xl md:text-3xl text-gray-700 italic mb-6 font-light"
                             style={{ fontFamily: 'Cormorant Garamond, serif' }}
                           >
                             {section.subtitle}
                           </p>
                         )}
+                        
+                        {/* Description */}
                         {section.description && (
-                          <p className="text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed mb-8 md:mb-12 max-w-3xl mx-auto">
+                          <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8 max-w-lg">
                             {section.description}
                           </p>
                         )}
-                        
-                        {/* Call to Action Button */}
+                      </div>
+                    </div>
+                    
+                    {/* Right side - Product showcase grid */}
+                    <div className="relative z-10">
+                      {section.items.length > 0 ? (
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                          {section.items.slice(0, 6).map((item, index) => (
+                            <div 
+                              key={item.id}
+                              className="group cursor-pointer transform transition-all duration-300 hover:scale-105"
+                              onClick={() => handleViewAllClick(item.product.category)}
+                            >
+                              <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-3 md:p-4 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50">
+                                {/* Product Image */}
+                                <div className="aspect-square mb-3 overflow-hidden rounded-xl bg-gradient-to-br from-purple-50 to-pink-50">
+                                  <img
+                                    src={item.product.images?.[0] || ringsImage}
+                                    alt={item.product.name}
+                                    className="w-full h-full object-contain transform transition-all duration-500 group-hover:scale-110"
+                                  />
+                                </div>
+                                
+                                {/* Product Info */}
+                                <div className="text-center">
+                                  <div className="flex items-center justify-center gap-1 mb-2">
+                                    <span className="text-amber-500 text-lg">₹</span>
+                                    <span className="text-lg md:text-xl font-semibold text-gray-800">
+                                      {item.product.priceInr?.toLocaleString()}
+                                    </span>
+                                  </div>
+                                  <p className="text-xs md:text-sm text-gray-600 font-medium line-clamp-2">
+                                    {item.product.name}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+                          {[...Array(6)].map((_, index) => (
+                            <div key={index} className="bg-white/90 backdrop-blur-sm rounded-2xl p-3 md:p-4 shadow-lg border border-white/50">
+                              <div className="aspect-square mb-3 overflow-hidden rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center">
+                                <div className="text-gray-400 text-xs">No Image</div>
+                              </div>
+                              <div className="text-center">
+                                <div className="h-6 bg-gray-200 rounded mb-2"></div>
+                                <div className="h-4 bg-gray-100 rounded"></div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      
+                      {/* Navigation Dots */}
+                      <div className="flex justify-center mt-6 gap-2">
+                        <div className="w-3 h-3 rounded-full bg-purple-600"></div>
+                        <div className="w-3 h-3 rounded-full bg-purple-300"></div>
+                        <div className="w-3 h-3 rounded-full bg-purple-300"></div>
+                      </div>
+                      
+                      {/* Call to Action Button */}
+                      <div className="text-center mt-6">
                         <Button 
-                          className="bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border-2 border-white/40 hover:border-white/60 px-8 md:px-12 py-3 md:py-4 rounded-full text-lg md:text-xl font-medium transition-all duration-300 hover:scale-105 shadow-lg" 
+                          className="bg-purple-700 hover:bg-purple-800 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-all duration-300 hover:scale-105 shadow-lg" 
                           style={{ fontFamily: 'Cormorant Garamond, serif' }}
                           onClick={() => window.location.href = '/collections'}
                         >
-                          Explore Collection →
+                          View Full Collection
                         </Button>
                       </div>
                     </div>
                   </div>
                 </div>
-              ) : (
-                <div 
-                  className="h-[60vh] md:h-[70vh] lg:h-[80vh] w-full flex flex-col justify-center items-center text-center px-4 md:px-8"
-                  style={{ 
-                    background: 'linear-gradient(135deg, #8B4513 0%, #A0522D 30%, #CD853F 70%, #DEB887 100%)'
-                  }}
-                >
-                  <h2 
-                    className="text-4xl md:text-6xl lg:text-8xl font-light text-white mb-6 md:mb-8 leading-tight"
-                    style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                  >
-                    {section.title}
-                  </h2>
-                  {section.subtitle && (
-                    <p 
-                      className="text-xl md:text-3xl lg:text-4xl text-white/90 italic font-light"
-                      style={{ fontFamily: 'Cormorant Garamond, serif' }}
-                    >
-                      {section.subtitle}
-                    </p>
-                  )}
-                </div>
-              )}
+              </div>
             </section>
           );
         }
