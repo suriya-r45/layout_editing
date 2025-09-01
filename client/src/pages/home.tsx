@@ -41,6 +41,77 @@ import bridalCollectionsImage from '@assets/bridal_new.png';
 import newArrivalsBackground from '@assets/image_1756713608055.png';
 import newArrivalsBackgroundNew from '@assets/new_arrivals_bg.png';
 
+// Separate component for auto-scrolling categories to avoid React hooks rule violations
+function CategoriesScrollSection({ categories, handleViewAllClick }: { categories: any[]; handleViewAllClick: (key: string) => void }) {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const autoScroll = () => {
+      const currentScrollLeft = scrollContainer.scrollLeft;
+      const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      
+      if (currentScrollLeft >= maxScrollLeft) {
+        // Reset to start if at the end
+        scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Scroll right by 200px
+        scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
+      }
+    };
+
+    const interval = setInterval(autoScroll, 3000); // Auto-scroll every 3 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+      <div className="px-2 md:px-6 lg:px-8">
+        {/* Horizontally Scrollable Categories */}
+        <div 
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto scrollbar-hide gap-2 md:gap-4 lg:gap-6 pb-2"
+          style={{ 
+            scrollbarWidth: 'none', 
+            msOverflowStyle: 'none',
+            scrollBehavior: 'smooth'
+          }}
+        >
+          {categories.map((category, index) => (
+            <div 
+              key={category.key}
+              className="flex-shrink-0 flex flex-col items-center cursor-pointer hover:transform hover:scale-105 transition-all duration-200"
+              onClick={() => handleViewAllClick(category.key)}
+              data-testid={`category-card-${category.key}`}
+            >
+              {/* Category Image */}
+              <div 
+                className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full shadow-lg overflow-hidden mb-1.5 md:mb-2 bg-gradient-to-br from-white to-gray-50"
+                style={{
+                  backgroundImage: `url(${category.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              />
+              
+              {/* Category Name */}
+              <h3 
+                className="text-[9px] md:text-xs lg:text-sm font-light text-center leading-tight text-gray-700 px-0.5 w-20 md:w-24 lg:w-28 min-h-[28px] md:min-h-[32px] flex items-center justify-center"
+              >
+                {category.name}
+              </h3>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // Separate component for New Arrivals layout to avoid React hooks rule violations
 function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectionWithItems; selectedCurrency: Currency }) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -316,46 +387,7 @@ export default function Home() {
       </section>
 
       {/* Categories Horizontal Scroll */}
-      <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
-        <div className="px-2 md:px-6 lg:px-8">
-          {/* Horizontally Scrollable Categories */}
-          <div 
-            className="flex overflow-x-auto scrollbar-hide gap-2 md:gap-4 lg:gap-6 pb-2"
-            style={{ 
-              scrollbarWidth: 'none', 
-              msOverflowStyle: 'none',
-              scrollBehavior: 'smooth'
-            }}
-          >
-            {categories.map((category, index) => (
-              <div 
-                key={category.key}
-                className="flex-shrink-0 flex flex-col items-center cursor-pointer hover:transform hover:scale-105 transition-all duration-200"
-                onClick={() => handleViewAllClick(category.key)}
-                data-testid={`category-card-${category.key}`}
-              >
-                {/* Category Image */}
-                <div 
-                  className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full shadow-lg overflow-hidden mb-1.5 md:mb-2 bg-gradient-to-br from-white to-gray-50"
-                  style={{
-                    backgroundImage: `url(${category.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    backgroundRepeat: 'no-repeat'
-                  }}
-                />
-                
-                {/* Category Name */}
-                <h3 
-                  className="text-[9px] md:text-xs lg:text-sm font-light text-center leading-tight text-gray-700 px-0.5 w-20 md:w-24 lg:w-28 min-h-[28px] md:min-h-[32px] flex items-center justify-center"
-                >
-                  {category.name}
-                </h3>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <CategoriesScrollSection categories={categories} handleViewAllClick={handleViewAllClick} />
 
       {/* Section Divider */}
       <div className="w-full border-t border-gray-200 my-8"></div>
@@ -1434,8 +1466,8 @@ export default function Home() {
       {/* Section Divider */}
       {homeSections.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
 
-      {/* New Arrivals */}
-      {newArrivalProducts.length > 0 && (
+      {/* New Arrivals - Only show if no custom new-arrivals layout exists */}
+      {newArrivalProducts.length > 0 && !homeSections.some(section => section.layoutType === 'new-arrivals') && (
         <section className="py-12" data-testid="section-new-arrivals" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
             <div className="text-center mb-10">
