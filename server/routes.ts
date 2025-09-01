@@ -1338,7 +1338,8 @@ Premium quality, timeless beauty.`;
   // Force update metal rates (admin only)
   app.post("/api/metal-rates/update", authenticateToken, requireAdmin, async (req, res) => {
     try {
-      await MetalRatesService.fetchLiveRates();
+      // Metal rates are now static - remove this call
+      // await MetalRatesService.fetchLiveRates();
       const rates = await MetalRatesService.getLatestRates();
       
       res.json({ 
