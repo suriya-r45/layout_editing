@@ -99,14 +99,14 @@ export function MetalRatesTicker() {
                 <span key={index} className="text-sm font-bold px-5 py-2 bg-green-800/50 rounded-full border-2 border-teal-200/50 flex items-center gap-3 shadow-xl shadow-green-500/30 backdrop-blur-sm text-white">
                   {isIndia && (
                     <span className="flex items-center gap-2">
-                      <div className="w-4 h-3 bg-gradient-to-b from-orange-500 via-white to-green-600 border border-gray-400 rounded-sm shadow-md"></div>
-                      <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded font-bold">IN</span>
+                      <div className="w-6 h-4 bg-gradient-to-b from-orange-500 via-white to-green-600 border-2 border-gray-600 rounded shadow-lg"></div>
+                      <span className="text-xs bg-orange-600 text-white px-2 py-1 rounded-md font-bold shadow-md">INDIA</span>
                     </span>
                   )}
                   {isBahrain && (
                     <span className="flex items-center gap-2">
-                      <div className="w-4 h-3 bg-gradient-to-r from-red-600 via-white to-red-600 border border-gray-400 rounded-sm shadow-md"></div>
-                      <span className="text-xs bg-red-600 text-white px-2 py-1 rounded font-bold">BH</span>
+                      <div className="w-6 h-4 bg-gradient-to-r from-red-600 via-white to-red-600 border-2 border-gray-600 rounded shadow-lg"></div>
+                      <span className="text-xs bg-red-600 text-white px-2 py-1 rounded-md font-bold shadow-md">BAHRAIN</span>
                     </span>
                   )}
                   <span>{rate.replace('🇮🇳 INDIA', '').replace('🇧🇭 BAHRAIN', '').trim()}</span>
