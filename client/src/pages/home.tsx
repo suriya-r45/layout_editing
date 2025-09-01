@@ -1072,7 +1072,7 @@ export default function Home() {
           );
         }
 
-        // Festival layout rendering - Elegant banner with product showcase
+        // Festival layout rendering - Full background with overlay content
         if (section.layoutType === 'festival') {
           return (
             <section 
@@ -1082,7 +1082,7 @@ export default function Home() {
             >
               {section.festivalImage ? (
                 <div 
-                  className="relative w-full min-h-[400px] md:min-h-[500px]"
+                  className="relative w-full min-h-[600px] md:min-h-[700px]"
                   style={{
                     backgroundImage: `url("${section.festivalImage}")`,
                     backgroundSize: 'cover',
@@ -1091,11 +1091,13 @@ export default function Home() {
                   }}
                 >
                   {/* Gradient overlay for readability */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-purple-900/60"></div>
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
                   
-                  {/* Caption at top */}
-                  <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 pt-4 md:pt-6">
-                    <div className="text-center">
+                  {/* Full content container */}
+                  <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 h-full flex flex-col">
+                    
+                    {/* Header content */}
+                    <div className="text-center mb-8">
                       {/* Main Heading */}
                       <h2 
                         className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-3 leading-tight tracking-wide drop-shadow-lg"
@@ -1121,10 +1123,31 @@ export default function Home() {
                         </p>
                       )}
                     </div>
+                    
+                    {/* Products section with festival background */}
+                    {section.items && section.items.length > 0 && (
+                      <div className="flex-1 flex items-center justify-center">
+                        <div className="w-full max-w-5xl">
+                          <FestivalScrollSection 
+                            items={section.items} 
+                            selectedCurrency={selectedCurrency} 
+                            handleViewAllClick={handleViewAllClick} 
+                          />
+                          
+                          {/* Call to Action Button */}
+                          <div className="text-center mt-8">
+                            <Button 
+                              className="bg-white/90 hover:bg-white text-gray-900 px-8 py-3 rounded-lg text-base font-medium transition-all duration-300 hover:scale-105 shadow-lg backdrop-blur-sm" 
+                              style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                              onClick={() => window.location.href = '/collections'}
+                            >
+                              View Full Collection
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  
-                  {/* Spacer to push content down */}
-                  <div className="flex-1"></div>
                 </div>
               ) : (
                 <div 
@@ -1188,8 +1211,8 @@ export default function Home() {
                 </div>
               )}
               
-              {/* Products section after festival banner */}
-              {section.items && section.items.length > 0 && (
+              {/* Only show products section if no festival image (fallback) */}
+              {!section.festivalImage && section.items && section.items.length > 0 && (
                 <section className="py-8 bg-white" data-testid={`${section.title.toLowerCase().replace(/\s+/g, '-')}-products`}>
                   <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
                     <FestivalScrollSection 
