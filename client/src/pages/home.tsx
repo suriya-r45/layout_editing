@@ -78,8 +78,8 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
         backgroundRepeat: 'no-repeat'
       }}
     >
-      {/* Background Overlay */}
-      <div className="absolute inset-0 bg-black/40"></div>
+      {/* Background Overlay - Lighter for better background visibility */}
+      <div className="absolute inset-0 bg-black/20"></div>
       
       {/* Content Container */}
       <div className="relative max-w-7xl mx-auto px-4 md:px-6">
@@ -105,13 +105,20 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
             }}
           >
             {section.items.map((item, index) => (
-              <div key={item.id} className="flex-none w-72 md:w-80 lg:w-96">
-                <div className="bg-white/95 backdrop-blur-sm rounded-2xl shadow-2xl p-6 transition-all duration-300 hover:shadow-3xl hover:-translate-y-2 hover:bg-white border border-white/20">
-                  <ProductCard
-                    product={item.product}
-                    currency={selectedCurrency}
-                    showActions={true}
-                  />
+              <div key={item.id} className="flex-none w-48 md:w-56">
+                <div className="bg-white/90 backdrop-blur-sm rounded-xl shadow-lg p-3 transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border border-white/30">
+                  {/* Product Image */}
+                  <div className="aspect-square mb-2 overflow-hidden rounded-lg">
+                    <img
+                      src={item.product.imageUrl || '/placeholder-product.png'}
+                      alt={item.product.name}
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                  </div>
+                  {/* Product Name */}
+                  <h3 className="text-sm font-medium text-gray-800 text-center leading-tight line-clamp-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {item.product.name}
+                  </h3>
                 </div>
               </div>
             ))}
