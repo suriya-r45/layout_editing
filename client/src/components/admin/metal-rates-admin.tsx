@@ -432,15 +432,16 @@ export function MetalRatesAdmin() {
                           </Badge>
                         </div>
                         <div className="space-y-1">
-                          <div className="text-sm font-medium">
-                            INR: {formatPrice(rate.pricePerGramInr, 'INR')}
-                          </div>
-                          <div className="text-sm font-medium">
-                            BHD: {formatPrice(rate.pricePerGramBhd, 'BHD')}
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            USD: {formatPrice(rate.pricePerGramUsd, 'USD')}
-                          </div>
+                          {rate.market === 'INDIA' && (
+                            <div className="text-sm font-medium">
+                              INR: {formatPrice(rate.pricePerGramInr, 'INR')}
+                            </div>
+                          )}
+                          {rate.market === 'BAHRAIN' && (
+                            <div className="text-sm font-medium">
+                              BHD: {formatPrice(rate.pricePerGramBhd, 'BHD')}
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))}
