@@ -241,9 +241,18 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
     >
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-            {section.title || 'New Arrivals'}
-          </h2>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+              {section.title || 'New Arrivals'}
+            </h2>
+            <Button 
+              className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200 mt-4 sm:mt-0" 
+              style={{ fontFamily: 'Cormorant Garamond, serif' }}
+              onClick={() => window.location.href = '/collections?category=new-arrivals'}
+            >
+              View All New Arrivals <ArrowRight className="ml-2 h-3 w-3" />
+            </Button>
+          </div>
           <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
             {section.description || 'New Arrivals Dropping Daily, Monday through Friday. Explore the Latest Launches Now!'}
           </p>
@@ -259,15 +268,6 @@ function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectio
           />
         </div>
         
-        <div className="text-center">
-          <Button 
-            className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
-            style={{ fontFamily: 'Cormorant Garamond, serif' }}
-            onClick={() => window.location.href = '/collections?category=new-arrivals'}
-          >
-            View All New Arrivals <ArrowRight className="ml-2 h-3 w-3" />
-          </Button>
-        </div>
       </div>
     </section>
   );
