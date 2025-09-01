@@ -1878,20 +1878,35 @@ For any queries, please contact us.`;
         return res.status(400).json({ error: 'No file uploaded' });
       }
 
-      const filename = `festival-${Date.now()}-${req.file.originalname.split('.')[0]}.webp`;
+      // Try to preserve original extension if it's not webp
+      const originalExt = path.extname(req.file.originalname).toLowerCase();
+      const useWebp = ['.jpg', '.jpeg', '.png'].includes(originalExt);
+      const outputExt = useWebp ? '.webp' : originalExt;
+      
+      const filename = `festival-${Date.now()}-${req.file.originalname.split('.')[0]}${outputExt}`;
       const filepath = path.join(uploadsDir, filename);
       
-      // Process image with Sharp to maintain quality and optimize size
-      await sharp(req.file.path)
-        .resize(1920, 1080, { 
-          fit: 'inside', 
-          withoutEnlargement: true 
-        })
-        .webp({ 
-          quality: 90, 
-          effort: 4 
-        })
-        .toFile(filepath);
+      try {
+        // Try Sharp processing first
+        let sharpInstance = sharp(req.file.path)
+          .resize(1920, 1080, { 
+            fit: 'inside', 
+            withoutEnlargement: true 
+          });
+        
+        if (useWebp) {
+          sharpInstance = sharpInstance.webp({ 
+            quality: 90, 
+            effort: 4 
+          });
+        }
+        
+        await sharpInstance.toFile(filepath);
+      } catch (sharpError) {
+        console.warn('Sharp processing failed, using direct file copy:', sharpError);
+        // Fallback: just copy the file if Sharp fails
+        await fs.promises.copyFile(req.file.path, filepath);
+      }
       
       // Clean up temp file
       await fs.promises.unlink(req.file.path);
