@@ -1044,58 +1044,59 @@ export default function Home() {
           return <NewArrivalsSection key={section.id} section={section} selectedCurrency={selectedCurrency} />;
         }
 
-        // Magazine layout rendering - Premium Editorial Design
+        // Magazine layout rendering - Luxury Editorial Design
         if (section.layoutType === 'magazine') {
           return (
             <section 
               key={section.id} 
-              className="relative overflow-hidden bg-zinc-50" 
+              className="relative bg-gradient-to-br from-neutral-50 via-white to-stone-50/80 overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
             >
-              {/* Sophisticated Background Elements */}
-              <div className="absolute inset-0">
-                <div className="absolute top-0 left-0 w-full h-full opacity-5">
-                  <div className="absolute top-20 left-16 w-40 h-40 border-2 border-black transform rotate-12"></div>
-                  <div className="absolute bottom-32 right-24 w-28 h-28 border border-black transform -rotate-45"></div>
-                  <div className="absolute top-1/2 left-1/3 w-20 h-20 border-2 border-black transform rotate-45"></div>
-                  <div className="absolute top-1/4 right-1/4 w-32 h-32 border border-black transform -rotate-12"></div>
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-zinc-100"></div>
+              {/* Sophisticated Background Pattern */}
+              <div className="absolute inset-0 opacity-[0.02]">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `radial-gradient(circle at 25px 25px, #000 1px, transparent 0), radial-gradient(circle at 75px 75px, #000 1px, transparent 0)`,
+                  backgroundSize: '100px 100px'
+                }}></div>
               </div>
 
               <div className="relative z-10">
-                {/* Premium Magazine Header */}
-                <div className="py-20 md:py-28">
+                {/* Luxury Magazine Header */}
+                <div className="py-20 md:py-32">
                   <div className="max-w-7xl mx-auto px-6 md:px-8">
-                    {/* Magazine Identity */}
-                    <div className="text-center mb-16">
-                      <div className="flex items-center justify-center mb-8">
-                        <div className="flex-1 h-px bg-black max-w-20"></div>
-                        <div className="mx-8 px-6 py-3 border-2 border-black bg-white">
-                          <span className="text-xs font-black tracking-[0.2em] text-black">
-                            PALANIAPPA EDITORIAL
-                          </span>
+                    <div className="text-center mb-20">
+                      {/* Elegant Brand Mark */}
+                      <div className="mb-12">
+                        <div className="relative inline-block">
+                          <div className="absolute -top-4 -left-8 w-16 h-16 border border-amber-200 rounded-full opacity-30"></div>
+                          <div className="absolute -bottom-4 -right-8 w-12 h-12 border border-amber-300 rounded-full opacity-20"></div>
+                          <div className="relative bg-white/80 backdrop-blur-sm border border-amber-100 rounded-full px-8 py-4 shadow-lg">
+                            <span className="text-xs font-semibold tracking-[0.25em] text-amber-700 uppercase">
+                              Palaniappa Exclusive
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex-1 h-px bg-black max-w-20"></div>
                       </div>
                       
-                      {/* Main Magazine Title */}
-                      <h1 className="text-6xl md:text-8xl lg:text-9xl font-extralight text-black mb-8 tracking-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
-                        {section.title}
-                      </h1>
-                      
-                      {/* Issue Details */}
-                      <div className="flex items-center justify-center gap-6 mb-8">
-                        <span className="text-sm font-bold tracking-wider text-black">VOL. {new Date().getFullYear()}</span>
-                        <div className="w-1 h-1 bg-black rounded-full"></div>
-                        <span className="text-sm font-bold tracking-wider text-black">NO. {new Date().getMonth() + 1}</span>
-                        <div className="w-1 h-1 bg-black rounded-full"></div>
-                        <span className="text-sm font-bold tracking-wider text-black">{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }).toUpperCase()}</span>
+                      {/* Dramatic Typography */}
+                      <div className="mb-8">
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-thin text-neutral-900 mb-4 tracking-tight leading-[0.85]" 
+                            style={{ fontFamily: 'Playfair Display, serif' }}>
+                          {section.title}
+                        </h1>
+                        <div className="flex items-center justify-center gap-6 mt-8">
+                          <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                          <div className="text-xs font-light tracking-[0.3em] text-neutral-500 uppercase">
+                            Editorial Collection
+                          </div>
+                          <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                        </div>
                       </div>
                       
                       {section.description && (
-                        <div className="max-w-3xl mx-auto">
-                          <p className="text-xl md:text-2xl text-zinc-700 leading-relaxed font-light italic" style={{ fontFamily: 'Playfair Display, serif' }}>
+                        <div className="max-w-4xl mx-auto">
+                          <p className="text-xl md:text-2xl lg:text-3xl text-neutral-600 leading-relaxed font-light italic tracking-wide"
+                             style={{ fontFamily: 'Playfair Display, serif' }}>
                             "{section.description}"
                           </p>
                         </div>
@@ -1104,135 +1105,128 @@ export default function Home() {
                   </div>
                 </div>
                 
-                {/* Dynamic Magazine Grid */}
-                <div className="max-w-7xl mx-auto px-6 md:px-8 pb-20">
-                  <div className="grid grid-cols-12 gap-6 md:gap-8">
-                    {section.items.map((item, index) => {
-                      // Featured Cover Story (First Item)
-                      if (index === 0) {
-                        return (
-                          <div key={item.id} className="col-span-12 lg:col-span-7 group">
-                            <div className="relative bg-white border-2 border-black shadow-2xl overflow-hidden transform transition-all duration-700 hover:scale-[1.02] hover:shadow-3xl">
-                              {/* Cover Story Badge */}
-                              <div className="absolute top-0 left-0 z-30">
-                                <div className="bg-black text-white px-6 py-3 font-black text-xs tracking-widest">
-                                  COVER STORY
-                                </div>
-                              </div>
+                {/* Luxury Editorial Grid */}
+                <div className="max-w-7xl mx-auto px-6 md:px-8 pb-24">
+                  {/* Main Feature Story */}
+                  {section.items[0] && (
+                    <div className="mb-16">
+                      <div className="relative group">
+                        {/* Hero Article */}
+                        <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 bg-white/60 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl border border-white/20">
+                          {/* Large Image Section */}
+                          <div className="lg:col-span-3 relative overflow-hidden">
+                            <div className="aspect-[4/3] lg:aspect-[3/2] relative">
+                              <ProductCard
+                                product={section.items[0].product}
+                                currency={selectedCurrency}
+                                showActions={true}
+                                customImageUrl={section.items[0].customImageUrl}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
                               
-                              {/* Featured Content Layout */}
-                              <div className="grid grid-cols-1 lg:grid-cols-5 min-h-[500px]">
-                                <div className="lg:col-span-3 relative overflow-hidden">
-                                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
-                                  <ProductCard
-                                    product={item.product}
-                                    currency={selectedCurrency}
-                                    showActions={true}
-                                    customImageUrl={item.customImageUrl}
-                                  />
-                                </div>
-                                <div className="lg:col-span-2 p-8 lg:p-10 flex flex-col justify-center bg-zinc-50">
-                                  <div className="mb-4">
-                                    <span className="text-xs font-black tracking-wider text-zinc-500 uppercase">
-                                      {item.product.category} • FEATURED
-                                    </span>
-                                  </div>
-                                  <h2 className="text-3xl md:text-4xl font-light text-black leading-tight mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
-                                    {item.product.name}
-                                  </h2>
-                                  <p className="text-zinc-600 leading-relaxed text-base mb-6">
-                                    {item.product.description || 'An exquisite piece showcasing unparalleled craftsmanship and timeless elegance from our curated collection.'}
-                                  </p>
-                                  <div className="flex items-center gap-4">
-                                    <div className="w-8 h-px bg-black"></div>
-                                    <span className="text-xs font-bold tracking-wider text-black">READ MORE</span>
-                                  </div>
+                              {/* Floating Feature Badge */}
+                              <div className="absolute top-8 left-8">
+                                <div className="bg-amber-500 text-white px-6 py-3 rounded-full shadow-lg">
+                                  <span className="text-sm font-semibold tracking-wide">COVER STORY</span>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        );
-                      }
-                      
-                      // Secondary Feature (Second Item)
-                      if (index === 1) {
-                        return (
-                          <div key={item.id} className="col-span-12 lg:col-span-5 group">
-                            <div className="bg-white border border-zinc-300 shadow-xl overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
-                              <div className="relative">
-                                <div className="absolute top-4 right-4 z-20">
-                                  <div className="bg-white border border-black px-3 py-1 text-xs font-bold tracking-wider">
-                                    SPOTLIGHT
-                                  </div>
-                                </div>
-                                <div className="h-64 overflow-hidden">
-                                  <ProductCard
-                                    product={item.product}
-                                    currency={selectedCurrency}
-                                    showActions={true}
-                                    customImageUrl={item.customImageUrl}
-                                  />
+                          
+                          {/* Content Section */}
+                          <div className="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-gradient-to-br from-white to-neutral-50/50">
+                            <div className="mb-6">
+                              <span className="text-xs font-bold tracking-[0.2em] text-amber-600 uppercase mb-2 block">
+                                {section.items[0].product.category}
+                              </span>
+                              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-light text-neutral-900 leading-tight mb-6" 
+                                  style={{ fontFamily: 'Playfair Display, serif' }}>
+                                {section.items[0].product.name}
+                              </h2>
+                            </div>
+                            
+                            <p className="text-neutral-600 leading-relaxed text-lg mb-8 font-light">
+                              {section.items[0].product.description || 'An extraordinary masterpiece that embodies the pinnacle of craftsmanship and design excellence.'}
+                            </p>
+                            
+                            <div className="space-y-6">
+                              <div className="flex items-center gap-4">
+                                <span className="text-3xl font-light text-neutral-900" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                  {selectedCurrency === 'INR' ? '₹' : 'BD'} {selectedCurrency === 'INR' ? section.items[0].product.priceInr?.toLocaleString() : Number(section.items[0].product.priceBhd)?.toFixed(3)}
+                                </span>
+                              </div>
+                              <Button 
+                                className="bg-neutral-900 hover:bg-neutral-800 text-white px-8 py-4 rounded-full font-medium tracking-wide transition-all duration-300 hover:shadow-xl group"
+                              >
+                                Discover More
+                                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Secondary Articles Grid */}
+                  {section.items.length > 1 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                      {section.items.slice(1, 4).map((item, index) => (
+                        <div key={item.id} className="group">
+                          <div className="bg-white/70 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-white/30 h-full">
+                            <div className="aspect-[4/3] relative overflow-hidden">
+                              <ProductCard
+                                product={item.product}
+                                currency={selectedCurrency}
+                                showActions={true}
+                                customImageUrl={item.customImageUrl}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                              
+                              {/* Article Number */}
+                              <div className="absolute top-4 right-4">
+                                <div className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
+                                  <span className="text-xs font-bold text-neutral-700">{index + 2}</span>
                                 </div>
                               </div>
-                              <div className="p-6 bg-gradient-to-br from-white to-zinc-50">
-                                <div className="mb-3">
-                                  <span className="text-xs font-bold tracking-wider text-zinc-500 uppercase">
-                                    {item.product.category}
-                                  </span>
-                                </div>
-                                <h3 className="text-2xl font-light text-black leading-snug mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
-                                  {item.product.name}
-                                </h3>
-                                <p className="text-zinc-600 text-sm leading-relaxed line-clamp-3">
-                                  {item.product.description || 'Discover the artistry behind this remarkable piece.'}
-                                </p>
+                            </div>
+                            
+                            <div className="p-6">
+                              <div className="mb-3">
+                                <span className="text-xs font-bold tracking-[0.15em] text-amber-600 uppercase">
+                                  {item.product.category}
+                                </span>
+                              </div>
+                              <h3 className="text-xl lg:text-2xl font-light text-neutral-900 leading-tight mb-4" 
+                                  style={{ fontFamily: 'Playfair Display, serif' }}>
+                                {item.product.name}
+                              </h3>
+                              <div className="flex items-center justify-between">
+                                <span className="text-lg font-light text-neutral-700">
+                                  {selectedCurrency === 'INR' ? '₹' : 'BD'} {selectedCurrency === 'INR' ? item.product.priceInr?.toLocaleString() : Number(item.product.priceBhd)?.toFixed(3)}
+                                </span>
+                                <Button 
+                                  variant="ghost" 
+                                  size="sm" 
+                                  className="text-amber-600 hover:bg-amber-50 hover:text-amber-700 p-2 rounded-full"
+                                >
+                                  <ArrowRight className="h-4 w-4" />
+                                </Button>
                               </div>
                             </div>
                           </div>
-                        );
-                      }
-                      
-                      // Editorial Grid Items
-                      if (index >= 2 && index <= 5) {
-                        const gridClasses = [
-                          "col-span-12 md:col-span-6 lg:col-span-4",
-                          "col-span-12 md:col-span-6 lg:col-span-4", 
-                          "col-span-12 md:col-span-6 lg:col-span-4",
-                          "col-span-12 md:col-span-6 lg:col-span-6"
-                        ];
-                        
-                        return (
-                          <div key={item.id} className={`${gridClasses[index - 2]} group`}>
-                            <div className="bg-white border border-zinc-200 shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                              <div className="relative h-48 overflow-hidden">
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
-                                <ProductCard
-                                  product={item.product}
-                                  currency={selectedCurrency}
-                                  showActions={true}
-                                  customImageUrl={item.customImageUrl}
-                                />
-                              </div>
-                              <div className="p-5">
-                                <div className="mb-2">
-                                  <span className="text-xs font-bold tracking-wider text-zinc-400 uppercase">
-                                    {item.product.category}
-                                  </span>
-                                </div>
-                                <h4 className="text-lg font-light text-black leading-snug" style={{ fontFamily: 'Playfair Display, serif' }}>
-                                  {item.product.name}
-                                </h4>
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      }
-                      
-                      // Remaining items as compact grid
-                      return (
-                        <div key={item.id} className="col-span-12 md:col-span-4 lg:col-span-3 group">
-                          <div className="bg-white border border-zinc-100 shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                            <div className="h-40 overflow-hidden">
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  
+                  {/* Additional Items Grid */}
+                  {section.items.length > 4 && (
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
+                      {section.items.slice(4).map((item, index) => (
+                        <div key={item.id} className="group">
+                          <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-neutral-100">
+                            <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-neutral-50 to-stone-100">
                               <ProductCard
                                 product={item.product}
                                 currency={selectedCurrency}
@@ -1241,37 +1235,52 @@ export default function Home() {
                               />
                             </div>
                             <div className="p-4">
-                              <span className="text-xs font-bold tracking-wider text-zinc-400 uppercase block mb-1">
+                              <span className="text-xs font-medium text-amber-600 uppercase tracking-wider block mb-2">
                                 {item.product.category}
                               </span>
-                              <h5 className="text-sm font-light text-black leading-snug" style={{ fontFamily: 'Playfair Display, serif' }}>
+                              <h5 className="text-sm font-light text-neutral-900 leading-snug line-clamp-2">
                                 {item.product.name}
                               </h5>
                             </div>
                           </div>
                         </div>
-                      );
-                    })}
-                  </div>
+                      ))}
+                    </div>
+                  )}
                   
-                  {/* Magazine Closing */}
+                  {/* Luxury Editorial Footer */}
                   {section.items.length > 0 && (
-                    <div className="mt-24 text-center">
-                      <div className="border-t-2 border-black pt-16">
-                        <div className="mb-8">
-                          <h3 className="text-2xl font-light text-black mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-                            Continue Reading
-                          </h3>
-                          <p className="text-zinc-600 text-sm tracking-wider uppercase">
-                            EXPLORE OUR COMPLETE EDITORIAL COLLECTION
+                    <div className="relative mt-24 pt-16">
+                      {/* Elegant Divider */}
+                      <div className="flex items-center justify-center mb-16">
+                        <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                        <div className="mx-8">
+                          <div className="w-3 h-3 bg-amber-400 rounded-full"></div>
+                        </div>
+                        <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                      </div>
+                      
+                      {/* Closing Statement */}
+                      <div className="text-center max-w-3xl mx-auto mb-12">
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-neutral-900 mb-6 leading-tight" 
+                            style={{ fontFamily: 'Playfair Display, serif' }}>
+                          The Story Continues
+                        </h3>
+                        <p className="text-xl md:text-2xl text-neutral-600 font-light leading-relaxed italic mb-8">
+                          "Each piece tells a story of timeless elegance and exceptional craftsmanship"
+                        </p>
+                        <div className="space-y-4">
+                          <Button 
+                            className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-12 py-4 text-base font-medium rounded-full transition-all duration-300 hover:shadow-2xl hover:scale-105 transform" 
+                            onClick={() => window.location.href = '/collections'}
+                          >
+                            Explore Full Collection
+                            <ArrowRight className="ml-3 h-5 w-5" />
+                          </Button>
+                          <p className="text-sm text-neutral-500 tracking-wide">
+                            DISCOVER MORE EXTRAORDINARY PIECES
                           </p>
                         </div>
-                        <Button 
-                          className="bg-black hover:bg-zinc-800 text-white px-12 py-4 text-sm font-bold uppercase tracking-widest transition-all duration-300 hover:scale-105 border-2 border-black hover:border-zinc-800" 
-                          onClick={() => window.location.href = '/collections'}
-                        >
-                          VIEW ALL STORIES
-                        </Button>
                       </div>
                     </div>
                   )}
