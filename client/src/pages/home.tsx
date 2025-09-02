@@ -792,8 +792,8 @@ export default function Home() {
                   )}
                 </div>
                 
-                {/* Revolutionary Asymmetric Mosaic Grid */}
-                <div className="grid grid-cols-12 grid-rows-4 gap-4 h-[800px] md:h-[900px]">
+                {/* Enhanced Symmetric Mosaic Grid */}
+                <div className="grid grid-cols-12 gap-6 h-[800px] md:h-[900px]">
                   
                   {/* Hero Block - Clean Featured Item */}
                   <div 
@@ -836,46 +836,85 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  {/* Right Column - Enhanced Split Blocks */}
-                  <div className="col-span-12 md:col-span-5 row-span-1 relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500" onClick={() => handleViewAllClick('necklaces')}>
-                    {/* Background image with overlay */}
+                  {/* Necklaces Section - Redesigned to Match Bangles Style */}
+                  <div className="col-span-12 md:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('necklaces')}>
+                    {/* Enhanced background with image blend - Same as bangles */}
                     <div className="absolute inset-0">
-                      <img src={necklacesImage} alt="Necklaces" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 filter brightness-110 contrast-105" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/70"></div>
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/80 to-purple-50/60"></div>
+                      <img src={necklacesImage} alt="Necklaces" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/85 via-purple-500/75 to-indigo-600/85 mix-blend-multiply"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     </div>
-                    <div className="relative h-full flex items-center justify-between p-6">
-                      <div className="flex-1 z-10">
-                        <h4 className="text-2xl font-light text-gray-900 mb-2">Necklaces</h4>
-                        <p className="text-gray-700 text-sm font-medium">Elegant designs</p>
+                    
+                    {/* Enhanced floating particles - Same as bangles */}
+                    <div className="absolute inset-0 opacity-30">
+                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-blue-300 rounded-full animate-pulse"></div>
+                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-purple-300 rounded-full animate-pulse delay-300"></div>
+                      <div className="absolute bottom-1/3 left-1/2 w-4 h-4 bg-white rounded-full animate-pulse delay-700"></div>
+                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-indigo-300 rounded-full animate-pulse delay-1000"></div>
+                    </div>
+                    
+                    <div className="relative h-full flex flex-col justify-between p-8 text-white">
+                      {/* Enhanced product showcase area - Same as bangles */}
+                      <div className="flex-1 flex items-center justify-center">
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl transform rotate-6 transition-all duration-700 group-hover:rotate-12"></div>
+                          <div className="relative bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                            <img src={necklacesImage} alt="Necklaces" className="w-32 h-32 object-contain transition-all duration-700 group-hover:scale-110 filter drop-shadow-2xl" />
+                          </div>
+                        </div>
                       </div>
-                      {/* Floating product preview */}
-                      <div className="w-24 h-24 flex-shrink-0 relative">
-                        <div className="absolute inset-0 bg-white/80 backdrop-blur-sm rounded-full shadow-xl"></div>
-                        <div className="relative w-full h-full p-2">
-                          <img src={necklacesImage} alt="Necklaces" className="w-full h-full object-contain transition-all duration-500 group-hover:scale-110 filter drop-shadow-lg" />
+                      
+                      {/* Enhanced content area - Same as bangles */}
+                      <div className="transform transition-all duration-500 group-hover:translate-y-1">
+                        <h4 className="text-3xl font-light mb-3 leading-tight">Necklaces</h4>
+                        <p className="text-white/90 mb-6 text-lg">Elegant designs</p>
+                        <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-sm font-medium transition-all duration-300 hover:bg-white/20">
+                          <span>Shop Collection</span>
+                          <svg className="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
                         </div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="col-span-12 md:col-span-5 row-span-1 relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500" onClick={() => handleViewAllClick('earrings')}>
-                    {/* Background image with overlay */}
+                  {/* Earrings Section - Redesigned to Match Bangles Style */}
+                  <div className="col-span-12 md:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('earrings')}>
+                    {/* Enhanced background with image blend - Same as bangles */}
                     <div className="absolute inset-0">
-                      <img src={earringsImage} alt="Earrings" className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 filter brightness-110 contrast-105" />
-                      <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/85 to-white/70"></div>
-                      <div className="absolute inset-0 bg-gradient-to-br from-amber-50/80 to-orange-50/60"></div>
+                      <img src={earringsImage} alt="Earrings" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-amber-600/85 via-orange-500/75 to-yellow-600/85 mix-blend-multiply"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     </div>
-                    <div className="relative h-full flex items-center justify-between p-6">
-                      <div className="flex-1 z-10">
-                        <h4 className="text-2xl font-light text-gray-900 mb-2">Earrings</h4>
-                        <p className="text-gray-700 text-sm font-medium">Statement pieces</p>
+                    
+                    {/* Enhanced floating particles - Same as bangles */}
+                    <div className="absolute inset-0 opacity-30">
+                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-amber-300 rounded-full animate-pulse"></div>
+                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-orange-300 rounded-full animate-pulse delay-300"></div>
+                      <div className="absolute bottom-1/3 left-1/2 w-4 h-4 bg-white rounded-full animate-pulse delay-700"></div>
+                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-yellow-300 rounded-full animate-pulse delay-1000"></div>
+                    </div>
+                    
+                    <div className="relative h-full flex flex-col justify-between p-8 text-white">
+                      {/* Enhanced product showcase area - Same as bangles */}
+                      <div className="flex-1 flex items-center justify-center">
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-2xl transform rotate-6 transition-all duration-700 group-hover:rotate-12"></div>
+                          <div className="relative bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
+                            <img src={earringsImage} alt="Earrings" className="w-32 h-32 object-contain transition-all duration-700 group-hover:scale-110 filter drop-shadow-2xl" />
+                          </div>
+                        </div>
                       </div>
-                      {/* Floating product preview */}
-                      <div className="w-24 h-24 flex-shrink-0 relative">
-                        <div className="absolute inset-0 bg-white/80 backdrop-blur-sm rounded-full shadow-xl"></div>
-                        <div className="relative w-full h-full p-2">
-                          <img src={earringsImage} alt="Earrings" className="w-full h-full object-contain transition-all duration-500 group-hover:scale-110 filter drop-shadow-lg" />
+                      
+                      {/* Enhanced content area - Same as bangles */}
+                      <div className="transform transition-all duration-500 group-hover:translate-y-1">
+                        <h4 className="text-3xl font-light mb-3 leading-tight">Earrings</h4>
+                        <p className="text-white/90 mb-6 text-lg">Statement pieces</p>
+                        <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-sm font-medium transition-all duration-300 hover:bg-white/20">
+                          <span>Shop Collection</span>
+                          <svg className="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
                         </div>
                       </div>
                     </div>
@@ -915,37 +954,6 @@ export default function Home() {
                         <p className="text-white/90 mb-6 text-lg">Traditional meets modern</p>
                         <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-sm font-medium transition-all duration-300 hover:bg-white/20">
                           <span>Shop Collection</span>
-                          <svg className="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="col-span-12 md:col-span-8 row-span-1 relative group cursor-pointer overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
-                    {/* Full background image with overlay - same as bangles */}
-                    <div className="absolute inset-0">
-                      <img src={bridalCollectionsImage} alt="Festive Offers" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-95 contrast-110" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/85 via-orange-500/75 to-red-500/85 mix-blend-multiply"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                    </div>
-                    
-                    {/* Enhanced floating particles - same as bangles */}
-                    <div className="absolute inset-0 opacity-30">
-                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-yellow-300 rounded-full animate-pulse"></div>
-                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-orange-300 rounded-full animate-pulse delay-300"></div>
-                      <div className="absolute bottom-1/3 left-1/2 w-4 h-4 bg-white rounded-full animate-pulse delay-700"></div>
-                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-red-300 rounded-full animate-pulse delay-1000"></div>
-                    </div>
-                    
-                    <div className="relative h-full flex items-center justify-center text-center p-6">
-                      <div className="text-white">
-                        <div className="text-5xl mb-4 filter drop-shadow-lg">🎉</div>
-                        <h4 className="text-3xl font-light mb-2 leading-tight">Festive Offers</h4>
-                        <p className="text-white/90 text-lg mb-4">Up to 30% off</p>
-                        <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-sm font-medium transition-all duration-300 hover:bg-white/20">
-                          <span>Shop Deals</span>
                           <svg className="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                           </svg>
