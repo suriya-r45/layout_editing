@@ -897,20 +897,20 @@ export default function Home() {
                   </div>
                   
                   {/* Bangles Section - Perfect Original Style */}
-                  <div className="col-span-12 md:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('bangles')}>
+                  <div className="col-span-12 lg:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('bangles')}>
                     {/* Enhanced background with image blend */}
                     <div className="absolute inset-0">
-                      <img src={banglesImage} alt="Bangles" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/85 via-black/75 to-gray-800/85 mix-blend-multiply"></div>
+                      <img src={banglesImage} alt="Bangles" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-50 contrast-150" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-amber-600/85 via-orange-500/75 to-yellow-600/85 mix-blend-multiply"></div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     </div>
                     
                     {/* Enhanced floating particles */}
                     <div className="absolute inset-0 opacity-30">
-                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-white/60 rounded-full animate-pulse"></div>
-                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-gray-300 rounded-full animate-pulse delay-300"></div>
+                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-amber-300 rounded-full animate-pulse"></div>
+                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-orange-300 rounded-full animate-pulse delay-300"></div>
                       <div className="absolute bottom-1/3 left-1/2 w-4 h-4 bg-white rounded-full animate-pulse delay-700"></div>
-                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-gray-200 rounded-full animate-pulse delay-1000"></div>
+                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-yellow-300 rounded-full animate-pulse delay-1000"></div>
                     </div>
                     
                     <div className="relative h-full flex flex-col justify-end p-8 text-white">
@@ -929,20 +929,20 @@ export default function Home() {
                   </div>
                   
                   {/* Rings Section - Perfect Bangles Style */}
-                  <div className="col-span-12 md:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('rings')}>
+                  <div className="col-span-12 lg:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('rings')}>
                     {/* Enhanced background with image blend - Same as perfect bangles */}
                     <div className="absolute inset-0">
-                      <img src={ringsImageMosaic} alt="Rings" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-gray-900/85 via-black/75 to-gray-800/85 mix-blend-multiply"></div>
+                      <img src={ringsImageMosaic} alt="Rings" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-50 contrast-150" />
+                      <div className="absolute inset-0 bg-gradient-to-br from-amber-600/85 via-orange-500/75 to-yellow-600/85 mix-blend-multiply"></div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     </div>
                     
                     {/* Enhanced floating particles - Same as perfect bangles */}
                     <div className="absolute inset-0 opacity-30">
-                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-white/60 rounded-full animate-pulse"></div>
-                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-gray-300 rounded-full animate-pulse delay-300"></div>
+                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-amber-300 rounded-full animate-pulse"></div>
+                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-orange-300 rounded-full animate-pulse delay-300"></div>
                       <div className="absolute bottom-1/3 left-1/2 w-4 h-4 bg-white rounded-full animate-pulse delay-700"></div>
-                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-gray-200 rounded-full animate-pulse delay-1000"></div>
+                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-yellow-300 rounded-full animate-pulse delay-1000"></div>
                     </div>
                     
                     <div className="relative h-full flex flex-col justify-end p-8 text-white">
