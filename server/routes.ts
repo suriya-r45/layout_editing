@@ -13,6 +13,7 @@ import { MetalRatesService } from "./services/testmetalRatesService.js";
 import twilio from "twilio";
 import { generateProductCode, generateBarcode, generateQRCode, ProductBarcodeData } from "./utils/barcode";
 import { recalculateAllMetalBasedProducts } from "./utils/pricing.js";
+import { createVintageProductImage } from "./utils/vintage-effects.js";
 import sharp from "sharp";
 
 // Initialize Stripe only if key is provided
@@ -1932,6 +1933,32 @@ For any queries, please contact us.`;
         ...req.body,
         sectionId: id
       });
+
+      // Check if this is a festival section to apply vintage effect
+      const homeSection = await storage.getHomeSection(id);
+      if (homeSection && homeSection.layoutType === 'festival') {
+        // Get the product to find its main image
+        const product = await storage.getProduct(itemData.productId);
+        if (product && product.images && product.images.length > 0) {
+          try {
+            console.log('🎭 Applying vintage effect to product image for festival section...');
+            // Create vintage version of the main product image
+            const vintageImagePath = await createVintageProductImage(
+              product.images[0], // Use main product image
+              product.id
+            );
+            console.log(`✨ Vintage image created: ${vintageImagePath}`);
+            
+            // Store the vintage image path in a custom field or override the display
+            // We'll add this as custom data for festival sections
+            itemData.customImageUrl = vintageImagePath;
+          } catch (vintageError) {
+            console.warn('Failed to create vintage image, using original:', vintageError);
+            // Continue with original image if vintage processing fails
+          }
+        }
+      }
+
       const item = await storage.addHomeSectionItem(itemData);
       res.status(201).json(item);
     } catch (error) {

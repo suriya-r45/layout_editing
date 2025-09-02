@@ -878,6 +878,7 @@ export const homeSectionItems = pgTable("home_section_items", {
   displayPrice: text("display_price"), // Legacy field for backward compatibility
   displayPriceInr: text("display_price_inr"), // Custom price text for INR
   displayPriceBhd: text("display_price_bhd"), // Custom price text for BHD
+  customImageUrl: text("custom_image_url"), // Custom image URL for special effects (e.g., vintage for festivals)
   position: integer("position").notNull().default(0), // Position in layout
   size: text("size").default("normal"), // 'small', 'normal', 'large' for different grid sizes
   createdAt: timestamp("created_at").defaultNow(),
