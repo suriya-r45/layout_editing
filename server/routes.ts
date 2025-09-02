@@ -2101,7 +2101,7 @@ For any queries, please contact us.`;
       const validatedData = insertShippingZoneSchema.parse(req.body);
       const zone = await storage.createShippingZone({
         ...validatedData,
-        countries: Array.isArray(validatedData.countries) ? validatedData.countries : []
+        countries: validatedData.countries
       });
       res.status(201).json(zone);
     } catch (error) {
@@ -2119,7 +2119,7 @@ For any queries, please contact us.`;
       const validatedData = insertShippingZoneSchema.partial().parse(req.body);
       const zone = await storage.updateShippingZone(id, {
         ...validatedData,
-        countries: Array.isArray(validatedData.countries) ? validatedData.countries : undefined
+        countries: validatedData.countries
       });
       if (!zone) {
         return res.status(404).json({ error: 'Shipping zone not found' });
@@ -2174,7 +2174,8 @@ For any queries, please contact us.`;
       const validatedData = insertShippingMethodSchema.parse(req.body);
       const method = await storage.createShippingMethod({
         ...validatedData,
-        description: validatedData.description || undefined
+        description: validatedData.description,
+        carrier: validatedData.carrier || undefined
       });
       res.status(201).json(method);
     } catch (error) {
@@ -2192,7 +2193,8 @@ For any queries, please contact us.`;
       const validatedData = insertShippingMethodSchema.partial().parse(req.body);
       const method = await storage.updateShippingMethod(id, {
         ...validatedData,
-        description: validatedData.description || undefined
+        description: validatedData.description,
+        carrier: validatedData.carrier || undefined
       });
       if (!method) {
         return res.status(404).json({ error: 'Shipping method not found' });
@@ -2279,7 +2281,8 @@ For any queries, please contact us.`;
       const validatedData = insertShipmentSchema.parse(req.body);
       const shipment = await storage.createShipment({
         ...validatedData,
-        trackingNumber: validatedData.trackingNumber || undefined
+        trackingNumber: validatedData.trackingNumber,
+        recipientEmail: validatedData.recipientEmail || undefined
       });
       res.status(201).json(shipment);
     } catch (error) {
