@@ -25,7 +25,8 @@ import earringsImage from '@assets/new_earrings.png';
 import braceletsImage from '@assets/bracelets_hero.png';
 import necklacesImage from '@assets/necklaces_hero.png';
 import chainsImage from '@assets/chains_hero.png';
-import banglesImage from '@assets/bangles_hero.png';
+import banglesImage from '@assets/bangles_luxury.png';
+import ringsImageMosaic from '@assets/rings_luxury.png';
 import watchesImage from '@assets/watches_luxury_new.png';
 import mensJewelryImage from '@assets/mens_jewelry_luxury_new.png';
 import childrenJewelryImage from '@assets/children_jewelry_luxury_new.png';
@@ -931,7 +932,7 @@ export default function Home() {
                   <div className="col-span-12 md:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('rings')}>
                     {/* Enhanced background with image blend - Same as perfect bangles */}
                     <div className="absolute inset-0">
-                      <img src={banglesImage} alt="Rings" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
+                      <img src={ringsImageMosaic} alt="Rings" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
                       <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/85 via-teal-500/75 to-cyan-600/85 mix-blend-multiply"></div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     </div>
