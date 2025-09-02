@@ -1086,9 +1086,7 @@ export default function Home() {
                         </h1>
                         <div className="flex items-center justify-center gap-6 mt-8">
                           <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
-                          <div className="text-xs font-light tracking-[0.3em] text-neutral-500 uppercase">
-                            Editorial Collection
-                          </div>
+                          <div className="w-3 h-3 bg-amber-400 rounded-full"></div>
                           <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
                         </div>
                       </div>
@@ -1277,9 +1275,6 @@ export default function Home() {
                             Explore Full Collection
                             <ArrowRight className="ml-3 h-5 w-5" />
                           </Button>
-                          <p className="text-sm text-neutral-500 tracking-wide">
-                            DISCOVER MORE EXTRAORDINARY PIECES
-                          </p>
                         </div>
                       </div>
                     </div>
