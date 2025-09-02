@@ -105,17 +105,26 @@ export function MetalRatesTicker() {
                 <span key={index} className="text-sm font-bold px-5 py-2 bg-gray-50 rounded-full border border-gray-300 flex items-center gap-3 shadow-md text-gray-800">
                   {isIndia && (
                     <span className="flex items-center gap-2">
-                      <div className="w-8 h-5 border-2 border-gray-800 shadow-lg" style={{
-                        background: 'linear-gradient(to bottom, #ff6600 33%, #ffffff 33%, #ffffff 67%, #00aa00 67%)'
-                      }}></div>
+                      <div className="w-6 h-4 rounded-sm overflow-hidden border border-gray-300 shadow-sm">
+                        <svg viewBox="0 0 24 24" className="w-full h-full">
+                          <rect width="24" height="8" fill="#FF9933"/>
+                          <rect y="8" width="24" height="8" fill="#FFFFFF"/>
+                          <rect y="16" width="24" height="8" fill="#138808"/>
+                          <circle cx="12" cy="12" r="3" fill="#000080"/>
+                        </svg>
+                      </div>
                       <span className="text-xs bg-orange-600 text-white px-2 py-1.5 rounded-md font-bold shadow-md">INDIA</span>
                     </span>
                   )}
                   {isBahrain && (
                     <span className="flex items-center gap-2">
-                      <div className="w-8 h-5 border-2 border-gray-800 shadow-lg" style={{
-                        background: 'linear-gradient(to right, #cc0000 40%, #ffffff 40%, #ffffff 60%, #cc0000 60%)'
-                      }}></div>
+                      <div className="w-6 h-4 rounded-sm overflow-hidden border border-gray-300 shadow-sm">
+                        <svg viewBox="0 0 24 24" className="w-full h-full">
+                          <rect width="24" height="12" fill="#FFFFFF"/>
+                          <rect y="12" width="24" height="12" fill="#CE1126"/>
+                          <path d="M0 0 L8 6 L0 12 V8 L4 6 L0 4 Z" fill="#CE1126"/>
+                        </svg>
+                      </div>
                       <span className="text-xs bg-red-600 text-white px-2 py-1.5 rounded-md font-bold shadow-md">BAHRAIN</span>
                     </span>
                   )}
