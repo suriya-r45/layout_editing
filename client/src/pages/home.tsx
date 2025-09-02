@@ -1088,7 +1088,7 @@ export default function Home() {
                       View All Designs
                     </Button>
                   </div>
-                </div>
+                )}
               </div>
             </section>
           );
