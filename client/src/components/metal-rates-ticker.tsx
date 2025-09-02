@@ -103,6 +103,25 @@ export function MetalRatesTicker() {
               const isBahrain = rate.includes('BAHRAIN');
               return (
                 <span key={index} className="text-sm font-bold px-5 py-2 bg-gray-50 rounded-full border border-gray-300 flex items-center gap-3 shadow-md text-gray-800">
+                  {isIndia && (
+                    <div className="w-6 h-4 rounded-sm overflow-hidden border border-gray-300 shadow-sm">
+                      <svg viewBox="0 0 24 24" className="w-full h-full">
+                        <rect width="24" height="8" fill="#FF9933"/>
+                        <rect y="8" width="24" height="8" fill="#FFFFFF"/>
+                        <rect y="16" width="24" height="8" fill="#138808"/>
+                        <circle cx="12" cy="12" r="3" fill="#000080"/>
+                      </svg>
+                    </div>
+                  )}
+                  {isBahrain && (
+                    <div className="w-6 h-4 rounded-sm overflow-hidden border border-gray-300 shadow-sm">
+                      <svg viewBox="0 0 24 24" className="w-full h-full">
+                        <rect width="24" height="12" fill="#FFFFFF"/>
+                        <rect y="12" width="24" height="12" fill="#CE1126"/>
+                        <path d="M0 0 L8 6 L0 12 V8 L4 6 L0 4 Z" fill="#CE1126"/>
+                      </svg>
+                    </div>
+                  )}
                   <span>{rate}</span>
                 </span>
               );
