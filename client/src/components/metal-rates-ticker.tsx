@@ -99,8 +99,8 @@ export function MetalRatesTicker() {
           <div className="inline-flex items-center space-x-8 w-max">
             {/* Duplicate the rates to create seamless loop */}
             {[...rates, ...rates].map((rate, index) => {
-              const isIndia = rate.includes('INDIA');
-              const isBahrain = rate.includes('BAHRAIN');
+              const isIndia = rate.includes('🇮🇳');
+              const isBahrain = rate.includes('🇧🇭');
               return (
                 <span key={index} className="text-sm font-bold px-5 py-2 bg-gray-50 rounded-full border border-gray-300 flex items-center gap-3 shadow-md text-gray-800">
                   {isIndia && (
