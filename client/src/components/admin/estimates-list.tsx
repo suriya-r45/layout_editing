@@ -7,6 +7,7 @@ import { MessageCircle, Search, Calendar, User, Package, Calculator, Edit } from
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { useLocation } from "wouter";
+import { formatPrice, type Currency } from "@/lib/currency";
 
 interface Estimate {
   id: string;
@@ -213,14 +214,14 @@ export function EstimatesList() {
                       Pricing Details
                     </h4>
                     <div className="space-y-1 text-sm">
-                      <div><span className="text-gray-600">Metal Value:</span> ₹{parseFloat(estimate.metalValue).toLocaleString('en-IN')}</div>
-                      <div><span className="text-gray-600">Making Charges:</span> ₹{parseFloat(estimate.makingCharges).toLocaleString('en-IN')} ({estimate.makingChargesPercentage}%)</div>
-                      <div><span className="text-gray-600">Wastage:</span> ₹{parseFloat(estimate.wastageCharges).toLocaleString('en-IN')} ({estimate.wastagePercentage}%)</div>
-                      <div><span className="text-gray-600">Hallmarking:</span> ₹{parseFloat(estimate.hallmarkingCharges).toLocaleString('en-IN')}</div>
+                      <div><span className="text-gray-600">Metal Value:</span> {formatPrice(estimate.metalValue, estimate.currency as Currency)}</div>
+                      <div><span className="text-gray-600">Making Charges:</span> {formatPrice(estimate.makingCharges, estimate.currency as Currency)} ({estimate.makingChargesPercentage}%)</div>
+                      <div><span className="text-gray-600">Wastage:</span> {formatPrice(estimate.wastageCharges, estimate.currency as Currency)} ({estimate.wastagePercentage}%)</div>
+                      <div><span className="text-gray-600">Hallmarking:</span> {formatPrice(estimate.hallmarkingCharges, estimate.currency as Currency)}</div>
                       <div className="pt-2 border-t">
                         <span className="text-gray-600">Total Amount:</span>
                         <div className="text-xl font-bold text-yellow-600">
-                          ₹{parseFloat(estimate.totalAmount).toLocaleString('en-IN')}
+                          {formatPrice(estimate.totalAmount, estimate.currency as Currency)}
                         </div>
                       </div>
                       <div className="text-gray-600">
