@@ -94,7 +94,7 @@ export function MetalRatesTicker() {
           }
         `}
       </style>
-      <div className="bg-gradient-to-r from-amber-100 via-orange-50 to-amber-100 text-gray-800 py-4 overflow-hidden relative shadow-xl border-b-2 border-amber-200/50 w-full">
+      <div className="bg-white text-gray-800 py-4 overflow-hidden relative shadow-lg border-b border-gray-200 w-full">
         <div className="ticker-scroll whitespace-nowrap w-full">
           <div className="inline-flex items-center space-x-8 w-max">
             {/* Duplicate the rates to create seamless loop */}
@@ -102,7 +102,7 @@ export function MetalRatesTicker() {
               const isIndia = rate.includes('INDIA');
               const isBahrain = rate.includes('BAHRAIN');
               return (
-                <span key={index} className="text-sm font-bold px-5 py-2 bg-gradient-to-r from-amber-200/80 to-orange-200/80 rounded-full border-2 border-amber-300/70 flex items-center gap-3 shadow-xl shadow-amber-500/30 backdrop-blur-sm text-gray-800">
+                <span key={index} className="text-sm font-bold px-5 py-2 bg-gray-50 rounded-full border border-gray-300 flex items-center gap-3 shadow-md text-gray-800">
                   {isIndia && (
                     <span className="flex items-center gap-2">
                       <div className="w-8 h-5 border-2 border-gray-800 shadow-lg" style={{
