@@ -235,7 +235,7 @@ export function EstimatesList() {
                     onClick={() => {
                       // Store estimate data in localStorage for editing
                       localStorage.setItem('editEstimate', JSON.stringify(estimate));
-                      setLocation('/admin/estimates');
+                      setLocation('/admin?tab=estimates');
                     }}
                     variant="outline"
                     className="border-gray-200 text-gray-700 hover:bg-gray-50 font-light"
