@@ -215,6 +215,11 @@ export function EstimateForm() {
     enabled: true
   });
 
+  // Helper function to get currency symbol
+  const getCurrencySymbol = (currency: string) => {
+    return currency === 'BHD' ? 'BHD' : '₹';
+  };
+
   // Auto-calculation function like in product form
   const calculateEstimatePrices = (grossWeight: string, purity: string, currency: string = 'INR') => {
     if (!grossWeight || !metalRates.length) {
@@ -909,7 +914,7 @@ export function EstimateForm() {
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div>
-                  <Label htmlFor="metalValue">Metal Value (₹)</Label>
+                  <Label htmlFor="metalValue">Metal Value ({getCurrencySymbol(formData.currency)})</Label>
                   <Input
                     id="metalValue"
                     type="number"
@@ -989,6 +994,18 @@ export function EstimateForm() {
                   />
                 </div>
                 <div>
+                  <Label htmlFor="currency">Currency</Label>
+                  <Select value={formData.currency} onValueChange={(value) => updateFormData({ currency: value })}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select currency" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="INR">Indian Rupees (₹)</SelectItem>
+                      <SelectItem value="BHD">Bahrain Dinar (BHD)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div>
                   <Label htmlFor="validUntil">Valid Until</Label>
                   <Input
                     id="validUntil"
@@ -1015,27 +1032,27 @@ export function EstimateForm() {
 
                     <div>
                       <span className="text-gray-600">Stone Charges:</span>
-                      <div className="font-semibold">₹{formData.stoneDiamondCharges}</div>
+                      <div className="font-semibold">{getCurrencySymbol(formData.currency)}{formData.stoneDiamondCharges}</div>
                     </div>
                     <div>
                       <span className="text-gray-600">Wastage:</span>
-                      <div className="font-semibold">₹{formData.wastageCharges}</div>
+                      <div className="font-semibold">{getCurrencySymbol(formData.currency)}{formData.wastageCharges}</div>
                     </div>
                     <div>
                       <span className="text-gray-600">GST:</span>
-                      <div className="font-semibold">₹{formData.gstAmount}</div>
+                      <div className="font-semibold">{getCurrencySymbol(formData.currency)}{formData.gstAmount}</div>
                     </div>
                     <div>
                       <span className="text-gray-600">VAT:</span>
-                      <div className="font-semibold">₹{formData.vatAmount}</div>
+                      <div className="font-semibold">{getCurrencySymbol(formData.currency)}{formData.vatAmount}</div>
                     </div>
                     <div>
                       <span className="text-gray-600">Subtotal:</span>
-                      <div className="font-semibold">₹{formData.subtotal}</div>
+                      <div className="font-semibold">{getCurrencySymbol(formData.currency)}{formData.subtotal}</div>
                     </div>
                     <div className="sm:col-span-2 lg:col-span-4 border-t pt-2">
                       <span className="text-gray-600">Total Amount:</span>
-                      <div className="text-xl font-bold text-yellow-600">₹{formData.totalAmount}</div>
+                      <div className="text-xl font-bold text-yellow-600">{getCurrencySymbol(formData.currency)}{formData.totalAmount}</div>
                     </div>
                   </div>
                 </div>
