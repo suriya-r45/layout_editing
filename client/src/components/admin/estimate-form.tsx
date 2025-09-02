@@ -259,8 +259,8 @@ export function EstimateForm() {
     const subtotal = metalValue + makingCharges + wastageCharges + stoneDiamondCharges + hallmarkingCharges;
 
     // Calculate GST and VAT
-    const gstPercentage = parseFloat(formData.gstPercentage) || 3;
-    const vatPercentage = parseFloat(formData.vatPercentage) || 1;
+    const gstPercentage = isNaN(parseFloat(formData.gstPercentage)) ? 3 : parseFloat(formData.gstPercentage);
+    const vatPercentage = isNaN(parseFloat(formData.vatPercentage)) ? 1 : parseFloat(formData.vatPercentage);
     const gstAmount = (subtotal * gstPercentage) / 100;
     const vatAmount = (subtotal * vatPercentage) / 100;
 
