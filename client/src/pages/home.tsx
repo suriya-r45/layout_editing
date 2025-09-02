@@ -901,7 +901,7 @@ export default function Home() {
                     {/* Enhanced background with image blend */}
                     <div className="absolute inset-0">
                       <img src={banglesImage} alt="Bangles" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-amber-600/85 via-orange-500/75 to-yellow-600/85 mix-blend-multiply"></div>
+                      <div className="absolute inset-0 bg-black/75"></div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     </div>
                     
@@ -933,7 +933,7 @@ export default function Home() {
                     {/* Enhanced background with image blend - Same as perfect bangles */}
                     <div className="absolute inset-0">
                       <img src={ringsImageMosaic} alt="Rings" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-amber-600/85 via-orange-500/75 to-yellow-600/85 mix-blend-multiply"></div>
+                      <div className="absolute inset-0 bg-black/75"></div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                     </div>
                     
