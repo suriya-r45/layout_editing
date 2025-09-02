@@ -876,7 +876,11 @@ export default function Home() {
                   {/* Bottom Row - Creative Blocks */}
                   <div className="col-span-12 md:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl" onClick={() => handleViewAllClick('bangles')}>
                     <div className="absolute inset-0 bg-gradient-to-br from-rose-600 via-pink-500 to-purple-600"></div>
-                    <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="4"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+                    <div className="absolute inset-0 opacity-20">
+                      <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-white/20 rounded-full"></div>
+                      <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-white/20 rounded-full"></div>
+                      <div className="absolute bottom-1/3 left-1/2 w-5 h-5 bg-white/20 rounded-full"></div>
+                    </div>
                     
                     <div className="relative h-full flex flex-col justify-end p-8 text-white">
                       <div className="mb-auto pt-8">
