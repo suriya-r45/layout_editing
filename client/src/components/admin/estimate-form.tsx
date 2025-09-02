@@ -843,7 +843,7 @@ export function EstimateForm() {
                 </div>
                 <div>
                   <Label htmlFor="purity">Purity</Label>
-                  <Select value={formData.purity} onValueChange={(value) => handleInputChange("purity", value)}>
+                  <Select value={formData.purity} onValueChange={(value) => updateFormData({ purity: value })}>
                     <SelectTrigger>
                       <SelectValue />
                     </SelectTrigger>
@@ -883,7 +883,7 @@ export function EstimateForm() {
                     type="number"
                     step="0.01"
                     value={formData.grossWeight}
-                    onChange={(e) => handleInputChange("grossWeight", e.target.value)}
+                    onChange={(e) => updateFormData({ grossWeight: e.target.value })}
                     placeholder="Enter gross weight"
                   />
                 </div>
@@ -915,8 +915,10 @@ export function EstimateForm() {
                     type="number"
                     step="0.01"
                     value={formData.metalValue}
-                    onChange={(e) => handleInputChange("metalValue", e.target.value)}
-                    placeholder="Enter metal value"
+
+                    placeholder="Auto-calculated based on weight and metal rates"
+                    readOnly
+                    className="bg-blue-50 cursor-not-allowed"
                   />
                 </div>
 
@@ -927,7 +929,7 @@ export function EstimateForm() {
                     type="number"
                     step="0.01"
                     value={formData.makingChargesPercentage}
-                    onChange={(e) => handleInputChange("makingChargesPercentage", e.target.value)}
+                    onChange={(e) => updateFormData({ makingChargesPercentage: e.target.value })}
                     placeholder="Making charges percentage"
                   />
                 </div>
@@ -938,7 +940,7 @@ export function EstimateForm() {
                     type="number"
                     step="0.01"
                     value={formData.stoneDiamondChargesPercentage}
-                    onChange={(e) => handleInputChange("stoneDiamondChargesPercentage", e.target.value)}
+                    onChange={(e) => updateFormData({ stoneDiamondChargesPercentage: e.target.value })}
                     placeholder="Stone charges percentage"
                   />
                 </div>
@@ -949,7 +951,7 @@ export function EstimateForm() {
                     type="number"
                     step="0.01"
                     value={formData.wastagePercentage}
-                    onChange={(e) => handleInputChange("wastagePercentage", e.target.value)}
+                    onChange={(e) => updateFormData({ wastagePercentage: e.target.value })}
                     placeholder="Wastage percentage"
                   />
                 </div>
@@ -960,7 +962,7 @@ export function EstimateForm() {
                     type="number"
                     step="0.01"
                     value={formData.hallmarkingCharges}
-                    onChange={(e) => handleInputChange("hallmarkingCharges", e.target.value)}
+                    onChange={(e) => updateFormData({ hallmarkingCharges: e.target.value })}
                     placeholder="Hallmarking charges"
                   />
                 </div>
@@ -971,7 +973,7 @@ export function EstimateForm() {
                     type="number"
                     step="0.01"
                     value={formData.gstPercentage}
-                    onChange={(e) => handleInputChange("gstPercentage", e.target.value)}
+                    onChange={(e) => updateFormData({ gstPercentage: e.target.value })}
                     placeholder="GST percentage"
                   />
                 </div>
@@ -982,7 +984,7 @@ export function EstimateForm() {
                     type="number"
                     step="0.01"
                     value={formData.vatPercentage}
-                    onChange={(e) => handleInputChange("vatPercentage", e.target.value)}
+                    onChange={(e) => updateFormData({ vatPercentage: e.target.value })}
                     placeholder="VAT percentage"
                   />
                 </div>
@@ -999,10 +1001,10 @@ export function EstimateForm() {
               
               <Button
                 type="button"
-                onClick={calculatePricing}
+                disabled={true}
                 className="mt-4 bg-yellow-600 hover:bg-yellow-700 text-white"
               >
-                Calculate Pricing
+                Auto-calculating...
               </Button>
 
               {/* Calculated Values Display */}
