@@ -1044,84 +1044,168 @@ export default function Home() {
           return <NewArrivalsSection key={section.id} section={section} selectedCurrency={selectedCurrency} />;
         }
 
-        // Magazine layout rendering - Enhanced Editorial Design
+        // Magazine layout rendering - Premium Editorial Design
         if (section.layoutType === 'magazine') {
           return (
             <section 
               key={section.id} 
-              className="py-16 md:py-24 relative overflow-hidden" 
+              className="relative overflow-hidden bg-zinc-50" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
-              style={{ 
-                background: 'linear-gradient(135deg, #fefefe 0%, #f8f9fa 25%, #f1f3f4 75%, #e9ecef 100%)'
-              }}
             >
-              {/* Magazine Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-10 left-10 w-32 h-32 border border-gray-400 rotate-45"></div>
-                <div className="absolute bottom-20 right-20 w-24 h-24 border border-gray-300 rotate-12"></div>
-                <div className="absolute top-1/2 left-1/4 w-16 h-16 border border-gray-200 -rotate-12"></div>
+              {/* Sophisticated Background Elements */}
+              <div className="absolute inset-0">
+                <div className="absolute top-0 left-0 w-full h-full opacity-5">
+                  <div className="absolute top-20 left-16 w-40 h-40 border-2 border-black transform rotate-12"></div>
+                  <div className="absolute bottom-32 right-24 w-28 h-28 border border-black transform -rotate-45"></div>
+                  <div className="absolute top-1/2 left-1/3 w-20 h-20 border-2 border-black transform rotate-45"></div>
+                  <div className="absolute top-1/4 right-1/4 w-32 h-32 border border-black transform -rotate-12"></div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 via-white to-zinc-100"></div>
               </div>
 
-              <div className="container mx-auto px-6 md:px-8 lg:px-12 relative z-10">
-                {/* Magazine-Style Header */}
-                <div className="mb-16 md:mb-20">
-                  {/* Magazine Masthead */}
-                  <div className="text-center mb-12">
-                    <div className="inline-flex items-center gap-6 mb-8">
-                      <div className="w-20 h-px bg-gray-400"></div>
-                      <div className="px-4 py-2 border border-gray-400 bg-white">
-                        <span className="text-xs font-bold text-gray-800 uppercase tracking-widest letter-spacing-2">
-                          EDITORIAL COLLECTION
-                        </span>
+              <div className="relative z-10">
+                {/* Premium Magazine Header */}
+                <div className="py-20 md:py-28">
+                  <div className="max-w-7xl mx-auto px-6 md:px-8">
+                    {/* Magazine Identity */}
+                    <div className="text-center mb-16">
+                      <div className="flex items-center justify-center mb-8">
+                        <div className="flex-1 h-px bg-black max-w-20"></div>
+                        <div className="mx-8 px-6 py-3 border-2 border-black bg-white">
+                          <span className="text-xs font-black tracking-[0.2em] text-black">
+                            PALANIAPPA EDITORIAL
+                          </span>
+                        </div>
+                        <div className="flex-1 h-px bg-black max-w-20"></div>
                       </div>
-                      <div className="w-20 h-px bg-gray-400"></div>
-                    </div>
-                    
-                    {/* Main Headline */}
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-gray-900 leading-none mb-6" style={{ fontFamily: 'Playfair Display, serif', letterSpacing: '-0.02em' }}>
-                      {section.title}
-                    </h1>
-                    
-                    {/* Magazine Date & Issue */}
-                    <div className="text-sm text-gray-500 uppercase tracking-wider mb-6">
-                      ISSUE {new Date().getFullYear()} • {new Date().toLocaleDateString('en-US', { month: 'long' }).toUpperCase()}
-                    </div>
-                    
-                    {section.description && (
-                      <div className="max-w-4xl mx-auto">
-                        <p className="text-xl md:text-2xl text-gray-700 leading-relaxed font-light" style={{ fontFamily: 'Georgia, serif' }}>
-                          {section.description}
-                        </p>
+                      
+                      {/* Main Magazine Title */}
+                      <h1 className="text-6xl md:text-8xl lg:text-9xl font-extralight text-black mb-8 tracking-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
+                        {section.title}
+                      </h1>
+                      
+                      {/* Issue Details */}
+                      <div className="flex items-center justify-center gap-6 mb-8">
+                        <span className="text-sm font-bold tracking-wider text-black">VOL. {new Date().getFullYear()}</span>
+                        <div className="w-1 h-1 bg-black rounded-full"></div>
+                        <span className="text-sm font-bold tracking-wider text-black">NO. {new Date().getMonth() + 1}</span>
+                        <div className="w-1 h-1 bg-black rounded-full"></div>
+                        <span className="text-sm font-bold tracking-wider text-black">{new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' }).toUpperCase()}</span>
                       </div>
-                    )}
-                    
-                    {/* Magazine Separator */}
-                    <div className="flex items-center justify-center mt-10">
-                      <div className="w-12 h-px bg-gray-400"></div>
-                      <div className="mx-4 w-2 h-2 bg-gray-400 rounded-full"></div>
-                      <div className="w-12 h-px bg-gray-400"></div>
+                      
+                      {section.description && (
+                        <div className="max-w-3xl mx-auto">
+                          <p className="text-xl md:text-2xl text-zinc-700 leading-relaxed font-light italic" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            "{section.description}"
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
                 
-                {/* Magazine-Style Layout Grid */}
-                <div className="grid grid-cols-12 gap-6 md:gap-8">
-                  {section.items.map((item, index) => {
-                    // Hero article (first item)
-                    if (index === 0) {
-                      return (
-                        <div key={item.id} className="col-span-12 lg:col-span-8 group">
-                          <div className="relative bg-white shadow-xl border border-gray-200 overflow-hidden transition-all duration-500 hover:shadow-2xl">
-                            {/* Hero Badge */}
-                            <div className="absolute top-6 left-6 z-20">
-                              <div className="bg-black text-white px-4 py-2 text-xs font-bold uppercase tracking-wider">
-                                FEATURED STORY
+                {/* Dynamic Magazine Grid */}
+                <div className="max-w-7xl mx-auto px-6 md:px-8 pb-20">
+                  <div className="grid grid-cols-12 gap-6 md:gap-8">
+                    {section.items.map((item, index) => {
+                      // Featured Cover Story (First Item)
+                      if (index === 0) {
+                        return (
+                          <div key={item.id} className="col-span-12 lg:col-span-7 group">
+                            <div className="relative bg-white border-2 border-black shadow-2xl overflow-hidden transform transition-all duration-700 hover:scale-[1.02] hover:shadow-3xl">
+                              {/* Cover Story Badge */}
+                              <div className="absolute top-0 left-0 z-30">
+                                <div className="bg-black text-white px-6 py-3 font-black text-xs tracking-widest">
+                                  COVER STORY
+                                </div>
+                              </div>
+                              
+                              {/* Featured Content Layout */}
+                              <div className="grid grid-cols-1 lg:grid-cols-5 min-h-[500px]">
+                                <div className="lg:col-span-3 relative overflow-hidden">
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10"></div>
+                                  <ProductCard
+                                    product={item.product}
+                                    currency={selectedCurrency}
+                                    showActions={true}
+                                    customImageUrl={item.customImageUrl}
+                                  />
+                                </div>
+                                <div className="lg:col-span-2 p-8 lg:p-10 flex flex-col justify-center bg-zinc-50">
+                                  <div className="mb-4">
+                                    <span className="text-xs font-black tracking-wider text-zinc-500 uppercase">
+                                      {item.product.category} • FEATURED
+                                    </span>
+                                  </div>
+                                  <h2 className="text-3xl md:text-4xl font-light text-black leading-tight mb-6" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                    {item.product.name}
+                                  </h2>
+                                  <p className="text-zinc-600 leading-relaxed text-base mb-6">
+                                    {item.product.description || 'An exquisite piece showcasing unparalleled craftsmanship and timeless elegance from our curated collection.'}
+                                  </p>
+                                  <div className="flex items-center gap-4">
+                                    <div className="w-8 h-px bg-black"></div>
+                                    <span className="text-xs font-bold tracking-wider text-black">READ MORE</span>
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                            
-                            {/* Hero Content */}
-                            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-96">
+                          </div>
+                        );
+                      }
+                      
+                      // Secondary Feature (Second Item)
+                      if (index === 1) {
+                        return (
+                          <div key={item.id} className="col-span-12 lg:col-span-5 group">
+                            <div className="bg-white border border-zinc-300 shadow-xl overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
                               <div className="relative">
+                                <div className="absolute top-4 right-4 z-20">
+                                  <div className="bg-white border border-black px-3 py-1 text-xs font-bold tracking-wider">
+                                    SPOTLIGHT
+                                  </div>
+                                </div>
+                                <div className="h-64 overflow-hidden">
+                                  <ProductCard
+                                    product={item.product}
+                                    currency={selectedCurrency}
+                                    showActions={true}
+                                    customImageUrl={item.customImageUrl}
+                                  />
+                                </div>
+                              </div>
+                              <div className="p-6 bg-gradient-to-br from-white to-zinc-50">
+                                <div className="mb-3">
+                                  <span className="text-xs font-bold tracking-wider text-zinc-500 uppercase">
+                                    {item.product.category}
+                                  </span>
+                                </div>
+                                <h3 className="text-2xl font-light text-black leading-snug mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                  {item.product.name}
+                                </h3>
+                                <p className="text-zinc-600 text-sm leading-relaxed line-clamp-3">
+                                  {item.product.description || 'Discover the artistry behind this remarkable piece.'}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      }
+                      
+                      // Editorial Grid Items
+                      if (index >= 2 && index <= 5) {
+                        const gridClasses = [
+                          "col-span-12 md:col-span-6 lg:col-span-4",
+                          "col-span-12 md:col-span-6 lg:col-span-4", 
+                          "col-span-12 md:col-span-6 lg:col-span-4",
+                          "col-span-12 md:col-span-6 lg:col-span-6"
+                        ];
+                        
+                        return (
+                          <div key={item.id} className={`${gridClasses[index - 2]} group`}>
+                            <div className="bg-white border border-zinc-200 shadow-lg overflow-hidden transform transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                              <div className="relative h-48 overflow-hidden">
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent z-10"></div>
                                 <ProductCard
                                   product={item.product}
                                   currency={selectedCurrency}
@@ -1129,82 +1213,69 @@ export default function Home() {
                                   customImageUrl={item.customImageUrl}
                                 />
                               </div>
-                              <div className="p-8 lg:p-12 flex flex-col justify-center">
-                                <h2 className="text-3xl md:text-4xl font-light text-gray-900 leading-tight mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
-                                  {item.product.name}
-                                </h2>
-                                <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                                  {item.product.description || 'Discover the exceptional craftsmanship and timeless elegance of this featured piece from our curated collection.'}
-                                </p>
-                                <div className="flex items-center text-sm text-gray-500 uppercase tracking-wider">
-                                  <span>FEATURED ARTICLE</span>
-                                  <div className="w-8 h-px bg-gray-300 mx-3"></div>
-                                  <span>{item.product.category.toUpperCase()}</span>
+                              <div className="p-5">
+                                <div className="mb-2">
+                                  <span className="text-xs font-bold tracking-wider text-zinc-400 uppercase">
+                                    {item.product.category}
+                                  </span>
                                 </div>
+                                <h4 className="text-lg font-light text-black leading-snug" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                  {item.product.name}
+                                </h4>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      );
-                    }
-                    
-                    // Secondary articles (2nd and 3rd items)
-                    if (index <= 2) {
+                        );
+                      }
+                      
+                      // Remaining items as compact grid
                       return (
-                        <div key={item.id} className="col-span-12 lg:col-span-4 group">
-                          <div className="bg-white shadow-lg border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                            <ProductCard
-                              product={item.product}
-                              currency={selectedCurrency}
-                              showActions={true}
-                              customImageUrl={item.customImageUrl}
-                            />
-                            <div className="p-6">
-                              <div className="text-xs text-gray-500 uppercase tracking-wider mb-2">
+                        <div key={item.id} className="col-span-12 md:col-span-4 lg:col-span-3 group">
+                          <div className="bg-white border border-zinc-100 shadow-md overflow-hidden transform transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                            <div className="h-40 overflow-hidden">
+                              <ProductCard
+                                product={item.product}
+                                currency={selectedCurrency}
+                                showActions={true}
+                                customImageUrl={item.customImageUrl}
+                              />
+                            </div>
+                            <div className="p-4">
+                              <span className="text-xs font-bold tracking-wider text-zinc-400 uppercase block mb-1">
                                 {item.product.category}
-                              </div>
-                              <h3 className="text-xl font-light text-gray-900 leading-snug" style={{ fontFamily: 'Playfair Display, serif' }}>
+                              </span>
+                              <h5 className="text-sm font-light text-black leading-snug" style={{ fontFamily: 'Playfair Display, serif' }}>
                                 {item.product.name}
-                              </h3>
+                              </h5>
                             </div>
                           </div>
                         </div>
                       );
-                    }
-                    
-                    // Regular articles (remaining items)
-                    return (
-                      <div key={item.id} className="col-span-12 md:col-span-6 lg:col-span-3 group">
-                        <div className="bg-white shadow-md border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                          <ProductCard
-                            product={item.product}
-                            currency={selectedCurrency}
-                            showActions={true}
-                            customImageUrl={item.customImageUrl}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-                
-                {/* Magazine Footer */}
-                {section.items.length > 0 && (
-                  <div className="mt-20 text-center">
-                    <div className="border-t border-gray-300 pt-12">
-                      <Button 
-                        className="bg-black hover:bg-gray-800 text-white px-12 py-4 text-base font-medium uppercase tracking-wider transition-all duration-300 hover:scale-105" 
-                        onClick={() => window.location.href = '/collections'}
-                        style={{ fontFamily: 'system-ui, sans-serif' }}
-                      >
-                        VIEW COMPLETE COLLECTION
-                      </Button>
-                      <p className="text-sm text-gray-500 mt-4 uppercase tracking-wider">
-                        DISCOVER MORE STORIES
-                      </p>
-                    </div>
+                    })}
                   </div>
-                )}
+                  
+                  {/* Magazine Closing */}
+                  {section.items.length > 0 && (
+                    <div className="mt-24 text-center">
+                      <div className="border-t-2 border-black pt-16">
+                        <div className="mb-8">
+                          <h3 className="text-2xl font-light text-black mb-4" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            Continue Reading
+                          </h3>
+                          <p className="text-zinc-600 text-sm tracking-wider uppercase">
+                            EXPLORE OUR COMPLETE EDITORIAL COLLECTION
+                          </p>
+                        </div>
+                        <Button 
+                          className="bg-black hover:bg-zinc-800 text-white px-12 py-4 text-sm font-bold uppercase tracking-widest transition-all duration-300 hover:scale-105 border-2 border-black hover:border-zinc-800" 
+                          onClick={() => window.location.href = '/collections'}
+                        >
+                          VIEW ALL STORIES
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </section>
           );
