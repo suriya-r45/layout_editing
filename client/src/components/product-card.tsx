@@ -14,9 +14,10 @@ interface ProductCardProps {
   currency: 'INR' | 'BHD';
   showActions?: boolean;
   customDisplayPrice?: string; // Custom price override for home sections
+  customImageUrl?: string; // Custom image URL for special effects (e.g. vintage)
 }
 
-export default function ProductCard({ product, currency, showActions = true, customDisplayPrice }: ProductCardProps) {
+export default function ProductCard({ product, currency, showActions = true, customDisplayPrice, customImageUrl }: ProductCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);
   const { addToCart, isInCart, getItemQuantity } = useCart();
@@ -106,7 +107,7 @@ Could you please provide more details?`;
             </div>
           )}
           <img
-            src={product.images[0] || "https://images.unsplash.com/photo-1603561596112-db2eca6c9df4?w=400"}
+            src={customImageUrl || product.images[0] || "https://images.unsplash.com/photo-1603561596112-db2eca6c9df4?w=400"}
             alt={product.name}
             className={`w-full h-full object-cover transition-transform duration-300 group-hover:scale-105 ${
               imageLoading ? 'opacity-0' : 'opacity-100'

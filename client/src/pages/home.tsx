@@ -1553,6 +1553,7 @@ export default function Home() {
                       product={item.product}
                       currency={selectedCurrency}
                       showActions={true}
+                      customImageUrl={item.customImageUrl}
                     />
                   </div>
                 ))}
