@@ -1006,171 +1006,83 @@ export default function Home() {
           return <NewArrivalsSection key={section.id} section={section} selectedCurrency={selectedCurrency} />;
         }
 
-        // Magazine layout rendering - Enhanced Editorial Design
+        // Magazine layout rendering - Clean Editorial Design
         if (section.layoutType === 'magazine') {
           return (
             <section 
               key={section.id} 
-              className="py-16 relative overflow-hidden" 
+              className="py-12 md:py-16 relative" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: 'linear-gradient(135deg, #ffffff 0%, #f8f6f3 50%, #f1ede7 100%)'
+                background: 'linear-gradient(to bottom, #ffffff 0%, #fafafa 100%)'
               }}
             >
-              {/* Decorative background elements */}
-              <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-amber-100/20 to-transparent rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-rose-100/20 to-transparent rounded-full blur-3xl"></div>
-              
-              <div className="container mx-auto px-4 relative">
-                {/* Enhanced Magazine Header */}
-                <div className="mb-20 relative">
-                  <div className="flex items-start justify-between mb-8">
-                    <div className="flex-1">
-                      {/* Magazine Label */}
-                      <div className="inline-flex items-center gap-3 mb-6">
-                        <div className="w-16 h-px bg-gradient-to-r from-amber-600 to-amber-400"></div>
-                        <span className="text-sm font-medium text-amber-700 uppercase tracking-[0.2em]" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                          Editorial Collection
-                        </span>
-                        <div className="w-16 h-px bg-gradient-to-l from-amber-600 to-amber-400"></div>
-                      </div>
-                      
-                      {/* Main Title */}
-                      <h2 className="text-6xl md:text-8xl lg:text-9xl font-thin text-gray-900 leading-none mb-6 tracking-tight" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                        {section.title}
-                      </h2>
-                      
-                      {section.description && (
-                        <div className="relative">
-                          <p className="text-xl md:text-2xl font-light text-gray-700 leading-relaxed max-w-2xl italic" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                            "{section.description}"
-                          </p>
-                          <div className="absolute -left-4 top-0 text-6xl text-amber-300/30 leading-none">"</div>
-                        </div>
-                      )}
-                    </div>
-                    
-                    {/* Side Info */}
-                    <div className="hidden lg:block text-right ml-12 pt-12">
-                      <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-gray-100">
-                        <div className="text-xs text-gray-500 uppercase tracking-widest mb-2">Issue</div>
-                        <div className="text-4xl font-light text-gray-800 mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>2025</div>
-                        <div className="w-12 h-px bg-amber-400 mx-auto"></div>
-                        <div className="text-xs text-gray-600 mt-2 uppercase tracking-wider">Winter Collection</div>
-                      </div>
-                    </div>
+              <div className="container mx-auto px-4 md:px-6 lg:px-8">
+                {/* Clean Magazine Header */}
+                <div className="mb-12 md:mb-16 text-center">
+                  {/* Magazine Label */}
+                  <div className="inline-flex items-center gap-4 mb-6">
+                    <div className="w-12 h-px bg-gray-300"></div>
+                    <span className="text-xs font-medium text-gray-600 uppercase tracking-wider">
+                      Featured Collection
+                    </span>
+                    <div className="w-12 h-px bg-gray-300"></div>
                   </div>
                   
-                  {/* Decorative line */}
-                  <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+                  {/* Main Title */}
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 leading-tight mb-4" style={{ fontFamily: 'serif' }}>
+                    {section.title}
+                  </h2>
+                  
+                  {section.description && (
+                    <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                      {section.description}
+                    </p>
+                  )}
+                  
+                  {/* Simple decorative line */}
+                  <div className="w-24 h-px bg-gray-300 mx-auto mt-8"></div>
                 </div>
                 
-                {/* Enhanced Magazine Grid */}
-                <div className="grid grid-cols-12 gap-8 relative">
+                {/* Clean Magazine Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
                   {section.items.map((item, index) => {
-                    // Create sophisticated layout patterns
-                    const layouts = [
-                      { span: 'col-span-12 lg:col-span-7', height: 'min-h-[600px]', featured: true },
-                      { span: 'col-span-12 lg:col-span-5', height: 'min-h-[300px]', featured: false },
-                      { span: 'col-span-12 md:col-span-6', height: 'min-h-[400px]', featured: false },
-                      { span: 'col-span-12 md:col-span-6', height: 'min-h-[400px]', featured: false },
-                      { span: 'col-span-12 md:col-span-4', height: 'min-h-[350px]', featured: false },
-                      { span: 'col-span-12 md:col-span-8', height: 'min-h-[500px]', featured: true },
-                    ];
-                    
-                    const layout = layouts[index % layouts.length];
+                    // First item gets featured layout
+                    const isFeatured = index === 0;
                     
                     return (
-                      <div key={item.id} className={`${layout.span} relative group`}>
-                        {/* Special styling for featured items */}
-                        {layout.featured && index === 0 && (
-                          <div className="absolute -top-4 -left-4 z-20">
-                            <div className="bg-gradient-to-r from-amber-500 to-amber-600 text-white px-4 py-2 rounded-full shadow-lg">
-                              <div className="flex items-center gap-2">
-                                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-                                <span className="text-sm font-medium uppercase tracking-wide">Cover Story</span>
-                              </div>
+                      <div key={item.id} className={`${isFeatured ? 'md:col-span-2 lg:col-span-2 xl:col-span-2' : ''} group`}>
+                        {/* Featured badge for first item only */}
+                        {isFeatured && (
+                          <div className="absolute top-4 left-4 z-10">
+                            <div className="bg-gray-900 text-white px-3 py-1 rounded-md text-xs font-medium uppercase tracking-wide">
+                              Featured
                             </div>
                           </div>
                         )}
                         
-                        <div className={`relative ${layout.height} group overflow-hidden rounded-3xl bg-white shadow-lg transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]`}>
-                          {/* Product Card with enhanced styling */}
-                          <div className="h-full relative">
-                            <ProductCard
-                              product={item.product}
-                              currency={selectedCurrency}
-                              showActions={true}
-                              customImageUrl={item.customImageUrl}
-                            />
-                            
-                            {/* Enhanced overlay for featured items */}
-                            {layout.featured && (
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div className="absolute bottom-6 left-6 right-6">
-                                  <div className="bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg">
-                                    <h3 className="text-lg font-semibold text-gray-900 mb-1" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                                      {item.product.name}
-                                    </h3>
-                                    <p className="text-sm text-gray-600">Featured in this collection</p>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                            
-                            {/* Special badges for different items */}
-                            {index === 1 && (
-                              <div className="absolute top-4 right-4 bg-gradient-to-r from-rose-500 to-pink-500 text-white px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide shadow-lg">
-                                Trending
-                              </div>
-                            )}
-                            
-                            {index === 3 && (
-                              <div className="absolute top-4 right-4 bg-gradient-to-r from-emerald-500 to-green-500 text-white px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide shadow-lg">
-                                New Release
-                              </div>
-                            )}
-                          </div>
+                        <div className="relative bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-md hover:-translate-y-1">
+                          {/* Product Card */}
+                          <ProductCard
+                            product={item.product}
+                            currency={selectedCurrency}
+                            showActions={true}
+                            customImageUrl={item.customImageUrl}
+                          />
                           
-                          {/* Magazine-style corner fold effect */}
-                          <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-gray-200 to-transparent opacity-30"></div>
+                          {/* Simple hover overlay */}
+                          <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                         </div>
-                        
-                        {/* Side annotations for some items */}
-                        {index === 2 && (
-                          <div className="absolute -right-12 top-1/2 transform -translate-y-1/2 rotate-90 hidden xl:block">
-                            <div className="text-xs text-gray-500 uppercase tracking-[0.3em] whitespace-nowrap">
-                              Editor's Pick
-                            </div>
-                          </div>
-                        )}
                       </div>
                     );
                   })}
-                  
-                  {/* Magazine-style pull quote */}
-                  {section.items.length > 2 && (
-                    <div className="col-span-12 my-12">
-                      <div className="text-center max-w-4xl mx-auto">
-                        <div className="text-6xl text-amber-200 mb-4">"</div>
-                        <p className="text-2xl md:text-3xl font-light text-gray-800 italic leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                          Each piece tells a story of timeless elegance and contemporary design
-                        </p>
-                        <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent mt-8 mx-auto"></div>
-                      </div>
-                    </div>
-                  )}
                 </div>
                 
-                {/* Magazine footer */}
-                <div className="mt-20 text-center">
-                  <div className="inline-flex items-center gap-6 bg-white/80 backdrop-blur-sm px-8 py-4 rounded-full shadow-lg border border-gray-100">
-                    <span className="text-sm text-gray-600 uppercase tracking-wider" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                      Explore Collection
-                    </span>
-                    <div className="w-px h-4 bg-gray-300"></div>
+                {/* Simple call-to-action */}
+                {section.items.length > 0 && (
+                  <div className="mt-12 md:mt-16 text-center">
                     <Button 
-                      className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-6 py-2 text-sm font-medium rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105" 
+                      className="bg-gray-900 hover:bg-gray-800 text-white px-8 py-3 text-sm font-medium rounded-md transition-colors duration-200" 
                       onClick={() => window.location.href = '/collections'}
                     >
                       View All Designs
