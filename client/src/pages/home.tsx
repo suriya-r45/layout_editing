@@ -758,208 +758,251 @@ export default function Home() {
           );
         }
 
-        // Mosaic layout rendering - Clean Geometric Jewelry Gallery (Festival Offers Removed)
+        // Mosaic layout rendering - Sophisticated Luxury Gallery
         if (section.layoutType === 'mosaic') {
           return (
             <section 
               key={section.id} 
-              className="py-16 md:py-24 relative overflow-hidden" 
+              className="relative min-h-screen bg-gradient-to-br from-stone-50 via-white to-neutral-50 overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
-              style={{ 
-                background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)'
-              }}
             >
-              {/* Clean background elements */}
-              <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-20 -left-20 w-96 h-96 bg-gradient-to-br from-gray-100/30 to-gray-200/20 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-20 -right-20 w-80 h-80 bg-gradient-to-tl from-gray-100/20 to-gray-300/20 rounded-full blur-3xl"></div>
+              {/* Elegant Background Elements */}
+              <div className="absolute inset-0">
+                <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-100/20 to-amber-200/10 rounded-full blur-3xl"></div>
+                <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-neutral-100/30 to-stone-100/20 rounded-full blur-3xl"></div>
+                <div className="absolute top-1/2 left-0 w-64 h-64 bg-gradient-to-r from-amber-50/40 to-transparent rounded-full blur-2xl"></div>
               </div>
 
-              <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
-                {/* Clean Section Header */}
-                <div className="text-center mb-12 md:mb-20">
-                  <div className="inline-flex items-center gap-4 mb-8">
-                    <div className="w-8 h-px bg-gray-400"></div>
-                    <span className="text-xs font-medium text-gray-500 uppercase tracking-widest">Curated Collection</span>
-                    <div className="w-8 h-px bg-gray-400"></div>
+              <div className="relative py-20 md:py-32">
+                {/* Luxury Header */}
+                <div className="max-w-7xl mx-auto px-6 md:px-8">
+                  <div className="text-center mb-20">
+                    {/* Premium Brand Badge */}
+                    <div className="mb-12">
+                      <div className="relative inline-block">
+                        <div className="absolute -inset-4 bg-gradient-to-r from-amber-200/30 to-amber-300/20 rounded-full blur-lg"></div>
+                        <div className="relative bg-white/90 backdrop-blur-sm border border-amber-100/50 rounded-full px-10 py-4 shadow-lg">
+                          <span className="text-sm font-semibold tracking-[0.2em] text-amber-700 uppercase">
+                            Premium Collections
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Dramatic Typography */}
+                    <h2 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-thin text-neutral-900 mb-8 tracking-tight leading-[0.9]" 
+                        style={{ fontFamily: 'Playfair Display, serif' }}>
+                      {section.title || 'Signature'}
+                    </h2>
+                    
+                    {/* Elegant Divider */}
+                    <div className="flex items-center justify-center gap-8 mb-8">
+                      <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"></div>
+                      <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                      <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"></div>
+                    </div>
+                    
+                    {section.description && (
+                      <p className="text-xl md:text-2xl lg:text-3xl text-neutral-600 max-w-4xl mx-auto font-light leading-relaxed italic">
+                        {section.description}
+                      </p>
+                    )}
                   </div>
-                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-thin text-gray-900 mb-6 leading-none" style={{ fontFamily: 'serif' }}>
-                    {section.title || 'Curated'}
-                  </h2>
-                  {section.description && (
-                    <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto font-light">
-                      {section.description}
-                    </p>
-                  )}
                 </div>
                 
-                {/* Beautiful Balanced Mosaic Layout */}
-                <div className="grid grid-cols-12 grid-rows-4 gap-6 h-[1100px]">
+                {/* Sophisticated Asymmetric Mosaic Grid */}
+                <div className="max-w-7xl mx-auto px-6 md:px-8">
+                  <div className="grid grid-cols-12 auto-rows-fr gap-8 min-h-[900px]">
+                    
+                    {/* Hero Feature - Premium Showcase */}
+                    <div 
+                      className="col-span-12 lg:col-span-7 row-span-2 relative group cursor-pointer overflow-hidden"
+                      onClick={() => handleViewAllClick('bridal-collections')}
+                    >
+                      <div className="relative h-full bg-gradient-to-br from-neutral-900 via-neutral-800 to-black rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 group-hover:scale-[1.02]">
+                        {/* Luxury Background */}
+                        <div className="absolute inset-0">
+                          <img
+                            src={bridalCollectionsImage}
+                            alt="Bridal Collection"
+                            className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70"></div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                        </div>
+                        
+                        {/* Floating Elements */}
+                        <div className="absolute inset-0 opacity-20">
+                          <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-amber-300 rounded-full animate-pulse"></div>
+                          <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-white rounded-full animate-pulse delay-300"></div>
+                          <div className="absolute bottom-1/3 left-1/2 w-5 h-5 bg-amber-400 rounded-full animate-pulse delay-700"></div>
+                        </div>
+                        
+                        {/* Premium Content */}
+                        <div className="absolute inset-0 flex flex-col justify-end p-10 lg:p-12">
+                          <div className="transform transition-all duration-700 group-hover:translate-y-[-8px]">
+                            {/* Luxury Badge */}
+                            <div className="inline-flex items-center gap-3 bg-white/15 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full mb-6">
+                              <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                              <span className="text-white text-sm font-medium tracking-[0.15em] uppercase">Signature Collection</span>
+                            </div>
+                            
+                            <h3 className="text-4xl lg:text-5xl xl:text-6xl font-thin text-white mb-6 leading-tight" 
+                                style={{ fontFamily: 'Playfair Display, serif' }}>
+                              Bridal Collection
+                            </h3>
+                            
+                            <p className="text-white/90 text-lg lg:text-xl mb-8 max-w-lg font-light leading-relaxed">
+                              Timeless elegance crafted for your most precious moments
+                            </p>
+                            
+                            <button className="group/btn inline-flex items-center gap-4 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:shadow-xl hover:scale-105">
+                              <span>Explore Collection</span>
+                              <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   
-                  {/* Hero Block - Clean Featured Bridal Collection */}
-                  <div 
-                    className="col-span-12 lg:col-span-8 row-span-2 relative group cursor-pointer overflow-hidden rounded-2xl shadow-xl transition-all duration-500 hover:shadow-2xl"
-                    onClick={() => handleViewAllClick('bridal-collections')}
-                  >
-                    {/* Clean Main image */}
-                    <div className="absolute inset-0">
-                      <img
-                        src={bridalCollectionsImage}
-                        alt="Bridal Collection"
-                        className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    {/* Elegant Secondary Features - Top Right */}
+                    <div 
+                      className="col-span-12 lg:col-span-5 row-span-1 relative group cursor-pointer overflow-hidden"
+                      onClick={() => handleViewAllClick('necklaces')}
+                    >
+                      <div className="relative h-full bg-gradient-to-br from-white via-stone-50 to-neutral-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] border border-stone-200">
+                        <div className="absolute inset-0 flex items-center">
+                          <div className="w-1/2 h-full relative overflow-hidden">
+                            <img 
+                              src={necklacesImage} 
+                              alt="Necklaces" 
+                              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/60"></div>
+                          </div>
+                          
+                          <div className="w-1/2 h-full flex flex-col justify-center p-6 lg:p-8">
+                            <div className="transform transition-all duration-500 group-hover:translate-x-2">
+                              <div className="mb-3">
+                                <span className="text-xs font-semibold tracking-[0.15em] text-amber-600 uppercase">Exclusive</span>
+                              </div>
+                              <h4 className="text-xl lg:text-2xl xl:text-3xl font-light text-neutral-900 mb-3 leading-tight" 
+                                  style={{ fontFamily: 'Playfair Display, serif' }}>
+                                Necklaces
+                              </h4>
+                              <p className="text-neutral-600 mb-4 text-sm lg:text-base font-light">Statement elegance</p>
+                              <Button 
+                                variant="ghost" 
+                                size="sm"
+                                className="text-amber-700 hover:bg-amber-50 hover:text-amber-800 p-2 rounded-full"
+                              >
+                                <ArrowRight className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                     
-                    {/* Clean content */}
-                    <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-12">
-                      <div className="transform transition-all duration-500 group-hover:translate-y-1">
-                        <div className="inline-flex items-center gap-2 bg-white/90 px-4 py-2 rounded-full mb-4">
-                          <span className="text-gray-800 text-sm font-semibold tracking-wider">FEATURED COLLECTION</span>
+                    {/* Bottom Row - Three Elegant Cards */}
+                    <div 
+                      className="col-span-12 lg:col-span-4 row-span-1 relative group cursor-pointer overflow-hidden"
+                      onClick={() => handleViewAllClick('earrings')}
+                    >
+                      <div className="relative h-full bg-gradient-to-br from-neutral-900 via-neutral-800 to-black rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02]">
+                        <div className="absolute inset-0">
+                          <img 
+                            src={earringsImage} 
+                            alt="Earrings" 
+                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
                         </div>
-                        <h3 className="text-4xl lg:text-6xl font-light text-white mb-4 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
-                          Bridal Collection
-                        </h3>
-                        <p className="text-white/90 text-lg mb-6 max-w-md">Timeless elegance for your most precious moments</p>
-                        <button className="group/btn inline-flex items-center gap-3 bg-white text-gray-900 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-all duration-300">
-                          <span>Explore Collection</span>
-                          <svg className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                          </svg>
-                        </button>
+                        
+                        <div className="relative h-full flex flex-col justify-end p-6">
+                          <div className="transform transition-all duration-500 group-hover:translate-y-[-4px]">
+                            <h4 className="text-xl lg:text-2xl font-light text-white mb-2 leading-tight" 
+                                style={{ fontFamily: 'Playfair Display, serif' }}>
+                              Earrings
+                            </h4>
+                            <p className="text-white/80 text-sm font-light">Timeless beauty</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div 
+                      className="col-span-12 lg:col-span-4 row-span-1 relative group cursor-pointer overflow-hidden"
+                      onClick={() => handleViewAllClick('bangles')}
+                    >
+                      <div className="relative h-full bg-gradient-to-br from-amber-50 via-amber-100/50 to-orange-100/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] border border-amber-200/50">
+                        <div className="absolute inset-0">
+                          <img 
+                            src={banglesImage} 
+                            alt="Bangles" 
+                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 via-amber-800/30 to-transparent"></div>
+                        </div>
+                        
+                        <div className="relative h-full flex flex-col justify-end p-6">
+                          <div className="transform transition-all duration-500 group-hover:translate-y-[-4px]">
+                            <h4 className="text-xl lg:text-2xl font-light text-white mb-2 leading-tight" 
+                                style={{ fontFamily: 'Playfair Display, serif' }}>
+                              Bangles
+                            </h4>
+                            <p className="text-white/90 text-sm font-light">Cultural heritage</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div 
+                      className="col-span-12 lg:col-span-4 row-span-1 relative group cursor-pointer overflow-hidden"
+                      onClick={() => handleViewAllClick('rings')}
+                    >
+                      <div className="relative h-full bg-gradient-to-br from-rose-50 via-pink-50 to-rose-100/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] border border-rose-200/50">
+                        <div className="absolute inset-0">
+                          <img 
+                            src={ringsImageMosaic} 
+                            alt="Rings" 
+                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-rose-900/70 via-rose-800/40 to-transparent"></div>
+                        </div>
+                        
+                        <div className="relative h-full flex flex-col justify-end p-6">
+                          <div className="transform transition-all duration-500 group-hover:translate-y-[-4px]">
+                            <h4 className="text-xl lg:text-2xl font-light text-white mb-2 leading-tight" 
+                                style={{ fontFamily: 'Playfair Display, serif' }}>
+                              Rings
+                            </h4>
+                            <p className="text-white/90 text-sm font-light">Eternal symbols</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                   
-                  {/* Necklaces Section - Perfect Bangles Style */}
-                  <div className="col-span-12 lg:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('necklaces')}>
-                    {/* Enhanced background with image blend - Same as perfect bangles */}
-                    <div className="absolute inset-0">
-                      <img src={necklacesImage} alt="Necklaces" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-600/85 via-purple-500/75 to-indigo-600/85 mix-blend-multiply"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                  {/* Elegant Footer Call-to-Action */}
+                  <div className="mt-20 text-center">
+                    <div className="mb-8">
+                      <h3 className="text-2xl lg:text-3xl font-light text-neutral-900 mb-4" 
+                          style={{ fontFamily: 'Playfair Display, serif' }}>
+                        Discover Your Perfect Piece
+                      </h3>
+                      <p className="text-neutral-600 text-lg font-light max-w-2xl mx-auto">
+                        Each collection tells a unique story of craftsmanship and elegance
+                      </p>
                     </div>
-                    
-                    {/* Enhanced floating particles - Same as perfect bangles */}
-                    <div className="absolute inset-0 opacity-30">
-                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-blue-300 rounded-full animate-pulse"></div>
-                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-purple-300 rounded-full animate-pulse delay-300"></div>
-                      <div className="absolute bottom-1/3 left-1/2 w-4 h-4 bg-white rounded-full animate-pulse delay-700"></div>
-                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-indigo-300 rounded-full animate-pulse delay-1000"></div>
-                    </div>
-                    
-                    <div className="relative h-full flex flex-col justify-end p-8 text-white">
-                      {/* Enhanced content area */}
-                      <div className="transform transition-all duration-500 group-hover:translate-y-1">
-                        <h4 className="text-3xl font-light mb-3 leading-tight">Necklaces</h4>
-                        <p className="text-white/90 mb-6 text-lg">Elegant designs</p>
-                        <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-sm font-medium transition-all duration-300 hover:bg-white/20">
-                          <span>Shop Collection</span>
-                          <svg className="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
+                    <Button 
+                      className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-10 py-4 text-base font-medium rounded-full transition-all duration-300 hover:shadow-xl hover:scale-105 transform" 
+                      onClick={() => window.location.href = '/collections'}
+                    >
+                      Explore All Collections
+                      <ArrowRight className="ml-3 h-5 w-5" />
+                    </Button>
                   </div>
-                  
-                  {/* Earrings Section - Perfect Bangles Style */}
-                  <div className="col-span-12 lg:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('earrings')}>
-                    {/* Enhanced background with image blend - Same as perfect bangles */}
-                    <div className="absolute inset-0">
-                      <img src={earringsImage} alt="Earrings" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
-                      <div className="absolute inset-0 bg-gradient-to-br from-amber-600/85 via-orange-500/75 to-yellow-600/85 mix-blend-multiply"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                    </div>
-                    
-                    {/* Enhanced floating particles - Same as perfect bangles */}
-                    <div className="absolute inset-0 opacity-30">
-                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-amber-300 rounded-full animate-pulse"></div>
-                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-orange-300 rounded-full animate-pulse delay-300"></div>
-                      <div className="absolute bottom-1/3 left-1/2 w-4 h-4 bg-white rounded-full animate-pulse delay-700"></div>
-                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-yellow-300 rounded-full animate-pulse delay-1000"></div>
-                    </div>
-                    
-                    
-                    <div className="relative h-full flex flex-col justify-end p-8 text-white">
-                      {/* Enhanced content area */}
-                      <div className="transform transition-all duration-500 group-hover:translate-y-1">
-                        <h4 className="text-3xl font-light mb-3 leading-tight">Earrings</h4>
-                        <p className="text-white/90 mb-6 text-lg">Statement pieces</p>
-                        <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-sm font-medium transition-all duration-300 hover:bg-white/20">
-                          <span>Shop Collection</span>
-                          <svg className="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Bangles Section - Perfect Original Style */}
-                  <div className="col-span-12 lg:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('bangles')}>
-                    {/* Enhanced background with image blend */}
-                    <div className="absolute inset-0">
-                      <img src={banglesImage} alt="Bangles" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
-                      <div className="absolute inset-0 bg-black/75"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                    </div>
-                    
-                    {/* Enhanced floating particles */}
-                    <div className="absolute inset-0 opacity-30">
-                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-amber-300 rounded-full animate-pulse"></div>
-                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-orange-300 rounded-full animate-pulse delay-300"></div>
-                      <div className="absolute bottom-1/3 left-1/2 w-4 h-4 bg-white rounded-full animate-pulse delay-700"></div>
-                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-yellow-300 rounded-full animate-pulse delay-1000"></div>
-                    </div>
-                    
-                    <div className="relative h-full flex flex-col justify-end p-8 text-white">
-                      {/* Enhanced content area */}
-                      <div className="transform transition-all duration-500 group-hover:translate-y-1">
-                        <h4 className="text-3xl font-light mb-3 leading-tight">Bangles</h4>
-                        <p className="text-white/90 mb-6 text-lg">Traditional meets modern</p>
-                        <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-sm font-medium transition-all duration-300 hover:bg-white/20">
-                          <span>Shop Collection</span>
-                          <svg className="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Rings Section - Perfect Bangles Style */}
-                  <div className="col-span-12 lg:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-700" onClick={() => handleViewAllClick('rings')}>
-                    {/* Enhanced background with image blend - Same as perfect bangles */}
-                    <div className="absolute inset-0">
-                      <img src={ringsImageMosaic} alt="Rings" className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 filter brightness-90 contrast-110" />
-                      <div className="absolute inset-0 bg-black/75"></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                    </div>
-                    
-                    {/* Enhanced floating particles - Same as perfect bangles */}
-                    <div className="absolute inset-0 opacity-30">
-                      <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-amber-300 rounded-full animate-pulse"></div>
-                      <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-orange-300 rounded-full animate-pulse delay-300"></div>
-                      <div className="absolute bottom-1/3 left-1/2 w-4 h-4 bg-white rounded-full animate-pulse delay-700"></div>
-                      <div className="absolute top-3/4 right-1/4 w-2.5 h-2.5 bg-yellow-300 rounded-full animate-pulse delay-1000"></div>
-                    </div>
-                    
-                    <div className="relative h-full flex flex-col justify-end p-8 text-white">
-                      {/* Enhanced content area */}
-                      <div className="transform transition-all duration-500 group-hover:translate-y-1">
-                        <h4 className="text-3xl font-light mb-3 leading-tight">Rings</h4>
-                        <p className="text-white/90 mb-6 text-lg">Sparkling symbols of love</p>
-                        <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 text-sm font-medium transition-all duration-300 hover:bg-white/20">
-                          <span>Shop Collection</span>
-                          <svg className="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
                 </div>
               </div>
             </section>
