@@ -757,171 +757,171 @@ export default function Home() {
           );
         }
 
-        // Mosaic layout rendering - Sophisticated jewelry store grid layout
+        // Mosaic layout rendering - Ultra-Modern Geometric Jewelry Gallery
         if (section.layoutType === 'mosaic') {
           return (
             <section 
               key={section.id} 
-              className="py-12 md:py-20" 
+              className="py-16 md:py-24 relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: 'linear-gradient(135deg, #f5f1ec 0%, #ebe3d8 50%, #e0d5c7 100%)'
+                background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)'
               }}
             >
-              <div className="max-w-7xl mx-auto px-4 md:px-6">
-                {/* Section Header */}
-                <div className="text-center mb-8 md:mb-16">
-                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-light text-gray-800 mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                    {section.title || 'Featured Collections'}
+              {/* Floating background elements */}
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-20 -left-20 w-96 h-96 bg-gradient-to-br from-rose-200/20 to-amber-200/20 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-20 -right-20 w-80 h-80 bg-gradient-to-tl from-blue-200/20 to-purple-200/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+              </div>
+
+              <div className="max-w-7xl mx-auto px-4 md:px-6 relative">
+                {/* Minimal Section Header */}
+                <div className="text-center mb-12 md:mb-20">
+                  <div className="inline-flex items-center gap-4 mb-8">
+                    <div className="w-8 h-px bg-gray-400"></div>
+                    <span className="text-xs font-medium text-gray-500 uppercase tracking-widest">Collection</span>
+                    <div className="w-8 h-px bg-gray-400"></div>
+                  </div>
+                  <h2 className="text-4xl md:text-6xl lg:text-7xl font-thin text-gray-900 mb-6 leading-none" style={{ fontFamily: 'serif' }}>
+                    {section.title || 'Curated'}
                   </h2>
                   {section.description && (
-                    <p className="text-lg md:text-xl font-light text-gray-600 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto font-light">
                       {section.description}
                     </p>
                   )}
                 </div>
                 
-                {/* Revolutionary Mosaic Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
-                  {/* Top Row - Two Large Blocks */}
+                {/* Revolutionary Asymmetric Mosaic Grid */}
+                <div className="grid grid-cols-12 grid-rows-4 gap-4 h-[800px] md:h-[900px]">
                   
-                  {/* Block 1: Bridal Collection */}
+                  {/* Hero Block - Large Featured Item */}
                   <div 
-                    className="relative group cursor-pointer h-64 md:h-80 lg:h-96 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl"
+                    className="col-span-12 md:col-span-7 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl shadow-2xl transition-all duration-700 hover:shadow-3xl"
                     onClick={() => handleViewAllClick('bridal-collections')}
                     style={{
-                      background: 'linear-gradient(135deg, #8B6914 0%, #B8860B 50%, #DAA520 100%)'
+                      background: 'linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%)'
                     }}
                   >
-                    {/* Background Pattern */}
-                    <div className="absolute inset-0 opacity-10">
-                      <div className="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 bg-white rounded-full -translate-x-16 -translate-y-16 md:-translate-x-24 md:-translate-y-24"></div>
-                      <div className="absolute bottom-0 right-0 w-24 h-24 md:w-36 md:h-36 bg-white rounded-full translate-x-12 translate-y-12 md:translate-x-18 md:translate-y-18"></div>
+                    {/* Glass morphism overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-black/20 backdrop-blur-sm"></div>
+                    
+                    {/* Floating particles effect */}
+                    <div className="absolute inset-0 opacity-30">
+                      <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-amber-400 rounded-full animate-ping"></div>
+                      <div className="absolute top-3/4 right-1/3 w-1.5 h-1.5 bg-rose-400 rounded-full animate-ping delay-500"></div>
+                      <div className="absolute bottom-1/4 left-1/2 w-3 h-3 bg-blue-400 rounded-full animate-ping delay-1000"></div>
                     </div>
                     
-                    {/* Lifestyle Image */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent">
+                    {/* Main image */}
+                    <div className="absolute inset-0">
                       <img
                         src={bridalCollectionsImage}
                         alt="Bridal Collection"
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 group-hover:rotate-1"
                       />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                     </div>
                     
-                    {/* Content Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent flex flex-col justify-end p-6 md:p-8">
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-3 md:mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                        BRIDAL COLLECTION
-                      </h3>
-                      <button className="bg-white/90 backdrop-blur-sm text-gray-800 px-6 md:px-8 py-2 md:py-3 rounded-full font-medium text-sm md:text-base hover:bg-white transition-all duration-300 self-start shadow-lg">
-                        SHOP NOW
-                      </button>
+                    {/* Content with modern typography */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+                      <div className="transform transition-all duration-700 group-hover:translate-y-2">
+                        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-1 rounded-full mb-4">
+                          <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
+                          <span className="text-white/80 text-sm font-medium tracking-wider">FEATURED</span>
+                        </div>
+                        <h3 className="text-3xl md:text-5xl lg:text-6xl font-thin text-white mb-4 leading-tight">
+                          Bridal<br/>Collection
+                        </h3>
+                        <p className="text-white/70 text-lg mb-6 max-w-md">Timeless elegance for your special day</p>
+                        <button className="group/btn inline-flex items-center gap-3 bg-white text-gray-900 px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition-all duration-300">
+                          <span>Explore Collection</span>
+                          <div className="w-5 h-5 bg-gray-900 rounded-full flex items-center justify-center group-hover/btn:translate-x-1 transition-transform">
+                            <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                              <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                          </div>
+                        </button>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Block 2: Necklaces */}
-                  <div 
-                    className="relative group cursor-pointer h-64 md:h-80 lg:h-96 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl"
-                    onClick={() => handleViewAllClick('necklaces')}
-                    style={{
-                      background: 'linear-gradient(135deg, #D2B48C 0%, #DEB887 50%, #F5DEB3 100%)'
-                    }}
-                  >
-                    {/* Product Image */}
-                    <div className="absolute inset-0 flex items-center justify-center p-8 md:p-12">
-                      <img
-                        src={necklacesImage}
-                        alt="Premium Necklaces"
-                        className="max-w-full max-h-full object-contain transition-all duration-700 group-hover:scale-110 filter drop-shadow-2xl"
-                      />
-                    </div>
-                    
-                    {/* Content Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex flex-col justify-end p-6 md:p-8">
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-800 mb-3 md:mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                        NECKLACES
-                      </h3>
-                      <button className="bg-gray-800/90 backdrop-blur-sm text-white px-6 md:px-8 py-2 md:py-3 rounded-full font-medium text-sm md:text-base hover:bg-gray-800 transition-all duration-300 self-start shadow-lg">
-                        SHOP NOW
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Bottom Row - Three Equal Blocks */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                   
-                  {/* Block 3: Earrings */}
-                  <div 
-                    className="relative group cursor-pointer h-48 md:h-64 lg:h-72 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl"
-                    onClick={() => handleViewAllClick('earrings')}
-                    style={{
-                      background: 'linear-gradient(135deg, #DEB887 0%, #F5DEB3 50%, #FFF8DC 100%)'
-                    }}
-                  >
-                    {/* Product Image */}
-                    <div className="absolute inset-0 flex items-center justify-center p-6 md:p-8">
-                      <img
-                        src={earringsImage}
-                        alt="Elegant Earrings"
-                        className="max-w-full max-h-full object-contain transition-all duration-700 group-hover:scale-110 filter drop-shadow-2xl"
-                      />
-                    </div>
-                    
-                    {/* Content Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex flex-col justify-end p-4 md:p-6">
-                      <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-gray-800 mb-2 md:mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                        EARRINGS
-                      </h3>
+                  {/* Right Column - Split Blocks */}
+                  <div className="col-span-12 md:col-span-5 row-span-1 relative group cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200/50 shadow-lg hover:shadow-xl transition-all duration-500" onClick={() => handleViewAllClick('necklaces')}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-purple-500/5"></div>
+                    <div className="relative h-full flex items-center justify-between p-6">
+                      <div className="flex-1">
+                        <h4 className="text-2xl font-light text-gray-900 mb-2">Necklaces</h4>
+                        <p className="text-gray-600 text-sm">Elegant designs</p>
+                      </div>
+                      <div className="w-20 h-20 flex-shrink-0">
+                        <img src={necklacesImage} alt="Necklaces" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" />
+                      </div>
                     </div>
                   </div>
-
-                  {/* Block 4: Festive Offers */}
-                  <div className="relative group cursor-pointer h-48 md:h-64 lg:h-72 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl bg-gradient-to-br from-amber-600 via-orange-500 to-red-500">
-                    {/* Decorative Elements */}
-                    <div className="absolute inset-0 opacity-15">
-                      <div className="absolute top-0 right-0 w-20 h-20 md:w-32 md:h-32 bg-white rounded-full translate-x-10 -translate-y-10 md:translate-x-16 md:-translate-y-16"></div>
-                      <div className="absolute bottom-0 left-0 w-16 h-16 md:w-24 md:h-24 bg-white rounded-full -translate-x-8 translate-y-8 md:-translate-x-12 md:translate-y-12"></div>
-                    </div>
-                    
-                    {/* Content */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-6">
-                      <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2 md:mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                        FESTIVE
-                      </h3>
-                      <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-3 md:mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                        OFFERS
-                      </h3>
-                      <button className="bg-white/90 backdrop-blur-sm text-gray-800 px-4 md:px-6 py-2 md:py-3 rounded-full font-medium text-sm md:text-base hover:bg-white transition-all duration-300 shadow-lg">
-                        SHOP NOW
-                      </button>
+                  
+                  <div className="col-span-12 md:col-span-5 row-span-1 relative group cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200/50 shadow-lg hover:shadow-xl transition-all duration-500" onClick={() => handleViewAllClick('earrings')}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-500/5 to-orange-500/5"></div>
+                    <div className="relative h-full flex items-center justify-between p-6">
+                      <div className="flex-1">
+                        <h4 className="text-2xl font-light text-gray-900 mb-2">Earrings</h4>
+                        <p className="text-gray-600 text-sm">Statement pieces</p>
+                      </div>
+                      <div className="w-20 h-20 flex-shrink-0">
+                        <img src={earringsImage} alt="Earrings" className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110" />
+                      </div>
                     </div>
                   </div>
-
-                  {/* Block 5: Bangles */}
-                  <div 
-                    className="relative group cursor-pointer h-48 md:h-64 lg:h-72 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl transition-all duration-700 hover:scale-[1.02] hover:shadow-2xl"
-                    onClick={() => handleViewAllClick('bangles')}
-                    style={{
-                      background: 'linear-gradient(135deg, #CD853F 0%, #D2691E 50%, #A0522D 100%)'
-                    }}
-                  >
-                    {/* Lifestyle Image */}
-                    <div className="absolute inset-0">
-                      <img
-                        src={banglesImage}
-                        alt="Beautiful Bangles"
-                        className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
-                      />
-                    </div>
+                  
+                  {/* Bottom Row - Creative Blocks */}
+                  <div className="col-span-12 md:col-span-4 row-span-2 relative group cursor-pointer overflow-hidden rounded-3xl" onClick={() => handleViewAllClick('bangles')}>
+                    <div className="absolute inset-0 bg-gradient-to-br from-rose-600 via-pink-500 to-purple-600"></div>
+                    <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="30" cy="30" r="4"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
                     
-                    {/* Content Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent flex flex-col justify-end p-4 md:p-6">
-                      <h3 className="text-xl md:text-2xl lg:text-3xl font-light text-white mb-2 md:mb-3 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                        BANGLES
-                      </h3>
+                    <div className="relative h-full flex flex-col justify-end p-8 text-white">
+                      <div className="mb-auto pt-8">
+                        <img src={banglesImage} alt="Bangles" className="w-full h-32 object-contain transition-transform duration-700 group-hover:scale-105" />
+                      </div>
+                      <div>
+                        <h4 className="text-3xl font-light mb-3">Bangles</h4>
+                        <p className="text-white/80 mb-4">Traditional meets modern</p>
+                        <div className="inline-flex items-center gap-2 text-sm font-medium">
+                          <span>Shop Now</span>
+                          <svg className="w-4 h-4 transform transition-transform group-hover:translate-x-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
+                  
+                  <div className="col-span-12 md:col-span-4 row-span-1 relative group cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <div className="absolute inset-0 bg-black/20"></div>
+                    <div className="relative h-full flex items-center justify-center text-center p-6">
+                      <div className="text-white">
+                        <div className="text-4xl mb-2">🎉</div>
+                        <h4 className="text-2xl font-light mb-2">Festive</h4>
+                        <h4 className="text-2xl font-light mb-3">Offers</h4>
+                        <p className="text-white/90 text-sm">Up to 30% off</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="col-span-12 md:col-span-4 row-span-1 relative group cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900 to-gray-700 shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
+                    <div className="relative h-full flex items-center justify-center text-center p-6">
+                      <div className="text-white">
+                        <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-3">
+                          <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <h4 className="text-lg font-medium mb-1">Premium Care</h4>
+                        <p className="text-gray-300 text-sm">Lifetime warranty</p>
+                      </div>
+                    </div>
+                  </div>
+                  
                 </div>
               </div>
             </section>
