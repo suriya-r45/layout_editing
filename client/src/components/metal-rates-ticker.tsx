@@ -104,7 +104,7 @@ export function MetalRatesTicker() {
               return (
                 <span key={index} className="text-sm font-bold px-5 py-2 bg-gray-50 rounded-full border border-gray-300 flex items-center gap-3 shadow-md text-gray-800">
                   {isIndia && (
-                    <div className="w-6 h-4 rounded-sm overflow-hidden border border-gray-300 shadow-sm">
+                    <div className="w-4 h-4 rounded-full overflow-hidden border border-gray-200">
                       <svg viewBox="0 0 24 24" className="w-full h-full">
                         <rect width="24" height="8" fill="#FF9933"/>
                         <rect y="8" width="24" height="8" fill="#FFFFFF"/>
@@ -114,7 +114,7 @@ export function MetalRatesTicker() {
                     </div>
                   )}
                   {isBahrain && (
-                    <div className="w-6 h-4 rounded-sm overflow-hidden border border-gray-300 shadow-sm">
+                    <div className="w-4 h-4 rounded-full overflow-hidden border border-gray-200">
                       <svg viewBox="0 0 24 24" className="w-full h-full">
                         <rect width="24" height="12" fill="#FFFFFF"/>
                         <rect y="12" width="24" height="12" fill="#CE1126"/>
