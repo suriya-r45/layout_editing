@@ -1743,6 +1743,11 @@ export default function Home() {
           const featuredProduct = section.items[0];
           const supportingProducts = section.items.slice(1, 8);
           
+          // Define variables for the royal palace layout
+          const throneProduct = featuredProduct;
+          const royalGuards = supportingProducts.slice(0, 4); // First 4 supporting products as guards
+          const courtAttendants = supportingProducts.slice(4); // Remaining products as court attendants
+          
           return (
             <section 
               key={section.id} 
