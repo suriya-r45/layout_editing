@@ -1203,6 +1203,7 @@ Premium quality, timeless beauty.`;
 
       // For now, create as a bill since we haven't migrated the schema yet
       const bill = await storage.createBill({
+        billNumber: orderNumber,
         customerName: orderData.customerName,
         customerEmail: orderData.customerEmail,
         customerPhone: orderData.customerPhone,
