@@ -1,83 +1,78 @@
-# Palaniappa Jewellers E-commerce Application
+# Palaniappa Jewellers E-Commerce Platform
 
 ## Overview
-This is a full-stack jewelry e-commerce web application built with React, Express, and PostgreSQL. The application features product management, cart functionality, order processing, metal rates, barcode generation, and shipping management for a jewelry business.
+A full-stack jewelry e-commerce application built with React, Express, TypeScript, and PostgreSQL. This platform allows customers to browse jewelry collections, view products, and place orders, while providing admin functionality for managing inventory, pricing, and orders.
 
 ## Recent Changes
-- **September 03, 2025**: Successfully set up the application in Replit environment
-  - Created PostgreSQL database and pushed schema using Drizzle ORM
-  - Configured workflow with proper environment variables (JWT_SECRET)
-  - Fixed database connection issues and Vite configuration
+- **Sept 3, 2025**: Successfully imported and configured the project for Replit environment
+  - Fixed tsx command issue by using npx tsx
+  - Set up PostgreSQL database with proper migrations
+  - Configured JWT_SECRET environment variable for authentication
+  - Enabled webview output with proper host configuration for Replit proxy
   - Application now running successfully on port 5000
 
 ## Project Architecture
 
-### Frontend (React + Vite)
-- **Framework**: React 18 with TypeScript
+### Frontend (React + TypeScript)
+- **Location**: `client/`
+- **Framework**: React 18 with Vite
+- **Styling**: TailwindCSS with shadcn/ui components
 - **Routing**: Wouter for client-side routing
-- **UI Components**: Radix UI + Tailwind CSS (shadcn/ui)
 - **State Management**: TanStack Query for server state
-- **Forms**: React Hook Form with Zod validation
-- **Styling**: Tailwind CSS with custom jewelry-focused theme
+- **Key Features**:
+  - Product catalog with filtering and search
+  - Shopping cart functionality
+  - Admin dashboard for product management
+  - Metal rates ticker
+  - WhatsApp integration
+  - QR code scanning for products
 
-### Backend (Express + Node.js)
-- **Framework**: Express.js with TypeScript
+### Backend (Express + TypeScript)
+- **Location**: `server/`
+- **Framework**: Express.js with TypeScript (tsx)
 - **Database**: PostgreSQL with Drizzle ORM
-- **Authentication**: JWT-based authentication
-- **File Uploads**: Multer for image handling
-- **Payment Processing**: Stripe integration (optional)
-- **SMS**: Twilio integration (optional)
-- **PDF Generation**: PDFKit for invoices and estimates
+- **Authentication**: JWT-based auth system
+- **Key Features**:
+  - Product management APIs
+  - Order processing
+  - Metal rates management
+  - Image upload with vintage effects
+  - Barcode/QR code generation
+  - Shipping management
 
 ### Database Schema
-- **Users**: Customer and admin management with OTP functionality
-- **Products**: Jewelry products with pricing, categories, materials, weights
-- **Orders & Bills**: E-commerce orders and admin billing
-- **Cart Items**: Shopping cart functionality
-- **Metal Rates**: Live gold/silver pricing
-- **Shipping**: Zones, methods, shipments, and delivery tracking
-- **Categories**: Product categorization system
+- **Location**: `shared/schema.ts`
+- **ORM**: Drizzle with PostgreSQL
+- **Key Tables**: products, categories, orders, users, metal_rates, shipping_zones
 
-### Key Features
-1. **Jewelry-Specific**:
-   - Metal-based pricing (gold, silver)
-   - Weight and purity tracking
-   - Barcode and QR code generation
-   - Making charges calculation
-   - GST and VAT support
+## Environment Variables
+- `DATABASE_URL`: PostgreSQL connection string (auto-configured in Replit)
+- `JWT_SECRET`: Required for authentication (set to dev value)
+- `STRIPE_SECRET_KEY`: Optional for payment processing
+- `TWILIO_*`: Optional for SMS notifications
+- `ADMIN_EMAIL`, `ADMIN_MOBILE`, `ADMIN_PASSWORD`: Admin credentials
 
-2. **E-commerce**:
-   - Product catalog with categories
-   - Shopping cart and checkout
-   - Order management
-   - Shipping calculation
-   - Payment processing
+## Development Setup
+1. Database is automatically provisioned and migrated
+2. Run `npm run dev` to start development server
+3. Application serves frontend and backend on port 5000
+4. Vite dev server configured with `allowedHosts: true` for Replit proxy
 
-3. **Admin Features**:
-   - Product management
-   - Order tracking
-   - Billing system
-   - Metal rates management
-   - Shipping management
+## User Preferences
+- Uses shadcn/ui component library for consistent UI
+- Follows modern React patterns with hooks
+- TypeScript for type safety
+- Tailwind for responsive design
 
-## Environment Configuration
-- **Database**: PostgreSQL (provisioned in Replit)
-- **Port**: 5000 (frontend and backend combined)
-- **JWT_SECRET**: Set for authentication
-- **Optional**: STRIPE_SECRET_KEY, Twilio credentials
+## Deployment
+- Configured for autoscale deployment
+- Build command: `npm run build`
+- Start command: Production environment with proper JWT secret
+- Frontend assets served statically in production
 
-## Current Status
-✅ Database connected and schema deployed
-✅ Frontend and backend running successfully
-✅ API endpoints functioning
-✅ Vite HMR working
-⚠️ Some TypeScript errors in routes.ts (non-blocking)
-⚠️ Payment features disabled (no Stripe key)
-⚠️ SMS features disabled (no Twilio credentials)
-
-## Next Steps for Production
-1. Add Stripe API key for payment processing
-2. Configure Twilio for SMS notifications
-3. Fix TypeScript errors in routes.ts
-4. Add proper error handling and logging
-5. Set up production deployment configuration
+## Current State
+✅ Application successfully running and accessible
+✅ Database connected and initialized
+✅ Both frontend and backend operational
+✅ Admin features available
+✅ Product catalog functional
