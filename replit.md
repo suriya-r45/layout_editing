@@ -1,81 +1,83 @@
-# Palaniappa Jewellers E-commerce Platform
+# Palaniappa Jewellers E-commerce Application
 
 ## Overview
-A full-stack jewelry e-commerce application built with modern web technologies for Palaniappa Jewellers. The platform features product catalog management, shopping cart, order processing, and admin dashboard functionality.
+This is a full-stack jewelry e-commerce web application built with React, Express, and PostgreSQL. The application features product management, cart functionality, order processing, metal rates, barcode generation, and shipping management for a jewelry business.
+
+## Recent Changes
+- **September 03, 2025**: Successfully set up the application in Replit environment
+  - Created PostgreSQL database and pushed schema using Drizzle ORM
+  - Configured workflow with proper environment variables (JWT_SECRET)
+  - Fixed database connection issues and Vite configuration
+  - Application now running successfully on port 5000
 
 ## Project Architecture
-- **Frontend**: React 18 + TypeScript + Vite + Tailwind CSS + Shadcn UI
-- **Backend**: Node.js + Express + TypeScript
-- **Database**: PostgreSQL with Drizzle ORM
-- **State Management**: TanStack Query for server state
+
+### Frontend (React + Vite)
+- **Framework**: React 18 with TypeScript
 - **Routing**: Wouter for client-side routing
+- **UI Components**: Radix UI + Tailwind CSS (shadcn/ui)
+- **State Management**: TanStack Query for server state
+- **Forms**: React Hook Form with Zod validation
+- **Styling**: Tailwind CSS with custom jewelry-focused theme
 
-## Recent Changes (Sep 3, 2025)
-- ✅ Successfully imported and configured for Replit environment
-- ✅ Fixed missing JWT_SECRET environment variable 
-- ✅ Configured Vite to allow all hosts for Replit proxy (`allowedHosts: true`)
-- ✅ Set up workflow on port 5000 with webview output
-- ✅ Verified database connectivity and schema
-- ✅ Configured deployment settings for autoscale deployment
+### Backend (Express + Node.js)
+- **Framework**: Express.js with TypeScript
+- **Database**: PostgreSQL with Drizzle ORM
+- **Authentication**: JWT-based authentication
+- **File Uploads**: Multer for image handling
+- **Payment Processing**: Stripe integration (optional)
+- **SMS**: Twilio integration (optional)
+- **PDF Generation**: PDFKit for invoices and estimates
 
-## Project Structure
-```
-├── client/                 # React frontend
-│   ├── src/
-│   │   ├── components/    # Reusable UI components
-│   │   ├── pages/         # Page components
-│   │   ├── lib/          # Utilities and configurations
-│   │   └── assets/       # Static assets (images, etc.)
-├── server/                # Express backend
-│   ├── services/         # Business logic services  
-│   ├── utils/           # Utility functions
-│   └── routes.ts        # API routes
-├── shared/               # Shared types and schemas
-└── migrations/          # Database migrations
-```
+### Database Schema
+- **Users**: Customer and admin management with OTP functionality
+- **Products**: Jewelry products with pricing, categories, materials, weights
+- **Orders & Bills**: E-commerce orders and admin billing
+- **Cart Items**: Shopping cart functionality
+- **Metal Rates**: Live gold/silver pricing
+- **Shipping**: Zones, methods, shipments, and delivery tracking
+- **Categories**: Product categorization system
 
-## Key Features
-- **Product Management**: Comprehensive jewelry catalog with categories, materials, pricing
-- **Shopping Cart**: Session-based cart for guest users, persistent for registered users
-- **Order Processing**: Complete order workflow with payment integration
-- **Admin Dashboard**: Product management, order tracking, billing
-- **Metal Rates**: Live gold/silver rate integration
-- **Barcode Generation**: Product barcode and QR code generation
-- **Shipping Management**: Multi-zone shipping with tracking
-- **WhatsApp Integration**: Order notifications and customer communication
+### Key Features
+1. **Jewelry-Specific**:
+   - Metal-based pricing (gold, silver)
+   - Weight and purity tracking
+   - Barcode and QR code generation
+   - Making charges calculation
+   - GST and VAT support
+
+2. **E-commerce**:
+   - Product catalog with categories
+   - Shopping cart and checkout
+   - Order management
+   - Shipping calculation
+   - Payment processing
+
+3. **Admin Features**:
+   - Product management
+   - Order tracking
+   - Billing system
+   - Metal rates management
+   - Shipping management
 
 ## Environment Configuration
-The application requires these environment variables:
-- `JWT_SECRET`: Required for authentication (currently set in workflow)
-- `DATABASE_URL`: PostgreSQL connection (available via Replit)
-- `STRIPE_SECRET_KEY`: Optional, for payment processing  
-- `TWILIO_*`: Optional, for SMS notifications
-
-## Database Schema
-The application uses a comprehensive schema including:
-- Users, Products, Orders, Bills
-- Shopping Cart management
-- Metal rates tracking
-- Shipping and logistics
-- Categories and home sections
-
-## Running the Application
-- **Development**: `npm run dev` (configured in workflow)
-- **Build**: `npm run build`
-- **Production**: `npm run start`
-- **Database**: `npm run db:push` to sync schema
-
-## Deployment
-Configured for Replit autoscale deployment:
-- Build command: `npm run build`
-- Start command: `npm run start` (with JWT_SECRET)
-- Port: 5000 (webview enabled)
+- **Database**: PostgreSQL (provisioned in Replit)
+- **Port**: 5000 (frontend and backend combined)
+- **JWT_SECRET**: Set for authentication
+- **Optional**: STRIPE_SECRET_KEY, Twilio credentials
 
 ## Current Status
-The application is fully functional and ready for use. All core features are working including:
-- ✅ Frontend loading properly
-- ✅ API endpoints responding
-- ✅ Database connectivity
-- ✅ Product catalog
-- ✅ Shopping cart
-- ✅ Admin features
+✅ Database connected and schema deployed
+✅ Frontend and backend running successfully
+✅ API endpoints functioning
+✅ Vite HMR working
+⚠️ Some TypeScript errors in routes.ts (non-blocking)
+⚠️ Payment features disabled (no Stripe key)
+⚠️ SMS features disabled (no Twilio credentials)
+
+## Next Steps for Production
+1. Add Stripe API key for payment processing
+2. Configure Twilio for SMS notifications
+3. Fix TypeScript errors in routes.ts
+4. Add proper error handling and logging
+5. Set up production deployment configuration
