@@ -1522,80 +1522,162 @@ export default function Home() {
           );
         }
 
-        // Diamond layout rendering - Revolutionary diamond-shaped jewelry display
+        // Diamond layout rendering - Enhanced luxury diamond showcase with premium animations
         if (section.layoutType === 'diamond') {
           return (
             <section 
               key={section.id} 
-              className="py-16 md:py-24 overflow-hidden relative" 
+              className="py-20 md:py-32 overflow-hidden relative min-h-screen" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: 'radial-gradient(ellipse at center, #0a0a0a 0%, #1a1a2e 30%, #2d1b69 60%, #0f0f23 100%)',
+                background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 20%, #16213e 40%, #0f3460 60%, #533a7b 80%, #6a4c93 100%)',
               }}
             >
-              {/* Cosmic Background Effects */}
+              {/* Enhanced Cosmic Background Effects */}
               <div className="absolute inset-0">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-400/20 to-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-tl from-purple-400/15 to-blue-500/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+                {/* Floating particles */}
+                <div className="absolute top-10 left-10 w-2 h-2 bg-amber-400 rounded-full animate-pulse opacity-70"></div>
+                <div className="absolute top-20 right-20 w-1 h-1 bg-purple-400 rounded-full animate-pulse opacity-60" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute bottom-20 left-20 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse opacity-50" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute bottom-32 right-32 w-2 h-2 bg-pink-400 rounded-full animate-pulse opacity-80" style={{ animationDelay: '3s' }}></div>
+                
+                {/* Large gradient orbs */}
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-400/30 to-orange-500/15 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-tl from-purple-400/25 to-blue-500/15 rounded-full blur-2xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 right-1/4 w-72 h-72 bg-gradient-to-br from-pink-400/20 to-violet-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+                
+                {/* Sparkle effects */}
+                <div className="absolute inset-0">
+                  {[...Array(20)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white rounded-full animate-pulse opacity-30"
+                      style={{
+                        top: `${Math.random() * 100}%`,
+                        left: `${Math.random() * 100}%`,
+                        animationDelay: `${Math.random() * 4}s`,
+                        animationDuration: `${2 + Math.random() * 3}s`
+                      }}
+                    />
+                  ))}
+                </div>
               </div>
 
-              <div className="max-w-6xl mx-auto px-4 relative z-10">
-                <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-7xl font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 to-orange-300 mb-6 tracking-widest" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                    {section.title || 'DIAMOND COLLECTION'}
-                  </h2>
-                  <div className="w-32 h-1 bg-gradient-to-r from-transparent via-amber-400 to-transparent mx-auto mb-6"></div>
-                  <p className="text-white/90 text-xl font-light max-w-2xl mx-auto">{section.description || 'Discover the brilliance of our exclusive diamond-shaped showcase'}</p>
+              <div className="max-w-7xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-20">
+                  <div className="mb-8">
+                    <div className="inline-block">
+                      <h2 className="text-5xl md:text-8xl font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 to-orange-300 mb-6 tracking-widest animate-pulse" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        {section.title || 'DIAMOND COLLECTION'}
+                      </h2>
+                      <div className="w-48 h-1 bg-gradient-to-r from-transparent via-amber-400 via-white to-transparent mx-auto mb-6 animate-pulse"></div>
+                    </div>
+                  </div>
+                  <p className="text-white/90 text-xl md:text-2xl font-light max-w-4xl mx-auto leading-relaxed">{section.description || 'Discover the brilliance of our exclusive diamond collection, where each piece reflects pure luxury and timeless elegance'}</p>
                 </div>
 
                 <div className="relative">
-                  <div className="flex justify-center mb-8">
-                    <div 
-                      className="w-64 h-64 md:w-80 md:h-80 transform rotate-45 relative group cursor-pointer transition-all duration-1000 hover:scale-110"
-                      onClick={() => section.items[0] && handleViewAllClick('featured')}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-amber-400/30 via-orange-500/20 to-yellow-600/10 rounded-3xl animate-pulse"></div>
-                      <div className="absolute inset-2 bg-gradient-to-tl from-white/10 to-transparent rounded-2xl"></div>
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-48 h-48 md:w-60 md:h-60 -rotate-45 overflow-hidden rounded-2xl shadow-2xl">
-                          {section.items[0] && (
-                            <img
-                              src={section.items[0].product.images?.[0] || ringsImage}
-                              alt="Featured Diamond Piece"
-                              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
-                            />
-                          )}
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
-                            <div className="text-center w-full">
-                              <h3 className="text-white font-light text-lg mb-2">FEATURED</h3>
-                              <div className="w-12 h-0.5 bg-white/70 mx-auto"></div>
+                  {/* Enhanced Central Diamond */}
+                  <div className="flex justify-center mb-16">
+                    <div className="relative">
+                      {/* Rotating ring around central diamond */}
+                      <div className="absolute inset-0 w-80 h-80 md:w-96 md:h-96 border border-amber-400/30 rounded-full animate-spin" style={{ animationDuration: '20s' }}></div>
+                      <div className="absolute inset-4 w-72 h-72 md:w-88 md:h-88 border border-purple-400/20 rounded-full animate-spin" style={{ animationDuration: '30s', animationDirection: 'reverse' }}></div>
+                      
+                      <div 
+                        className="w-72 h-72 md:w-88 md:h-88 transform rotate-45 relative group cursor-pointer transition-all duration-1000 hover:scale-110 hover:rotate-[50deg]"
+                        onClick={() => section.items[0] && handleViewAllClick('featured')}
+                      >
+                        {/* Multiple gradient layers for depth */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-amber-400/40 via-orange-500/30 to-yellow-600/20 rounded-3xl animate-pulse shadow-2xl"></div>
+                        <div className="absolute inset-1 bg-gradient-to-tl from-white/20 via-transparent to-purple-400/10 rounded-3xl"></div>
+                        <div className="absolute inset-2 bg-gradient-to-br from-transparent via-amber-300/15 to-transparent rounded-2xl"></div>
+                        
+                        {/* Glowing border effect */}
+                        <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-amber-400/50 via-white/30 to-purple-400/50 p-0.5">
+                          <div className="w-full h-full bg-black/20 rounded-3xl"></div>
+                        </div>
+                        
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-56 h-56 md:w-72 md:h-72 -rotate-45 overflow-hidden rounded-3xl shadow-2xl border border-white/20">
+                            {section.items[0] && (
+                              <img
+                                src={section.items[0].product.images?.[0] || ringsImage}
+                                alt="Featured Diamond Piece"
+                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
+                              />
+                            )}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+                              <div className="text-center w-full">
+                                <h3 className="text-white font-light text-xl md:text-2xl mb-3 tracking-wide">SIGNATURE PIECE</h3>
+                                <div className="w-16 h-0.5 bg-gradient-to-r from-amber-400 to-white mx-auto"></div>
+                              </div>
                             </div>
                           </div>
+                        </div>
+                        
+                        {/* Premium badge */}
+                        <div className="absolute -top-4 -right-4 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-black px-6 py-3 rounded-full text-sm font-bold shadow-2xl border border-white/30 animate-pulse">
+                          PREMIUM
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+                  {/* Enhanced Surrounding Diamonds with Better Layout */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 mb-16">
                     {section.items.slice(1, 5).map((item, index) => (
                       <div key={item.id} className="flex justify-center">
                         <div 
-                          className="w-32 h-32 md:w-40 md:h-40 transform rotate-45 relative group cursor-pointer transition-all duration-700 hover:scale-110"
+                          className="w-36 h-36 md:w-48 md:h-48 transform rotate-45 relative group cursor-pointer transition-all duration-700 hover:scale-110 hover:rotate-[50deg]"
                           onClick={() => handleViewAllClick('rings')}
                         >
-                          <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-blue-500/15 to-indigo-600/10 rounded-2xl animate-pulse" style={{ animationDelay: `${index * 200}ms` }}></div>
+                          {/* Enhanced gradient effects */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-purple-400/25 via-blue-500/20 to-indigo-600/15 rounded-2xl animate-pulse shadow-xl" style={{ animationDelay: `${index * 300}ms` }}></div>
+                          <div className="absolute inset-1 bg-gradient-to-tl from-white/15 to-transparent rounded-2xl"></div>
+                          
+                          {/* Glowing border */}
+                          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400/40 via-blue-400/30 to-indigo-400/40 p-0.5">
+                            <div className="w-full h-full bg-black/20 rounded-2xl"></div>
+                          </div>
+                          
                           <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-24 h-24 md:w-32 md:h-32 -rotate-45 overflow-hidden rounded-xl shadow-xl">
+                            <div className="w-28 h-28 md:w-40 md:h-40 -rotate-45 overflow-hidden rounded-xl shadow-xl border border-white/20">
                               <img
                                 src={item.product.images?.[0] || [necklacesImage, earringsImage, pendantsImage, banglesImage][index]}
                                 alt={`Diamond ${index + 1}`}
                                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
                               />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
                             </div>
+                          </div>
+                          
+                          {/* Price display */}
+                          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 -rotate-45 bg-black/80 text-white px-3 py-1 rounded-full text-xs font-medium border border-white/20">
+                            {selectedCurrency === 'BHD' ? `${item.product.priceBhd} BHD` : `₹${item.product.priceInr}`}
                           </div>
                         </div>
                       </div>
                     ))}
+                  </div>
+
+                  {/* Call to Action Section */}
+                  <div className="text-center">
+                    <div className="mb-8">
+                      <h3 className="text-3xl md:text-4xl font-light text-white mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        Experience Diamond Perfection
+                      </h3>
+                      <p className="text-white/80 text-lg max-w-2xl mx-auto">
+                        Each diamond tells a story of brilliance, cut to perfection and set with unmatched craftsmanship
+                      </p>
+                    </div>
+                    <button 
+                      className="bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-600 hover:via-yellow-500 hover:to-amber-600 text-black px-12 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-2xl hover:scale-105 transform border border-white/20"
+                      onClick={() => window.location.href = '/collections/diamond'}
+                    >
+                      Explore Diamond Collection
+                      <span className="ml-2 text-xl">💎</span>
+                    </button>
                   </div>
                 </div>
               </div>
