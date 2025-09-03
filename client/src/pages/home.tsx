@@ -802,81 +802,278 @@ export default function Home() {
                   )}
                 </div>
                 
-                {/* Modern Masonry Grid */}
-                <div className="grid grid-cols-12 gap-6 auto-rows-[300px]">
-                  {section.items.map((item, index) => {
-                    // Define varied grid sizes for visual interest
-                    const gridSizes = [
-                      'col-span-6 row-span-2',  // Large feature
-                      'col-span-3 row-span-1',  // Small
-                      'col-span-3 row-span-1',  // Small
-                      'col-span-4 row-span-2',  // Tall
-                      'col-span-4 row-span-1',  // Medium
-                      'col-span-4 row-span-1',  // Medium
-                      'col-span-6 row-span-1',  // Wide
-                      'col-span-3 row-span-2',  // Tall narrow
-                      'col-span-3 row-span-1',  // Small
-                    ];
-                    
-                    const gridSize = gridSizes[index % gridSizes.length];
-                    const isLarge = gridSize.includes('row-span-2');
-                    
-                    return (
-                      <div 
-                        key={item.id}
-                        className={`${gridSize} group cursor-pointer`}
-                      >
-                        <div className="relative w-full h-full bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-stone-100 hover:border-amber-200">
-                          {/* Image container */}
-                          <div className="relative w-full h-full overflow-hidden">
-                            <img 
-                              src={item.customImageUrl || item.product.imageUrl || ''} 
-                              alt={item.displayName || item.product.name}
-                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                            />
+                {/* Stunning Artistic Mosaic Gallery */}
+                <div className="relative">
+                  {/* Floating Decorative Elements */}
+                  <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-amber-400/10 to-orange-500/5 rounded-full blur-xl animate-pulse"></div>
+                    <div className="absolute bottom-20 right-16 w-24 h-24 bg-gradient-to-tl from-rose-400/8 to-pink-500/4 rounded-full blur-lg animate-pulse delay-1000"></div>
+                    <div className="absolute top-1/2 left-1/3 w-20 h-20 bg-gradient-to-r from-violet-400/6 to-purple-500/3 rounded-full blur-md animate-pulse delay-2000"></div>
+                  </div>
+
+                  {/* Main Mosaic Grid with Artistic Layout - Responsive */}
+                  <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8 auto-rows-[200px] md:auto-rows-[250px] lg:auto-rows-[280px] relative z-10">
+                    {section.items.map((item, index) => {
+                      // Responsive artistic grid patterns
+                      const artisticLayouts = [
+                        { 
+                          grid: 'col-span-1 md:col-span-4 lg:col-span-7 row-span-2', 
+                          type: 'hero', 
+                          rotation: 'hover:rotate-1' 
+                        },
+                        { 
+                          grid: 'col-span-1 md:col-span-2 lg:col-span-5 row-span-1', 
+                          type: 'accent', 
+                          rotation: 'hover:-rotate-1' 
+                        },
+                        { 
+                          grid: 'col-span-1 md:col-span-2 lg:col-span-4 row-span-1', 
+                          type: 'showcase', 
+                          rotation: 'hover:rotate-0.5' 
+                        },
+                        { 
+                          grid: 'col-span-1 md:col-span-2 lg:col-span-4 row-span-1 md:row-span-2', 
+                          type: 'feature', 
+                          rotation: 'hover:-rotate-0.5' 
+                        },
+                        { 
+                          grid: 'col-span-1 md:col-span-2 lg:col-span-4 row-span-1', 
+                          type: 'gallery', 
+                          rotation: 'hover:rotate-1' 
+                        },
+                        { 
+                          grid: 'col-span-1 md:col-span-6 lg:col-span-6 row-span-1', 
+                          type: 'panoramic', 
+                          rotation: 'hover:-rotate-0.5' 
+                        },
+                        { 
+                          grid: 'col-span-1 md:col-span-2 lg:col-span-3 row-span-1 md:row-span-2', 
+                          type: 'portrait', 
+                          rotation: 'hover:rotate-2' 
+                        },
+                        { 
+                          grid: 'col-span-1 md:col-span-2 lg:col-span-3 row-span-1', 
+                          type: 'compact', 
+                          rotation: 'hover:-rotate-1' 
+                        },
+                        { 
+                          grid: 'col-span-1 md:col-span-2 lg:col-span-5 row-span-1', 
+                          type: 'accent', 
+                          rotation: 'hover:rotate-1' 
+                        },
+                      ];
+                      
+                      const layout = artisticLayouts[index % artisticLayouts.length];
+                      const isHero = layout.type === 'hero';
+                      const isFeature = ['feature', 'portrait'].includes(layout.type);
+                      
+                      // Artistic color schemes
+                      const colorSchemes = [
+                        'from-amber-50/90 via-orange-50/80 to-red-50/70',
+                        'from-rose-50/90 via-pink-50/80 to-purple-50/70', 
+                        'from-blue-50/90 via-indigo-50/80 to-violet-50/70',
+                        'from-emerald-50/90 via-teal-50/80 to-cyan-50/70',
+                        'from-yellow-50/90 via-amber-50/80 to-orange-50/70'
+                      ];
+                      
+                      const colorScheme = colorSchemes[index % colorSchemes.length];
+                      
+                      return (
+                        <div 
+                          key={item.id}
+                          className={`${layout.grid} group cursor-pointer transform transition-all duration-700 ${layout.rotation} 
+                            active:scale-95 touch-manipulation animate-fadeInUp`}
+                          style={{ 
+                            animationDelay: `${index * 150}ms`,
+                            transform: `translateY(${Math.sin(index * 0.5) * 15}px)` // Organic flow
+                          }}
+                        >
+                          <div className={`relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl active:shadow-xl transition-all duration-700 border border-stone-200/50 hover:border-amber-300/50 active:border-amber-400/60 bg-gradient-to-br ${colorScheme} backdrop-blur-sm`}>
                             
-                            {/* Gradient overlay for text */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            {/* Artistic Frame Effect - Responsive */}
+                            <div className="absolute inset-1 md:inset-2 rounded-xl md:rounded-2xl border md:border-2 border-white/30 pointer-events-none"></div>
+                            <div className="absolute inset-2 md:inset-4 rounded-lg md:rounded-xl border border-white/20 pointer-events-none"></div>
                             
-                            {/* Product info overlay */}
-                            <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                              <h3 className="text-xl font-medium text-white mb-2 line-clamp-2" 
-                                  style={{ fontFamily: 'Playfair Display, serif' }}>
-                                {item.displayName || item.product.name}
-                              </h3>
-                              
-                              {item.displayPrice && (
-                                <p className="text-amber-300 font-semibold">
-                                  {item.displayPrice}
-                                </p>
-                              )}
-                              
-                              {isLarge && (
-                                <p className="text-white/80 text-sm mt-2 line-clamp-2">
-                                  {item.product.description}
-                                </p>
-                              )}
+                            {/* Dynamic Background Pattern */}
+                            <div className="absolute inset-0 opacity-[0.03]">
+                              <div className="absolute inset-0" style={{
+                                backgroundImage: `radial-gradient(circle at 20px 20px, #d97706 2px, transparent 2px)`,
+                                backgroundSize: `${40 + (index % 3) * 10}px ${40 + (index % 3) * 10}px`,
+                                transform: `rotate(${index * 15}deg)`
+                              }}></div>
                             </div>
                             
-                            {/* Subtle shine effect */}
-                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                              <div className="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent transform skew-x-12 animate-[shimmer_2s_ease-in-out_infinite] group-hover:animate-[shimmer_1s_ease-in-out_once]"></div>
-                            </div>
-                          </div>
-                          
-                          {/* Featured badge for first item */}
-                          {index === 0 && (
-                            <div className="absolute top-4 left-4">
-                              <div className="bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
-                                Featured
+                            {/* Premium Image Container */}
+                            <div className="relative w-full h-full overflow-hidden rounded-xl md:rounded-2xl">
+                              <img 
+                                src={item.customImageUrl || item.product.images?.[0] || "https://images.unsplash.com/photo-1603561596112-db2eca6c9df4?w=400"} 
+                                alt={item.displayName || item.product.name}
+                                className="w-full h-full object-cover transition-all duration-700 
+                                  group-hover:scale-110 group-active:scale-105 
+                                  md:group-hover:scale-125 md:group-hover:rotate-2"
+                                style={{ 
+                                  filter: 'brightness(0.95) contrast(1.05) saturate(1.1)',
+                                  transition: 'filter 0.7s ease, transform 0.7s ease'
+                                }}
+                                onError={(e) => {
+                                  e.currentTarget.src = "https://images.unsplash.com/photo-1603561596112-db2eca6c9df4?w=400";
+                                }}
+                              />
+                              
+                              {/* Sophisticated Overlay System - Mobile & Desktop */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent 
+                                opacity-0 group-hover:opacity-100 group-active:opacity-100 
+                                md:opacity-0 transition-all duration-500"></div>
+                              <div className="absolute inset-0 bg-gradient-to-br from-amber-400/10 via-transparent to-orange-500/10 
+                                opacity-0 group-hover:opacity-100 group-active:opacity-100 
+                                md:opacity-0 transition-all duration-700"></div>
+                              
+                              {/* Auto-Animation Particle Effects for Mobile */}
+                              <div className="absolute inset-0 pointer-events-none opacity-0 
+                                group-hover:opacity-100 group-active:opacity-100 
+                                md:opacity-0 animate-pulse transition-opacity duration-1000">
+                                {[...Array(3)].map((_, i) => (
+                                  <div 
+                                    key={i}
+                                    className="absolute w-1 h-1 bg-amber-400/40 rounded-full animate-pulse"
+                                    style={{
+                                      top: `${25 + i * 20}%`,
+                                      left: `${15 + i * 25}%`,
+                                      animationDelay: `${i * 300}ms`,
+                                      animationDuration: '3s'
+                                    }}
+                                  ></div>
+                                ))}
+                              </div>
+                              
+                              {/* Premium Content Overlay - Mobile Touch & Desktop Hover */}
+                              <div className="absolute bottom-0 left-0 right-0 p-3 md:p-6 transform 
+                                translate-y-full group-hover:translate-y-0 group-active:translate-y-0 
+                                transition-all duration-500 backdrop-blur-sm bg-black/20">
+                                <div className="space-y-2 md:space-y-3">
+                                  {isHero && (
+                                    <div className="inline-flex items-center px-2 md:px-3 py-1 bg-amber-500/20 border border-amber-400/30 rounded-full mb-2 md:mb-3">
+                                      <Gem className="w-2 md:w-3 h-2 md:h-3 text-amber-300 mr-1 md:mr-2" />
+                                      <span className="text-xs text-amber-200 font-medium uppercase tracking-wider">Masterpiece</span>
+                                    </div>
+                                  )}
+                                  
+                                  <h3 className={`font-medium text-white mb-2 line-clamp-2 ${isHero ? 'text-lg md:text-2xl' : 'text-sm md:text-lg'}`}
+                                      style={{ fontFamily: 'Playfair Display, serif' }}>
+                                    {item.displayName || item.product.name}
+                                  </h3>
+                                  
+                                  <div className="flex items-center justify-between">
+                                    <div className="space-y-1 flex-1">
+                                      {item.displayPrice && (
+                                        <p className={`text-amber-300 font-semibold ${isHero ? 'text-base md:text-xl' : 'text-sm md:text-base'}`}>
+                                          {item.displayPrice}
+                                        </p>
+                                      )}
+                                      <p className="text-white/60 text-xs uppercase tracking-wider hidden md:block">
+                                        {item.product.category || 'Luxury Collection'}
+                                      </p>
+                                    </div>
+                                    
+                                    <div className="flex items-center space-x-1 md:space-x-2">
+                                      <div className="w-6 md:w-8 h-6 md:h-8 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center 
+                                        hover:bg-amber-400/20 active:bg-amber-400/30 active:scale-90 
+                                        transition-all duration-300 touch-manipulation">
+                                        <Heart className="w-3 md:w-4 h-3 md:h-4 text-white" />
+                                      </div>
+                                      <div className="w-6 md:w-8 h-6 md:h-8 bg-amber-500/20 backdrop-blur-sm rounded-full flex items-center justify-center 
+                                        hover:bg-amber-400/30 active:bg-amber-400/40 active:scale-90 
+                                        transition-all duration-300 touch-manipulation">
+                                        <ArrowRight className="w-3 md:w-4 h-3 md:h-4 text-amber-200" />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                  {(isHero || isFeature) && item.product.description && (
+                                    <p className="text-white/70 text-xs md:text-sm mt-2 line-clamp-2 leading-relaxed hidden md:block">
+                                      {item.product.description}
+                                    </p>
+                                  )}
+                                </div>
+                              </div>
+                              
+                              {/* Luxury Shine Animation - Auto for Mobile */}
+                              <div className="absolute inset-0 opacity-0 
+                                group-hover:opacity-100 group-active:opacity-60 
+                                transition-opacity duration-1000">
+                                <div className="absolute top-0 -left-full w-1/2 h-full 
+                                  bg-gradient-to-r from-transparent via-white/10 to-transparent 
+                                  transform skew-x-12 
+                                  group-hover:animate-[shine_2s_ease-in-out_infinite]
+                                  group-active:animate-[shine_1.5s_ease-in-out_infinite]"></div>
                               </div>
                             </div>
-                          )}
+                            
+                            {/* Premium Badge System - Responsive */}
+                            {index === 0 && (
+                              <div className="absolute top-2 md:top-4 left-2 md:left-4 z-10">
+                                <div className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-2 md:px-4 py-1 md:py-2 rounded-full text-xs font-bold shadow-xl border border-amber-300/50 backdrop-blur-sm">
+                                  <div className="flex items-center space-x-1">
+                                    <Crown className="w-2 md:w-3 h-2 md:h-3" />
+                                    <span className="hidden md:inline">FEATURED</span>
+                                    <span className="md:hidden">★</span>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
+                            
+                            {isFeature && index > 0 && (
+                              <div className="absolute top-2 md:top-4 right-2 md:right-4 z-10">
+                                <div className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-2 md:px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                                  <Star className="w-2 md:w-3 h-2 md:h-3 inline mr-1" />
+                                  <span className="hidden md:inline">Premium</span>
+                                </div>
+                              </div>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
+                
+                {/* Custom Animations - Mobile Optimized */}
+                <style>{`
+                  @keyframes shine {
+                    0% { transform: translateX(-100%) skewX(12deg); }
+                    100% { transform: translateX(200%) skewX(12deg); }
+                  }
+                  
+                  @keyframes fadeInUp {
+                    0% { 
+                      opacity: 0; 
+                      transform: translateY(30px) translateY(${Math.sin(0 * 0.5) * 15}px); 
+                    }
+                    100% { 
+                      opacity: 1; 
+                      transform: translateY(0px) translateY(${Math.sin(0 * 0.5) * 15}px); 
+                    }
+                  }
+                  
+                  @media (max-width: 768px) {
+                    .animate-fadeInUp {
+                      animation: fadeInUp 0.8s ease-out forwards;
+                    }
+                    
+                    /* Auto-pulse for mobile engagement */
+                    .group:nth-child(even) {
+                      animation: pulse 4s ease-in-out infinite;
+                      animation-delay: 2s;
+                    }
+                  }
+                  
+                  @media (prefers-reduced-motion: reduce) {
+                    .animate-fadeInUp,
+                    .group:nth-child(even) {
+                      animation: none;
+                    }
+                  }
+                `}</style>
                 
                 {/* Call to action */}
                 <div className="text-center mt-16">

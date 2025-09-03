@@ -17,32 +17,45 @@ export function MetalRatesTicker() {
     refetchInterval: 60000, // Refresh every minute
   });
 
+  // Get today's date for display
+  const todayDate = new Date().toLocaleDateString('en-US', { 
+    weekday: 'short', 
+    month: 'short', 
+    day: 'numeric' 
+  });
+
   // Filter and format rates for display in organized order
   const getFormattedRates = () => {
-    const rates: string[] = [];
+    const rates: { text: string, isGoldToday: boolean, isHighlight: boolean }[] = [];
     
     // Helper function to format rate (removed emoji flags to avoid duplication)
-    const formatRate = (rate: MetalRate) => {
+    const formatRate = (rate: MetalRate, isHighlight = false) => {
       const countryName = rate.market === 'INDIA' ? 'INDIA' : 'BAHRAIN';
       const currency = rate.market === 'INDIA' ? '₹' : 'BD';
       const price = parseFloat(rate.market === 'INDIA' ? rate.pricePerGramInr : rate.pricePerGramBhd);
       const decimals = rate.market === 'INDIA' ? 0 : 3;
       
       if (rate.metal === 'GOLD') {
-        return `Gold ${rate.purity}: ${currency} ${price.toFixed(decimals)}/g`;
+        const goldText = isHighlight 
+          ? `TODAY'S GOLD ${rate.purity}: ${currency} ${price.toFixed(decimals)}/g`
+          : `Gold ${rate.purity}: ${currency} ${price.toFixed(decimals)}/g`;
+        return { text: goldText, isGoldToday: isHighlight, isHighlight };
       } else if (rate.metal === 'SILVER') {
-        return `Silver 925: ${currency} ${price.toFixed(decimals)}/g`;
+        return { text: `Silver 925: ${currency} ${price.toFixed(decimals)}/g`, isGoldToday: false, isHighlight: false };
       }
       return null;
     };
 
+    // Add special "Today's Gold Rate" intro
+    rates.push({ text: `📅 ${todayDate} - Live Metal Rates`, isGoldToday: false, isHighlight: true });
+    
     // Order: BH 22KT, IN 22KT, BH 18KT, IN 18KT, then silver rates
-    // Find and add Gold 22K rates
+    // Find and add Gold 22K rates (highlight the first one as "TODAY'S")
     const bh22K = metalRates.find(r => r.market === 'BAHRAIN' && r.metal === 'GOLD' && r.purity === '22K');
     const in22K = metalRates.find(r => r.market === 'INDIA' && r.metal === 'GOLD' && r.purity === '22K');
     
-    if (bh22K) rates.push(formatRate(bh22K)!);
-    if (in22K) rates.push(formatRate(in22K)!);
+    if (bh22K) rates.push(formatRate(bh22K, true)!);  // Highlight first gold rate
+    if (in22K) rates.push(formatRate(in22K, true)!);  // Highlight second gold rate
     
     // Find and add Gold 18K rates
     const bh18K = metalRates.find(r => r.market === 'BAHRAIN' && r.metal === 'GOLD' && r.purity === '18K');
@@ -93,19 +106,31 @@ export function MetalRatesTicker() {
           }
         `}
       </style>
-      <div className="bg-white text-gray-800 py-4 overflow-hidden relative shadow-lg border-b border-gray-200 w-full">
+      <div className="bg-gradient-to-r from-amber-50 via-yellow-50 to-amber-50 text-gray-800 py-4 overflow-hidden relative shadow-lg border-b-2 border-amber-200 w-full">
         <div className="ticker-scroll whitespace-nowrap w-full">
           <div className="inline-flex items-center space-x-8 w-max">
             {/* Duplicate the rates to create seamless loop */}
-            {[...rates, ...rates].map((rate, index) => {
-              // Determine market from rate position in array (rates are ordered: BH 22K, IN 22K, BH 18K, IN 18K, BH Silver, IN Silver)
+            {[...rates, ...rates].map((rateObj, index) => {
+              // Determine market from rate position in array (rates are ordered: Date, BH 22K, IN 22K, BH 18K, IN 18K, BH Silver, IN Silver)
               const originalIndex = index % rates.length;
-              const isIndia = originalIndex % 2 === 1; // Odd indices are India rates
-              const isBahrain = originalIndex % 2 === 0; // Even indices are Bahrain rates
+              const isIndia = originalIndex > 1 && (originalIndex - 1) % 2 === 1; // Odd indices are India rates (skip date)
+              const isBahrain = originalIndex > 1 && (originalIndex - 1) % 2 === 0; // Even indices are Bahrain rates (skip date)
+              const isDateItem = originalIndex === 0;
+              
+              let bgClass = "bg-white border-gray-300 text-gray-800";
+              let textClass = "text-sm font-semibold";
+              
+              if (rateObj.isGoldToday) {
+                bgClass = "bg-gradient-to-r from-amber-400 to-yellow-500 border-amber-600 text-white shadow-lg";
+                textClass = "text-sm font-bold tracking-wide";
+              } else if (rateObj.isHighlight) {
+                bgClass = "bg-gradient-to-r from-blue-500 to-indigo-600 border-blue-700 text-white shadow-lg";
+                textClass = "text-sm font-bold";
+              }
               
               return (
-                <span key={index} className="text-sm font-bold px-5 py-2 bg-gray-50 rounded-full border border-gray-300 flex items-center gap-3 shadow-md text-gray-800">
-                  {isIndia && (
+                <span key={index} className={`${textClass} px-5 py-2 ${bgClass} rounded-full border flex items-center gap-3 shadow-md`}>
+                  {!isDateItem && isIndia && (
                     <div className="w-4 h-4 rounded-full overflow-hidden border border-gray-200">
                       <svg viewBox="0 0 24 24" className="w-full h-full">
                         <rect width="24" height="8" fill="#FF9933"/>
@@ -115,7 +140,7 @@ export function MetalRatesTicker() {
                       </svg>
                     </div>
                   )}
-                  {isBahrain && (
+                  {!isDateItem && isBahrain && (
                     <div className="w-4 h-4 rounded-full overflow-hidden border border-gray-200">
                       <svg viewBox="0 0 24 24" className="w-full h-full">
                         <rect width="24" height="12" fill="#FFFFFF"/>
@@ -124,7 +149,10 @@ export function MetalRatesTicker() {
                       </svg>
                     </div>
                   )}
-                  <span>{rate}</span>
+                  {rateObj.isGoldToday && (
+                    <span className="text-xs bg-white text-amber-600 px-2 py-0.5 rounded-full font-bold animate-pulse">LIVE</span>
+                  )}
+                  <span>{rateObj.text}</span>
                 </span>
               );
             })}
