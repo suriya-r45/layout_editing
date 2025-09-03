@@ -391,6 +391,7 @@ export default function Home() {
     { name: 'Necklaces', image: necklacesImage, key: 'necklaces' },
     { name: 'Bangles & Bracelets', image: banglesImage, key: 'bangles' },
     { name: 'Chains', image: chainsImage, key: 'chains' },
+    { name: 'Bracelets', image: braceletsImage, key: 'bracelets' },
     { name: 'Nosepins', image: noseJewelryImage, key: 'nose-jewelry' },
     { name: 'Watches', image: watchesImage, key: 'watches' },
     { name: "Men's Jewelry", image: mensJewelryImage, key: 'mens' },
