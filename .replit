@@ -8,7 +8,7 @@ packages = ["cairo", "pango", "libjpeg", "giflib", "librsvg", "pixman"]
 
 [deployment]
 deploymentTarget = "autoscale"
-run = ["bash", "-c", "JWT_SECRET=your_super_secret_jwt_key_here_change_in_production npm run start"]
+run = ["npm", "run", "start"]
 build = ["npm", "run", "build"]
 
 [[ports]]
@@ -34,13 +34,13 @@ args = "Start application"
 name = "Start application"
 author = "agent"
 
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "JWT_SECRET=your_super_secret_jwt_key_here_change_in_production npm run dev"
-waitForPort = 5000
-
 [workflows.workflow.metadata]
 outputType = "webview"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "JWT_SECRET=dev_jwt_secret_key_12345 npm run dev"
+waitForPort = 5000
 
 [agent]
 expertMode = true
