@@ -1717,64 +1717,113 @@ export default function Home() {
           );
         }
 
-        // Artistic layout rendering - Asymmetric creative collage
+        // Artistic layout rendering - Modern luxury showcase
         if (section.layoutType === 'artistic') {
           return (
             <section 
               key={section.id} 
-              className="py-20 md:py-32 relative overflow-hidden" 
+              className="py-24 md:py-32 relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: 'linear-gradient(45deg, #ff9a9e 0%, #fecfef 25%, #fecfef 75%, #ff9a9e 100%)',
+                background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 30%, #16213e 70%, #0f0f23 100%)',
               }}
             >
+              {/* Animated background elements */}
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-500/10 to-orange-600/5 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-br from-rose-500/10 to-pink-600/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-violet-500/10 to-purple-600/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
+              </div>
+
               <div className="max-w-7xl mx-auto px-4 relative z-10">
-                <div className="text-center mb-16">
-                  <h2 className="text-5xl md:text-8xl font-extralight text-gray-800 mb-6 tracking-widest" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                    {section.title || 'ARTISTIC VISION'}
-                  </h2>
-                  <p className="text-gray-700 text-xl font-light max-w-3xl mx-auto">{section.description || 'Where creativity meets craftsmanship'}</p>
+                <div className="text-center mb-20">
+                  <div className="mb-8">
+                    <div className="inline-block">
+                      <div className="h-px w-24 bg-gradient-to-r from-transparent via-amber-400 to-transparent mb-6"></div>
+                      <h2 className="text-4xl md:text-6xl lg:text-7xl font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 to-orange-300 mb-6 tracking-[0.2em] leading-tight" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        {section.title || 'ARTISAN COLLECTION'}
+                      </h2>
+                      <div className="h-px w-24 bg-gradient-to-r from-transparent via-amber-400 to-transparent mt-6"></div>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">{section.description || 'Where timeless artistry meets contemporary elegance'}</p>
                 </div>
 
-                <div className="relative h-screen max-h-[800px]">
-                  {section.items.slice(0, 8).map((item, index) => {
-                    const positions = [
-                      { top: '10%', left: '15%', rotate: '-15deg', size: 'w-48 h-64' },
-                      { top: '5%', right: '20%', rotate: '12deg', size: 'w-56 h-72' },
-                      { top: '35%', left: '5%', rotate: '8deg', size: 'w-44 h-56' },
-                      { top: '40%', right: '10%', rotate: '-8deg', size: 'w-52 h-68' },
-                      { bottom: '25%', left: '25%', rotate: '15deg', size: 'w-40 h-52' },
-                      { bottom: '20%', right: '25%', rotate: '-12deg', size: 'w-48 h-60' },
-                      { top: '55%', left: '45%', rotate: '5deg', size: 'w-36 h-48' },
-                      { bottom: '45%', right: '45%', rotate: '-5deg', size: 'w-44 h-56' },
-                    ];
-
-                    const position = positions[index] || positions[0];
-
-                    return (
-                      <div 
-                        key={item.id}
-                        className={`absolute group cursor-pointer ${position.size} transition-all duration-700 hover:scale-110 hover:z-50`}
-                        style={{
-                          ...position,
-                          transform: `rotate(${position.rotate})`,
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-black/20 rounded-2xl blur-lg transform translate-x-2 translate-y-2"></div>
-                        
-                        <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden border-4 border-white transform transition-all duration-700 group-hover:rotate-0">
-                          <img
-                            src={item.product.images?.[0] || [ringsImage, necklacesImage, earringsImage, pendantsImage][index % 4]}
-                            alt={item.product.name}
-                            className="w-full h-4/5 object-cover"
-                          />
-                          <div className="p-4">
-                            <h3 className="text-gray-800 font-light text-center text-sm">{item.product.name}</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Featured large item */}
+                  <div className="lg:col-span-5 order-2 lg:order-1">
+                    {section.items[0] && (
+                      <div className="group relative">
+                        <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-rose-500/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-1000"></div>
+                        <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white/10">
+                          <div className="aspect-[4/5] overflow-hidden rounded-2xl mb-6">
+                            <img
+                              src={section.items[0].product.images?.[0] || ringsImage}
+                              alt={section.items[0].product.name}
+                              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                            />
+                          </div>
+                          <div className="text-center">
+                            <h3 className="text-white text-xl font-light mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                              {section.items[0].product.name}
+                            </h3>
+                            <div className="flex justify-center items-center space-x-2 mb-4">
+                              <div className="h-px w-8 bg-gradient-to-r from-transparent to-amber-400"></div>
+                              <span className="text-amber-400 text-sm font-light">{section.items[0].product.category}</span>
+                              <div className="h-px w-8 bg-gradient-to-l from-transparent to-amber-400"></div>
+                            </div>
+                            <p className="text-amber-300 text-lg font-semibold">
+                              {selectedCurrency === 'BHD' ? `BD ${section.items[0].product.priceBhd}` : `₹ ${section.items[0].product.priceInr}`}
+                            </p>
                           </div>
                         </div>
                       </div>
-                    );
-                  })}
+                    )}
+                  </div>
+
+                  {/* Grid of smaller items */}
+                  <div className="lg:col-span-7 order-1 lg:order-2">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                      {section.items.slice(1, 7).map((item, index) => (
+                        <div key={item.id} className="group relative">
+                          <div className="absolute -inset-2 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                          <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-3 shadow-xl border border-white/10 hover:border-amber-400/30 transition-all duration-500">
+                            <div className="aspect-square overflow-hidden rounded-xl mb-3">
+                              <img
+                                src={item.product.images?.[0] || [ringsImage, necklacesImage, earringsImage, pendantsImage][index % 4]}
+                                alt={item.product.name}
+                                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                              />
+                            </div>
+                            <div className="text-center">
+                              <h4 className="text-white text-sm font-light line-clamp-2 mb-1" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                                {item.product.name}
+                              </h4>
+                              <p className="text-amber-300 text-xs font-medium">
+                                {selectedCurrency === 'BHD' ? `BD ${item.product.priceBhd}` : `₹ ${item.product.priceInr}`}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Call to action */}
+                <div className="text-center mt-16">
+                  <button
+                    onClick={() => window.location.href = '/collections'}
+                    className="group relative inline-flex items-center px-8 py-4 overflow-hidden text-lg font-medium text-amber-400 border-2 border-amber-400 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition-all duration-300"
+                  >
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-amber-500 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    <span className="relative flex items-center">
+                      Explore Collection
+                      <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </span>
+                  </button>
                 </div>
               </div>
             </section>
