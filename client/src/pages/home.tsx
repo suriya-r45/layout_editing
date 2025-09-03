@@ -573,8 +573,10 @@ export default function Home() {
       {/* Categories Horizontal Scroll */}
       <CategoriesScrollSection categories={categories} handleViewAllClick={handleViewAllClick} />
 
-      {/* Section Divider */}
-      <div className="w-full border-t border-gray-200 my-8"></div>
+      {/* Section Divider - hidden for festival sections */}
+      {homeSections.length > 0 && !homeSections.some(s => s.layoutType === 'festival') && (
+        <div className="w-full border-t border-gray-200 my-8"></div>
+      )}
 
       {/* Custom Admin Sections */}
       {homeSections.length > 0 && homeSections.map((section) => {
@@ -1333,7 +1335,7 @@ export default function Home() {
           return (
             <section 
               key={section.id} 
-              className="w-full relative overflow-hidden m-0 p-0" 
+              className="w-full relative overflow-hidden -mt-8 -mb-8 m-0 p-0" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
             >
               {section.festivalImage ? (
