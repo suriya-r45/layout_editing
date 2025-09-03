@@ -8,7 +8,7 @@ import { useAuth } from '@/lib/auth';
 import { Currency, CURRENCY_NAMES } from '@/lib/currency';
 import CartButton from '@/components/cart/cart-button';
 import MobileMenu from '@/components/mobile-menu';
-import logoPath from '@assets/1000284180_1755240849891_1755886428742.jpg';
+import logoPath from '@assets/company_logo_new.png';
 
 interface HeaderProps {
   selectedCurrency: Currency;
