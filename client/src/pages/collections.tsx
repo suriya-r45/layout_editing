@@ -704,6 +704,7 @@ export default function CollectionsPage({ material, category }: CollectionsPageP
                         key={product.id}
                         product={product}
                         currency={selectedCurrency}
+                        showActions={false}
                       />
                     ))}
                   </div>
