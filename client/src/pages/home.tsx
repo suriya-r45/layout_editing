@@ -534,6 +534,8 @@ export default function Home() {
         return 'grid-cols-3 md:grid-cols-3 lg:grid-cols-4';
       case 'split':
         return 'grid-cols-1 md:grid-cols-2 gap-0'; // Split layout uses flex instead
+      case 'mosaic':
+        return 'grid-cols-12 auto-rows-fr gap-10';
       default:
         return 'grid-cols-3 md:grid-cols-3 lg:grid-cols-4';
     }
@@ -760,276 +762,223 @@ export default function Home() {
           );
         }
 
-        // Mosaic layout rendering - Sophisticated Luxury Gallery
+        // Mosaic layout rendering - Royal Majestic Gallery
         if (section.layoutType === 'mosaic') {
           return (
             <section 
               key={section.id} 
-              className="relative min-h-screen bg-gradient-to-br from-stone-50 via-white to-neutral-50 overflow-hidden" 
+              className="relative min-h-screen overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{
+                background: 'linear-gradient(135deg, #1a1625 0%, #2d1b4e 15%, #3f2563 30%, #4c1d95 45%, #5b21b6 60%, #6d28d9 75%, #7c3aed 90%, #8b5cf6 100%)'
+              }}
             >
-              {/* Elegant Background Elements */}
+              {/* Royal Atmospheric Effects */}
               <div className="absolute inset-0">
-                <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-100/20 to-amber-200/10 rounded-full blur-3xl"></div>
-                <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-tl from-neutral-100/30 to-stone-100/20 rounded-full blur-3xl"></div>
-                <div className="absolute top-1/2 left-0 w-64 h-64 bg-gradient-to-r from-amber-50/40 to-transparent rounded-full blur-2xl"></div>
+                {/* Royal Golden Aura */}
+                <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-yellow-400/20 via-amber-500/15 to-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-violet-500/10 to-indigo-500/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-2/3 left-1/6 w-[400px] h-[400px] bg-gradient-to-r from-rose-400/12 via-pink-500/8 to-purple-500/6 rounded-full blur-2xl animate-pulse delay-2000"></div>
+                
+                {/* Royal Crown Pattern */}
+                <div className="absolute inset-0 opacity-[0.12]">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d97706' fill-opacity='0.3'%3E%3Cpolygon points='30,5 35,20 50,20 40,30 45,45 30,35 15,45 20,30 10,20 25,20'/%3E%3C/g%3E%3C/svg%3E")`,
+                    backgroundSize: '120px 120px'
+                  }}></div>
+                </div>
+                
+                {/* Floating Royal Gems */}
+                <div className="absolute inset-0 opacity-30">
+                  <div className="absolute top-1/5 left-1/5 w-4 h-4 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full shadow-lg animate-bounce delay-300"></div>
+                  <div className="absolute top-1/2 right-1/5 w-3 h-3 bg-gradient-to-br from-purple-300 to-violet-500 rounded-full shadow-lg animate-bounce delay-700"></div>
+                  <div className="absolute bottom-1/4 left-2/3 w-5 h-5 bg-gradient-to-br from-rose-300 to-pink-500 rounded-full shadow-lg animate-bounce delay-1100"></div>
+                  <div className="absolute top-3/4 right-1/3 w-4 h-4 bg-gradient-to-br from-amber-300 to-orange-500 rounded-full shadow-lg animate-bounce delay-1500"></div>
+                  <div className="absolute top-1/6 right-2/3 w-3 h-3 bg-gradient-to-br from-indigo-300 to-blue-500 rounded-full shadow-lg animate-bounce delay-1900"></div>
+                </div>
               </div>
 
-              <div className="relative py-20 md:py-32">
-                {/* Luxury Header */}
+              <div className="relative py-32 md:py-48">
+                {/* Royal Majestic Header */}
                 <div className="max-w-7xl mx-auto px-6 md:px-8">
-                  <div className="text-center mb-20">
-                    {/* Premium Brand Badge */}
-                    <div className="mb-12">
+                  <div className="text-center mb-32">
+                    {/* Royal Crown Badge */}
+                    <div className="mb-20">
                       <div className="relative inline-block">
-                        <div className="absolute -inset-4 bg-gradient-to-r from-amber-200/30 to-amber-300/20 rounded-full blur-lg"></div>
-                        <div className="relative bg-white/90 backdrop-blur-sm border border-amber-100/50 rounded-full px-10 py-4 shadow-lg">
-                          <span className="text-sm font-semibold tracking-[0.2em] text-amber-700 uppercase">
-                            Premium Collections
-                          </span>
+                        <div className="absolute -inset-12 bg-gradient-to-r from-yellow-400/30 via-amber-500/40 to-orange-500/30 rounded-full blur-3xl animate-pulse"></div>
+                        <div className="absolute -inset-6 bg-gradient-to-r from-purple-400/25 via-violet-500/35 to-indigo-500/25 rounded-full blur-2xl animate-pulse delay-700"></div>
+                        <div className="relative bg-gradient-to-br from-amber-50/95 via-yellow-50/90 to-orange-50/95 backdrop-blur-lg border-3 border-yellow-400/60 rounded-full px-16 py-8 shadow-3xl">
+                          <div className="flex items-center gap-6">
+                            <Crown className="w-8 h-8 text-yellow-600" />
+                            <span className="text-xl font-bold tracking-[0.3em] bg-gradient-to-r from-purple-800 via-violet-700 to-purple-800 bg-clip-text text-transparent uppercase">
+                              Royal Jewel House
+                            </span>
+                            <Crown className="w-8 h-8 text-yellow-600" />
+                          </div>
                         </div>
                       </div>
                     </div>
                     
-                    {/* Dramatic Typography */}
-                    <h2 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-thin text-neutral-900 mb-8 tracking-tight leading-[0.9]" 
-                        style={{ fontFamily: 'Playfair Display, serif' }}>
-                      {section.title || 'Signature'}
+                    {/* Imperial Typography */}
+                    <h2 className="text-7xl md:text-9xl lg:text-[10rem] xl:text-[14rem] font-thin bg-gradient-to-br from-yellow-200 via-amber-100 to-orange-200 bg-clip-text text-transparent mb-16 tracking-tighter leading-[0.75]" 
+                        style={{ 
+                          fontFamily: 'Playfair Display, serif', 
+                          textShadow: '0 0 60px rgba(251, 191, 36, 0.4), 0 0 120px rgba(251, 191, 36, 0.2)',
+                          filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3))'
+                        }}>
+                      {section.title || 'Majesty'}
                     </h2>
                     
-                    {/* Elegant Divider */}
-                    <div className="flex items-center justify-center gap-8 mb-8">
-                      <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"></div>
-                      <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
-                      <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400/60 to-transparent"></div>
+                    {/* Royal Ornamental Divider */}
+                    <div className="flex items-center justify-center gap-16 mb-16">
+                      <div className="w-64 h-px bg-gradient-to-r from-transparent via-yellow-300/90 to-transparent"></div>
+                      <div className="relative">
+                        <div className="w-6 h-6 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full shadow-2xl"></div>
+                        <div className="absolute inset-0 w-6 h-6 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full animate-ping"></div>
+                        <div className="absolute -inset-2 border-2 border-yellow-300/50 rounded-full animate-pulse"></div>
+                      </div>
+                      <div className="w-64 h-px bg-gradient-to-r from-transparent via-yellow-300/90 to-transparent"></div>
                     </div>
                     
                     {section.description && (
-                      <p className="text-xl md:text-2xl lg:text-3xl text-neutral-600 max-w-4xl mx-auto font-light leading-relaxed italic">
+                      <p className="text-3xl md:text-4xl lg:text-5xl text-yellow-100/95 max-w-6xl mx-auto font-light leading-relaxed italic tracking-wider" 
+                         style={{ 
+                           textShadow: '0 4px 30px rgba(0, 0, 0, 0.7), 0 2px 10px rgba(139, 92, 246, 0.3)',
+                           filter: 'drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4))'
+                         }}>
                         {section.description}
                       </p>
                     )}
                   </div>
                 </div>
                 
-                {/* Sophisticated Asymmetric Mosaic Grid */}
-                <div className="max-w-7xl mx-auto px-6 md:px-8">
-                  <div className="grid grid-cols-12 auto-rows-fr gap-8 min-h-[900px]">
+                {/* Royal Architectural Mosaic Layout */}
+                <div className="max-w-8xl mx-auto px-6 md:px-8">
+                  {/* Central Royal Showcase */}
+                  <div className="relative min-h-[1200px]">
                     
-                    {/* Hero Feature - Premium Showcase */}
-                    <div 
-                      className="col-span-12 lg:col-span-7 row-span-2 relative group cursor-pointer overflow-hidden"
-                      onClick={() => handleViewAllClick('bridal-collections')}
-                    >
-                      <div className="relative h-full bg-gradient-to-br from-neutral-900 via-neutral-800 to-black rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-700 group-hover:scale-[1.02]">
-                        {/* Luxury Background */}
-                        <div className="absolute inset-0">
-                          <img
-                            src={bridalCollectionsImage}
-                            alt="Bridal Collection"
-                            className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/70"></div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-                        </div>
-                        
-                        {/* Floating Elements */}
-                        <div className="absolute inset-0 opacity-20">
-                          <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-amber-300 rounded-full animate-pulse"></div>
-                          <div className="absolute top-1/2 right-1/3 w-3 h-3 bg-white rounded-full animate-pulse delay-300"></div>
-                          <div className="absolute bottom-1/3 left-1/2 w-5 h-5 bg-amber-400 rounded-full animate-pulse delay-700"></div>
-                        </div>
-                        
-                        {/* Premium Content */}
-                        <div className="absolute inset-0 flex flex-col justify-end p-10 lg:p-12">
-                          <div className="transform transition-all duration-700 group-hover:translate-y-[-8px]">
-                            {/* Luxury Badge */}
-                            <div className="inline-flex items-center gap-3 bg-white/15 backdrop-blur-md border border-white/20 px-6 py-3 rounded-full mb-6">
-                              <div className="w-2 h-2 bg-amber-400 rounded-full"></div>
-                              <span className="text-white text-sm font-medium tracking-[0.15em] uppercase">Signature Collection</span>
-                            </div>
-                            
-                            <h3 className="text-4xl lg:text-5xl xl:text-6xl font-thin text-white mb-6 leading-tight" 
-                                style={{ fontFamily: 'Playfair Display, serif' }}>
-                              Bridal Collection
-                            </h3>
-                            
-                            <p className="text-white/90 text-lg lg:text-xl mb-8 max-w-lg font-light leading-relaxed">
-                              Timeless elegance crafted for your most precious moments
-                            </p>
-                            
-                            <button className="group/btn inline-flex items-center gap-4 bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:shadow-xl hover:scale-105">
-                              <span>Explore Collection</span>
-                              <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
-                            </button>
+                    {/* Floating Central Medallion */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] z-20">
+                      <div className="relative w-full h-full">
+                        {/* Central Crown Piece */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-400/90 via-amber-500/80 to-orange-600/70 shadow-2xl border-8 border-yellow-300/50 backdrop-blur-sm">
+                          <div className="absolute inset-4 rounded-full border-4 border-yellow-200/60 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-indigo-900/60 overflow-hidden group cursor-pointer hover:scale-105 transition-all duration-700">
+                            {section.items[0] && (
+                              <>
+                                <img 
+                                  src={section.items[0].customImageUrl || section.items[0].product.imageUrl || ''} 
+                                  alt={section.items[0].displayName || section.items[0].product.name}
+                                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                                <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
+                                  <Crown className="w-16 h-16 text-yellow-300 mb-4" />
+                                  <h3 className="text-3xl font-bold text-yellow-100 mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                    {section.items[0].displayName || section.items[0].product.name}
+                                  </h3>
+                                  <p className="text-yellow-200/80 text-lg font-light">Royal Centerpiece</p>
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>
                     </div>
-                  
-                    {/* Elegant Secondary Features - Top Right */}
-                    <div 
-                      className="col-span-12 lg:col-span-5 row-span-1 relative group cursor-pointer overflow-hidden"
-                      onClick={() => handleViewAllClick('necklaces')}
-                    >
-                      <div className="relative h-full bg-gradient-to-br from-white via-stone-50 to-neutral-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] border border-stone-200">
-                        <div className="absolute inset-0 flex items-center">
-                          <div className="w-1/2 h-full relative overflow-hidden">
-                            <img 
-                              src={necklacesImage} 
-                              alt="Necklaces" 
-                              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white/60"></div>
-                          </div>
-                          
-                          <div className="w-1/2 h-full flex flex-col justify-center p-6 lg:p-8">
-                            <div className="transform transition-all duration-500 group-hover:translate-x-2">
-                              <div className="mb-3">
-                                <span className="text-xs font-semibold tracking-[0.15em] text-amber-600 uppercase">Exclusive</span>
+                    
+                    {/* Orbiting Royal Cards */}
+                    {section.items.slice(1, 7).map((item, index) => {
+                      const angles = [0, 60, 120, 180, 240, 300]; // 6 positions around circle
+                      const angle = angles[index] || 0;
+                      const radius = 400;
+                      const x = Math.cos((angle * Math.PI) / 180) * radius;
+                      const y = Math.sin((angle * Math.PI) / 180) * radius;
+                      const sizes = ['320px', '280px', '360px', '300px', '340px', '260px'];
+                      const cardSize = sizes[index] || '300px';
+                      
+                      return (
+                        <div 
+                          key={item.id}
+                          className="absolute z-10 group cursor-pointer"
+                          style={{
+                            left: `calc(50% + ${x}px)`,
+                            top: `calc(50% + ${y}px)`,
+                            transform: 'translate(-50%, -50%)',
+                            width: cardSize,
+                            height: cardSize,
+                          }}
+                        >
+                          <div className="relative w-full h-full transform transition-all duration-700 hover:scale-110 hover:z-30">
+                            {/* Card Shape - Diamond/Hexagon alternating */}
+                            <div 
+                              className={`absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-purple-600/80 to-indigo-800/90 shadow-2xl backdrop-blur-sm border-4 border-yellow-300/40 overflow-hidden ${
+                                index % 2 === 0 ? 'rounded-3xl rotate-12' : 'rounded-full'
+                              }`}
+                              style={{
+                                transform: `rotate(${index % 2 === 0 ? '12deg' : '0deg'})`,
+                              }}
+                            >
+                              <img 
+                                src={item.customImageUrl || item.product.imageUrl || ''} 
+                                alt={item.displayName || item.product.name}
+                                className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-125"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                              
+                              {/* Card Content */}
+                              <div className="absolute bottom-0 left-0 right-0 p-6 text-center transform transition-all duration-500 group-hover:translate-y-[-8px]">
+                                <h4 className="text-xl font-bold text-yellow-100 mb-2 leading-tight" 
+                                    style={{ fontFamily: 'Playfair Display, serif' }}>
+                                  {item.displayName || item.product.name}
+                                </h4>
+                                {item.displayPrice && (
+                                  <p className="text-yellow-300 font-semibold text-lg">
+                                    {item.displayPrice}
+                                  </p>
+                                )}
+                                <div className="w-8 h-px bg-yellow-300/60 mx-auto mt-3"></div>
                               </div>
-                              <h4 className="text-xl lg:text-2xl xl:text-3xl font-light text-neutral-900 mb-3 leading-tight" 
-                                  style={{ fontFamily: 'Playfair Display, serif' }}>
-                                Necklaces
-                              </h4>
-                              <p className="text-neutral-600 mb-4 text-sm lg:text-base font-light">Statement elegance</p>
-                              <Button 
-                                variant="ghost" 
-                                size="sm"
-                                className="text-amber-700 hover:bg-amber-50 hover:text-amber-800 p-2 rounded-full"
-                              >
-                                <ArrowRight className="h-4 w-4" />
-                              </Button>
+                              
+                              {/* Floating Royal Icons */}
+                              <div className="absolute top-4 right-4">
+                                {index % 3 === 0 && <Crown className="w-6 h-6 text-yellow-300 animate-pulse" />}
+                                {index % 3 === 1 && <Gem className="w-6 h-6 text-purple-300 animate-pulse delay-300" />}
+                                {index % 3 === 2 && <Star className="w-6 h-6 text-amber-300 animate-pulse delay-600" />}
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      );
+                    })}
                     
-                    {/* Bottom Row - Four Elegant Cards */}
-                    <div 
-                      className="col-span-12 lg:col-span-3 row-span-1 relative group cursor-pointer overflow-hidden"
-                      onClick={() => handleViewAllClick('earrings')}
-                    >
-                      <div className="relative h-full bg-gradient-to-br from-neutral-900 via-neutral-800 to-black rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02]">
-                        <div className="absolute inset-0">
-                          <img 
-                            src={earringsImage} 
-                            alt="Earrings" 
-                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
-                        </div>
-                        
-                        <div className="relative h-full flex flex-col justify-end p-6">
-                          <div className="transform transition-all duration-500 group-hover:translate-y-[-4px]">
-                            <h4 className="text-xl lg:text-2xl font-light text-white mb-2 leading-tight" 
-                                style={{ fontFamily: 'Playfair Display, serif' }}>
-                              Earrings
-                            </h4>
-                            <p className="text-white/80 text-sm font-light">Timeless beauty</p>
-                          </div>
-                        </div>
-                      </div>
+                    {/* Royal Corner Accents */}
+                    <div className="absolute top-0 left-0 w-64 h-64 opacity-30">
+                      <div className="w-full h-full border-l-4 border-t-4 border-yellow-400/60 rounded-tl-full"></div>
                     </div>
-                    
-                    <div 
-                      className="col-span-12 lg:col-span-3 row-span-1 relative group cursor-pointer overflow-hidden"
-                      onClick={() => handleViewAllClick('chains')}
-                    >
-                      <div className="relative h-full bg-gradient-to-br from-blue-50 via-blue-100/50 to-cyan-100/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] border border-blue-200/50">
-                        <div className="absolute inset-0">
-                          <img 
-                            src={chainsImage} 
-                            alt="Chains" 
-                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-blue-800/30 to-transparent"></div>
-                        </div>
-                        
-                        <div className="relative h-full flex flex-col justify-end p-6">
-                          <div className="transform transition-all duration-500 group-hover:translate-y-[-4px]">
-                            <h4 className="text-xl lg:text-2xl font-light text-white mb-2 leading-tight" 
-                                style={{ fontFamily: 'Playfair Display, serif' }}>
-                              Chains
-                            </h4>
-                            <p className="text-white/90 text-sm font-light">Elegant connections</p>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="absolute top-0 right-0 w-64 h-64 opacity-30">
+                      <div className="w-full h-full border-r-4 border-t-4 border-yellow-400/60 rounded-tr-full"></div>
                     </div>
-                    
-                    <div 
-                      className="col-span-12 lg:col-span-3 row-span-1 relative group cursor-pointer overflow-hidden"
-                      onClick={() => handleViewAllClick('bangles')}
-                    >
-                      <div className="relative h-full bg-gradient-to-br from-amber-50 via-amber-100/50 to-orange-100/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] border border-amber-200/50">
-                        <div className="absolute inset-0">
-                          <img 
-                            src={banglesImage} 
-                            alt="Bangles" 
-                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-amber-900/60 via-amber-800/30 to-transparent"></div>
-                        </div>
-                        
-                        <div className="relative h-full flex flex-col justify-end p-6">
-                          <div className="transform transition-all duration-500 group-hover:translate-y-[-4px]">
-                            <h4 className="text-xl lg:text-2xl font-light text-white mb-2 leading-tight" 
-                                style={{ fontFamily: 'Playfair Display, serif' }}>
-                              Bangles
-                            </h4>
-                            <p className="text-white/90 text-sm font-light">Cultural heritage</p>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="absolute bottom-0 left-0 w-64 h-64 opacity-30">
+                      <div className="w-full h-full border-l-4 border-b-4 border-yellow-400/60 rounded-bl-full"></div>
                     </div>
-                    
-                    <div 
-                      className="col-span-12 lg:col-span-3 row-span-1 relative group cursor-pointer overflow-hidden"
-                      onClick={() => handleViewAllClick('rings')}
-                    >
-                      <div className="relative h-full bg-gradient-to-br from-rose-50 via-pink-50 to-rose-100/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] border border-rose-200/50">
-                        <div className="absolute inset-0">
-                          <img 
-                            src={ringsImageMosaic} 
-                            alt="Rings" 
-                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-rose-900/70 via-rose-800/40 to-transparent"></div>
-                        </div>
-                        
-                        <div className="relative h-full flex flex-col justify-end p-6">
-                          <div className="transform transition-all duration-500 group-hover:translate-y-[-4px]">
-                            <h4 className="text-xl lg:text-2xl font-light text-white mb-2 leading-tight" 
-                                style={{ fontFamily: 'Playfair Display, serif' }}>
-                              Rings
-                            </h4>
-                            <p className="text-white/90 text-sm font-light">Eternal symbols</p>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="absolute bottom-0 right-0 w-64 h-64 opacity-30">
+                      <div className="w-full h-full border-r-4 border-b-4 border-yellow-400/60 rounded-br-full"></div>
                     </div>
                   </div>
                   
-                  {/* Elegant Footer Call-to-Action */}
-                  <div className="mt-20 text-center">
-                    <div className="mb-8">
-                      <h3 className="text-2xl lg:text-3xl font-light text-neutral-900 mb-4" 
-                          style={{ fontFamily: 'Playfair Display, serif' }}>
-                        Discover Your Perfect Piece
-                      </h3>
-                      <p className="text-neutral-600 text-lg font-light max-w-2xl mx-auto">
-                        Each collection tells a unique story of craftsmanship and elegance
-                      </p>
+                  {/* Royal Decree Footer */}
+                  <div className="mt-24 text-center">
+                    <div className="relative inline-block">
+                      <div className="absolute -inset-8 bg-gradient-to-r from-yellow-400/20 via-amber-500/30 to-yellow-400/20 rounded-full blur-2xl"></div>
+                      <div className="relative bg-gradient-to-br from-amber-50/90 via-yellow-50/80 to-orange-50/90 backdrop-blur-md border-2 border-yellow-400/50 rounded-full px-12 py-6 shadow-xl">
+                        <div className="flex items-center gap-4">
+                          <Crown className="w-6 h-6 text-yellow-600" />
+                          <span className="text-lg font-bold tracking-[0.2em] bg-gradient-to-r from-purple-800 via-violet-700 to-purple-800 bg-clip-text text-transparent uppercase">
+                            Explore Royal Heritage
+                          </span>
+                          <Crown className="w-6 h-6 text-yellow-600" />
+                        </div>
+                      </div>
                     </div>
-                    <Button 
-                      className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-10 py-4 text-base font-medium rounded-full transition-all duration-300 hover:shadow-xl hover:scale-105 transform" 
-                      onClick={() => window.location.href = '/collections'}
-                    >
-                      Explore All Collections
-                      <ArrowRight className="ml-3 h-5 w-5" />
-                    </Button>
                   </div>
                 </div>
               </div>
