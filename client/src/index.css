@@ -22,6 +22,81 @@
   .animate-bounce {
     animation: bounce 2s infinite;
   }
+
+  /* Enhanced fade-in animation with mobile optimization */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Mobile-optimized animations */
+  @media (max-width: 768px) {
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+  }
+
+  /* Touch-friendly animations for mobile devices */
+  @media (hover: none) and (pointer: coarse) {
+    .hover\:scale-105:hover,
+    .group:hover .group-hover\:scale-105 {
+      transform: scale(1.03) !important;
+    }
+    
+    .hover\:scale-110:hover,
+    .group:hover .group-hover\:scale-110 {
+      transform: scale(1.05) !important;
+    }
+    
+    .group:hover .group-hover\:opacity-100,
+    .group:active .group-hover\:opacity-100 {
+      opacity: 1 !important;
+    }
+
+    .group:hover .group-hover\:-translate-y-1,
+    .group:active .group-hover\:-translate-y-1 {
+      transform: translateY(-2px) !important;
+    }
+
+    .group:hover .group-hover\:rotate-1,
+    .group:active .group-hover\:rotate-1 {
+      transform: rotate(0.5deg) !important;
+    }
+
+    /* Enable active states for touch */
+    .group:active .group-hover\:scale-105 {
+      transform: scale(1.03) !important;
+    }
+
+    .group:active .group-hover\:scale-110 {
+      transform: scale(1.05) !important;
+    }
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
   
   @keyframes glow {
     0% {
