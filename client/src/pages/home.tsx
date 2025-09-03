@@ -247,7 +247,7 @@ function FestivalScrollSection({ items, selectedCurrency, handleViewAllClick }: 
                 className="w-full group cursor-pointer transform transition-all duration-300 hover:scale-105"
               onClick={() => handleViewAllClick(item.product.category)}
             >
-                <div className="bg-white/95 backdrop-blur-sm rounded-lg p-1.5 md:p-2 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/50 h-full">
+                <div className="bg-white/20 md:bg-white/95 backdrop-blur-sm rounded-lg p-1.5 md:p-2 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/30 md:border-white/50 h-full">
                   {/* Product Image */}
                   <div className="aspect-square mb-1.5 overflow-hidden rounded-md bg-gradient-to-br from-purple-50 to-pink-50">
                     <img
@@ -278,7 +278,7 @@ function FestivalScrollSection({ items, selectedCurrency, handleViewAllClick }: 
       ) : (
         <div className="grid grid-cols-4 gap-2 md:gap-3">
           {[...Array(4)].map((_, index) => (
-            <div key={index} className="w-full bg-white/95 backdrop-blur-sm rounded-lg p-1.5 md:p-2 shadow-lg border border-white/50">
+            <div key={index} className="w-full bg-white/20 md:bg-white/95 backdrop-blur-sm rounded-lg p-1.5 md:p-2 shadow-lg border border-white/30 md:border-white/50">
               <div className="aspect-square mb-1.5 overflow-hidden rounded-md bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center">
                 <div className="text-gray-400 text-xs">No Image</div>
               </div>
