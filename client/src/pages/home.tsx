@@ -738,7 +738,7 @@ export default function Home() {
                             <ProductCard
                               product={item.product}
                               currency={selectedCurrency}
-                              showActions={true}
+                              showActions={false}
                             />
                           </div>
                         </div>
@@ -1043,7 +1043,7 @@ export default function Home() {
                         <ProductCard
                           product={heroProduct.product}
                           currency={selectedCurrency}
-                          showActions={true}
+                          showActions={false}
                         />
                         <div className="absolute -top-4 -right-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                           Featured
@@ -1069,7 +1069,7 @@ export default function Home() {
                             <ProductCard
                               product={item.product}
                               currency={selectedCurrency}
-                              showActions={true}
+                              showActions={false}
                             />
                           </div>
                         ))}
@@ -1160,7 +1160,7 @@ export default function Home() {
                               <ProductCard
                                 product={section.items[0].product}
                                 currency={selectedCurrency}
-                                showActions={true}
+                                showActions={false}
                                 customImageUrl={section.items[0].customImageUrl}
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
@@ -1219,7 +1219,7 @@ export default function Home() {
                               <ProductCard
                                 product={item.product}
                                 currency={selectedCurrency}
-                                showActions={true}
+                                showActions={false}
                                 customImageUrl={item.customImageUrl}
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
@@ -1271,7 +1271,7 @@ export default function Home() {
                               <ProductCard
                                 product={item.product}
                                 currency={selectedCurrency}
-                                showActions={true}
+                                showActions={false}
                                 customImageUrl={item.customImageUrl}
                               />
                             </div>
@@ -1806,7 +1806,7 @@ export default function Home() {
                     <ProductCard
                       product={item.product}
                       currency={selectedCurrency}
-                      showActions={true}
+                      showActions={false}
                       customImageUrl={item.customImageUrl}
                     />
                   </div>
@@ -1843,7 +1843,7 @@ export default function Home() {
                   key={product.id}
                   product={product}
                   currency={selectedCurrency}
-                  showActions={true}
+                  showActions={false}
                 />
               ))}
             </div>
@@ -1877,7 +1877,7 @@ export default function Home() {
                   key={product.id}
                   product={product}
                   currency={selectedCurrency}
-                  showActions={true}
+                  showActions={false}
                 />
               ))}
             </div>
@@ -1913,7 +1913,7 @@ export default function Home() {
                   key={product.id}
                   product={product}
                   currency={selectedCurrency}
-                  showActions={true}
+                  showActions={false}
                 />
               ))}
             </div>
@@ -1947,7 +1947,7 @@ export default function Home() {
                   key={product.id}
                   product={product}
                   currency={selectedCurrency}
-                  showActions={true}
+                  showActions={false}
                 />
               ))}
             </div>
@@ -1981,7 +1981,7 @@ export default function Home() {
                   key={product.id}
                   product={product}
                   currency={selectedCurrency}
-                  showActions={true}
+                  showActions={false}
                 />
               ))}
             </div>
@@ -2012,7 +2012,7 @@ export default function Home() {
                   key={product.id}
                   product={product}
                   currency={selectedCurrency}
-                  showActions={true}
+                  showActions={false}
                 />
               ))}
             </div>
@@ -2042,7 +2042,7 @@ export default function Home() {
                   key={product.id}
                   product={product}
                   currency={selectedCurrency}
-                  showActions={true}
+                  showActions={false}
                 />
               ))}
             </div>
@@ -2072,7 +2072,7 @@ export default function Home() {
                   key={product.id}
                   product={product}
                   currency={selectedCurrency}
-                  showActions={true}
+                  showActions={false}
                 />
               ))}
             </div>
@@ -2103,7 +2103,7 @@ export default function Home() {
                   key={product.id}
                   product={product}
                   currency={selectedCurrency}
-                  showActions={true}
+                  showActions={false}
                 />
               ))}
             </div>
