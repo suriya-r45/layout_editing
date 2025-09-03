@@ -153,12 +153,12 @@ Could you please provide more details?`;
         </div>
       </div>
 
-      <CardContent className="p-1.5 sm:p-4 flex-1 flex flex-col">
+      <CardContent className="p-2 flex-1 flex flex-col">
         {/* Product Info */}
-        <div className="space-y-1 sm:space-y-2 flex-1">
+        <div className="space-y-1 flex-1">
           <div className="flex items-start justify-between">
             <h3 
-              className="font-semibold text-xs sm:text-sm md:text-base line-clamp-2 flex-1 hover:text-yellow-600 cursor-pointer leading-tight" 
+              className="font-semibold text-xs sm:text-sm line-clamp-2 flex-1 hover:text-yellow-600 cursor-pointer leading-tight" 
               data-testid={`product-name-${product.id}`}
               onClick={() => setLocation(`/product/${product.id}`)}
             >
@@ -166,22 +166,22 @@ Could you please provide more details?`;
             </h3>
           </div>
 
-          <div className="hidden sm:flex items-center gap-1 text-[10px] sm:text-xs text-gray-600">
-            <Badge variant="outline" className="text-[8px] sm:text-[10px] md:text-xs px-1 py-0">
+          <div className="flex items-center gap-1 text-[8px] sm:text-[10px] text-gray-600">
+            <Badge variant="outline" className="text-[8px] px-1 py-0">
               {product.category}
             </Badge>
-            <Badge variant="outline" className="text-[8px] sm:text-[10px] md:text-xs px-1 py-0">
+            <Badge variant="outline" className="text-[8px] px-1 py-0">
               {product.material}
             </Badge>
           </div>
 
           <div className="flex items-center justify-between">
             <div className="space-y-1">
-              <p className="text-xs sm:text-sm md:text-lg font-bold text-primary" data-testid={`product-price-${product.id}`}>
+              <p className="text-xs sm:text-sm font-bold text-primary" data-testid={`product-price-${product.id}`}>
                 {customDisplayPrice || formatPrice(price, currency)}
               </p>
               {product.stock > 0 && product.stock <= 5 && (
-                <p className="hidden sm:block text-[10px] sm:text-xs text-black">
+                <p className="text-[8px] sm:text-[10px] text-black">
                   Only {product.stock} left
                 </p>
               )}
