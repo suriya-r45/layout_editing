@@ -855,7 +855,7 @@ export const homeSections = pgTable("home_sections", {
   title: text("title").notNull(),
   subtitle: text("subtitle"),
   description: text("description"),
-  layoutType: text("layout_type").notNull().default("grid"), // 'grid', 'featured', 'mixed', 'split', 'festival', 'mosaic', 'luxury', 'magazine', 'carousel', 'diamond', 'floating', 'radial', 'artistic'
+  layoutType: text("layout_type").notNull().default("grid"), // 'grid', 'featured', 'mixed', 'split', 'festival', 'mosaic', 'luxury', 'magazine', 'carousel', 'diamond', 'floating', 'radial', 'artistic', 'royal'
   isActive: boolean("is_active").notNull().default(true),
   displayOrder: integer("display_order").default(0),
   backgroundColor: text("background_color").default("#fff8e1"),

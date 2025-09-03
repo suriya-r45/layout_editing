@@ -51,12 +51,14 @@ A full-stack jewelry e-commerce platform built with React, TypeScript, Express.j
 - **Inventory Tracking**: Stock management with barcode scanning
 - **Multi-currency**: Support for INR and BHD pricing
 - **Responsive Design**: Mobile-optimized jewelry showcase
+- **Royal Court Layout**: Premium imperial-themed layout with ceremonial arrangement
 
 ## Recent Changes
 - Database successfully connected and schema applied
 - Fixed tsx runtime error for development workflow
 - Configured proper host settings for Replit environment
 - Deployment configuration set for production readiness
+- Added new 'royal' layout type with imperial ceremonial theme (January 2025)
 
 ## Development
 - Run `npm run dev` to start both frontend and backend

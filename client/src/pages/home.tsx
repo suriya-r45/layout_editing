@@ -1900,6 +1900,245 @@ export default function Home() {
             </section>
           );
         }
+
+        // Royal Court layout rendering - Imperial Ceremonial Arrangement with Central Throne Concept
+        if (section.layoutType === 'royal') {
+          const throneProduct = section.items[0]; // The main product - sits on the throne
+          const courtProducts = section.items.slice(1, 7); // Royal court attendants
+          
+          return (
+            <section 
+              key={section.id} 
+              className="py-24 relative overflow-hidden min-h-screen" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: `radial-gradient(ellipse at center, 
+                  #2d1b4e 0%, 
+                  #4c1d95 20%, 
+                  #7c2d12 40%, 
+                  #9f1239 60%, 
+                  #7c2d12 80%, 
+                  #1e1b4b 100%
+                )`,
+              }}
+            >
+              {/* Royal Court Architecture */}
+              <div className="absolute inset-0">
+                {/* Imperial Banners - Left Side */}
+                <div className="absolute left-0 top-0 bottom-0 w-24">
+                  <div className="h-full bg-gradient-to-b from-amber-400 via-yellow-500 to-amber-600 opacity-80 shadow-2xl">
+                    <div className="h-full w-full bg-gradient-to-r from-red-800/40 via-purple-800/40 to-red-800/40"></div>
+                    {/* Heraldic Elements */}
+                    <div className="absolute top-16 left-1/2 transform -translate-x-1/2">
+                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border-4 border-red-700">
+                        <Crown className="w-6 h-6 text-red-800" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2">
+                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border-4 border-red-700">
+                        <Crown className="w-6 h-6 text-red-800" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Imperial Banners - Right Side */}
+                <div className="absolute right-0 top-0 bottom-0 w-24">
+                  <div className="h-full bg-gradient-to-b from-amber-400 via-yellow-500 to-amber-600 opacity-80 shadow-2xl">
+                    <div className="h-full w-full bg-gradient-to-l from-red-800/40 via-purple-800/40 to-red-800/40"></div>
+                    {/* Heraldic Elements */}
+                    <div className="absolute top-16 left-1/2 transform -translate-x-1/2">
+                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border-4 border-red-700">
+                        <Crown className="w-6 h-6 text-red-800" />
+                      </div>
+                    </div>
+                    <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2">
+                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border-4 border-red-700">
+                        <Crown className="w-6 h-6 text-red-800" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Royal Canopy */}
+                <div className="absolute top-0 left-1/4 right-1/4 h-32">
+                  <div className="w-full h-full bg-gradient-to-b from-amber-500/60 via-yellow-400/40 to-transparent rounded-b-full border-4 border-amber-300/50 shadow-2xl">
+                    <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
+                      <div className="flex items-center gap-4">
+                        <Crown className="w-8 h-8 text-yellow-300" />
+                        <div className="text-2xl font-bold text-yellow-200 tracking-widest" style={{ fontFamily: 'Playfair Display, serif' }}>
+                          ROYAL COURT
+                        </div>
+                        <Crown className="w-8 h-8 text-yellow-300" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Imperial Floor Pattern */}
+                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-amber-600/30 via-yellow-500/20 to-transparent">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `
+                      repeating-linear-gradient(
+                        0deg,
+                        rgba(251, 191, 36, 0.2) 0px,
+                        rgba(251, 191, 36, 0.2) 3px,
+                        transparent 3px,
+                        transparent 20px
+                      ),
+                      repeating-linear-gradient(
+                        90deg,
+                        rgba(220, 38, 127, 0.15) 0px,
+                        rgba(220, 38, 127, 0.15) 2px,
+                        transparent 2px,
+                        transparent 15px
+                      )
+                    `
+                  }}></div>
+                </div>
+              </div>
+
+              <div className="container mx-auto px-4 relative z-10">
+                {/* Royal Proclamation Header */}
+                <div className="text-center mb-20 relative">
+                  <div className="absolute -inset-12 bg-gradient-to-r from-purple-500/10 via-amber-400/20 to-purple-500/10 rounded-full blur-3xl"></div>
+                  <div className="relative">
+                    <div className="mb-6">
+                      <div className="inline-flex items-center gap-4 bg-gradient-to-r from-amber-500/20 via-yellow-400/30 to-amber-500/20 backdrop-blur-sm border-2 border-amber-400/50 rounded-full px-8 py-3">
+                        <Crown className="w-8 h-8 text-amber-300" />
+                        <span className="text-xl font-bold text-amber-200 tracking-wider uppercase" style={{ fontFamily: 'Playfair Display, serif' }}>
+                          By Royal Decree
+                        </span>
+                        <Crown className="w-8 h-8 text-amber-300" />
+                      </div>
+                    </div>
+                    <h2 className="text-5xl md:text-7xl font-bold text-transparent bg-gradient-to-br from-amber-200 via-yellow-300 to-amber-200 bg-clip-text mb-6 drop-shadow-2xl" 
+                        style={{ fontFamily: 'Playfair Display, serif' }}>
+                      {section.title}
+                    </h2>
+                    {section.description && (
+                      <p className="text-xl md:text-2xl font-light text-amber-100 max-w-4xl mx-auto leading-relaxed" 
+                         style={{ fontFamily: 'Playfair Display, serif' }}>
+                        {section.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                
+                {throneProduct && (
+                  <div className="mb-20">
+                    {/* The Royal Throne - Central Product */}
+                    <div className="flex justify-center mb-16">
+                      <div className="relative group">
+                        {/* Throne Base */}
+                        <div className="absolute -inset-16 bg-gradient-to-br from-amber-400/20 via-yellow-500/30 to-amber-600/20 rounded-full blur-2xl group-hover:from-amber-300/30 group-hover:via-yellow-400/40 group-hover:to-amber-500/30 transition-all duration-700"></div>
+                        
+                        {/* Royal Pedestal */}
+                        <div className="relative bg-gradient-to-br from-purple-900/80 via-red-900/70 to-purple-900/80 backdrop-blur-lg rounded-3xl p-12 border-4 border-amber-400/60 shadow-2xl group-hover:border-amber-300/80 transition-all duration-500">
+                          {/* Crown Above Product */}
+                          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
+                            <div className="bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full p-4 border-4 border-red-800 shadow-xl group-hover:scale-110 transition-transform duration-500">
+                              <Crown className="w-10 h-10 text-red-900" />
+                            </div>
+                          </div>
+                          
+                          {/* Product */}
+                          <div className="transform group-hover:scale-105 transition-all duration-500">
+                            <ProductCard
+                              product={throneProduct.product}
+                              currency={selectedCurrency}
+                              showActions={false}
+                              customImageUrl={throneProduct.customImageUrl}
+                            />
+                          </div>
+                          
+                          {/* Royal Title */}
+                          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
+                            <div className="bg-gradient-to-r from-red-800 via-purple-800 to-red-800 text-amber-200 px-8 py-3 rounded-full border-2 border-amber-400/60 shadow-xl">
+                              <span className="text-lg font-bold tracking-wider uppercase" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                Crown Jewel
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Royal Court Attendants */}
+                {courtProducts.length > 0 && (
+                  <div className="mb-16">
+                    <div className="text-center mb-12">
+                      <h3 className="text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text mb-4" 
+                          style={{ fontFamily: 'Playfair Display, serif' }}>
+                        The Royal Court
+                      </h3>
+                      <p className="text-amber-200 text-lg" style={{ fontFamily: 'Playfair Display, serif' }}>
+                        Distinguished Collection in Service to Excellence
+                      </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {courtProducts.map((item, index) => (
+                        <div key={item.id} className="relative group">
+                          {/* Court Position Indicators */}
+                          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                            <div className="bg-gradient-to-r from-amber-500 to-yellow-500 text-red-900 px-4 py-2 rounded-full text-sm font-bold border-2 border-red-800 shadow-lg">
+                              {index % 2 === 0 ? 'Royal Guard' : 'Court Noble'}
+                            </div>
+                          </div>
+                          
+                          {/* Product Card with Royal Styling */}
+                          <div className="bg-gradient-to-br from-purple-900/60 via-red-900/50 to-purple-900/60 backdrop-blur-md rounded-2xl p-6 border-2 border-amber-400/40 shadow-xl hover:border-amber-300/70 hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                            <ProductCard
+                              product={item.product}
+                              currency={selectedCurrency}
+                              showActions={false}
+                              customImageUrl={item.customImageUrl}
+                            />
+                          </div>
+                          
+                          {/* Decorative Elements */}
+                          <div className="absolute -inset-4 bg-gradient-to-br from-amber-400/10 via-transparent to-red-600/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Royal Decree Footer */}
+                <div className="text-center">
+                  <div className="relative inline-block">
+                    <div className="absolute -inset-16 bg-gradient-to-r from-purple-500/20 via-amber-400/30 to-purple-500/20 rounded-full blur-3xl"></div>
+                    <div className="relative bg-gradient-to-br from-purple-900/80 via-red-900/70 to-purple-900/80 backdrop-blur-lg border-4 border-amber-400/60 rounded-3xl px-16 py-10 shadow-2xl">
+                      <Crown className="w-16 h-16 text-amber-300 mx-auto mb-6" />
+                      <h3 className="text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-200 bg-clip-text mb-6 tracking-wide" 
+                          style={{ fontFamily: 'Playfair Display, serif' }}>
+                        Enter the Royal Court
+                      </h3>
+                      <p className="text-amber-100 text-lg mb-8 max-w-2xl mx-auto leading-relaxed" 
+                         style={{ fontFamily: 'Playfair Display, serif' }}>
+                        By imperial command, witness treasures befitting royalty. Each piece bears the mark of sovereign excellence and eternal beauty.
+                      </p>
+                      <button 
+                        className="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:from-amber-500 hover:via-yellow-400 hover:to-amber-500 text-red-900 px-12 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:shadow-2xl hover:scale-110 border-4 border-red-800 shadow-xl transform"
+                        onClick={() => window.location.href = '/collections'}
+                        style={{ fontFamily: 'Playfair Display, serif' }}
+                      >
+                        <span className="flex items-center gap-4">
+                          <Crown className="w-6 h-6" />
+                          BEHOLD THE ROYAL COLLECTION
+                          <Crown className="w-6 h-6" />
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
         
         // Regular layout rendering
         return (
