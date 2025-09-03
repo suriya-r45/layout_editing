@@ -762,224 +762,131 @@ export default function Home() {
           );
         }
 
-        // Mosaic layout rendering - Royal Majestic Gallery
+        // Mosaic layout rendering - Modern Jewel Gallery
         if (section.layoutType === 'mosaic') {
           return (
             <section 
               key={section.id} 
-              className="relative min-h-screen overflow-hidden" 
+              className="relative py-20 overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{
-                background: 'linear-gradient(135deg, #1a1625 0%, #2d1b4e 15%, #3f2563 30%, #4c1d95 45%, #5b21b6 60%, #6d28d9 75%, #7c3aed 90%, #8b5cf6 100%)'
+                background: 'linear-gradient(135deg, #fafaf9 0%, #f7f6f4 50%, #f1f0ec 100%)'
               }}
             >
-              {/* Royal Atmospheric Effects */}
-              <div className="absolute inset-0">
-                {/* Royal Golden Aura */}
-                <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-yellow-400/20 via-amber-500/15 to-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-violet-500/10 to-indigo-500/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
-                <div className="absolute top-2/3 left-1/6 w-[400px] h-[400px] bg-gradient-to-r from-rose-400/12 via-pink-500/8 to-purple-500/6 rounded-full blur-2xl animate-pulse delay-2000"></div>
-                
-                {/* Royal Crown Pattern */}
-                <div className="absolute inset-0 opacity-[0.12]">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d97706' fill-opacity='0.3'%3E%3Cpolygon points='30,5 35,20 50,20 40,30 45,45 30,35 15,45 20,30 10,20 25,20'/%3E%3C/g%3E%3C/svg%3E")`,
-                    backgroundSize: '120px 120px'
-                  }}></div>
-                </div>
-                
-                {/* Floating Royal Gems */}
-                <div className="absolute inset-0 opacity-30">
-                  <div className="absolute top-1/5 left-1/5 w-4 h-4 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full shadow-lg animate-bounce delay-300"></div>
-                  <div className="absolute top-1/2 right-1/5 w-3 h-3 bg-gradient-to-br from-purple-300 to-violet-500 rounded-full shadow-lg animate-bounce delay-700"></div>
-                  <div className="absolute bottom-1/4 left-2/3 w-5 h-5 bg-gradient-to-br from-rose-300 to-pink-500 rounded-full shadow-lg animate-bounce delay-1100"></div>
-                  <div className="absolute top-3/4 right-1/3 w-4 h-4 bg-gradient-to-br from-amber-300 to-orange-500 rounded-full shadow-lg animate-bounce delay-1500"></div>
-                  <div className="absolute top-1/6 right-2/3 w-3 h-3 bg-gradient-to-br from-indigo-300 to-blue-500 rounded-full shadow-lg animate-bounce delay-1900"></div>
-                </div>
+              {/* Subtle geometric pattern */}
+              <div className="absolute inset-0 opacity-[0.03]">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d97706' fill-opacity='0.6'%3E%3Ccircle cx='20' cy='20' r='1.5'/%3E%3C/g%3E%3C/svg%3E")`,
+                  backgroundSize: '40px 40px'
+                }}></div>
               </div>
 
-              <div className="relative py-32 md:py-48">
-                {/* Royal Majestic Header */}
-                <div className="max-w-7xl mx-auto px-6 md:px-8">
-                  <div className="text-center mb-32">
-                    {/* Royal Crown Badge */}
-                    <div className="mb-20">
-                      <div className="relative inline-block">
-                        <div className="absolute -inset-12 bg-gradient-to-r from-yellow-400/30 via-amber-500/40 to-orange-500/30 rounded-full blur-3xl animate-pulse"></div>
-                        <div className="absolute -inset-6 bg-gradient-to-r from-purple-400/25 via-violet-500/35 to-indigo-500/25 rounded-full blur-2xl animate-pulse delay-700"></div>
-                        <div className="relative bg-gradient-to-br from-amber-50/95 via-yellow-50/90 to-orange-50/95 backdrop-blur-lg border-3 border-yellow-400/60 rounded-full px-16 py-8 shadow-3xl">
-                          <div className="flex items-center gap-6">
-                            <Crown className="w-8 h-8 text-yellow-600" />
-                            <span className="text-xl font-bold tracking-[0.3em] bg-gradient-to-r from-purple-800 via-violet-700 to-purple-800 bg-clip-text text-transparent uppercase">
-                              Royal Jewel House
-                            </span>
-                            <Crown className="w-8 h-8 text-yellow-600" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Imperial Typography */}
-                    <h2 className="text-7xl md:text-9xl lg:text-[10rem] xl:text-[14rem] font-thin bg-gradient-to-br from-yellow-200 via-amber-100 to-orange-200 bg-clip-text text-transparent mb-16 tracking-tighter leading-[0.75]" 
-                        style={{ 
-                          fontFamily: 'Playfair Display, serif', 
-                          textShadow: '0 0 60px rgba(251, 191, 36, 0.4), 0 0 120px rgba(251, 191, 36, 0.2)',
-                          filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3))'
-                        }}>
-                      {section.title || 'Majesty'}
-                    </h2>
-                    
-                    {/* Royal Ornamental Divider */}
-                    <div className="flex items-center justify-center gap-16 mb-16">
-                      <div className="w-64 h-px bg-gradient-to-r from-transparent via-yellow-300/90 to-transparent"></div>
-                      <div className="relative">
-                        <div className="w-6 h-6 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full shadow-2xl"></div>
-                        <div className="absolute inset-0 w-6 h-6 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full animate-ping"></div>
-                        <div className="absolute -inset-2 border-2 border-yellow-300/50 rounded-full animate-pulse"></div>
-                      </div>
-                      <div className="w-64 h-px bg-gradient-to-r from-transparent via-yellow-300/90 to-transparent"></div>
-                    </div>
-                    
-                    {section.description && (
-                      <p className="text-3xl md:text-4xl lg:text-5xl text-yellow-100/95 max-w-6xl mx-auto font-light leading-relaxed italic tracking-wider" 
-                         style={{ 
-                           textShadow: '0 4px 30px rgba(0, 0, 0, 0.7), 0 2px 10px rgba(139, 92, 246, 0.3)',
-                           filter: 'drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4))'
-                         }}>
-                        {section.description}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                
-                {/* Royal Architectural Mosaic Layout */}
-                <div className="max-w-8xl mx-auto px-6 md:px-8">
-                  {/* Central Royal Showcase */}
-                  <div className="relative min-h-[1200px]">
-                    
-                    {/* Floating Central Medallion */}
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] z-20">
-                      <div className="relative w-full h-full">
-                        {/* Central Crown Piece */}
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-400/90 via-amber-500/80 to-orange-600/70 shadow-2xl border-8 border-yellow-300/50 backdrop-blur-sm">
-                          <div className="absolute inset-4 rounded-full border-4 border-yellow-200/60 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-indigo-900/60 overflow-hidden group cursor-pointer hover:scale-105 transition-all duration-700">
-                            {section.items[0] && (
-                              <>
-                                <img 
-                                  src={section.items[0].customImageUrl || section.items[0].product.imageUrl || ''} 
-                                  alt={section.items[0].displayName || section.items[0].product.name}
-                                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
-                                <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
-                                  <Crown className="w-16 h-16 text-yellow-300 mb-4" />
-                                  <h3 className="text-3xl font-bold text-yellow-100 mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
-                                    {section.items[0].displayName || section.items[0].product.name}
-                                  </h3>
-                                  <p className="text-yellow-200/80 text-lg font-light">Royal Centerpiece</p>
-                                </div>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Orbiting Royal Cards */}
-                    {section.items.slice(1, 7).map((item, index) => {
-                      const angles = [0, 60, 120, 180, 240, 300]; // 6 positions around circle
-                      const angle = angles[index] || 0;
-                      const radius = 400;
-                      const x = Math.cos((angle * Math.PI) / 180) * radius;
-                      const y = Math.sin((angle * Math.PI) / 180) * radius;
-                      const sizes = ['320px', '280px', '360px', '300px', '340px', '260px'];
-                      const cardSize = sizes[index] || '300px';
-                      
-                      return (
-                        <div 
-                          key={item.id}
-                          className="absolute z-10 group cursor-pointer"
-                          style={{
-                            left: `calc(50% + ${x}px)`,
-                            top: `calc(50% + ${y}px)`,
-                            transform: 'translate(-50%, -50%)',
-                            width: cardSize,
-                            height: cardSize,
-                          }}
-                        >
-                          <div className="relative w-full h-full transform transition-all duration-700 hover:scale-110 hover:z-30">
-                            {/* Card Shape - Diamond/Hexagon alternating */}
-                            <div 
-                              className={`absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-purple-600/80 to-indigo-800/90 shadow-2xl backdrop-blur-sm border-4 border-yellow-300/40 overflow-hidden ${
-                                index % 2 === 0 ? 'rounded-3xl rotate-12' : 'rounded-full'
-                              }`}
-                              style={{
-                                transform: `rotate(${index % 2 === 0 ? '12deg' : '0deg'})`,
-                              }}
-                            >
-                              <img 
-                                src={item.customImageUrl || item.product.imageUrl || ''} 
-                                alt={item.displayName || item.product.name}
-                                className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-125"
-                              />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                              
-                              {/* Card Content */}
-                              <div className="absolute bottom-0 left-0 right-0 p-6 text-center transform transition-all duration-500 group-hover:translate-y-[-8px]">
-                                <h4 className="text-xl font-bold text-yellow-100 mb-2 leading-tight" 
-                                    style={{ fontFamily: 'Playfair Display, serif' }}>
-                                  {item.displayName || item.product.name}
-                                </h4>
-                                {item.displayPrice && (
-                                  <p className="text-yellow-300 font-semibold text-lg">
-                                    {item.displayPrice}
-                                  </p>
-                                )}
-                                <div className="w-8 h-px bg-yellow-300/60 mx-auto mt-3"></div>
-                              </div>
-                              
-                              {/* Floating Royal Icons */}
-                              <div className="absolute top-4 right-4">
-                                {index % 3 === 0 && <Crown className="w-6 h-6 text-yellow-300 animate-pulse" />}
-                                {index % 3 === 1 && <Gem className="w-6 h-6 text-purple-300 animate-pulse delay-300" />}
-                                {index % 3 === 2 && <Star className="w-6 h-6 text-amber-300 animate-pulse delay-600" />}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })}
-                    
-                    {/* Royal Corner Accents */}
-                    <div className="absolute top-0 left-0 w-64 h-64 opacity-30">
-                      <div className="w-full h-full border-l-4 border-t-4 border-yellow-400/60 rounded-tl-full"></div>
-                    </div>
-                    <div className="absolute top-0 right-0 w-64 h-64 opacity-30">
-                      <div className="w-full h-full border-r-4 border-t-4 border-yellow-400/60 rounded-tr-full"></div>
-                    </div>
-                    <div className="absolute bottom-0 left-0 w-64 h-64 opacity-30">
-                      <div className="w-full h-full border-l-4 border-b-4 border-yellow-400/60 rounded-bl-full"></div>
-                    </div>
-                    <div className="absolute bottom-0 right-0 w-64 h-64 opacity-30">
-                      <div className="w-full h-full border-r-4 border-b-4 border-yellow-400/60 rounded-br-full"></div>
-                    </div>
+              <div className="relative max-w-7xl mx-auto px-6 md:px-8">
+                {/* Clean Header */}
+                <div className="text-center mb-16">
+                  <div className="inline-flex items-center justify-center mb-6">
+                    <div className="w-16 h-px bg-amber-400"></div>
+                    <Gem className="w-6 h-6 text-amber-500 mx-4" />
+                    <div className="w-16 h-px bg-amber-400"></div>
                   </div>
                   
-                  {/* Royal Decree Footer */}
-                  <div className="mt-24 text-center">
-                    <div className="relative inline-block">
-                      <div className="absolute -inset-8 bg-gradient-to-r from-yellow-400/20 via-amber-500/30 to-yellow-400/20 rounded-full blur-2xl"></div>
-                      <div className="relative bg-gradient-to-br from-amber-50/90 via-yellow-50/80 to-orange-50/90 backdrop-blur-md border-2 border-yellow-400/50 rounded-full px-12 py-6 shadow-xl">
-                        <div className="flex items-center gap-4">
-                          <Crown className="w-6 h-6 text-yellow-600" />
-                          <span className="text-lg font-bold tracking-[0.2em] bg-gradient-to-r from-purple-800 via-violet-700 to-purple-800 bg-clip-text text-transparent uppercase">
-                            Explore Royal Heritage
-                          </span>
-                          <Crown className="w-6 h-6 text-yellow-600" />
+                  <h2 className="text-5xl md:text-7xl font-light text-stone-800 mb-6 tracking-tight" 
+                      style={{ fontFamily: 'Playfair Display, serif' }}>
+                    {section.title || 'Collections'}
+                  </h2>
+                  
+                  {section.description && (
+                    <p className="text-xl text-stone-600 font-light max-w-2xl mx-auto leading-relaxed">
+                      {section.description}
+                    </p>
+                  )}
+                </div>
+                
+                {/* Modern Masonry Grid */}
+                <div className="grid grid-cols-12 gap-6 auto-rows-[300px]">
+                  {section.items.map((item, index) => {
+                    // Define varied grid sizes for visual interest
+                    const gridSizes = [
+                      'col-span-6 row-span-2',  // Large feature
+                      'col-span-3 row-span-1',  // Small
+                      'col-span-3 row-span-1',  // Small
+                      'col-span-4 row-span-2',  // Tall
+                      'col-span-4 row-span-1',  // Medium
+                      'col-span-4 row-span-1',  // Medium
+                      'col-span-6 row-span-1',  // Wide
+                      'col-span-3 row-span-2',  // Tall narrow
+                      'col-span-3 row-span-1',  // Small
+                    ];
+                    
+                    const gridSize = gridSizes[index % gridSizes.length];
+                    const isLarge = gridSize.includes('row-span-2');
+                    
+                    return (
+                      <div 
+                        key={item.id}
+                        className={`${gridSize} group cursor-pointer`}
+                      >
+                        <div className="relative w-full h-full bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-500 overflow-hidden border border-stone-100 hover:border-amber-200">
+                          {/* Image container */}
+                          <div className="relative w-full h-full overflow-hidden">
+                            <img 
+                              src={item.customImageUrl || item.product.imageUrl || ''} 
+                              alt={item.displayName || item.product.name}
+                              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            />
+                            
+                            {/* Gradient overlay for text */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                            
+                            {/* Product info overlay */}
+                            <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                              <h3 className="text-xl font-medium text-white mb-2 line-clamp-2" 
+                                  style={{ fontFamily: 'Playfair Display, serif' }}>
+                                {item.displayName || item.product.name}
+                              </h3>
+                              
+                              {item.displayPrice && (
+                                <p className="text-amber-300 font-semibold">
+                                  {item.displayPrice}
+                                </p>
+                              )}
+                              
+                              {isLarge && (
+                                <p className="text-white/80 text-sm mt-2 line-clamp-2">
+                                  {item.product.description}
+                                </p>
+                              )}
+                            </div>
+                            
+                            {/* Subtle shine effect */}
+                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                              <div className="absolute top-0 -left-full w-1/2 h-full bg-gradient-to-r from-transparent via-white/10 to-transparent transform skew-x-12 animate-[shimmer_2s_ease-in-out_infinite] group-hover:animate-[shimmer_1s_ease-in-out_once]"></div>
+                            </div>
+                          </div>
+                          
+                          {/* Featured badge for first item */}
+                          {index === 0 && (
+                            <div className="absolute top-4 left-4">
+                              <div className="bg-amber-500 text-white px-3 py-1 rounded-full text-xs font-medium shadow-lg">
+                                Featured
+                              </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    </div>
-                  </div>
+                    );
+                  })}
+                </div>
+                
+                {/* Call to action */}
+                <div className="text-center mt-16">
+                  <Button 
+                    className="bg-stone-800 hover:bg-stone-900 text-white px-8 py-4 rounded-full text-base font-medium transition-all duration-300 hover:shadow-xl group"
+                    onClick={() => window.location.href = '/collections'}
+                  >
+                    Explore Collection
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
                 </div>
               </div>
             </section>
@@ -1901,239 +1808,171 @@ export default function Home() {
           );
         }
 
-        // Royal Court layout rendering - Imperial Ceremonial Arrangement with Central Throne Concept
+        // Royal layout rendering - Sophisticated Luxury Gallery
         if (section.layoutType === 'royal') {
-          const throneProduct = section.items[0]; // The main product - sits on the throne
-          const courtProducts = section.items.slice(1, 7); // Royal court attendants
+          const featuredProduct = section.items[0];
+          const supportingProducts = section.items.slice(1);
           
           return (
             <section 
               key={section.id} 
-              className="py-24 relative overflow-hidden min-h-screen" 
+              className="py-20 relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: `radial-gradient(ellipse at center, 
-                  #2d1b4e 0%, 
-                  #4c1d95 20%, 
-                  #7c2d12 40%, 
-                  #9f1239 60%, 
-                  #7c2d12 80%, 
-                  #1e1b4b 100%
-                )`,
+                background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #334155 70%, #475569 100%)'
               }}
             >
-              {/* Royal Court Architecture */}
+              {/* Elegant background elements */}
               <div className="absolute inset-0">
-                {/* Imperial Banners - Left Side */}
-                <div className="absolute left-0 top-0 bottom-0 w-24">
-                  <div className="h-full bg-gradient-to-b from-amber-400 via-yellow-500 to-amber-600 opacity-80 shadow-2xl">
-                    <div className="h-full w-full bg-gradient-to-r from-red-800/40 via-purple-800/40 to-red-800/40"></div>
-                    {/* Heraldic Elements */}
-                    <div className="absolute top-16 left-1/2 transform -translate-x-1/2">
-                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border-4 border-red-700">
-                        <Crown className="w-6 h-6 text-red-800" />
-                      </div>
-                    </div>
-                    <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2">
-                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border-4 border-red-700">
-                        <Crown className="w-6 h-6 text-red-800" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Imperial Banners - Right Side */}
-                <div className="absolute right-0 top-0 bottom-0 w-24">
-                  <div className="h-full bg-gradient-to-b from-amber-400 via-yellow-500 to-amber-600 opacity-80 shadow-2xl">
-                    <div className="h-full w-full bg-gradient-to-l from-red-800/40 via-purple-800/40 to-red-800/40"></div>
-                    {/* Heraldic Elements */}
-                    <div className="absolute top-16 left-1/2 transform -translate-x-1/2">
-                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border-4 border-red-700">
-                        <Crown className="w-6 h-6 text-red-800" />
-                      </div>
-                    </div>
-                    <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2">
-                      <div className="w-12 h-12 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full flex items-center justify-center border-4 border-red-700">
-                        <Crown className="w-6 h-6 text-red-800" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Royal Canopy */}
-                <div className="absolute top-0 left-1/4 right-1/4 h-32">
-                  <div className="w-full h-full bg-gradient-to-b from-amber-500/60 via-yellow-400/40 to-transparent rounded-b-full border-4 border-amber-300/50 shadow-2xl">
-                    <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
-                      <div className="flex items-center gap-4">
-                        <Crown className="w-8 h-8 text-yellow-300" />
-                        <div className="text-2xl font-bold text-yellow-200 tracking-widest" style={{ fontFamily: 'Playfair Display, serif' }}>
-                          ROYAL COURT
-                        </div>
-                        <Crown className="w-8 h-8 text-yellow-300" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Imperial Floor Pattern */}
-                <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-amber-600/30 via-yellow-500/20 to-transparent">
+                {/* Subtle radial highlights */}
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-transparent rounded-full blur-3xl"></div>
+                <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-tl from-amber-400/8 via-orange-500/4 to-transparent rounded-full blur-2xl"></div>
+                
+                {/* Sophisticated pattern overlay */}
+                <div className="absolute inset-0 opacity-[0.02]">
                   <div className="absolute inset-0" style={{
-                    backgroundImage: `
-                      repeating-linear-gradient(
-                        0deg,
-                        rgba(251, 191, 36, 0.2) 0px,
-                        rgba(251, 191, 36, 0.2) 3px,
-                        transparent 3px,
-                        transparent 20px
-                      ),
-                      repeating-linear-gradient(
-                        90deg,
-                        rgba(220, 38, 127, 0.15) 0px,
-                        rgba(220, 38, 127, 0.15) 2px,
-                        transparent 2px,
-                        transparent 15px
-                      )
-                    `
+                    backgroundImage: `radial-gradient(circle at 2px 2px, #fbbf24 1px, transparent 0)`,
+                    backgroundSize: '32px 32px'
                   }}></div>
                 </div>
               </div>
 
-              <div className="container mx-auto px-4 relative z-10">
-                {/* Royal Proclamation Header */}
-                <div className="text-center mb-20 relative">
-                  <div className="absolute -inset-12 bg-gradient-to-r from-purple-500/10 via-amber-400/20 to-purple-500/10 rounded-full blur-3xl"></div>
-                  <div className="relative">
-                    <div className="mb-6">
-                      <div className="inline-flex items-center gap-4 bg-gradient-to-r from-amber-500/20 via-yellow-400/30 to-amber-500/20 backdrop-blur-sm border-2 border-amber-400/50 rounded-full px-8 py-3">
-                        <Crown className="w-8 h-8 text-amber-300" />
-                        <span className="text-xl font-bold text-amber-200 tracking-wider uppercase" style={{ fontFamily: 'Playfair Display, serif' }}>
-                          By Royal Decree
-                        </span>
-                        <Crown className="w-8 h-8 text-amber-300" />
-                      </div>
+              <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+                {/* Elegant Header */}
+                <div className="text-center mb-16">
+                  <div className="inline-flex items-center justify-center mb-8">
+                    <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                    <div className="mx-6 p-3 rounded-full bg-slate-800/50 backdrop-blur-sm border border-amber-400/30">
+                      <Crown className="w-6 h-6 text-amber-400" />
                     </div>
-                    <h2 className="text-5xl md:text-7xl font-bold text-transparent bg-gradient-to-br from-amber-200 via-yellow-300 to-amber-200 bg-clip-text mb-6 drop-shadow-2xl" 
-                        style={{ fontFamily: 'Playfair Display, serif' }}>
-                      {section.title}
-                    </h2>
-                    {section.description && (
-                      <p className="text-xl md:text-2xl font-light text-amber-100 max-w-4xl mx-auto leading-relaxed" 
-                         style={{ fontFamily: 'Playfair Display, serif' }}>
-                        {section.description}
-                      </p>
-                    )}
+                    <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
                   </div>
+                  
+                  <h2 className="text-5xl md:text-7xl font-light text-white mb-6 tracking-tight" 
+                      style={{ fontFamily: 'Playfair Display, serif' }}>
+                    {section.title}
+                  </h2>
+                  
+                  {section.description && (
+                    <p className="text-xl text-slate-300 font-light max-w-3xl mx-auto leading-relaxed">
+                      {section.description}
+                    </p>
+                  )}
                 </div>
                 
-                {throneProduct && (
-                  <div className="mb-20">
-                    {/* The Royal Throne - Central Product */}
-                    <div className="flex justify-center mb-16">
-                      <div className="relative group">
-                        {/* Throne Base */}
-                        <div className="absolute -inset-16 bg-gradient-to-br from-amber-400/20 via-yellow-500/30 to-amber-600/20 rounded-full blur-2xl group-hover:from-amber-300/30 group-hover:via-yellow-400/40 group-hover:to-amber-500/30 transition-all duration-700"></div>
-                        
-                        {/* Royal Pedestal */}
-                        <div className="relative bg-gradient-to-br from-purple-900/80 via-red-900/70 to-purple-900/80 backdrop-blur-lg rounded-3xl p-12 border-4 border-amber-400/60 shadow-2xl group-hover:border-amber-300/80 transition-all duration-500">
-                          {/* Crown Above Product */}
-                          <div className="absolute -top-8 left-1/2 transform -translate-x-1/2">
-                            <div className="bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full p-4 border-4 border-red-800 shadow-xl group-hover:scale-110 transition-transform duration-500">
-                              <Crown className="w-10 h-10 text-red-900" />
-                            </div>
-                          </div>
-                          
-                          {/* Product */}
-                          <div className="transform group-hover:scale-105 transition-all duration-500">
-                            <ProductCard
-                              product={throneProduct.product}
-                              currency={selectedCurrency}
-                              showActions={false}
-                              customImageUrl={throneProduct.customImageUrl}
-                            />
-                          </div>
-                          
-                          {/* Royal Title */}
-                          <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2">
-                            <div className="bg-gradient-to-r from-red-800 via-purple-800 to-red-800 text-amber-200 px-8 py-3 rounded-full border-2 border-amber-400/60 shadow-xl">
-                              <span className="text-lg font-bold tracking-wider uppercase" style={{ fontFamily: 'Playfair Display, serif' }}>
-                                Crown Jewel
-                              </span>
-                            </div>
+                {/* Hero Product Showcase */}
+                {featuredProduct && (
+                  <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
+                    {/* Featured Product */}
+                    <div className="relative group">
+                      <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-orange-500/10 to-amber-500/20 rounded-3xl blur-2xl group-hover:from-amber-400/25 group-hover:to-amber-400/25 transition-all duration-700"></div>
+                      <div className="relative bg-slate-800/30 backdrop-blur-sm rounded-3xl p-8 border border-slate-700/50 hover:border-amber-400/30 transition-all duration-500">
+                        <div className="absolute top-4 right-4">
+                          <div className="bg-amber-500/20 backdrop-blur-sm border border-amber-400/30 rounded-full px-3 py-1">
+                            <span className="text-xs text-amber-300 font-medium uppercase tracking-wider">Featured</span>
                           </div>
                         </div>
+                        <ProductCard
+                          product={featuredProduct.product}
+                          currency={selectedCurrency}
+                          showActions={false}
+                          customImageUrl={featuredProduct.customImageUrl}
+                        />
+                      </div>
+                    </div>
+                    
+                    {/* Product Description */}
+                    <div className="space-y-8">
+                      <div>
+                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/20 mb-6">
+                          <Gem className="w-4 h-4 text-amber-400 mr-2" />
+                          <span className="text-sm text-amber-300 font-medium uppercase tracking-wider">
+                            Signature Collection
+                          </span>
+                        </div>
+                        <h3 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight"
+                            style={{ fontFamily: 'Playfair Display, serif' }}>
+                          {featuredProduct.displayName || featuredProduct.product.name}
+                        </h3>
+                        <p className="text-slate-300 text-lg leading-relaxed">
+                          {featuredProduct.product.description || 'Exquisitely crafted with meticulous attention to detail, this masterpiece represents the pinnacle of jewelry artistry.'}
+                        </p>
+                      </div>
+                      
+                      <div className="flex items-center gap-6">
+                        <div>
+                          <div className="text-3xl font-light text-white">
+                            {featuredProduct.displayPrice || (selectedCurrency === 'INR' 
+                              ? `₹${featuredProduct.product.priceInr?.toLocaleString()}` 
+                              : `BD ${Number(featuredProduct.product.priceBhd)?.toFixed(3)}`)}
+                          </div>
+                          <div className="text-sm text-slate-400 uppercase tracking-wider">Starting from</div>
+                        </div>
+                        <Button className="bg-transparent border-2 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-slate-900 px-6 py-3 rounded-full font-medium transition-all duration-300">
+                          View Details
+                        </Button>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {/* Royal Court Attendants */}
-                {courtProducts.length > 0 && (
+                {/* Supporting Products Grid */}
+                {supportingProducts.length > 0 && (
                   <div className="mb-16">
                     <div className="text-center mb-12">
-                      <h3 className="text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-amber-300 via-yellow-200 to-amber-300 bg-clip-text mb-4" 
+                      <h3 className="text-3xl md:text-4xl font-light text-white mb-4"
                           style={{ fontFamily: 'Playfair Display, serif' }}>
-                        The Royal Court
+                        Curated Selection
                       </h3>
-                      <p className="text-amber-200 text-lg" style={{ fontFamily: 'Playfair Display, serif' }}>
-                        Distinguished Collection in Service to Excellence
-                      </p>
+                      <p className="text-slate-400 text-lg">Discover more treasures from our exclusive collection</p>
                     </div>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {courtProducts.map((item, index) => (
+                      {supportingProducts.map((item, index) => (
                         <div key={item.id} className="relative group">
-                          {/* Court Position Indicators */}
-                          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                            <div className="bg-gradient-to-r from-amber-500 to-yellow-500 text-red-900 px-4 py-2 rounded-full text-sm font-bold border-2 border-red-800 shadow-lg">
-                              {index % 2 === 0 ? 'Royal Guard' : 'Court Noble'}
-                            </div>
-                          </div>
-                          
-                          {/* Product Card with Royal Styling */}
-                          <div className="bg-gradient-to-br from-purple-900/60 via-red-900/50 to-purple-900/60 backdrop-blur-md rounded-2xl p-6 border-2 border-amber-400/40 shadow-xl hover:border-amber-300/70 hover:shadow-2xl transition-all duration-500 group-hover:scale-105">
+                          <div className="bg-slate-800/20 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/30 hover:border-amber-400/30 transition-all duration-500 hover:shadow-xl">
                             <ProductCard
                               product={item.product}
                               currency={selectedCurrency}
                               showActions={false}
                               customImageUrl={item.customImageUrl}
                             />
+                            {/* Price overlay */}
+                            <div className="mt-4 flex items-center justify-between">
+                              <div>
+                                <h4 className="text-white font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                  {item.displayName || item.product.name}
+                                </h4>
+                                <p className="text-amber-400 font-semibold">
+                                  {item.displayPrice || (selectedCurrency === 'INR' 
+                                    ? `₹${item.product.priceInr?.toLocaleString()}` 
+                                    : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
+                                </p>
+                              </div>
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                className="text-amber-400 hover:bg-amber-400/10 p-2 rounded-full"
+                              >
+                                <ArrowRight className="h-4 w-4" />
+                              </Button>
+                            </div>
                           </div>
-                          
-                          {/* Decorative Elements */}
-                          <div className="absolute -inset-4 bg-gradient-to-br from-amber-400/10 via-transparent to-red-600/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"></div>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* Royal Decree Footer */}
+                {/* Call to Action */}
                 <div className="text-center">
-                  <div className="relative inline-block">
-                    <div className="absolute -inset-16 bg-gradient-to-r from-purple-500/20 via-amber-400/30 to-purple-500/20 rounded-full blur-3xl"></div>
-                    <div className="relative bg-gradient-to-br from-purple-900/80 via-red-900/70 to-purple-900/80 backdrop-blur-lg border-4 border-amber-400/60 rounded-3xl px-16 py-10 shadow-2xl">
-                      <Crown className="w-16 h-16 text-amber-300 mx-auto mb-6" />
-                      <h3 className="text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-200 bg-clip-text mb-6 tracking-wide" 
-                          style={{ fontFamily: 'Playfair Display, serif' }}>
-                        Enter the Royal Court
-                      </h3>
-                      <p className="text-amber-100 text-lg mb-8 max-w-2xl mx-auto leading-relaxed" 
-                         style={{ fontFamily: 'Playfair Display, serif' }}>
-                        By imperial command, witness treasures befitting royalty. Each piece bears the mark of sovereign excellence and eternal beauty.
-                      </p>
-                      <button 
-                        className="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 hover:from-amber-500 hover:via-yellow-400 hover:to-amber-500 text-red-900 px-12 py-4 rounded-full font-bold text-xl transition-all duration-300 hover:shadow-2xl hover:scale-110 border-4 border-red-800 shadow-xl transform"
-                        onClick={() => window.location.href = '/collections'}
-                        style={{ fontFamily: 'Playfair Display, serif' }}
-                      >
-                        <span className="flex items-center gap-4">
-                          <Crown className="w-6 h-6" />
-                          BEHOLD THE ROYAL COLLECTION
-                          <Crown className="w-6 h-6" />
-                        </span>
-                      </button>
-                    </div>
-                  </div>
+                  <Button 
+                    className="bg-amber-500 hover:bg-amber-600 text-slate-900 px-8 py-4 rounded-full text-base font-medium transition-all duration-300 hover:shadow-xl group"
+                    onClick={() => window.location.href = '/collections'}
+                  >
+                    View Complete Collection
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
                 </div>
               </div>
             </section>
