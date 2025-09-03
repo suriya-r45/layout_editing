@@ -1685,6 +1685,212 @@ export default function Home() {
           );
         }
 
+        // Premium layout rendering - Ultra-luxury elite showcase with sophisticated design
+        if (section.layoutType === 'premium') {
+          const featuredProduct = section.items[0];
+          const supportingProducts = section.items.slice(1, 7);
+          
+          return (
+            <section 
+              key={section.id} 
+              className="py-24 md:py-40 relative overflow-hidden min-h-screen" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 20%, #1e3c72 40%, #2a5298 60%, #1a1a2e 80%, #000000 100%)',
+              }}
+            >
+              {/* Elegant Background Effects */}
+              <div className="absolute inset-0">
+                {/* Sophisticated geometric patterns */}
+                <div className="absolute top-0 left-0 w-full h-full">
+                  <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-400/15 to-yellow-500/8 rounded-full blur-3xl animate-pulse"></div>
+                  <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-tl from-blue-400/12 to-cyan-500/6 rounded-full blur-2xl animate-pulse delay-1000"></div>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-br from-purple-400/10 to-pink-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
+                </div>
+
+                {/* Premium grid lines */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `
+                      linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '100px 100px'
+                  }}></div>
+                </div>
+
+                {/* Luxury sparkles */}
+                <div className="absolute inset-0">
+                  {[...Array(30)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-gradient-to-r from-amber-300 to-white rounded-full animate-pulse opacity-40"
+                      style={{
+                        top: `${Math.random() * 100}%`,
+                        left: `${Math.random() * 100}%`,
+                        animationDelay: `${Math.random() * 5}s`,
+                        animationDuration: `${3 + Math.random() * 4}s`
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="max-w-8xl mx-auto px-6 relative z-10">
+                {/* Elegant Header */}
+                <div className="text-center mb-24">
+                  <div className="mb-12">
+                    <div className="inline-block">
+                      <h2 className="text-6xl md:text-9xl font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 via-gold-300 to-yellow-400 mb-8 tracking-widest leading-none" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        {section.title || 'PREMIUM COLLECTION'}
+                      </h2>
+                      <div className="w-64 h-1 bg-gradient-to-r from-transparent via-amber-400 via-white via-gold-400 to-transparent mx-auto mb-8 animate-pulse"></div>
+                    </div>
+                  </div>
+                  <p className="text-white/95 text-xl md:text-3xl font-light max-w-5xl mx-auto leading-relaxed mb-8">{section.description || 'Where exceptional craftsmanship meets timeless elegance, creating masterpieces that transcend generations'}</p>
+                  <div className="flex justify-center items-center space-x-4 text-amber-300">
+                    <div className="w-8 h-0.5 bg-gradient-to-r from-transparent to-amber-400"></div>
+                    <span className="text-sm tracking-widest font-light">EXCLUSIVELY CURATED</span>
+                    <div className="w-8 h-0.5 bg-gradient-to-l from-transparent to-amber-400"></div>
+                  </div>
+                </div>
+
+                {/* Main Content Layout */}
+                <div className="grid lg:grid-cols-3 gap-16 mb-20">
+                  {/* Featured Product - Left Column */}
+                  <div className="lg:col-span-1">
+                    <div className="relative group">
+                      {/* Glowing frame */}
+                      <div className="absolute -inset-4 bg-gradient-to-br from-amber-400/30 via-yellow-500/20 to-gold-400/25 rounded-3xl blur-xl animate-pulse"></div>
+                      <div className="absolute -inset-2 bg-gradient-to-br from-white/10 to-transparent rounded-2xl"></div>
+                      
+                      <div className="relative bg-black/20 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/20 shadow-2xl transform transition-all duration-700 group-hover:scale-105">
+                        {featuredProduct && (
+                          <>
+                            <div className="aspect-square overflow-hidden">
+                              <img
+                                src={featuredProduct.product.images?.[0] || ringsImage}
+                                alt={featuredProduct.product.name}
+                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                            </div>
+                            
+                            <div className="absolute inset-0 flex flex-col justify-end p-8">
+                              <div className="text-center">
+                                <h3 className="text-white text-2xl md:text-3xl font-light mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                                  {featuredProduct.product.name}
+                                </h3>
+                                <div className="mb-4">
+                                  <span className="text-amber-300 text-xl font-medium">
+                                    {selectedCurrency === 'BHD' ? `${featuredProduct.product.priceBhd} BHD` : `₹${featuredProduct.product.priceInr}`}
+                                  </span>
+                                </div>
+                                <div className="w-20 h-0.5 bg-gradient-to-r from-amber-400 to-white mx-auto mb-4"></div>
+                                <p className="text-white/80 text-sm font-light">SIGNATURE MASTERPIECE</p>
+                              </div>
+                            </div>
+                            
+                            {/* Premium badge */}
+                            <div className="absolute -top-3 -right-3 bg-gradient-to-r from-amber-500 via-yellow-400 to-gold-500 text-black px-6 py-3 rounded-full text-xs font-bold shadow-2xl border border-white/30 animate-pulse">
+                              ★ EXCLUSIVE ★
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Supporting Content & Products Grid - Right Columns */}
+                  <div className="lg:col-span-2 space-y-12">
+                    {/* Elegant description */}
+                    <div className="text-center lg:text-left space-y-6">
+                      <h3 className="text-4xl md:text-5xl font-light text-white mb-6 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        Artistry Beyond Compare
+                      </h3>
+                      <p className="text-white/85 text-lg leading-relaxed max-w-3xl">
+                        Our premium collection represents the pinnacle of jewelry craftsmanship, where each piece is meticulously created by master artisans using the finest materials and time-honored techniques passed down through generations.
+                      </p>
+                      <div className="flex items-center space-x-6 pt-4">
+                        <div className="text-center">
+                          <div className="text-amber-300 text-2xl font-bold mb-1">100%</div>
+                          <div className="text-white/70 text-xs tracking-wide">HANDCRAFTED</div>
+                        </div>
+                        <div className="w-px h-12 bg-white/20"></div>
+                        <div className="text-center">
+                          <div className="text-amber-300 text-2xl font-bold mb-1">24K</div>
+                          <div className="text-white/70 text-xs tracking-wide">PURE GOLD</div>
+                        </div>
+                        <div className="w-px h-12 bg-white/20"></div>
+                        <div className="text-center">
+                          <div className="text-amber-300 text-2xl font-bold mb-1">∞</div>
+                          <div className="text-white/70 text-xs tracking-wide">LIFETIME VALUE</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Premium Products Grid */}
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                      {supportingProducts.map((item, index) => (
+                        <div key={item.id} className="relative group">
+                          <div className="absolute -inset-2 bg-gradient-to-br from-purple-400/20 via-blue-500/15 to-cyan-600/10 rounded-xl blur-lg animate-pulse" style={{ animationDelay: `${index * 200}ms` }}></div>
+                          
+                          <div className="relative bg-black/30 backdrop-blur-sm rounded-xl overflow-hidden border border-white/10 shadow-lg transform transition-all duration-500 group-hover:scale-105 group-hover:bg-black/40">
+                            <div className="aspect-square overflow-hidden">
+                              <img
+                                src={item.product.images?.[0] || [necklacesImage, earringsImage, pendantsImage, banglesImage, ringsImage, chainsImage][index % 6]}
+                                alt={item.product.name}
+                                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                            </div>
+                            
+                            <div className="absolute inset-0 flex flex-col justify-end p-4">
+                              <div className="text-center">
+                                <h4 className="text-white text-sm font-light mb-2 truncate">{item.product.name}</h4>
+                                <div className="text-amber-300 text-xs font-medium">
+                                  {selectedCurrency === 'BHD' ? `${item.product.priceBhd} BHD` : `₹${item.product.priceInr}`}
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Premium Call to Action */}
+                <div className="text-center">
+                  <div className="mb-12">
+                    <h3 className="text-4xl md:text-5xl font-light text-white mb-6 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                      Experience True Luxury
+                    </h3>
+                    <p className="text-white/80 text-lg max-w-3xl mx-auto mb-8">
+                      Step into a world where every detail matters, where tradition meets innovation, and where your jewelry becomes a legacy.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                      <button 
+                        className="bg-gradient-to-r from-amber-500 via-yellow-400 to-gold-500 hover:from-amber-600 hover:via-yellow-500 hover:to-gold-600 text-black px-10 py-4 text-base font-semibold rounded-full transition-all duration-300 hover:shadow-2xl hover:scale-105 transform border border-white/20"
+                        onClick={() => window.location.href = '/collections/premium'}
+                      >
+                        Explore Premium Collection
+                        <span className="ml-2 text-lg">👑</span>
+                      </button>
+                      <button 
+                        className="bg-transparent border-2 border-white/30 text-white hover:bg-white/10 px-10 py-4 text-base font-light rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform"
+                        onClick={() => window.location.href = '/contact'}
+                      >
+                        Schedule Private Viewing
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
         // Floating layout rendering - 3D floating cards with depth
         if (section.layoutType === 'floating') {
           return (
