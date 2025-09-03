@@ -762,133 +762,159 @@ export default function Home() {
           );
         }
 
-        // Mosaic layout rendering - Modern Jewel Gallery
+        // Mosaic layout rendering - Ultra Modern 3D Crystal Gallery
         if (section.layoutType === 'mosaic') {
           return (
             <section 
               key={section.id} 
-              className="relative py-20 overflow-hidden" 
+              className="relative py-32 overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{
-                background: 'linear-gradient(135deg, #fafaf9 0%, #f7f6f4 50%, #f1f0ec 100%)'
+                background: `
+                  radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                  linear-gradient(135deg, #667eea 0%, #764ba2 25%, #667eea 50%, #764ba2 75%, #667eea 100%)
+                `
               }}
             >
-              {/* Subtle geometric pattern */}
-              <div className="absolute inset-0 opacity-[0.03]">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d97706' fill-opacity='0.6'%3E%3Ccircle cx='20' cy='20' r='1.5'/%3E%3C/g%3E%3C/svg%3E")`,
-                  backgroundSize: '40px 40px'
-                }}></div>
+              {/* Animated Crystal Particles */}
+              <div className="absolute inset-0 overflow-hidden">
+                {[...Array(12)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute animate-bounce"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                      animationDelay: `${i * 0.5}s`,
+                      animationDuration: `${3 + Math.random() * 2}s`
+                    }}
+                  >
+                    <div className="w-2 h-2 bg-white/20 transform rotate-45 rounded-sm"></div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Floating Glass Morphism Elements */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-10 left-10 w-96 h-96 bg-gradient-to-br from-white/10 to-purple/5 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-20 w-80 h-80 bg-gradient-to-tl from-blue/8 to-indigo/4 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-gradient-to-r from-violet/6 to-purple/3 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
               </div>
 
               <div className="relative max-w-7xl mx-auto px-6 md:px-8">
-                {/* Clean Header */}
-                <div className="text-center mb-16">
-                  <div className="inline-flex items-center justify-center mb-6">
-                    <div className="w-16 h-px bg-amber-400"></div>
-                    <Gem className="w-6 h-6 text-amber-500 mx-4" />
-                    <div className="w-16 h-px bg-amber-400"></div>
+                {/* Ultra Modern Header with Glass Morphism */}
+                <div className="text-center mb-20">
+                  {/* Glassmorphism Title Container */}
+                  <div className="relative inline-block p-12 rounded-3xl backdrop-blur-lg bg-white/10 border border-white/20 shadow-2xl mb-8">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-white/5 rounded-3xl"></div>
+                    
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-center mb-6">
+                        <div className="w-20 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+                        <div className="mx-6 p-3 rounded-full bg-white/20 backdrop-blur-sm border border-white/30">
+                          <Gem className="w-8 h-8 text-white" />
+                        </div>
+                        <div className="w-20 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent"></div>
+                      </div>
+                      
+                      <h2 className="text-6xl md:text-8xl font-light text-white mb-6 tracking-tight drop-shadow-2xl" 
+                          style={{ fontFamily: 'Playfair Display, serif', textShadow: '0 0 30px rgba(255,255,255,0.5)' }}>
+                        {section.title || 'Crystal Gallery'}
+                      </h2>
+                      
+                      {section.description && (
+                        <p className="text-2xl text-white/90 font-light max-w-3xl mx-auto leading-relaxed drop-shadow-lg">
+                          {section.description}
+                        </p>
+                      )}
+                    </div>
                   </div>
-                  
-                  <h2 className="text-5xl md:text-7xl font-light text-stone-800 mb-6 tracking-tight" 
-                      style={{ fontFamily: 'Playfair Display, serif' }}>
-                    {section.title || 'Collections'}
-                  </h2>
-                  
-                  {section.description && (
-                    <p className="text-xl text-stone-600 font-light max-w-2xl mx-auto leading-relaxed">
-                      {section.description}
-                    </p>
-                  )}
                 </div>
                 
-                {/* Stunning Artistic Mosaic Gallery */}
-                <div className="relative">
-                  {/* Floating Decorative Elements */}
-                  <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-amber-400/10 to-orange-500/5 rounded-full blur-xl animate-pulse"></div>
-                    <div className="absolute bottom-20 right-16 w-24 h-24 bg-gradient-to-tl from-rose-400/8 to-pink-500/4 rounded-full blur-lg animate-pulse delay-1000"></div>
-                    <div className="absolute top-1/2 left-1/3 w-20 h-20 bg-gradient-to-r from-violet-400/6 to-purple-500/3 rounded-full blur-md animate-pulse delay-2000"></div>
-                  </div>
-
-                  {/* Main Mosaic Grid with Artistic Layout - Responsive */}
-                  <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-4 md:gap-6 lg:gap-8 auto-rows-[200px] md:auto-rows-[250px] lg:auto-rows-[280px] relative z-10">
+                {/* Revolutionary 3D Crystal Mosaic Gallery */}
+                <div className="relative perspective-1000">
+                  {/* 3D Grid Container with Transform */}
+                  <div className="grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6 md:gap-8 lg:gap-12 auto-rows-[240px] md:auto-rows-[280px] lg:auto-rows-[320px] relative z-10 transform-gpu">
                     {section.items.map((item, index) => {
-                      // Responsive artistic grid patterns
-                      const artisticLayouts = [
+                      // Revolutionary 3D grid patterns
+                      const crystallineLayouts = [
                         { 
-                          grid: 'col-span-1 md:col-span-4 lg:col-span-7 row-span-2', 
-                          type: 'hero', 
-                          rotation: 'hover:rotate-1' 
+                          grid: 'col-span-1 md:col-span-4 lg:col-span-7 row-span-3', 
+                          type: 'hero-crystal', 
+                          depth: 'translateZ(60px)',
+                          glow: 'shadow-blue-500/25'
                         },
                         { 
-                          grid: 'col-span-1 md:col-span-2 lg:col-span-5 row-span-1', 
-                          type: 'accent', 
-                          rotation: 'hover:-rotate-1' 
+                          grid: 'col-span-1 md:col-span-2 lg:col-span-5 row-span-2', 
+                          type: 'prism', 
+                          depth: 'translateZ(40px) rotateY(5deg)',
+                          glow: 'shadow-purple-500/25'
+                        },
+                        { 
+                          grid: 'col-span-1 md:col-span-3 lg:col-span-4 row-span-2', 
+                          type: 'gem', 
+                          depth: 'translateZ(30px) rotateX(5deg)',
+                          glow: 'shadow-pink-500/25'
+                        },
+                        { 
+                          grid: 'col-span-1 md:col-span-3 lg:col-span-4 row-span-3', 
+                          type: 'diamond', 
+                          depth: 'translateZ(50px) rotateY(-5deg)',
+                          glow: 'shadow-violet-500/25'
                         },
                         { 
                           grid: 'col-span-1 md:col-span-2 lg:col-span-4 row-span-1', 
-                          type: 'showcase', 
-                          rotation: 'hover:rotate-0.5' 
+                          type: 'shard', 
+                          depth: 'translateZ(20px)',
+                          glow: 'shadow-indigo-500/25'
                         },
                         { 
-                          grid: 'col-span-1 md:col-span-2 lg:col-span-4 row-span-1 md:row-span-2', 
-                          type: 'feature', 
-                          rotation: 'hover:-rotate-0.5' 
-                        },
-                        { 
-                          grid: 'col-span-1 md:col-span-2 lg:col-span-4 row-span-1', 
-                          type: 'gallery', 
-                          rotation: 'hover:rotate-1' 
-                        },
-                        { 
-                          grid: 'col-span-1 md:col-span-6 lg:col-span-6 row-span-1', 
-                          type: 'panoramic', 
-                          rotation: 'hover:-rotate-0.5' 
-                        },
-                        { 
-                          grid: 'col-span-1 md:col-span-2 lg:col-span-3 row-span-1 md:row-span-2', 
-                          type: 'portrait', 
-                          rotation: 'hover:rotate-2' 
-                        },
-                        { 
-                          grid: 'col-span-1 md:col-span-2 lg:col-span-3 row-span-1', 
-                          type: 'compact', 
-                          rotation: 'hover:-rotate-1' 
-                        },
-                        { 
-                          grid: 'col-span-1 md:col-span-2 lg:col-span-5 row-span-1', 
-                          type: 'accent', 
-                          rotation: 'hover:rotate-1' 
-                        },
+                          grid: 'col-span-1 md:col-span-4 lg:col-span-8 row-span-2', 
+                          type: 'crystal-palace', 
+                          depth: 'translateZ(45px) rotateX(-2deg)',
+                          glow: 'shadow-cyan-500/25'
+                        }
                       ];
                       
-                      const layout = artisticLayouts[index % artisticLayouts.length];
-                      const isHero = layout.type === 'hero';
-                      const isFeature = ['feature', 'portrait'].includes(layout.type);
+                      const layout = crystallineLayouts[index % crystallineLayouts.length];
                       
-                      // Artistic color schemes
-                      const colorSchemes = [
-                        'from-amber-50/90 via-orange-50/80 to-red-50/70',
-                        'from-rose-50/90 via-pink-50/80 to-purple-50/70', 
-                        'from-blue-50/90 via-indigo-50/80 to-violet-50/70',
-                        'from-emerald-50/90 via-teal-50/80 to-cyan-50/70',
-                        'from-yellow-50/90 via-amber-50/80 to-orange-50/70'
+                      // Define layout types
+                      const isHero = layout.type === 'hero-crystal';
+                      const isFeature = ['diamond', 'crystal-palace'].includes(layout.type);
+                      
+                      // Advanced holographic color schemes
+                      const holographicSchemes = [
+                        'from-cyan-400/30 via-blue-500/20 to-purple-600/30',
+                        'from-pink-400/30 via-violet-500/20 to-indigo-600/30', 
+                        'from-emerald-400/30 via-teal-500/20 to-cyan-600/30',
+                        'from-yellow-400/30 via-orange-500/20 to-red-600/30',
+                        'from-purple-400/30 via-pink-500/20 to-rose-600/30'
                       ];
                       
-                      const colorScheme = colorSchemes[index % colorSchemes.length];
+                      const holographicScheme = holographicSchemes[index % holographicSchemes.length];
                       
                       return (
                         <div 
                           key={item.id}
-                          className={`${layout.grid} group cursor-pointer transform transition-all duration-700 ${layout.rotation} 
+                          className={`${layout.grid} group cursor-pointer transform transition-all duration-700 
                             active:scale-95 touch-manipulation animate-fadeInUp`}
                           style={{ 
                             animationDelay: `${index * 150}ms`,
                             transform: `translateY(${Math.sin(index * 0.5) * 15}px)` // Organic flow
                           }}
                         >
-                          <div className={`relative w-full h-full rounded-2xl md:rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl active:shadow-xl transition-all duration-700 border border-stone-200/50 hover:border-amber-300/50 active:border-amber-400/60 bg-gradient-to-br ${colorScheme} backdrop-blur-sm`}>
+                          <div 
+                            className={`relative w-full h-full rounded-3xl overflow-hidden ${layout.glow} hover:shadow-2xl transition-all duration-1000 
+                              border border-white/20 hover:border-white/40 bg-gradient-to-br ${holographicScheme} backdrop-blur-lg
+                              transform-gpu`}
+                            style={{
+                              transform: `${layout.depth} rotateZ(${index * 2}deg)`,
+                              transition: 'all 1s cubic-bezier(0.23, 1, 0.320, 1)'
+                            }}
+                            onClick={() => handleViewAllClick(item.product.category)}
+                          >
                             
                             {/* Artistic Frame Effect - Responsive */}
                             <div className="absolute inset-1 md:inset-2 rounded-xl md:rounded-2xl border md:border-2 border-white/30 pointer-events-none"></div>
@@ -1738,177 +1764,172 @@ export default function Home() {
           );
         }
 
-        // Premium layout rendering - Royal Palace Architecture with Throne Room Structure
+        // Premium layout rendering - Futuristic Luxury Space Gallery
         if (section.layoutType === 'premium') {
           const featuredProduct = section.items[0];
           const supportingProducts = section.items.slice(1, 8);
           
-          // Define variables for the royal palace layout
-          const throneProduct = featuredProduct;
-          const royalGuards = supportingProducts.slice(0, 4); // First 4 supporting products as guards
-          const courtAttendants = supportingProducts.slice(4); // Remaining products as court attendants
+          // Define variables for the futuristic luxury layout
+          const centralShowcase = featuredProduct;
+          const orbitingGems = supportingProducts.slice(0, 6); // First 6 supporting products
+          const constellationItems = supportingProducts.slice(6); // Remaining products
           
           return (
             <section 
               key={section.id} 
-              className="py-20 relative overflow-hidden min-h-screen" 
+              className="py-40 relative overflow-hidden min-h-screen" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: `linear-gradient(135deg, 
-                  #f8f6f0 0%, 
-                  #e8e2d5 15%, 
-                  #d4c5a9 30%, 
-                  #c5a572 45%, 
-                  #b8935a 60%, 
-                  #a67c52 75%, 
-                  #8b6914 90%, 
-                  #7c5902 100%
-                )`,
+                background: `
+                  radial-gradient(ellipse at top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.95) 70%, black 100%),
+                  radial-gradient(ellipse at 30% 80%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                  black
+                `
               }}
             >
-              {/* Royal Palace Architecture Background */}
-              <div className="absolute inset-0">
-                {/* Grand Palace Columns */}
-                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-amber-100 via-yellow-50 to-transparent opacity-80">
-                  <div className="h-full w-16 bg-gradient-to-b from-amber-200/60 via-yellow-100/40 to-amber-200/60 rounded-r-full shadow-2xl"></div>
-                  {/* Column capitals */}
-                  <div className="absolute top-10 left-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
-                  <div className="absolute bottom-10 left-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
-                </div>
-                
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-amber-100 via-yellow-50 to-transparent opacity-80">
-                  <div className="h-full w-16 ml-auto bg-gradient-to-b from-amber-200/60 via-yellow-100/40 to-amber-200/60 rounded-l-full shadow-2xl"></div>
-                  {/* Column capitals */}
-                  <div className="absolute top-10 right-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
-                  <div className="absolute bottom-10 right-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
-                </div>
-
-                {/* Royal Arches */}
-                <div className="absolute top-0 left-1/4 right-1/4 h-40">
-                  <div className="w-full h-full border-8 border-amber-300/40 rounded-b-full bg-gradient-to-b from-yellow-100/30 to-transparent"></div>
-                  <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
-                    <Crown className="w-12 h-12 text-yellow-600 opacity-80" />
+              {/* Futuristic Space Environment */}
+              <div className="absolute inset-0 overflow-hidden">
+                {/* Animated Starfield */}
+                {[...Array(150)].map((_, i) => (
+                  <div
+                    key={i}
+                    className="absolute animate-pulse"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                      animationDelay: `${Math.random() * 3}s`,
+                      animationDuration: `${2 + Math.random() * 3}s`
+                    }}
+                  >
+                    <div 
+                      className="bg-white rounded-full"
+                      style={{
+                        width: `${1 + Math.random() * 2}px`,
+                        height: `${1 + Math.random() * 2}px`,
+                        opacity: Math.random() * 0.8 + 0.2
+                      }}
+                    ></div>
                   </div>
+                ))}
+
+                {/* Cosmic Energy Rings */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                  <div className="w-96 h-96 border border-cyan-500/20 rounded-full animate-spin" style={{ animationDuration: '20s' }}></div>
+                  <div className="absolute inset-8 border border-purple-500/20 rounded-full animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}></div>
+                  <div className="absolute inset-16 border border-pink-500/20 rounded-full animate-spin" style={{ animationDuration: '25s' }}></div>
                 </div>
 
-                {/* Palace Floor Pattern */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-amber-200/40 via-yellow-100/20 to-transparent">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `
-                      repeating-linear-gradient(
-                        45deg,
-                        rgba(251, 191, 36, 0.1) 0px,
-                        rgba(251, 191, 36, 0.1) 2px,
-                        transparent 2px,
-                        transparent 12px
-                      ),
-                      repeating-linear-gradient(
-                        -45deg,
-                        rgba(217, 119, 6, 0.1) 0px,
-                        rgba(217, 119, 6, 0.1) 2px,
-                        transparent 2px,
-                        transparent 12px
-                      )
-                    `
-                  }}></div>
-                </div>
+                {/* Floating Nebula Clouds */}
+                <div className="absolute top-10 left-20 w-80 h-80 bg-gradient-to-br from-purple-600/5 via-blue-500/3 to-cyan-400/5 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-10 w-72 h-72 bg-gradient-to-tl from-pink-600/4 via-violet-500/3 to-indigo-400/4 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-gradient-to-r from-cyan-600/3 via-teal-500/2 to-emerald-400/3 rounded-full blur-xl animate-pulse" style={{ animationDelay: '4s' }}></div>
 
-                {/* Royal Tapestries */}
-                <div className="absolute top-20 left-40 w-24 h-64 bg-gradient-to-b from-purple-800/20 via-violet-700/30 to-purple-900/20 rounded-lg opacity-60 transform -rotate-2"></div>
-                <div className="absolute top-20 right-40 w-24 h-64 bg-gradient-to-b from-purple-800/20 via-violet-700/30 to-purple-900/20 rounded-lg opacity-60 transform rotate-2"></div>
-
-                {/* Floating Royal Elements */}
-                <div className="absolute top-1/4 left-1/6 w-16 h-16 opacity-30">
-                  <Gem className="w-full h-full text-amber-400 animate-pulse" />
-                </div>
-                <div className="absolute top-1/3 right-1/6 w-12 h-12 opacity-25">
-                  <Crown className="w-full h-full text-yellow-500 animate-pulse delay-1000" />
-                </div>
-                <div className="absolute bottom-1/4 left-1/5 w-14 h-14 opacity-20">
-                  <Star className="w-full h-full text-amber-500 animate-pulse delay-2000" />
-                </div>
+                {/* Cosmic Particles */}
+                {[...Array(20)].map((_, i) => (
+                  <div
+                    key={`particle-${i}`}
+                    className="absolute animate-float"
+                    style={{
+                      left: `${Math.random() * 100}%`,
+                      top: `${Math.random() * 100}%`,
+                      animationDelay: `${Math.random() * 5}s`,
+                      animationDuration: `${8 + Math.random() * 4}s`
+                    }}
+                  >
+                    <div className="w-1 h-1 bg-cyan-400/60 rounded-full"></div>
+                  </div>
+                ))}
               </div>
 
               <div className="max-w-7xl mx-auto px-4 relative z-10">
-                {/* Royal Palace Header */}
-                <div className="text-center mb-16">
-                  <div className="mb-8 relative">
-                    {/* Royal Crown Above Title */}
-                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2">
+                {/* Cosmic Gateway Header */}
+                <div className="text-center mb-24">
+                  <div className="mb-12 relative">
+                    {/* Holographic Portal Above Title */}
+                    <div className="absolute -top-20 left-1/2 transform -translate-x-1/2">
                       <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 via-amber-500/40 to-yellow-400/20 rounded-full blur-xl"></div>
-                        <Crown className="relative w-16 h-16 text-yellow-600" />
+                        <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/30 via-purple-500/40 to-pink-400/30 rounded-full blur-2xl animate-pulse"></div>
+                        <div className="relative w-20 h-20 border-2 border-cyan-400/60 rounded-full animate-spin" style={{ animationDuration: '3s' }}>
+                          <div className="absolute inset-2 border border-purple-400/60 rounded-full animate-spin" style={{ animationDuration: '2s', animationDirection: 'reverse' }}>
+                            <div className="absolute inset-2 border border-pink-400/60 rounded-full animate-pulse">
+                              <Gem className="absolute inset-2 w-full h-full text-white" />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     
-                    <h2 className="text-5xl md:text-7xl font-light bg-gradient-to-br from-amber-800 via-yellow-700 to-amber-900 bg-clip-text text-transparent mb-6 tracking-[0.1em]" 
-                        style={{ fontFamily: 'Playfair Display, serif' }}>
-                      {section.title || 'ROYAL COLLECTION'}
+                    <h2 className="text-6xl md:text-8xl font-extralight bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-8 tracking-[0.2em]" 
+                        style={{ 
+                          fontFamily: 'Playfair Display, serif',
+                          textShadow: '0 0 40px rgba(34, 211, 238, 0.3)'
+                        }}>
+                      {section.title || 'COSMIC LUXURY'}
                     </h2>
                     
-                    {/* Royal Underline */}
-                    <div className="w-64 h-1 mx-auto bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-6"></div>
-                    <div className="flex items-center justify-center gap-4 text-amber-700">
-                      <div className="w-8 h-px bg-amber-500"></div>
-                      <Crown className="w-6 h-6" />
-                      <div className="w-8 h-px bg-amber-500"></div>
+                    {/* Cosmic Energy Divider */}
+                    <div className="relative flex items-center justify-center mb-8">
+                      <div className="w-32 h-px bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent"></div>
+                      <div className="mx-8 relative">
+                        <div className="w-4 h-4 bg-gradient-to-r from-cyan-400 to-purple-400 rounded-full animate-pulse"></div>
+                        <div className="absolute inset-0 w-4 h-4 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full animate-ping"></div>
+                      </div>
+                      <div className="w-32 h-px bg-gradient-to-r from-transparent via-purple-400/60 to-transparent"></div>
                     </div>
-                  </div>
                   
                   {section.description && (
-                    <p className="text-xl text-amber-800 max-w-4xl mx-auto font-light leading-relaxed mb-8" 
-                       style={{ fontFamily: 'Playfair Display, serif' }}>
+                    <p className="text-2xl text-white/90 max-w-4xl mx-auto font-light leading-relaxed mb-12" 
+                       style={{ 
+                         fontFamily: 'Playfair Display, serif',
+                         textShadow: '0 0 20px rgba(255, 255, 255, 0.2)'
+                       }}>
                       {section.description}
                     </p>
                   )}
                 </div>
 
-                {/* Royal Palace Layout */}
+                {/* Cosmic Gallery Layout */}
                 <div className="relative">
-                  {/* Throne Platform - Central Elevated Stage */}
-                  <div className="relative mb-16">
-                    {/* Palace Steps */}
-                    <div className="flex justify-center mb-8">
-                      <div className="w-full max-w-6xl">
-                        {/* Step 3 - Highest */}
-                        <div className="h-4 bg-gradient-to-r from-amber-300/40 via-yellow-200/60 to-amber-300/40 rounded-t-lg mb-1 w-5/6 mx-auto"></div>
-                        {/* Step 2 */}
-                        <div className="h-4 bg-gradient-to-r from-amber-300/30 via-yellow-200/50 to-amber-300/30 rounded-t-lg mb-1 w-11/12 mx-auto"></div>
-                        {/* Step 1 - Base */}
-                        <div className="h-4 bg-gradient-to-r from-amber-300/20 via-yellow-200/40 to-amber-300/20 rounded-t-lg w-full"></div>
-                      </div>
-                    </div>
 
-                    {/* Royal Throne - Central Product */}
-                    {throneProduct && (
-                      <div className="flex justify-center mb-12">
-                        <div className="relative group cursor-pointer" onClick={() => handleViewAllClick(throneProduct.product.category)}>
-                          {/* Throne Backdrop */}
-                          <div className="absolute -inset-8 bg-gradient-to-br from-amber-200/60 via-yellow-100/40 to-amber-300/50 rounded-3xl blur-xl"></div>
-                          <div className="absolute -inset-4 bg-gradient-to-br from-purple-100/30 via-violet-50/20 to-purple-200/40 rounded-2xl"></div>
+                    {/* Central Cosmic Showcase */}
+                    {centralShowcase && (
+                      <div className="flex justify-center mb-20">
+                        <div className="relative group cursor-pointer" onClick={() => handleViewAllClick(centralShowcase.product.category)}>
+                          {/* Cosmic Energy Field */}
+                          <div className="absolute -inset-12 bg-gradient-to-br from-cyan-500/20 via-purple-500/30 to-pink-500/20 rounded-full blur-3xl animate-pulse"></div>
+                          <div className="absolute -inset-8 bg-gradient-to-br from-white/5 via-cyan-400/10 to-purple-400/5 rounded-3xl backdrop-blur-sm"></div>
                           
-                          {/* Throne Ornaments */}
-                          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
-                            <Crown className="w-8 h-8 text-yellow-600" />
-                          </div>
-                          <div className="absolute -left-6 top-1/2 transform -translate-y-1/2">
-                            <Gem className="w-6 h-6 text-amber-500" />
-                          </div>
-                          <div className="absolute -right-6 top-1/2 transform -translate-y-1/2">
-                            <Gem className="w-6 h-6 text-amber-500" />
+                          {/* Orbiting Energy Particles */}
+                          <div className="absolute -inset-10">
+                            {[...Array(8)].map((_, i) => (
+                              <div
+                                key={i}
+                                className="absolute animate-spin"
+                                style={{
+                                  top: '50%',
+                                  left: '50%',
+                                  transform: `rotate(${i * 45}deg) translateX(100px) rotate(-${i * 45}deg)`,
+                                  animationDuration: '10s',
+                                  animationDelay: `${i * 0.5}s`
+                                }}
+                              >
+                                <div className="w-2 h-2 bg-cyan-400/60 rounded-full animate-pulse"></div>
+                              </div>
+                            ))}
                           </div>
                           
-                          {/* Throne Product */}
-                          <div className="relative bg-gradient-to-br from-white via-amber-50 to-yellow-50 rounded-2xl p-8 shadow-2xl border-4 border-amber-200/50 transform transition-all duration-500 hover:scale-105 hover:shadow-3xl min-w-[350px]">
+                          {/* Central Showcase Product */}
+                          <div className="relative bg-gradient-to-br from-black/80 via-gray-900/90 to-black/80 rounded-3xl p-12 shadow-2xl border-2 border-cyan-400/30 transform transition-all duration-1000 hover:scale-110 hover:shadow-cyan-500/25 min-w-[400px] backdrop-blur-lg">
                             <ProductCard
-                              product={throneProduct.product}
+                              product={centralShowcase.product}
                               currency={selectedCurrency}
                               showActions={false}
                             />
                             
-                            {/* Royal Badge */}
-                            <div className="absolute -top-3 -right-3 bg-gradient-to-br from-purple-700 to-violet-800 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-yellow-400">
-                              ROYAL PIECE
+                            {/* Cosmic Badge */}
+                            <div className="absolute -top-4 -right-4 bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg border-2 border-white/20 animate-pulse">
+                              COSMIC PRIME
                             </div>
                           </div>
                         </div>
@@ -1916,61 +1937,78 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Royal Guards - Flanking Products */}
-                  {royalGuards.length > 0 && (
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-                      {royalGuards.map((item, index) => {
-                        const isLeftSide = index % 2 === 0;
-                        return (
-                          <div 
-                            key={item.id}
-                            className={`relative group cursor-pointer transform transition-all duration-500 hover:scale-105 ${
-                              isLeftSide ? 'lg:pr-8' : 'lg:pl-8'
-                            }`}
-                            onClick={() => handleViewAllClick(item.product.category)}
-                          >
-                            {/* Guard Post */}
-                            <div className={`absolute inset-0 bg-gradient-to-${isLeftSide ? 'r' : 'l'} from-amber-100/40 via-transparent to-transparent rounded-2xl`}></div>
-                            
-                            {/* Guard Product */}
-                            <div className="relative bg-gradient-to-br from-white to-amber-50/80 rounded-xl p-6 shadow-lg border-2 border-amber-200/40 hover:border-amber-300/60 transition-all duration-300">
-                              <ProductCard
-                                product={item.product}
-                                currency={selectedCurrency}
-                                showActions={false}
-                              />
+                  {/* Orbiting Cosmic Gems */}
+                  {orbitingGems.length > 0 && (
+                    <div className="relative mb-20">
+                      {/* Orbital Ring */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-[800px] h-[800px] border border-cyan-400/20 rounded-full animate-spin" style={{ animationDuration: '30s' }}></div>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 lg:grid-cols-3 gap-12 relative z-10">
+                        {orbitingGems.map((item: any, index: number) => {
+                          const orbitalPosition = (360 / orbitingGems.length) * index;
+                          return (
+                            <div 
+                              key={item.id}
+                              className="relative group cursor-pointer transform transition-all duration-1000 hover:scale-110"
+                              style={{
+                                transform: `rotate(${orbitalPosition}deg) translateX(200px) rotate(-${orbitalPosition}deg)`,
+                                animationDelay: `${index * 0.3}s`
+                              }}
+                              onClick={() => handleViewAllClick(item.product.category)}
+                            >
+                              {/* Cosmic Energy Aura */}
+                              <div className="absolute -inset-4 bg-gradient-to-br from-purple-500/10 via-cyan-500/10 to-pink-500/10 rounded-2xl blur-xl animate-pulse"></div>
                               
-                              {/* Guard Badge */}
-                              <div className="absolute -top-2 -right-2 bg-gradient-to-br from-amber-600 to-yellow-700 text-white px-3 py-1 rounded-full text-xs font-semibold">
-                                GUARD
+                              {/* Orbiting Gem Product */}
+                              <div className="relative bg-gradient-to-br from-gray-900/90 via-black/95 to-gray-900/90 rounded-2xl p-6 shadow-xl border border-white/10 hover:border-cyan-400/30 transition-all duration-500 backdrop-blur-lg">
+                                <ProductCard
+                                  product={item.product}
+                                  currency={selectedCurrency}
+                                  showActions={false}
+                                />
+                                
+                                {/* Orbital Badge */}
+                                <div className="absolute -top-2 -right-2 bg-gradient-to-r from-purple-500 to-cyan-500 text-white px-3 py-1 rounded-full text-xs font-medium animate-pulse">
+                                  ORBITAL
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
+                      </div>
                     </div>
                   )}
 
-                  {/* Royal Court - Additional Products */}
-                  {courtAttendants.length > 0 && (
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                      {courtAttendants.map((item, index) => (
+                  {/* Constellation Items */}
+                  {constellationItems.length > 0 && (
+                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8">
+                      {constellationItems.map((item: any, index: number) => (
                         <div 
                           key={item.id}
-                          className="relative group cursor-pointer transform transition-all duration-300 hover:scale-105"
+                          className="relative group cursor-pointer transform transition-all duration-500 hover:scale-105"
+                          style={{
+                            animationDelay: `${index * 0.1}s`
+                          }}
                           onClick={() => handleViewAllClick(item.product.category)}
                         >
-                          {/* Court Member */}
-                          <div className="relative bg-gradient-to-br from-white to-yellow-50/60 rounded-lg p-4 shadow-md border border-amber-200/30 hover:border-amber-300/50 transition-all duration-300">
+                          {/* Star Connection Lines */}
+                          {index > 0 && (
+                            <div className="absolute -left-4 top-1/2 w-8 h-px bg-gradient-to-r from-transparent via-white/20 to-white/10"></div>
+                          )}
+                          
+                          {/* Constellation Star */}
+                          <div className="relative bg-gradient-to-br from-gray-800/80 via-gray-900/90 to-black/90 rounded-xl p-4 shadow-lg border border-white/5 hover:border-white/20 transition-all duration-500 backdrop-blur-sm">
                             <ProductCard
                               product={item.product}
                               currency={selectedCurrency}
                               showActions={false}
                             />
                             
-                            {/* Court Badge */}
-                            <div className="absolute -top-1 -right-1 bg-gradient-to-br from-yellow-500 to-amber-600 text-white px-2 py-1 rounded-full text-xs font-medium">
-                              COURT
+                            {/* Star Badge */}
+                            <div className="absolute -top-1 -right-1 bg-gradient-to-br from-white/20 to-gray-500/20 text-white px-2 py-1 rounded-full text-xs font-light border border-white/10">
+                              STAR
                             </div>
                           </div>
                         </div>
@@ -1978,27 +2016,37 @@ export default function Home() {
                     </div>
                   )}
 
-                  {/* Royal Decree - Call to Action */}
-                  <div className="mt-20 text-center">
+                  {/* Cosmic Portal - Call to Action */}
+                  <div className="mt-32 text-center">
                     <div className="relative inline-block">
-                      <div className="absolute -inset-12 bg-gradient-to-r from-yellow-400/20 via-amber-500/30 to-yellow-400/20 rounded-full blur-3xl"></div>
-                      <div className="relative bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 backdrop-blur-md border-4 border-amber-300/60 rounded-2xl px-16 py-8 shadow-2xl">
-                        <Crown className="w-12 h-12 text-yellow-600 mx-auto mb-4" />
-                        <h3 className="text-2xl font-bold text-amber-800 mb-4 tracking-wide" 
-                            style={{ fontFamily: 'Playfair Display, serif' }}>
-                          Enter the Royal Collection
+                      <div className="absolute -inset-16 bg-gradient-to-r from-cyan-500/20 via-purple-500/30 to-pink-500/20 rounded-full blur-3xl animate-pulse"></div>
+                      <div className="relative bg-gradient-to-br from-black/60 via-gray-900/80 to-black/60 backdrop-blur-xl border-2 border-cyan-400/30 rounded-3xl px-20 py-12 shadow-2xl">
+                        <div className="relative mb-6">
+                          <div className="w-16 h-16 mx-auto border-2 border-cyan-400/60 rounded-full animate-spin" style={{ animationDuration: '3s' }}>
+                            <div className="absolute inset-2 border border-purple-400/60 rounded-full animate-spin" style={{ animationDuration: '2s', animationDirection: 'reverse' }}>
+                              <Gem className="absolute inset-2 w-full h-full text-white" />
+                            </div>
+                          </div>
+                        </div>
+                        <h3 className="text-3xl font-light text-white mb-6 tracking-wide" 
+                            style={{ 
+                              fontFamily: 'Playfair Display, serif',
+                              textShadow: '0 0 30px rgba(34, 211, 238, 0.5)'
+                            }}>
+                          Enter the Cosmic Dimension
                         </h3>
-                        <p className="text-amber-700 mb-6 max-w-md mx-auto">
-                          Discover treasures worthy of royalty, crafted for those who demand excellence
+                        <p className="text-white/80 mb-8 max-w-lg mx-auto text-lg">
+                          Journey through the infinite cosmos of luxury, where every piece transcends reality
                         </p>
                         <button 
-                          className="bg-gradient-to-r from-purple-700 via-violet-800 to-purple-700 hover:from-purple-800 hover:via-violet-900 hover:to-purple-800 text-white px-12 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:shadow-xl hover:scale-105 border-2 border-yellow-400"
+                          className="bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 hover:from-cyan-400 hover:via-purple-400 hover:to-pink-400 text-white px-16 py-6 rounded-full font-light text-xl transition-all duration-1000 hover:shadow-2xl hover:shadow-purple-500/30 hover:scale-110 border border-white/20"
                           onClick={() => window.location.href = '/collections'}
+                          style={{ textShadow: '0 0 20px rgba(255,255,255,0.5)' }}
                         >
-                          <span className="flex items-center gap-3">
-                            <Crown className="w-5 h-5" />
-                            EXPLORE ROYAL COLLECTION
-                            <Crown className="w-5 h-5" />
+                          <span className="flex items-center gap-4">
+                            <Gem className="w-6 h-6" />
+                            EXPLORE COSMIC UNIVERSE
+                            <Gem className="w-6 h-6" />
                           </span>
                         </button>
                       </div>
