@@ -70,7 +70,7 @@ function CategoriesScrollSection({ categories, handleViewAllClick }: { categorie
   }, []);
 
   return (
-    <section className="pt-4 pb-6" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+    <section className="pt-4 pb-0" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
       <div className="px-2 md:px-6 lg:px-8">
         {/* Horizontally Scrollable Categories */}
         <div 
@@ -1335,7 +1335,7 @@ export default function Home() {
           return (
             <section 
               key={section.id} 
-              className="w-full relative overflow-hidden -mt-8 -mb-8 m-0 p-0" 
+              className="w-full relative overflow-hidden -mt-0 -mb-8 m-0 p-0" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
             >
               {section.festivalImage ? (
