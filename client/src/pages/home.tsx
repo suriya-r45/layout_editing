@@ -840,8 +840,8 @@ export default function Home() {
                 </div>
                 
                 {/* Premium Masonry Gallery Grid */}
-                <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-8 md:gap-10 space-y-8 md:space-y-10">
-                  {section.items.map((item, index) => {
+                <div className="grid grid-cols-2 md:columns-2 lg:columns-3 xl:columns-4 gap-4 md:gap-8 lg:gap-10 space-y-0 md:space-y-8 lg:space-y-10">
+                  {section.items.slice(0, 4).map((item, index) => {
                     // Enhanced dynamic heights for sophisticated masonry effect
                     const heights = ['h-72', 'h-80', 'h-96', 'h-64', 'h-88', 'h-76', 'h-84', 'h-68'];
                     const height = heights[index % heights.length];
@@ -960,6 +960,57 @@ export default function Home() {
                       </div>
                     );
                   })}
+                  {/* Show remaining items on larger screens */}
+                  <div className="hidden md:contents">
+                    {section.items.slice(4).map((item, index) => {
+                      const originalIndex = index + 4;
+                      const heights = ['h-72', 'h-80', 'h-96', 'h-64', 'h-88', 'h-76', 'h-84', 'h-68'];
+                      const height = heights[originalIndex % heights.length];
+                      
+                      const variations = [
+                        { shadow: 'shadow-lg', border: 'border-gray-200' },
+                        { shadow: 'shadow-md', border: 'border-gray-150' },
+                        { shadow: 'shadow-xl', border: 'border-gray-250' }
+                      ];
+                      const variation = variations[originalIndex % variations.length];
+                      
+                      return (
+                        <div
+                          key={item.id}
+                          className={`break-inside-avoid mb-8 md:mb-10 group cursor-pointer transform transition-all duration-500 md:duration-700 hover:scale-[1.01] md:hover:scale-[1.02] active:scale-[0.98] md:active:scale-[1.02]`}
+                          onClick={() => handleViewAllClick(item.product.category)}
+                          onTouchStart={() => {}}
+                          style={{ 
+                            animationDelay: `${originalIndex * 0.08}s`,
+                            opacity: 0,
+                            animation: 'fadeInUp 0.6s ease-out forwards'
+                          }}
+                        >
+                          <article className={`bg-white rounded-lg md:rounded-xl ${variation.shadow} md:shadow-lg hover:shadow-xl md:hover:shadow-2xl transition-all duration-500 md:duration-700 overflow-hidden border ${variation.border} hover:border-gray-300 active:border-gray-400 relative group-hover:transform group-hover:-translate-y-0.5 md:group-hover:-translate-y-1 hover:rotate-0.5 md:hover:rotate-1`}>
+                            <div className="hidden md:block absolute top-0 right-0 w-0 h-0 border-l-[20px] md:border-l-[24px] border-l-transparent border-t-[20px] md:border-t-[24px] border-t-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300 md:duration-500"></div>
+                            <div className="hidden md:block absolute bottom-0 left-0 w-0 h-0 border-r-[20px] md:border-r-[24px] border-r-transparent border-b-[20px] md:border-b-[24px] border-b-gray-100 opacity-0 group-hover:opacity-100 transition-opacity duration-500 md:duration-700"></div>
+                            
+                            <div className={`relative ${height} overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-100`}>
+                              <div className="absolute inset-0 opacity-[0.01] md:opacity-[0.02]">
+                                <div className="absolute inset-0" style={{
+                                  backgroundImage: `radial-gradient(circle at 25% 25%, #000 1px, transparent 1px)`,
+                                  backgroundSize: '15px 15px'
+                                }}></div>
+                              </div>
+                              
+                              <div className="absolute inset-0 flex items-center justify-center p-6 md:p-8">
+                                <ProductCard
+                                  product={item.product}
+                                  currency={selectedCurrency}
+                                  showActions={false}
+                                />
+                              </div>
+                            </div>
+                          </article>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
                 
                 {/* Enhanced Animation Styles */}
@@ -1692,9 +1743,36 @@ export default function Home() {
 
                 {/* Featured Products Grid */}
                 {section.items && section.items.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-                    {section.items.slice(0, 6).map((item, index) => (
+                  <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-16">
+                    {/* Show only 4 items on mobile (2x2 grid), more on larger screens */}
+                    {section.items.slice(0, 4).map((item, index) => (
                       <div key={item.id} className="group">
+                        <div className="bg-black/40 backdrop-blur-sm border border-amber-400/30 rounded-lg p-4 md:p-6 hover:border-amber-400/60 transition-all duration-300 hover:bg-black/60">
+                          <div className="mb-4">
+                            <ProductCard
+                              product={item.product}
+                              currency={selectedCurrency}
+                              showActions={false}
+                            />
+                          </div>
+                          <div className="text-center">
+                            <h3 className="text-amber-200 text-sm md:text-lg font-medium mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>
+                              {item.product.name}
+                            </h3>
+                            <p className="text-amber-400 font-semibold text-sm md:text-base">
+                              {selectedCurrency === 'BHD' ? 'BD ' : '₹'}
+                              {selectedCurrency === 'BHD' 
+                                ? (parseFloat(item.product.priceBhd || '0')).toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
+                                : (parseFloat(item.product.priceInr || '0')).toLocaleString('en-IN')
+                              }
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                    {/* Show additional items only on larger screens */}
+                    {section.items.slice(4, 6).map((item, index) => (
+                      <div key={item.id} className="group hidden lg:block">
                         <div className="bg-black/40 backdrop-blur-sm border border-amber-400/30 rounded-lg p-6 hover:border-amber-400/60 transition-all duration-300 hover:bg-black/60">
                           <div className="mb-4">
                             <ProductCard
