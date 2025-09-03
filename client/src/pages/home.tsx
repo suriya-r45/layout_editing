@@ -25,7 +25,7 @@ import earringsImage from '@assets/new_earrings.png';
 import braceletsImage from '@assets/bracelets_hero.png';
 import necklacesImage from '@assets/necklaces_hero.png';
 import chainsImage from '@assets/chains_hero.png';
-import banglesImage from '@assets/bangles_luxury.png';
+import banglesImage from '@assets/bangles_hero_new.png';
 import ringsImageMosaic from '@assets/rings_luxury.png';
 import watchesImage from '@assets/watches_luxury_new.png';
 import mensJewelryImage from '@assets/mens_jewelry_luxury_new.png';
@@ -392,7 +392,6 @@ export default function Home() {
     { name: 'Bangles & Bracelets', image: banglesImage, key: 'bangles' },
     { name: 'Chains', image: chainsImage, key: 'chains' },
     { name: 'Nosepins', image: noseJewelryImage, key: 'nose-jewelry' },
-    { name: 'Bracelets', image: braceletsImage, key: 'bracelets' },
     { name: 'Watches', image: watchesImage, key: 'watches' },
     { name: "Men's Jewelry", image: mensJewelryImage, key: 'mens' },
     { name: "Children's Jewelry", image: childrenJewelryImage, key: 'children' },
