@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import { Link, useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { User, LogOut, Search, MapPin, Heart, ShoppingCart, Menu, Phone, Store, Camera, Mic } from 'lucide-react';
+import { User, LogOut, Heart, ShoppingCart, Menu } from 'lucide-react';
 import { useAuth } from '@/lib/auth';
 import { Currency, CURRENCY_NAMES } from '@/lib/currency';
 import CartButton from '@/components/cart/cart-button';
@@ -19,7 +18,6 @@ interface HeaderProps {
 export default function Header({ selectedCurrency, onCurrencyChange }: HeaderProps) {
   const [location] = useLocation();
   const { user, logout, isAdmin } = useAuth();
-  const [searchQuery, setSearchQuery] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
@@ -27,17 +25,6 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
     window.location.href = '/';
   };
 
-  const handleSearch = () => {
-    if (searchQuery.trim()) {
-      window.location.href = `/collections?search=${encodeURIComponent(searchQuery)}`;
-    }
-  };
-
-  const handleSearchKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSearch();
-    }
-  };
 
   return (
     <>
@@ -74,31 +61,6 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
               </Link>
             </div>
 
-            {/* Center Section - Search Bar (Desktop Only) */}
-            <div className="hidden lg:flex flex-1 max-w-md mx-8">
-              <div className="relative w-full">
-                <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                  <Search className="h-4 w-4 text-gray-600" />
-                </div>
-                <Input
-                  type="text"
-                  placeholder="Search jewelry..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyPress={handleSearchKeyPress}
-                  className="w-full h-10 pl-12 pr-18 rounded-full bg-white border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
-                  data-testid="search-input-header"
-                />
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
-                  <button className="p-0.5 hover:bg-gray-100 rounded">
-                    <Camera className="h-4 w-4 text-gray-600" />
-                  </button>
-                  <button className="p-0.5 hover:bg-gray-100 rounded">
-                    <Mic className="h-4 w-4 text-gray-600" />
-                  </button>
-                </div>
-              </div>
-            </div>
 
             {/* Right Section - Icons */}
             <div className="flex items-center space-x-1 md:space-x-4 flex-shrink-0">
@@ -209,59 +171,6 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
             </div>
           </div>
 
-          {/* Search Bar Row - Only for tablets, hidden on desktop and mobile */}
-          <div className="hidden md:block lg:hidden pb-4">
-            <div className="max-w-2xl mx-auto">
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-                  <Search className="h-5 w-5 text-gray-600" />
-                </div>
-                <Input
-                  type="text"
-                  placeholder="Search for Gold Jewellery..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onKeyPress={handleSearchKeyPress}
-                  className="w-full h-12 pl-20 pr-24 rounded-full bg-white border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400"
-                  data-testid="search-input"
-                />
-                <div className="absolute right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2">
-                  <button className="p-1 hover:bg-gray-100 rounded">
-                    <Camera className="h-5 w-5 text-gray-600" />
-                  </button>
-                  <button className="p-1 hover:bg-gray-100 rounded">
-                    <Mic className="h-5 w-5 text-gray-600" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Search Bar - Only shown on mobile */}
-          <div className="md:hidden pb-2">
-            <div className="relative">
-              <div className="absolute left-3 top-1/2 transform -translate-y-1/2">
-                <Search className="h-4 w-4 text-gray-600" />
-              </div>
-              <Input
-                type="text"
-                placeholder="Search for Gold Jewellery..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyPress={handleSearchKeyPress}
-                className="w-full h-12 pl-12 pr-16 rounded-full bg-gray-50 border-gray-300 text-gray-800 placeholder-gray-600 focus:bg-white focus:ring-2 focus:ring-gray-300 focus:border-gray-400 text-sm"
-                data-testid="search-input-mobile"
-              />
-              <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
-                <button className="p-1 hover:bg-gray-100 rounded">
-                  <Camera className="h-4 w-4 text-gray-600" />
-                </button>
-                <button className="p-1 hover:bg-gray-100 rounded">
-                  <Mic className="h-4 w-4 text-gray-600" />
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
 
       </header>
