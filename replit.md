@@ -1,71 +1,81 @@
 # Palaniappa Jewellers E-commerce Platform
 
 ## Overview
-A full-stack jewelry e-commerce platform built with React, TypeScript, Express.js, and PostgreSQL. Features include product management, cart functionality, metal rate tracking, barcode generation, and comprehensive admin tools.
+A full-stack jewelry e-commerce application built with modern web technologies for Palaniappa Jewellers. The platform features product catalog management, shopping cart, order processing, and admin dashboard functionality.
 
-## Architecture
-- **Frontend**: React 18 + Vite + Tailwind CSS + shadcn/ui components
-- **Backend**: Express.js with TypeScript 
+## Project Architecture
+- **Frontend**: React 18 + TypeScript + Vite + Tailwind CSS + Shadcn UI
+- **Backend**: Node.js + Express + TypeScript
 - **Database**: PostgreSQL with Drizzle ORM
-- **Storage**: File upload handling for product images
-- **Payment**: Stripe integration (requires API key)
-- **Notifications**: Twilio for SMS (optional)
+- **State Management**: TanStack Query for server state
+- **Routing**: Wouter for client-side routing
 
-## Current Setup Status
-✅ **Development Environment Ready**
-- Express server running on port 5000 with proxy support
-- Vite dev server with `allowedHosts: true` for Replit
-- PostgreSQL database provisioned and schema applied
-- Static file serving for images and assets configured
-- Environment variables set (JWT_SECRET for development)
-
-✅ **Features Working**
-- Product catalog with categories and filtering
-- Metal rates service (gold/silver pricing)
-- Shopping cart functionality
-- Barcode/QR code generation
-- Admin dashboard for inventory management
-- Responsive mobile-friendly design
-
-## Environment Variables
-- `JWT_SECRET`: Set for development (required)
-- `STRIPE_SECRET_KEY`: Optional - payment features disabled without it
-- `TWILIO_*`: Optional - SMS features disabled without credentials
-- `DATABASE_URL`: Auto-configured by Replit PostgreSQL
+## Recent Changes (Sep 3, 2025)
+- ✅ Successfully imported and configured for Replit environment
+- ✅ Fixed missing JWT_SECRET environment variable 
+- ✅ Configured Vite to allow all hosts for Replit proxy (`allowedHosts: true`)
+- ✅ Set up workflow on port 5000 with webview output
+- ✅ Verified database connectivity and schema
+- ✅ Configured deployment settings for autoscale deployment
 
 ## Project Structure
 ```
-├── client/          # React frontend
-├── server/          # Express backend + API routes
-├── shared/          # Shared types and schemas
-├── uploads/         # User uploaded images
-├── attached_assets/ # Static jewelry images
-└── migrations/      # Database migrations
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── components/    # Reusable UI components
+│   │   ├── pages/         # Page components
+│   │   ├── lib/          # Utilities and configurations
+│   │   └── assets/       # Static assets (images, etc.)
+├── server/                # Express backend
+│   ├── services/         # Business logic services  
+│   ├── utils/           # Utility functions
+│   └── routes.ts        # API routes
+├── shared/               # Shared types and schemas
+└── migrations/          # Database migrations
 ```
 
 ## Key Features
-- **Product Management**: Full CRUD with image uploads and barcode generation
-- **Shopping Cart**: Session-based cart with user authentication
-- **Metal Rates**: Real-time gold/silver pricing integration
-- **Billing System**: Invoice generation with PDF export
-- **Inventory Tracking**: Stock management with barcode scanning
-- **Multi-currency**: Support for INR and BHD pricing
-- **Responsive Design**: Mobile-optimized jewelry showcase
-- **Royal Court Layout**: Premium imperial-themed layout with ceremonial arrangement
+- **Product Management**: Comprehensive jewelry catalog with categories, materials, pricing
+- **Shopping Cart**: Session-based cart for guest users, persistent for registered users
+- **Order Processing**: Complete order workflow with payment integration
+- **Admin Dashboard**: Product management, order tracking, billing
+- **Metal Rates**: Live gold/silver rate integration
+- **Barcode Generation**: Product barcode and QR code generation
+- **Shipping Management**: Multi-zone shipping with tracking
+- **WhatsApp Integration**: Order notifications and customer communication
 
-## Recent Changes
-- Database successfully connected and schema applied
-- Fixed tsx runtime error for development workflow
-- Configured proper host settings for Replit environment
-- Deployment configuration set for production readiness
-- Added new 'royal' layout type with imperial ceremonial theme (January 2025)
+## Environment Configuration
+The application requires these environment variables:
+- `JWT_SECRET`: Required for authentication (currently set in workflow)
+- `DATABASE_URL`: PostgreSQL connection (available via Replit)
+- `STRIPE_SECRET_KEY`: Optional, for payment processing  
+- `TWILIO_*`: Optional, for SMS notifications
 
-## Development
-- Run `npm run dev` to start both frontend and backend
-- Run `npm run db:push` to sync database schema changes
-- Access at port 5000 (configured for Replit proxy)
+## Database Schema
+The application uses a comprehensive schema including:
+- Users, Products, Orders, Bills
+- Shopping Cart management
+- Metal rates tracking
+- Shipping and logistics
+- Categories and home sections
 
-## Production Deployment
-- Build: `npm run build` (compiles both frontend and backend)
-- Start: `npm run start` (production Express server)
-- Target: Autoscale deployment (stateless web application)
+## Running the Application
+- **Development**: `npm run dev` (configured in workflow)
+- **Build**: `npm run build`
+- **Production**: `npm run start`
+- **Database**: `npm run db:push` to sync schema
+
+## Deployment
+Configured for Replit autoscale deployment:
+- Build command: `npm run build`
+- Start command: `npm run start` (with JWT_SECRET)
+- Port: 5000 (webview enabled)
+
+## Current Status
+The application is fully functional and ready for use. All core features are working including:
+- ✅ Frontend loading properly
+- ✅ API endpoints responding
+- ✅ Database connectivity
+- ✅ Product catalog
+- ✅ Shopping cart
+- ✅ Admin features
