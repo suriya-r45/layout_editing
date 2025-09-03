@@ -906,9 +906,9 @@ export default function Home() {
                       </div>
                     </div>
                     
-                    {/* Bottom Row - Three Elegant Cards */}
+                    {/* Bottom Row - Four Elegant Cards */}
                     <div 
-                      className="col-span-12 lg:col-span-4 row-span-1 relative group cursor-pointer overflow-hidden"
+                      className="col-span-12 lg:col-span-3 row-span-1 relative group cursor-pointer overflow-hidden"
                       onClick={() => handleViewAllClick('earrings')}
                     >
                       <div className="relative h-full bg-gradient-to-br from-neutral-900 via-neutral-800 to-black rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02]">
@@ -934,7 +934,33 @@ export default function Home() {
                     </div>
                     
                     <div 
-                      className="col-span-12 lg:col-span-4 row-span-1 relative group cursor-pointer overflow-hidden"
+                      className="col-span-12 lg:col-span-3 row-span-1 relative group cursor-pointer overflow-hidden"
+                      onClick={() => handleViewAllClick('chains')}
+                    >
+                      <div className="relative h-full bg-gradient-to-br from-blue-50 via-blue-100/50 to-cyan-100/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] border border-blue-200/50">
+                        <div className="absolute inset-0">
+                          <img 
+                            src={chainsImage} 
+                            alt="Chains" 
+                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110" 
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 via-blue-800/30 to-transparent"></div>
+                        </div>
+                        
+                        <div className="relative h-full flex flex-col justify-end p-6">
+                          <div className="transform transition-all duration-500 group-hover:translate-y-[-4px]">
+                            <h4 className="text-xl lg:text-2xl font-light text-white mb-2 leading-tight" 
+                                style={{ fontFamily: 'Playfair Display, serif' }}>
+                              Chains
+                            </h4>
+                            <p className="text-white/90 text-sm font-light">Elegant connections</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div 
+                      className="col-span-12 lg:col-span-3 row-span-1 relative group cursor-pointer overflow-hidden"
                       onClick={() => handleViewAllClick('bangles')}
                     >
                       <div className="relative h-full bg-gradient-to-br from-amber-50 via-amber-100/50 to-orange-100/30 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] border border-amber-200/50">
@@ -960,7 +986,7 @@ export default function Home() {
                     </div>
                     
                     <div 
-                      className="col-span-12 lg:col-span-4 row-span-1 relative group cursor-pointer overflow-hidden"
+                      className="col-span-12 lg:col-span-3 row-span-1 relative group cursor-pointer overflow-hidden"
                       onClick={() => handleViewAllClick('rings')}
                     >
                       <div className="relative h-full bg-gradient-to-br from-rose-50 via-pink-50 to-rose-100/50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 group-hover:scale-[1.02] border border-rose-200/50">
