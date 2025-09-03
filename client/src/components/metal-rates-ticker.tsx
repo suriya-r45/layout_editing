@@ -21,18 +21,17 @@ export function MetalRatesTicker() {
   const getFormattedRates = () => {
     const rates: string[] = [];
     
-    // Helper function to format rate
+    // Helper function to format rate (removed emoji flags to avoid duplication)
     const formatRate = (rate: MetalRate) => {
-      const countryFlag = rate.market === 'INDIA' ? '🇮🇳' : '🇧🇭';
       const countryName = rate.market === 'INDIA' ? 'INDIA' : 'BAHRAIN';
       const currency = rate.market === 'INDIA' ? '₹' : 'BD';
       const price = parseFloat(rate.market === 'INDIA' ? rate.pricePerGramInr : rate.pricePerGramBhd);
       const decimals = rate.market === 'INDIA' ? 0 : 3;
       
       if (rate.metal === 'GOLD') {
-        return `${countryFlag} Gold ${rate.purity}: ${currency} ${price.toFixed(decimals)}/g`;
+        return `Gold ${rate.purity}: ${currency} ${price.toFixed(decimals)}/g`;
       } else if (rate.metal === 'SILVER') {
-        return `${countryFlag} Silver 925: ${currency} ${price.toFixed(decimals)}/g`;
+        return `Silver 925: ${currency} ${price.toFixed(decimals)}/g`;
       }
       return null;
     };
@@ -99,8 +98,11 @@ export function MetalRatesTicker() {
           <div className="inline-flex items-center space-x-8 w-max">
             {/* Duplicate the rates to create seamless loop */}
             {[...rates, ...rates].map((rate, index) => {
-              const isIndia = rate.includes('🇮🇳');
-              const isBahrain = rate.includes('🇧🇭');
+              // Determine market from rate position in array (rates are ordered: BH 22K, IN 22K, BH 18K, IN 18K, BH Silver, IN Silver)
+              const originalIndex = index % rates.length;
+              const isIndia = originalIndex % 2 === 1; // Odd indices are India rates
+              const isBahrain = originalIndex % 2 === 0; // Even indices are Bahrain rates
+              
               return (
                 <span key={index} className="text-sm font-bold px-5 py-2 bg-gray-50 rounded-full border border-gray-300 flex items-center gap-3 shadow-md text-gray-800">
                   {isIndia && (

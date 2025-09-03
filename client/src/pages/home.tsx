@@ -1333,12 +1333,12 @@ export default function Home() {
           return (
             <section 
               key={section.id} 
-              className="w-full relative overflow-hidden" 
+              className="w-full relative overflow-hidden m-0 p-0" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
             >
               {section.festivalImage ? (
                 <div 
-                  className="relative w-full min-h-[600px] md:min-h-[700px]"
+                  className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] m-0 p-0"
                   style={{
                     backgroundImage: `url("${section.festivalImage}")`,
                     backgroundSize: '120%',
