@@ -64,8 +64,10 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
 
             {/* Right Section - Icons */}
             <div className="flex items-center space-x-1 md:space-x-4 flex-shrink-0">
-              {/* Metal Rates Dropdown */}
-              <MetalRatesDropdown selectedCurrency={selectedCurrency} />
+              {/* Metal Rates Dropdown - Desktop Only */}
+              <div className="hidden md:block">
+                <MetalRatesDropdown selectedCurrency={selectedCurrency} />
+              </div>
               
               {/* Currency Selection */}
               <Select value={selectedCurrency} onValueChange={onCurrencyChange} data-testid="select-currency">
@@ -179,6 +181,7 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
       <MobileMenu 
         isOpen={isMobileMenuOpen}
         onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        selectedCurrency={selectedCurrency}
       />
     </>
   );

@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Product, HomeSection, HomeSectionItem } from '@shared/schema';
 import { Currency } from '@/lib/currency';
 import { ProductFilters as IProductFilters } from '@shared/cart-schema';
-import { ArrowRight, Star, Sparkles, Crown, Gem, Heart, Watch, Users, Baby, Palette, Wrench } from "lucide-react";
+import { ArrowRight, Star, Sparkles, Crown, Gem, Heart, Watch, Users, Baby, Palette, Wrench, Diamond } from "lucide-react";
 import ringsImage from '@assets/new_rings.png';
 
 interface HomeSectionWithItems extends HomeSection {
@@ -1690,132 +1690,196 @@ export default function Home() {
           );
         }
 
-        // Premium Layout - Elegant Dark Design with Golden Accents
+        // Premium Layout - Sophisticated Glass-morphism Design
         if (section.layoutType === 'premium') {
           return (
             <section 
               key={section.id} 
-              className="relative py-24 md:py-32 min-h-screen overflow-hidden" 
+              className="relative py-20 md:py-28 min-h-screen overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: 'linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 25%, #0d0d0d 50%, #1a1a1a 75%, #2c2c2c 100%)',
+                background: 'linear-gradient(160deg, #fdf2f8 0%, #fcfcfc 15%, #f8fafc 35%, #f1f5f9 60%, #e2e8f0 85%, #cbd5e1 100%)',
               }}
             >
-              {/* Ornate Corner Decorations */}
-              <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-amber-400/80"></div>
-              <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-amber-400/80"></div>
-              <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-amber-400/80"></div>
-              <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-amber-400/80"></div>
-
-              {/* Top Crown Icon */}
-              <div className="absolute top-12 left-1/2 transform -translate-x-1/2">
-                <div className="w-12 h-12 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-full flex items-center justify-center border-2 border-amber-300">
-                  <span className="text-black text-lg">♛</span>
+              {/* Sophisticated floating elements */}
+              <div className="absolute inset-0">
+                {/* Organic glass shapes */}
+                <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-rose-300/20 via-pink-200/15 to-transparent rounded-full blur-2xl animate-pulse"></div>
+                <div className="absolute bottom-20 right-16 w-96 h-96 bg-gradient-to-tl from-purple-300/15 via-violet-200/10 to-transparent rounded-full blur-3xl"></div>
+                <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-gradient-to-bl from-orange-300/12 via-amber-200/8 to-transparent rounded-full blur-2xl"></div>
+                <div className="absolute bottom-1/4 left-1/5 w-64 h-64 bg-gradient-to-tr from-blue-300/10 via-sky-200/6 to-transparent rounded-full blur-2xl"></div>
+                
+                {/* Delicate pattern overlay */}
+                <div className="absolute inset-0 opacity-[0.04]">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `
+                      radial-gradient(circle at 4px 4px, #f59e0b 1px, transparent 0),
+                      radial-gradient(circle at 20px 20px, #ec4899 0.5px, transparent 0),
+                      linear-gradient(30deg, transparent 46%, #8b5cf6 47%, #8b5cf6 49%, transparent 50%)
+                    `,
+                    backgroundSize: '40px 40px, 60px 60px, 120px 120px'
+                  }}></div>
                 </div>
+                
+                {/* Floating micro-elements */}
+                <div className="absolute top-16 right-20 w-2 h-2 bg-rose-400 rounded-full opacity-60 animate-bounce"></div>
+                <div className="absolute bottom-32 left-24 w-1 h-1 bg-purple-400 rounded-full opacity-50 animate-bounce" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute top-1/2 left-16 w-1.5 h-1.5 bg-orange-400 rounded-full opacity-40 animate-bounce" style={{ animationDelay: '2s' }}></div>
               </div>
 
-              <div className="max-w-6xl mx-auto px-8 text-center relative z-10">
-                {/* Main Title */}
-                <div className="mb-12">
-                  <h1 
-                    className="text-4xl md:text-6xl lg:text-7xl font-light text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 mb-8 tracking-wider leading-tight"
-                    style={{ fontFamily: 'Playfair Display, serif' }}
-                  >
-                    {section.title || 'premium collection offer'}
-                  </h1>
-                  
-                  {/* Decorative Divider */}
-                  <div className="flex items-center justify-center mb-8">
-                    <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
-                    <div className="mx-6">
-                      <div className="w-8 h-8 border border-amber-400 rounded-full flex items-center justify-center bg-amber-400/10">
-                        <span className="text-amber-400 text-sm">💎</span>
+              <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
+                {/* Elegant Header with Glass Effect */}
+                <div className="text-center mb-20">
+                  <div className="inline-flex items-center justify-center mb-12">
+                    <div className="relative">
+                      {/* Glass morphism badge */}
+                      <div className="w-32 h-32 md:w-40 md:h-40 bg-white/30 backdrop-blur-xl rounded-full border border-white/40 shadow-2xl flex items-center justify-center">
+                        <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-rose-400/20 via-purple-400/15 to-orange-400/20 rounded-full border border-white/50 flex items-center justify-center backdrop-blur-sm">
+                          <Diamond className="w-10 h-10 md:w-12 md:h-12 text-rose-600" />
+                        </div>
                       </div>
+                      {/* Floating accents */}
+                      <div className="absolute -top-3 -right-3 w-6 h-6 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full opacity-80 animate-pulse"></div>
+                      <div className="absolute -bottom-3 -left-3 w-4 h-4 bg-gradient-to-br from-purple-400 to-violet-500 rounded-full opacity-70 animate-pulse" style={{ animationDelay: '1s' }}></div>
                     </div>
-                    <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
                   </div>
-
-                  {/* Subtitle */}
-                  <p className="text-amber-200/80 text-lg md:text-xl tracking-wide" style={{ fontFamily: 'Playfair Display, serif' }}>
-                    {section.description || 'Exquisite handcrafted jewelry'}
-                  </p>
+                  
+                  <h2 className="text-5xl md:text-7xl lg:text-8xl font-thin text-gray-800 mb-8 tracking-wide leading-none" 
+                      style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}>
+                    {section.title}
+                  </h2>
+                  
+                  {section.description && (
+                    <p className="text-xl md:text-2xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed px-4">
+                      {section.description}
+                    </p>
+                  )}
+                  
+                  {/* Elegant separator */}
+                  <div className="mt-12 flex justify-center">
+                    <div className="w-32 h-px bg-gradient-to-r from-transparent via-rose-300 to-transparent"></div>
+                  </div>
                 </div>
 
-                {/* Featured Products Grid */}
+                {/* Glass Cards Product Grid */}
                 {section.items && section.items.length > 0 && (
-                  <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 mb-16">
-                    {/* Show only 4 items on mobile (2x2 grid), more on larger screens */}
-                    {section.items.slice(0, 4).map((item, index) => (
-                      <div key={item.id} className="group">
-                        <div className="bg-black/40 backdrop-blur-sm border border-amber-400/30 rounded-lg p-4 md:p-6 hover:border-amber-400/60 transition-all duration-300 hover:bg-black/60">
-                          <div className="mb-4">
-                            <ProductCard
-                              product={item.product}
-                              currency={selectedCurrency}
-                              showActions={false}
-                            />
-                          </div>
-                          <div className="text-center">
-                            <h3 className="text-amber-200 text-sm md:text-lg font-medium mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>
-                              {item.product.name}
-                            </h3>
-                            <p className="text-amber-400 font-semibold text-sm md:text-base">
-                              {selectedCurrency === 'BHD' ? 'BD ' : '₹'}
-                              {selectedCurrency === 'BHD' 
-                                ? (parseFloat(item.product.priceBhd || '0')).toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
-                                : (parseFloat(item.product.priceInr || '0')).toLocaleString('en-IN')
-                              }
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                    {/* Show additional items only on larger screens */}
-                    {section.items.slice(4, 6).map((item, index) => (
-                      <div key={item.id} className="group hidden lg:block">
-                        <div className="bg-black/40 backdrop-blur-sm border border-amber-400/30 rounded-lg p-6 hover:border-amber-400/60 transition-all duration-300 hover:bg-black/60">
-                          <div className="mb-4">
-                            <ProductCard
-                              product={item.product}
-                              currency={selectedCurrency}
-                              showActions={false}
-                            />
-                          </div>
-                          <div className="text-center">
-                            <h3 className="text-amber-200 text-lg font-medium mb-2" style={{ fontFamily: 'Playfair Display, serif' }}>
-                              {item.product.name}
-                            </h3>
-                            <p className="text-amber-400 font-semibold">
-                              {selectedCurrency === 'BHD' ? 'BD ' : '₹'}
-                              {selectedCurrency === 'BHD' 
-                                ? (parseFloat(item.product.priceBhd || '0')).toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
-                                : (parseFloat(item.product.priceInr || '0')).toLocaleString('en-IN')
-                              }
-                            </p>
+                  <div className="mb-20">
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                      {/* Show only 4 items on mobile (2x2 grid), more on larger screens */}
+                      {section.items.slice(0, 4).map((item, index) => (
+                        <div key={item.id} className="group relative">
+                          <div className="relative">
+                            {/* Glass morphism card */}
+                            <div className="bg-white/40 backdrop-blur-xl rounded-3xl p-4 md:p-8 border border-white/50 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:bg-white/50 hover:border-white/60 hover:scale-[1.02]">
+                              {/* Subtle glow effect */}
+                              <div className="absolute -inset-1 bg-gradient-to-br from-rose-300/20 via-purple-300/15 to-orange-300/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                              
+                              {/* Content */}
+                              <div className="relative">
+                                <div className="mb-6">
+                                  <ProductCard
+                                    product={item.product}
+                                    currency={selectedCurrency}
+                                    showActions={false}
+                                  />
+                                </div>
+                                
+                                <div className="text-center space-y-3">
+                                  <h3 className="text-gray-800 font-semibold text-sm md:text-lg line-clamp-2" style={{ fontFamily: 'Inter, sans-serif' }}>
+                                    {item.product.name}
+                                  </h3>
+                                  
+                                  <div className="flex items-center justify-center">
+                                    <div className="px-4 py-2 bg-gradient-to-r from-rose-100/80 to-purple-100/80 rounded-full backdrop-blur-sm border border-white/60">
+                                      <p className="text-rose-700 font-bold text-xs md:text-sm">
+                                        {selectedCurrency === 'BHD' ? 'BD ' : '₹'}
+                                        {selectedCurrency === 'BHD' 
+                                          ? (parseFloat(item.product.priceBhd || '0')).toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
+                                          : (parseFloat(item.product.priceInr || '0')).toLocaleString('en-IN')
+                                        }
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                         </div>
+                      ))}
+                      
+                      {/* Show additional items only on larger screens */}
+                      <div className="hidden lg:contents">
+                        {section.items.slice(4, 6).map((item, index) => (
+                          <div key={item.id} className="group relative">
+                            <div className="relative">
+                              <div className="bg-white/40 backdrop-blur-xl rounded-3xl p-8 border border-white/50 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:bg-white/50 hover:border-white/60 hover:scale-[1.02]">
+                                <div className="absolute -inset-1 bg-gradient-to-br from-rose-300/20 via-purple-300/15 to-orange-300/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                                
+                                <div className="relative">
+                                  <div className="mb-6">
+                                    <ProductCard
+                                      product={item.product}
+                                      currency={selectedCurrency}
+                                      showActions={false}
+                                    />
+                                  </div>
+                                  
+                                  <div className="text-center space-y-3">
+                                    <h3 className="text-gray-800 font-semibold text-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
+                                      {item.product.name}
+                                    </h3>
+                                    
+                                    <div className="flex items-center justify-center">
+                                      <div className="px-4 py-2 bg-gradient-to-r from-rose-100/80 to-purple-100/80 rounded-full backdrop-blur-sm border border-white/60">
+                                        <p className="text-rose-700 font-bold">
+                                          {selectedCurrency === 'BHD' ? 'BD ' : '₹'}
+                                          {selectedCurrency === 'BHD' 
+                                            ? (parseFloat(item.product.priceBhd || '0')).toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
+                                            : (parseFloat(item.product.priceInr || '0')).toLocaleString('en-IN')
+                                          }
+                                        </p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
+                    </div>
                   </div>
                 )}
 
-                {/* View All Collection Button */}
+                {/* Sophisticated Call to Action */}
                 <div className="text-center">
-                  <button 
-                    className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-black px-12 py-4 rounded-lg font-semibold tracking-wide transition-all duration-300 hover:shadow-2xl hover:scale-105 border border-amber-400/30"
-                    onClick={() => window.location.href = '/collections'}
-                    style={{ fontFamily: 'Playfair Display, serif' }}
-                  >
-                    View All Collection
-                    <ArrowRight className="inline-block ml-2 w-5 h-5" />
-                  </button>
+                  <div className="relative inline-block">
+                    {/* Glass button */}
+                    <button 
+                      className="relative bg-white/50 backdrop-blur-xl border border-white/60 text-gray-800 px-12 py-4 rounded-full font-semibold tracking-wide transition-all duration-500 hover:bg-white/60 hover:border-white/70 hover:shadow-2xl hover:scale-105 group"
+                      onClick={() => window.location.href = '/collections'}
+                      style={{ fontFamily: 'Inter, sans-serif' }}
+                    >
+                      {/* Gradient overlay on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-rose-200/30 via-purple-200/20 to-orange-200/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      
+                      <span className="relative flex items-center">
+                        Explore Premium Collection
+                        <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </button>
+                    
+                    {/* Floating decorative elements */}
+                    <div className="absolute -top-2 -right-2 w-3 h-3 bg-rose-400 rounded-full opacity-70 animate-ping"></div>
+                    <div className="absolute -bottom-2 -left-2 w-2 h-2 bg-purple-400 rounded-full opacity-60 animate-ping" style={{ animationDelay: '1s' }}></div>
+                  </div>
                 </div>
               </div>
             </section>
           );
         }
 
-        // Royal layout rendering - Sophisticated Luxury Gallery
+        // Royal layout rendering - Ultra-Modern Luxury Experience
         if (section.layoutType === 'royal') {
           const featuredProduct = section.items[0];
           const supportingProducts = section.items.slice(1);
@@ -1823,163 +1887,228 @@ export default function Home() {
           return (
             <section 
               key={section.id} 
-              className="py-20 relative overflow-hidden" 
+              className="py-20 md:py-32 relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 30%, #334155 70%, #475569 100%)'
+                background: 'linear-gradient(145deg, #0c0c0c 0%, #1a1a1a 25%, #2d2d2d 50%, #1a1a1a 75%, #0c0c0c 100%)'
               }}
             >
-              {/* Elegant background elements */}
+              {/* Ultra-modern background architecture */}
               <div className="absolute inset-0">
-                {/* Subtle radial highlights */}
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-transparent rounded-full blur-3xl"></div>
-                <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-tl from-amber-400/8 via-orange-500/4 to-transparent rounded-full blur-2xl"></div>
+                {/* Dynamic geometric shapes */}
+                <div className="absolute top-0 left-0 w-full h-full">
+                  <div className="absolute top-1/4 left-1/6 w-80 h-80 bg-gradient-to-br from-emerald-500/8 via-teal-400/5 to-transparent rounded-full blur-3xl"></div>
+                  <div className="absolute bottom-1/3 right-1/5 w-96 h-96 bg-gradient-to-tl from-blue-500/6 via-indigo-400/4 to-transparent rounded-full blur-3xl"></div>
+                  <div className="absolute top-2/3 left-1/3 w-64 h-64 bg-gradient-to-r from-violet-500/5 to-transparent rounded-full blur-2xl"></div>
+                </div>
                 
-                {/* Sophisticated pattern overlay */}
-                <div className="absolute inset-0 opacity-[0.02]">
+                {/* Modern grid pattern */}
+                <div className="absolute inset-0 opacity-[0.03]">
                   <div className="absolute inset-0" style={{
-                    backgroundImage: `radial-gradient(circle at 2px 2px, #fbbf24 1px, transparent 0)`,
-                    backgroundSize: '32px 32px'
+                    backgroundImage: `
+                      linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                      linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '60px 60px, 60px 60px, 300px 300px, 300px 300px'
                   }}></div>
                 </div>
+                
+                {/* Floating accent elements */}
+                <div className="absolute top-10 right-10 w-3 h-3 bg-emerald-400 rounded-full opacity-60 animate-pulse"></div>
+                <div className="absolute bottom-20 left-16 w-2 h-2 bg-blue-400 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-violet-400 rounded-full opacity-50 animate-pulse" style={{ animationDelay: '2s' }}></div>
               </div>
 
               <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-                {/* Elegant Header */}
-                <div className="text-center mb-16">
-                  <div className="inline-flex items-center justify-center mb-8">
-                    <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
-                    <div className="mx-6 p-3 rounded-full bg-slate-800/50 backdrop-blur-sm border border-amber-400/30">
-                      <Crown className="w-6 h-6 text-amber-400" />
+                {/* Revolutionary Header Design */}
+                <div className="text-center mb-24">
+                  <div className="inline-flex items-center justify-center mb-16">
+                    <div className="relative">
+                      {/* Geometric icon container */}
+                      <div className="w-20 h-20 md:w-28 md:h-28 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl rotate-45 border border-gray-700 shadow-2xl">
+                        <div className="absolute inset-2 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-xl">
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <Crown className="w-8 h-8 md:w-12 md:h-12 text-emerald-400 -rotate-45" />
+                          </div>
+                        </div>
+                      </div>
+                      {/* Accent dots */}
+                      <div className="absolute -top-2 -right-2 w-4 h-4 bg-emerald-400 rounded-full opacity-80"></div>
+                      <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-blue-400 rounded-full opacity-60"></div>
                     </div>
-                    <div className="w-20 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
                   </div>
                   
-                  <h2 className="text-5xl md:text-7xl font-light text-white mb-6 tracking-tight" 
-                      style={{ fontFamily: 'Playfair Display, serif' }}>
+                  <h2 className="text-5xl md:text-7xl lg:text-8xl font-extralight text-white mb-12 tracking-wider leading-none" 
+                      style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.05em' }}>
                     {section.title}
                   </h2>
                   
                   {section.description && (
-                    <p className="text-xl text-slate-300 font-light max-w-3xl mx-auto leading-relaxed">
+                    <p className="text-xl md:text-2xl text-gray-400 font-light max-w-5xl mx-auto leading-relaxed px-4">
                       {section.description}
                     </p>
                   )}
                 </div>
                 
-                {/* Hero Product Showcase */}
+                {/* Revolutionary Product Showcase */}
                 {featuredProduct && (
-                  <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-                    {/* Featured Product */}
-                    <div className="relative group">
-                      <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-orange-500/10 to-amber-500/20 rounded-3xl blur-2xl group-hover:from-amber-400/25 group-hover:to-amber-400/25 transition-all duration-700"></div>
-                      <div className="relative bg-slate-800/30 backdrop-blur-sm rounded-3xl p-8 border border-slate-700/50 hover:border-amber-400/30 transition-all duration-500">
-                        <div className="absolute top-4 right-4">
-                          <div className="bg-amber-500/20 backdrop-blur-sm border border-amber-400/30 rounded-full px-3 py-1">
-                            <span className="text-xs text-amber-300 font-medium uppercase tracking-wider">Featured</span>
+                  <div className="mb-28">
+                    {/* Asymmetric layout */}
+                    <div className="grid lg:grid-cols-5 gap-12 items-center">
+                      {/* Featured Product - Takes 3 columns */}
+                      <div className="lg:col-span-3 relative">
+                        <div className="relative group">
+                          {/* Modern backdrop */}
+                          <div className="absolute -inset-8 bg-gradient-to-br from-gray-800/30 via-gray-900/20 to-gray-800/30 rounded-3xl blur-xl group-hover:from-emerald-500/10 group-hover:to-blue-500/10 transition-all duration-1000"></div>
+                          
+                          {/* Product container */}
+                          <div className="relative bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-gray-700/50 hover:border-emerald-400/30 transition-all duration-700 shadow-2xl">
+                            {/* Modern corner accents */}
+                            <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-emerald-400/40 rounded-tr-2xl"></div>
+                            <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-blue-400/40 rounded-bl-2xl"></div>
+                            
+                            {/* Status badge */}
+                            <div className="absolute top-6 left-6">
+                              <div className="px-4 py-2 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-full border border-emerald-400/30 backdrop-blur-sm">
+                                <span className="text-sm text-emerald-300 font-medium uppercase tracking-wider">Exclusive</span>
+                              </div>
+                            </div>
+                            
+                            <ProductCard
+                              product={featuredProduct.product}
+                              currency={selectedCurrency}
+                              showActions={false}
+                              customImageUrl={featuredProduct.customImageUrl}
+                            />
                           </div>
                         </div>
-                        <ProductCard
-                          product={featuredProduct.product}
-                          currency={selectedCurrency}
-                          showActions={false}
-                          customImageUrl={featuredProduct.customImageUrl}
-                        />
-                      </div>
-                    </div>
-                    
-                    {/* Product Description */}
-                    <div className="space-y-8">
-                      <div>
-                        <div className="inline-flex items-center px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/20 mb-6">
-                          <Gem className="w-4 h-4 text-amber-400 mr-2" />
-                          <span className="text-sm text-amber-300 font-medium uppercase tracking-wider">
-                            Signature Collection
-                          </span>
-                        </div>
-                        <h3 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight"
-                            style={{ fontFamily: 'Playfair Display, serif' }}>
-                          {featuredProduct.displayName || featuredProduct.product.name}
-                        </h3>
-                        <p className="text-slate-300 text-lg leading-relaxed">
-                          {featuredProduct.product.description || 'Exquisitely crafted with meticulous attention to detail, this masterpiece represents the pinnacle of jewelry artistry.'}
-                        </p>
                       </div>
                       
-                      <div className="flex items-center gap-6">
+                      {/* Product Info - Takes 2 columns */}
+                      <div className="lg:col-span-2 space-y-10">
                         <div>
-                          <div className="text-3xl font-light text-white">
-                            {featuredProduct.displayPrice || (selectedCurrency === 'INR' 
-                              ? `₹${featuredProduct.product.priceInr?.toLocaleString()}` 
-                              : `BD ${Number(featuredProduct.product.priceBhd)?.toFixed(3)}`)}
+                          <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-gray-800/60 to-gray-900/60 border border-gray-700/50 mb-8">
+                            <div className="w-2 h-2 bg-emerald-400 rounded-full mr-3 animate-pulse"></div>
+                            <span className="text-sm text-gray-300 font-medium uppercase tracking-wider">
+                              Limited Edition
+                            </span>
                           </div>
-                          <div className="text-sm text-slate-400 uppercase tracking-wider">Starting from</div>
+                          
+                          <h3 className="text-4xl md:text-5xl font-light text-white mb-8 leading-tight"
+                              style={{ fontFamily: 'Inter, sans-serif' }}>
+                            {featuredProduct.displayName || featuredProduct.product.name}
+                          </h3>
+                          
+                          <p className="text-gray-400 text-lg leading-relaxed mb-8">
+                            {featuredProduct.product.description || 'Crafted with precision and passion, this exclusive piece represents the pinnacle of modern jewelry design.'}
+                          </p>
                         </div>
-                        <Button className="bg-transparent border-2 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-slate-900 px-6 py-3 rounded-full font-medium transition-all duration-300">
-                          View Details
-                        </Button>
+                        
+                        {/* Price and action */}
+                        <div className="space-y-6">
+                          <div className="flex items-baseline gap-3">
+                            <span className="text-3xl md:text-4xl font-light text-white">
+                              {featuredProduct.displayPrice || (selectedCurrency === 'INR' 
+                                ? `₹${featuredProduct.product.priceInr?.toLocaleString()}` 
+                                : `BD ${Number(featuredProduct.product.priceBhd)?.toFixed(3)}`)}
+                            </span>
+                            <span className="text-sm text-gray-500 uppercase tracking-wider">Starting</span>
+                          </div>
+                          
+                          <Button className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-500 hover:to-blue-500 text-white px-8 py-4 rounded-2xl font-medium transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/25">
+                            Explore Details
+                            <ArrowRight className="ml-2 h-5 w-5" />
+                          </Button>
+                        </div>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {/* Supporting Products Grid */}
+                {/* Modern Product Grid */}
                 {supportingProducts.length > 0 && (
-                  <div className="mb-16">
-                    <div className="text-center mb-12">
-                      <h3 className="text-3xl md:text-4xl font-light text-white mb-4"
-                          style={{ fontFamily: 'Playfair Display, serif' }}>
-                        Curated Selection
-                      </h3>
-                      <p className="text-slate-400 text-lg">Discover more treasures from our exclusive collection</p>
+                  <div className="mb-20">
+                    <div className="flex items-center justify-between mb-16">
+                      <div>
+                        <h3 className="text-3xl md:text-4xl font-light text-white mb-2"
+                            style={{ fontFamily: 'Inter, sans-serif' }}>
+                          More Collections
+                        </h3>
+                        <div className="w-16 h-1 bg-gradient-to-r from-emerald-400 to-blue-400 rounded-full"></div>
+                      </div>
                     </div>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {supportingProducts.map((item, index) => (
+                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                      {/* Show only 4 items on mobile (2x2 grid), more on larger screens */}
+                      {supportingProducts.slice(0, 4).map((item, index) => (
                         <div key={item.id} className="relative group">
-                          <div className="bg-slate-800/20 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/30 hover:border-amber-400/30 transition-all duration-500 hover:shadow-xl">
+                          <div className="bg-gradient-to-br from-gray-900/60 via-gray-800/40 to-gray-900/60 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-gray-700/30 hover:border-emerald-400/30 transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/10">
                             <ProductCard
                               product={item.product}
                               currency={selectedCurrency}
                               showActions={false}
                               customImageUrl={item.customImageUrl}
                             />
-                            {/* Price overlay */}
-                            <div className="mt-4 flex items-center justify-between">
-                              <div>
-                                <h4 className="text-white font-medium" style={{ fontFamily: 'Playfair Display, serif' }}>
+                            
+                            <div className="mt-4 space-y-2">
+                              <h4 className="text-white font-medium text-sm md:text-base line-clamp-1" style={{ fontFamily: 'Inter, sans-serif' }}>
+                                {item.displayName || item.product.name}
+                              </h4>
+                              <p className="text-emerald-400 font-semibold text-xs md:text-sm">
+                                {item.displayPrice || (selectedCurrency === 'INR' 
+                                  ? `₹${item.product.priceInr?.toLocaleString()}` 
+                                  : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                      
+                      {/* Show additional items only on larger screens */}
+                      <div className="hidden lg:contents">
+                        {supportingProducts.slice(4, 8).map((item, index) => (
+                          <div key={item.id} className="relative group">
+                            <div className="bg-gradient-to-br from-gray-900/60 via-gray-800/40 to-gray-900/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/30 hover:border-emerald-400/30 transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/10">
+                              <ProductCard
+                                product={item.product}
+                                currency={selectedCurrency}
+                                showActions={false}
+                                customImageUrl={item.customImageUrl}
+                              />
+                              
+                              <div className="mt-4 space-y-2">
+                                <h4 className="text-white font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>
                                   {item.displayName || item.product.name}
                                 </h4>
-                                <p className="text-amber-400 font-semibold">
+                                <p className="text-emerald-400 font-semibold">
                                   {item.displayPrice || (selectedCurrency === 'INR' 
                                     ? `₹${item.product.priceInr?.toLocaleString()}` 
                                     : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
                                 </p>
                               </div>
-                              <Button 
-                                variant="ghost" 
-                                size="sm" 
-                                className="text-amber-400 hover:bg-amber-400/10 p-2 rounded-full"
-                              >
-                                <ArrowRight className="h-4 w-4" />
-                              </Button>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
                 )}
 
-                {/* Call to Action */}
+                {/* Modern Call to Action */}
                 <div className="text-center">
-                  <Button 
-                    className="bg-amber-500 hover:bg-amber-600 text-slate-900 px-8 py-4 rounded-full text-base font-medium transition-all duration-300 hover:shadow-xl group"
-                    onClick={() => window.location.href = '/collections'}
-                  >
-                    View Complete Collection
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                  </Button>
+                  <div className="inline-flex items-center gap-6">
+                    <div className="h-px w-20 bg-gradient-to-r from-transparent to-gray-600"></div>
+                    <Button 
+                      className="bg-gradient-to-r from-gray-800 to-gray-900 hover:from-emerald-600 hover:to-blue-600 text-white border border-gray-700 hover:border-emerald-400 px-12 py-4 rounded-2xl text-base font-medium transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/25 group"
+                      onClick={() => window.location.href = '/collections'}
+                    >
+                      Discover All Collections
+                      <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </Button>
+                    <div className="h-px w-20 bg-gradient-to-l from-transparent to-gray-600"></div>
+                  </div>
                 </div>
               </div>
             </section>

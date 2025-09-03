@@ -3,10 +3,12 @@ import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Menu, X, ChevronRight, ChevronLeft, Sparkles, Crown, Diamond, Heart, Watch, Star } from 'lucide-react';
 import { useAuth } from '@/lib/auth';
+import { MetalRatesDropdown } from '@/components/metal-rates-dropdown';
 
 interface MobileMenuProps {
   isOpen: boolean;
   onToggle: () => void;
+  selectedCurrency: 'INR' | 'BHD';
 }
 
 interface Category {
@@ -116,7 +118,7 @@ const getCategoryIcon = (categoryName: string) => {
   return iconMap[categoryName] || Sparkles;
 };
 
-export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
+export default function MobileMenu({ isOpen, onToggle, selectedCurrency }: MobileMenuProps) {
   const { user } = useAuth();
   const [currentView, setCurrentView] = useState<'main' | 'subcategory'>('main');
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
@@ -226,6 +228,15 @@ export default function MobileMenu({ isOpen, onToggle }: MobileMenuProps) {
               </Button>
             </div>
           </div>
+          
+          {/* Gold Rate Section - Mobile Only */}
+          {currentView === 'main' && (
+            <div className="px-6 py-3 border-b border-gray-300 bg-white/20">
+              <div className="w-full">
+                <MetalRatesDropdown selectedCurrency={selectedCurrency} />
+              </div>
+            </div>
+          )}
           
           {/* Categories List */}
           <div className="flex-1 overflow-y-auto max-h-[calc(100vh-200px)]">
