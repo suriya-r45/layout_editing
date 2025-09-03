@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
@@ -9,8 +9,9 @@ import { Button } from '@/components/ui/button';
 import { Product, HomeSection, HomeSectionItem } from '@shared/schema';
 import { Currency } from '@/lib/currency';
 import { ProductFilters as IProductFilters } from '@shared/cart-schema';
+import { MetalRatesTicker } from '@/components/metal-rates-ticker';
 import { ArrowRight, Star, Sparkles, Crown, Gem, Heart, Watch, Users, Baby, Palette, Wrench } from "lucide-react";
-import ringsImage from '@assets/rings_luxury.png';
+import ringsImage from '@assets/new_rings.png';
 
 interface HomeSectionWithItems extends HomeSection {
   items: HomeSectionItemWithProduct[];
@@ -19,168 +20,417 @@ interface HomeSectionWithItems extends HomeSection {
 interface HomeSectionItemWithProduct extends HomeSectionItem {
   product: Product;
 }
-import pendantsImage from '@assets/pendants_luxury.png';
-import earringsImage from '@assets/earrings_luxury.png';
-import braceletsImage from '@assets/bracelets_luxury.png';
-import necklacesImage from '@assets/necklaces_luxury.png';
-import banglesImage from '@assets/bangles_luxury.png';
-import watchesImage from '@assets/watches_luxury.png';
-import mensJewelryImage from '@assets/mens_jewelry_luxury.png';
-import childrenJewelryImage from '@assets/children_jewelry_luxury.png';
-import customJewelryImage from '@assets/custom_jewelry_luxury.png';
-import collectionsImage from '@assets/collections_luxury.png';
+import pendantsImage from '@assets/new_pendants.png';
+import earringsImage from '@assets/new_earrings.png';
+import braceletsImage from '@assets/bracelets_hero.png';
+import necklacesImage from '@assets/necklaces_hero.png';
+import chainsImage from '@assets/chains_hero.png';
+import banglesImage from '@assets/bangles_hero_new.png';
+import ringsImageMosaic from '@assets/rings_luxury.png';
+import watchesImage from '@assets/watches_luxury_new.png';
+import mensJewelryImage from '@assets/mens_jewelry_luxury_new.png';
+import childrenJewelryImage from '@assets/children_jewelry_luxury_new.png';
+import customJewelryImage from '@assets/custom_jewelry_luxury_new.png';
+import collectionsImage from '@assets/collections_luxury_new.png';
 import goldCollectionImage from '@assets/gold_collection_luxury.png';
 import silverCollectionImage from '@assets/silver_collection_luxury.png';
-import diamondCollectionImage from '@assets/diamond_collection_luxury.png';
-import mangalsutraImage from '@assets/mangalsutra_hero.png';
-import noseJewelryImage from '@assets/nose_jewelry_hero.png';
-import ankletsImage from '@assets/anklets_hero.png';
-import broochesImage from '@assets/brooches_hero.png';
-import bridalCollectionsImage from '@assets/bridal_hero.png';
+import diamondCollectionImage from '@assets/diamond_collection_luxury_new.png';
+import mangalsutraImage from '@assets/mangalsutra_new.png';
+import noseJewelryImage from '@assets/nosepins_new.png';
+import ankletsImage from '@assets/anklets_new.png';
+import broochesImage from '@assets/brooches_new.png';
+import bridalCollectionsImage from '@assets/bridal_new.png';
+import newArrivalsBackground from '@assets/image_1756713608055.png';
+import newArrivalsBackgroundNew from '@assets/new_arrivals_bg.png';
+
+// Separate component for auto-scrolling categories to avoid React hooks rule violations
+function CategoriesScrollSection({ categories, handleViewAllClick }: { categories: any[]; handleViewAllClick: (key: string) => void }) {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const autoScroll = () => {
+      const currentScrollLeft = scrollContainer.scrollLeft;
+      const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      
+      if (currentScrollLeft >= maxScrollLeft) {
+        // Reset to start if at the end
+        scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Scroll right by 200px
+        scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
+      }
+    };
+
+    const interval = setInterval(autoScroll, 3000); // Auto-scroll every 3 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section className="pt-4 pb-0" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+      <div className="px-2 md:px-6 lg:px-8">
+        {/* Horizontally Scrollable Categories */}
+        <div 
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto scrollbar-hide gap-2 md:gap-4 lg:gap-6 pb-2"
+          style={{ 
+            scrollbarWidth: 'none', 
+            msOverflowStyle: 'none',
+            scrollBehavior: 'smooth'
+          }}
+        >
+          {categories.map((category, index) => (
+            <div 
+              key={category.key}
+              className="flex-shrink-0 flex flex-col items-center cursor-pointer hover:transform hover:scale-105 transition-all duration-200"
+              onClick={() => handleViewAllClick(category.key)}
+              data-testid={`category-card-${category.key}`}
+            >
+              {/* Category Image */}
+              <div 
+                className="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full shadow-lg overflow-hidden mb-1.5 md:mb-2 bg-gradient-to-br from-white to-gray-50"
+                style={{
+                  backgroundImage: `url(${category.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
+                }}
+              />
+              
+              {/* Category Name */}
+              <h3 
+                className="text-[9px] md:text-xs lg:text-sm font-light text-center leading-tight text-gray-700 px-0.5 w-20 md:w-24 lg:w-28 min-h-[28px] md:min-h-[32px] flex items-center justify-center"
+              >
+                {category.name}
+              </h3>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// Separate component for festival auto-scrolling 1x4 grid layout
+function FestivalScrollSection({ items, selectedCurrency, handleViewAllClick }: { items: any[]; selectedCurrency: Currency; handleViewAllClick: (category: string) => void }) {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
+  const userScrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    let scrollTimeout: NodeJS.Timeout;
+
+    const autoScroll = () => {
+      // Don't auto-scroll if user is manually scrolling
+      if (isUserScrolling) return;
+      
+      const currentScrollLeft = scrollContainer.scrollLeft;
+      const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      
+      // Enhanced mobile scrolling - scroll by single product width for smoother transition
+      const isMobile = window.innerWidth < 768;
+      const scrollDistance = isMobile ? scrollContainer.clientWidth / 4 : scrollContainer.clientWidth;
+      
+      if (currentScrollLeft >= maxScrollLeft - 10) { // Small buffer to handle rounding
+        // Reset to start if at the end
+        scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Scroll right by calculated distance
+        scrollContainer.scrollBy({ left: scrollDistance, behavior: 'smooth' });
+      }
+    };
+
+    // Enhanced user scroll detection
+    let scrollDetectionTimeout: NodeJS.Timeout;
+    const handleUserScroll = () => {
+      setIsUserScrolling(true);
+      
+      // Clear existing timeouts
+      if (userScrollTimeoutRef.current) {
+        clearTimeout(userScrollTimeoutRef.current);
+      }
+      if (scrollDetectionTimeout) {
+        clearTimeout(scrollDetectionTimeout);
+      }
+      
+      // Use shorter timeout for mobile to detect scroll end more accurately
+      const isMobile = window.innerWidth < 768;
+      const timeoutDelay = isMobile ? 1500 : 3000;
+      
+      scrollDetectionTimeout = setTimeout(() => {
+        setIsUserScrolling(false);
+      }, 150); // Quick detection of scroll end
+      
+      // Resume auto-scroll after longer delay
+      userScrollTimeoutRef.current = setTimeout(() => {
+        setIsUserScrolling(false);
+      }, timeoutDelay);
+    };
+
+    // Enhanced touch events for mobile
+    const handleTouchStart = (e: TouchEvent) => {
+      setIsUserScrolling(true);
+      // Prevent momentum scrolling interference
+      if (scrollTimeout) clearTimeout(scrollTimeout);
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      // Clear existing timeout
+      if (userScrollTimeoutRef.current) {
+        clearTimeout(userScrollTimeoutRef.current);
+      }
+      
+      // Resume auto-scroll after brief delay for mobile
+      scrollTimeout = setTimeout(() => {
+        setIsUserScrolling(false);
+      }, 2000);
+    };
+
+    // Enhanced mobile touch handling
+    const handleTouchMove = () => {
+      setIsUserScrolling(true);
+    };
+
+    // Auto-scroll interval - faster for mobile for better UX
+    const isMobile = window.innerWidth < 768;
+    const intervalDelay = isMobile ? 3000 : 4000;
+    const interval = setInterval(autoScroll, intervalDelay);
+    
+    // Add event listeners with passive option for better mobile performance
+    scrollContainer.addEventListener('scroll', handleUserScroll, { passive: true });
+    scrollContainer.addEventListener('touchstart', handleTouchStart, { passive: true });
+    scrollContainer.addEventListener('touchend', handleTouchEnd, { passive: true });
+    scrollContainer.addEventListener('touchmove', handleTouchMove, { passive: true });
+    
+    return () => {
+      clearInterval(interval);
+      if (userScrollTimeoutRef.current) {
+        clearTimeout(userScrollTimeoutRef.current);
+      }
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      if (scrollDetectionTimeout) {
+        clearTimeout(scrollDetectionTimeout);
+      }
+      scrollContainer.removeEventListener('scroll', handleUserScroll);
+      scrollContainer.removeEventListener('touchstart', handleTouchStart);
+      scrollContainer.removeEventListener('touchend', handleTouchEnd);
+      scrollContainer.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, [isUserScrolling]);
+
+  return (
+    <div className="relative z-10">
+      {items.length > 0 ? (
+        <div 
+          ref={scrollContainerRef}
+          className="flex overflow-x-auto scrollbar-hide gap-2 md:gap-3 pb-2"
+          style={{ 
+            scrollbarWidth: 'none', 
+            msOverflowStyle: 'none',
+            scrollBehavior: 'smooth'
+          }}
+        >
+          {/* Create groups of 4 products */}
+          {Array.from({ length: Math.ceil(items.length / 4) }, (_, groupIndex) => (
+            <div key={groupIndex} className="flex-shrink-0 grid grid-cols-4 gap-2 md:gap-3 w-full">
+              {items.slice(groupIndex * 4, (groupIndex + 1) * 4).map((item, index) => (
+            <div 
+              key={item.id}
+                className="w-full group cursor-pointer transform transition-all duration-300 hover:scale-105"
+              onClick={() => handleViewAllClick(item.product.category)}
+            >
+                <div className="bg-white/20 md:bg-white/95 backdrop-blur-sm rounded-lg p-1.5 md:p-2 shadow-lg hover:shadow-xl transition-all duration-300 border border-white/30 md:border-white/50 h-full">
+                  {/* Product Image */}
+                  <div className="aspect-square mb-1.5 overflow-hidden rounded-md bg-gradient-to-br from-purple-50 to-pink-50">
+                    <img
+                      src={item.product.images?.[0] || ringsImage}
+                      alt={item.product.name}
+                      className="w-full h-full object-contain transform transition-all duration-500 group-hover:scale-110"
+                    />
+                  </div>
+                  
+                  {/* Product Info */}
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-0.5 mb-1">
+                      <span className="text-amber-500 text-xs">₹</span>
+                      <span className="text-xs md:text-sm font-semibold text-gray-800">
+                        {item.product.priceInr?.toLocaleString()}
+                      </span>
+                    </div>
+                    <p className="text-[10px] md:text-xs text-gray-600 font-medium line-clamp-2">
+                      {item.product.name}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="grid grid-cols-4 gap-2 md:gap-3">
+          {[...Array(4)].map((_, index) => (
+            <div key={index} className="w-full bg-white/20 md:bg-white/95 backdrop-blur-sm rounded-lg p-1.5 md:p-2 shadow-lg border border-white/30 md:border-white/50">
+              <div className="aspect-square mb-1.5 overflow-hidden rounded-md bg-gradient-to-br from-purple-50 to-pink-50 flex items-center justify-center">
+                <div className="text-gray-400 text-xs">No Image</div>
+              </div>
+              <div className="text-center">
+                <div className="h-6 bg-gray-200 rounded mb-2"></div>
+                <div className="h-4 bg-gray-100 rounded"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// Separate component for New Arrivals layout to avoid React hooks rule violations
+function NewArrivalsSection({ section, selectedCurrency }: { section: HomeSectionWithItems; selectedCurrency: Currency }) {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    const scrollContainer = scrollContainerRef.current;
+    if (!scrollContainer) return;
+
+    const autoScroll = () => {
+      const currentScrollLeft = scrollContainer.scrollLeft;
+      const maxScrollLeft = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+      
+      if (currentScrollLeft >= maxScrollLeft) {
+        // Reset to start if at the end
+        scrollContainer.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Scroll right by 300px
+        scrollContainer.scrollBy({ left: 300, behavior: 'smooth' });
+      }
+    };
+
+    const interval = setInterval(autoScroll, 2000); // Auto-scroll every 2 seconds
+    
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <section 
+      className="py-12" 
+      data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+      style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}
+    >
+      <div className="container mx-auto px-4">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            {section.title || 'New Arrivals'}
+          </h2>
+          <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            {section.description || 'New Arrivals Dropping Daily, Monday through Friday. Explore the Latest Launches Now!'}
+          </p>
+        </div>
+        
+        {/* Promotional Image with Overlay Button */}
+        <div className="mb-8 relative">
+          <img 
+            src={newArrivalsBackgroundNew} 
+            alt="New Arrivals - Ganesh Chaturthi Offer" 
+            className="w-full h-auto max-w-none rounded-lg shadow-lg"
+            style={{ minHeight: 'auto', objectFit: 'contain' }}
+          />
+          
+          {/* Overlay Button */}
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+            <Button 
+              className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200 shadow-lg" 
+              style={{ fontFamily: 'Cormorant Garamond, serif' }}
+              onClick={() => window.location.href = '/collections?category=new-arrivals'}
+            >
+              View All New Arrivals <ArrowRight className="ml-2 h-3 w-3" />
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   const [selectedCurrency, setSelectedCurrency] = useState<Currency>('BHD');
+
+  // Listen for product addition events to auto-refresh homepage
+  useEffect(() => {
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'homepage-refresh') {
+        // Refetch data when a product is added
+        window.location.reload();
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   // Handle "View All" button clicks - navigate to collections page
   const handleViewAllClick = (material: string) => {
     const materialPath = material.toLowerCase();
     window.location.href = `/collections/${materialPath}`;
   };
-  const [filters, setFilters] = useState<IProductFilters>({});
 
-  const { data: allProducts = [], isLoading } = useQuery<Product[]>({
+  // Category carousel data
+  const categories = [
+    { name: 'Rings', image: ringsImage, key: 'rings' },
+    { name: 'Earrings', image: earringsImage, key: 'earrings' },
+    { name: 'Pendants', image: pendantsImage, key: 'pendants' },
+    { name: 'Necklaces', image: braceletsImage, key: 'necklaces' },
+    { name: 'Bangles & Bracelets', image: banglesImage, key: 'bangles' },
+    { name: 'Chains', image: necklacesImage, key: 'chains' },
+    { name: 'Bracelets', image: chainsImage, key: 'bracelets' },
+    { name: 'Nosepins', image: noseJewelryImage, key: 'nose-jewelry' },
+    { name: 'Watches', image: watchesImage, key: 'watches' },
+    { name: "Men's Jewelry", image: mensJewelryImage, key: 'mens' },
+    { name: "Children's Jewelry", image: childrenJewelryImage, key: 'children' },
+    { name: 'Custom Jewelry', image: customJewelryImage, key: 'custom' },
+    { name: 'Collections', image: collectionsImage, key: 'collections' },
+    { name: 'Gold Collection', image: goldCollectionImage, key: 'gold' },
+    { name: 'Silver Collection', image: silverCollectionImage, key: 'silver' },
+    { name: 'Diamond Collection', image: diamondCollectionImage, key: 'diamond' },
+    { name: 'Mangalsutra', image: mangalsutraImage, key: 'mangalsutra' },
+    { name: 'Anklets & Toe Rings', image: ankletsImage, key: 'anklets' },
+    { name: 'Brooches & Pins', image: broochesImage, key: 'brooches' },
+    { name: 'Bridal Collections', image: bridalCollectionsImage, key: 'bridal-collections' }
+  ];
+
+
+  // Fetch all products for display
+  const { data: allProducts = [] } = useQuery<Product[]>({
     queryKey: ['/api/products'],
-    queryFn: async () => {
-      const response = await fetch('/api/products');
-      if (!response.ok) throw new Error('Failed to fetch products');
-      return response.json();
-    },
   });
 
-  // Fetch custom home sections (public endpoint)
+  // Fetch custom home sections
   const { data: homeSections = [] } = useQuery<HomeSectionWithItems[]>({
     queryKey: ['/api/home-sections/public'],
     queryFn: async () => {
       const response = await fetch('/api/home-sections/public');
       if (!response.ok) throw new Error('Failed to fetch home sections');
-      return response.json();
+      const data = await response.json();
+      return data;
     },
+    staleTime: 0, // Always fetch fresh data
+    refetchOnWindowFocus: true, // Refetch when user focuses the window
+    refetchInterval: 2000, // Auto-refetch every 2 seconds to catch admin updates
   });
 
-  // Filter and sort products
+  // Simple filtering for home page (not used directly but keeps type consistency)
   const filteredProducts = useMemo(() => {
-    let filtered = [...allProducts];
-
-    // Apply search filter
-    if (filters.search) {
-      const searchTerm = filters.search.toLowerCase();
-      filtered = filtered.filter(product =>
-        product.name.toLowerCase().includes(searchTerm) ||
-        product.description.toLowerCase().includes(searchTerm) ||
-        product.category.toLowerCase().includes(searchTerm)
-      );
-    }
-
-    // Apply category filter
-    if (filters.category) {
-      filtered = filtered.filter(product => product.category === filters.category);
-    }
-
-    // Apply material filter
-    if (filters.material) {
-      filtered = filtered.filter(product => product.material === filters.material);
-    }
-
-    // Apply price range filter
-    if (filters.priceMin !== undefined || filters.priceMax !== undefined) {
-      filtered = filtered.filter(product => {
-        const price = selectedCurrency === 'INR' ? parseFloat(product.priceInr) : parseFloat(product.priceBhd);
-        const min = filters.priceMin || 0;
-        const max = filters.priceMax || Infinity;
-        return price >= min && price <= max;
-      });
-    }
-
-    // Apply stock filter
-    if (filters.inStock) {
-      filtered = filtered.filter(product => product.stock > 0);
-    }
-
-    // Apply weight range filter
-    if (filters.weightRange) {
-      const [min, max] = filters.weightRange.split('-').map(Number);
-      filtered = filtered.filter(product => {
-        const weight = parseFloat(product.grossWeight || '0');
-        return weight >= min && weight <= max;
-      });
-    }
-
-    // Apply featured filter
-    if (filters.featured) {
-      // Filter for featured items based on stock and name
-      filtered = filtered.filter(product => product.stock > 0 || product.name.toLowerCase().includes('featured'));
-    }
-
-    // Apply discount filter
-    if (filters.discount) {
-      filtered = filtered.filter(product => product.name.toLowerCase().includes('sale') || product.name.toLowerCase().includes('discount'));
-    }
-
-    // Apply premium filter
-    if (filters.premium) {
-      filtered = filtered.filter(product => parseFloat(selectedCurrency === 'INR' ? product.priceInr : product.priceBhd) > 50000);
-    }
-
-    // Apply new arrivals filter (last 30 days)
-    if (filters.newArrivals) {
-      const thirtyDaysAgo = new Date();
-      thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-      filtered = filtered.filter(product => 
-        product.createdAt && new Date(product.createdAt) >= thirtyDaysAgo
-      );
-    }
-
-    // Apply sorting
-    if (filters.sortBy) {
-      filtered.sort((a, b) => {
-        switch (filters.sortBy) {
-          case 'price_asc':
-            return parseFloat(selectedCurrency === 'INR' ? a.priceInr : a.priceBhd) -
-              parseFloat(selectedCurrency === 'INR' ? b.priceInr : b.priceBhd);
-          case 'price_desc':
-            return parseFloat(selectedCurrency === 'INR' ? b.priceInr : b.priceBhd) -
-              parseFloat(selectedCurrency === 'INR' ? a.priceInr : a.priceBhd);
-          case 'newest':
-            return new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime();
-          case 'name_asc':
-            return a.name.localeCompare(b.name);
-          case 'name_desc':
-            return b.name.localeCompare(a.name);
-          case 'weight_asc':
-            return (parseFloat(a.grossWeight || '0') || 0) - (parseFloat(b.grossWeight || '0') || 0);
-          case 'weight_desc':
-            return (parseFloat(b.grossWeight || '0') || 0) - (parseFloat(a.grossWeight || '0') || 0);
-          case 'stock':
-            return b.stock - a.stock;
-          case 'popular':
-            return b.name.localeCompare(a.name); // Can be enhanced with actual popularity metrics
-          case 'rating':
-            return b.name.localeCompare(a.name); // Can be enhanced with actual rating system
-          case 'discount':
-            // Enhanced sorting for discounted items
-            return b.name.localeCompare(a.name);
-          case 'premium':
-            // Enhanced sorting for premium items by price desc
-            return parseFloat(selectedCurrency === 'INR' ? b.priceInr : b.priceBhd) -
-              parseFloat(selectedCurrency === 'INR' ? a.priceInr : a.priceBhd);
-          default:
-            return 0;
-        }
-      });
-    }
-
-    return filtered;
-  }, [allProducts, filters, selectedCurrency]);
+    return allProducts.sort((a, b) => new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime());
+  }, [allProducts]);
 
   // Category counts for display
   const getCategoryCount = (category: string) => {
@@ -237,49 +487,33 @@ export default function Home() {
 
   // Platinum Products
   const platinumProducts = useMemo(() => 
-    allProducts.filter(product => 
-      product.material?.includes('PLATINUM') ||
-      product.description?.toLowerCase().includes('platinum') ||
-      product.name.toLowerCase().includes('platinum')
-    ).slice(0, 8), 
+    allProducts.filter(product => product.metalType === 'PLATINUM' && !product.isNewArrival).slice(0, 8), 
     [allProducts]
   );
 
   // Gemstone Products  
   const gemstoneProducts = useMemo(() => 
-    allProducts.filter(product => 
-      product.material?.includes('GEMSTONE') ||
-      product.description?.toLowerCase().includes('gemstone') ||
-      product.name.toLowerCase().includes('gemstone') ||
-      product.name.toLowerCase().includes('ruby') ||
-      product.name.toLowerCase().includes('emerald') ||
-      product.name.toLowerCase().includes('sapphire')
-    ).slice(0, 8), 
+    allProducts.filter(product => product.metalType === 'GEMSTONE' && !product.isNewArrival).slice(0, 8), 
     [allProducts]
   );
 
   // Pearl Products
   const pearlProducts = useMemo(() => 
+    allProducts.filter(product => product.metalType === 'PEARL' && !product.isNewArrival).slice(0, 8), 
+    [allProducts]
+  );
+
+  // Gold Plated Silver Products
+  const goldPlatedSilverProducts = useMemo(() => 
     allProducts.filter(product => 
-      product.material?.includes('PEARL') ||
-      product.description?.toLowerCase().includes('pearl') ||
-      product.name.toLowerCase().includes('pearl')
+      product.material?.includes('GOLD_PLATED_SILVER') && !product.isNewArrival
     ).slice(0, 8), 
     [allProducts]
   );
 
-  // Gold Platted Silver Products - Products with gold plating on silver base
-  const goldPlattedSilverProducts = useMemo(() => 
-    allProducts.filter(product => 
-      product.material?.toLowerCase().includes('gold plated') ||
-      product.material?.toLowerCase().includes('gold platted') ||
-      product.description?.toLowerCase().includes('gold plated') ||
-      product.description?.toLowerCase().includes('gold platted') ||
-      (product.metalType === 'SILVER' && 
-       (product.material?.toLowerCase().includes('gold') || 
-        product.name.toLowerCase().includes('gold plated') ||
-        product.name.toLowerCase().includes('gold platted')))
-    ).slice(0, 8), 
+  // Other Products
+  const otherProducts = useMemo(() => 
+    allProducts.filter(product => product.metalType === 'OTHER' && !product.isNewArrival).slice(0, 8), 
     [allProducts]
   );
 
@@ -291,472 +525,1929 @@ export default function Home() {
       .slice(0, 9);
   }, [allProducts]);
 
+  // Layout classes for home sections
+  const getLayoutClasses = (layoutType: string, itemCount: number) => {
+    switch (layoutType) {
+      case 'featured':
+        return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
+      case 'mixed':
+        return 'grid-cols-3 md:grid-cols-3 lg:grid-cols-4';
+      case 'split':
+        return 'grid-cols-1 md:grid-cols-2 gap-0'; // Split layout uses flex instead
+      case 'mosaic':
+        return 'grid-cols-12 auto-rows-fr gap-10';
+      default:
+        return 'grid-cols-3 md:grid-cols-3 lg:grid-cols-4';
+    }
+  };
+
+  const getSizeClasses = (size: string) => {
+    switch (size) {
+      case 'small':
+        return 'col-span-1';
+      case 'large':
+        return 'col-span-2 row-span-2';
+      default:
+        return 'col-span-1';
+    }
+  };
 
   return (
-    <div className="min-h-screen" data-testid="page-home" style={{ background: 'linear-gradient(135deg, #fdfbf7 0%, #fff9e6 100%)' }}>
+    <div className="min-h-screen" data-testid="page-home" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+      <MetalRatesTicker />
       <Header
         selectedCurrency={selectedCurrency}
         onCurrencyChange={setSelectedCurrency}
       />
 
-      {/* 1. Explore Our Collections */}
-      <section className="py-16" data-testid="section-categories" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%)' }}>
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-4xl font-bold" style={{ color: '#8b4513' }}>Explore Our Collections</h2>
-            <p className="text-xl text-black mt-4">Discover jewelry for every occasion</p>
-          </div>
-          
-          {/* 3x5 Grid Layout on Mobile, 4x5 on Desktop */}
-          <div className="grid grid-cols-3 md:grid-cols-4 gap-2 md:gap-4">
-            {/* Row 1 */}
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('rings')}
-              data-testid="category-card-rings"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${ringsImage})`,
-                  backgroundSize: '150%',
-                  backgroundPosition: 'center 45%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Rings</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('rings')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('necklaces')}
-              data-testid="category-card-necklaces"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${necklacesImage})`,
-                  backgroundSize: '125%',
-                  backgroundPosition: 'center 50%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Necklaces</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('necklaces')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('pendants')}
-              data-testid="category-card-pendants"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${pendantsImage})`,
-                  backgroundSize: '120%',
-                  backgroundPosition: 'center 40%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Pendants</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('pendants')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('earrings')}
-              data-testid="category-card-earrings"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${earringsImage})`,
-                  backgroundSize: '130%',
-                  backgroundPosition: 'center 50%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Earrings</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('earrings')} items</p>
-              </div>
-            </div>
-
-            {/* Row 2 */}
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('bracelets')}
-              data-testid="category-card-bracelets"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${braceletsImage})`,
-                  backgroundSize: '120%',
-                  backgroundPosition: 'center 50%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Bracelets</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('bracelets')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('bangles')}
-              data-testid="category-card-bangles"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${banglesImage})`,
-                  backgroundSize: '125%',
-                  backgroundPosition: 'center 50%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Bangles</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('bangles')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('watches')}
-              data-testid="category-card-watches"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${watchesImage})`,
-                  backgroundSize: '110%',
-                  backgroundPosition: 'center 50%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Watches</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('watches')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('mens')}
-              data-testid="category-card-mens"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${mensJewelryImage})`,
-                  backgroundSize: '140%',
-                  backgroundPosition: 'center 45%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Men's Jewellery</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('mens')} items</p>
-              </div>
-            </div>
-
-            {/* Row 3 */}
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('children')}
-              data-testid="category-card-children"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${childrenJewelryImage})`,
-                  backgroundSize: '130%',
-                  backgroundPosition: 'center 50%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Children's Jewellery</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('children')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('custom')}
-              data-testid="category-card-custom"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${customJewelryImage})`,
-                  backgroundSize: '140%',
-                  backgroundPosition: 'center 45%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Custom Jewellery</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('custom')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('collections')}
-              data-testid="category-card-collections"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${collectionsImage})`,
-                  backgroundSize: '150%',
-                  backgroundPosition: 'center 45%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Collections</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('collections')} items</p>
-              </div>
-            </div>
-            {/* Row 4 */}
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('mangalsutra')}
-              data-testid="category-card-mangalsutra"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${mangalsutraImage})`,
-                  backgroundSize: '110%',
-                  backgroundPosition: 'center 45%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Mangalsutra</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('mangalsutra')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('nose jewellery')}
-              data-testid="category-card-nose-jewellery"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${noseJewelryImage})`,
-                  backgroundSize: '115%',
-                  backgroundPosition: 'center 45%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Nose Jewelry</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('nose jewellery')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('anklets & toe rings')}
-              data-testid="category-card-anklets"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${ankletsImage})`,
-                  backgroundSize: '110%',
-                  backgroundPosition: 'center 40%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Anklets & Toe Rings</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('anklets & toe rings')} items</p>
-              </div>
-            </div>
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('brooches & pins')}
-              data-testid="category-card-brooches"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${broochesImage})`,
-                  backgroundSize: '110%',
-                  backgroundPosition: 'center 45%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Brooches & Pins</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('brooches & pins')} items</p>
-              </div>
-            </div>
-
-            {/* Row 5 */}
-            <div 
-              className="rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow relative overflow-hidden"
-              onClick={() => handleViewAllClick('bridal & special collections')}
-              data-testid="category-card-bridal-collections"
-            >
-              <div 
-                className="aspect-square"
-                style={{
-                  backgroundImage: `url(${bridalCollectionsImage})`,
-                  backgroundSize: '105%',
-                  backgroundPosition: 'center 45%',
-                  backgroundRepeat: 'no-repeat'
-                }}
-              />
-              <div className="p-2 text-center bg-white">
-                <h3 className="font-bold text-xs md:text-sm" style={{ color: '#8b4513' }}>Bridal Collections</h3>
-                <p className="text-xs text-gray-600">{getCategoryCount('bridal & special collections')} items</p>
-              </div>
-            </div>
-          </div>
+      {/* Hero Section - Find Your Perfect Match */}
+      <section className="py-8 md:py-12" data-testid="section-hero" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+        <div className="px-4 md:px-6 lg:px-8 text-center">
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-light text-gray-800 mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            Find Your Perfect Match
+          </h1>
+          <p className="text-xl md:text-2xl font-light text-gray-600 mb-6">
+            Shop by Categories
+          </p>
         </div>
       </section>
 
-      {/* Custom Home Sections */}
-      {homeSections.filter(section => section.isActive).map((section) => (
-        <section 
-          key={section.id} 
-          className="py-16"
-          style={{
-            backgroundColor: section.backgroundColor || '#fff8e1',
-            color: section.textColor || '#8b4513'
-          }}
-        >
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">{section.title}</h2>
-              {section.subtitle && <p className="text-xl mb-2">{section.subtitle}</p>}
-              {section.description && <p className="text-lg opacity-80">{section.description}</p>}
-            </div>
+      {/* Categories Horizontal Scroll */}
+      <CategoriesScrollSection categories={categories} handleViewAllClick={handleViewAllClick} />
 
-            <div className={`grid gap-6 mb-8 ${getLayoutClasses(section.layoutType, section.items.length)}`}>
-              {section.items.map((item) => (
-                <div
-                  key={item.id}
-                  className={`rounded-lg p-6 bg-white/10 backdrop-blur-sm ${getSizeClasses(item.size || 'normal')}`}
+      {/* Section Divider - hidden for festival sections */}
+      {homeSections.length > 0 && !homeSections.some(s => s.layoutType === 'festival') && (
+        <div className="w-full border-t border-gray-200 my-8"></div>
+      )}
+
+      {/* Custom Admin Sections */}
+      {homeSections.length > 0 && homeSections.map((section) => {
+        if (section.items.length === 0) return null;
+        
+        // Split layout rendering - Elegant Design matching reference image
+        if (section.layoutType === 'split') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-16 md:py-24 px-4 md:px-8 relative overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                backgroundImage: `url(${newArrivalsBackground})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+              }}
+            >
+              {/* Overlay for better text readability */}
+              <div className="absolute inset-0 bg-black/20"></div>
+
+              {/* Section Header */}
+              <div className="relative z-20 text-left mb-8 md:mb-16 max-w-7xl mx-auto">
+                <h2 className="text-4xl md:text-6xl font-light text-white mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                  {section.title || 'New Arrivals'}
+                </h2>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="bg-white/80 text-gray-800 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-2">
+                    <span className="text-amber-600">✦</span>
+                    <span>500+ New Items</span>
+                  </div>
+                </div>
+                <p className="text-white/90 text-lg md:text-xl font-light leading-relaxed max-w-2xl">
+                  {section.description || 'New Arrivals Dropping Daily, Monday through Friday. Explore the Latest Launches Now!'}
+                </p>
+              </div>
+              
+              {/* Split Layout Container */}
+              <div className="relative z-20 max-w-7xl mx-auto">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 rounded-2xl md:rounded-3xl overflow-hidden shadow-2xl">
+                  
+                  {/* Left Half - First Category */}
+                  <div 
+                    className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.02] min-h-[300px] md:min-h-[400px] overflow-hidden rounded-2xl md:rounded-3xl"
+                    onClick={() => handleViewAllClick(section.items[0]?.product?.category || 'mangalsutra')}
+                  >
+                    {/* Content Container */}
+                    <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-center">
+                      {/* Category Image */}
+                      <div className="flex items-center justify-center">
+                        <div className="relative">
+                          <img
+                            src={section.items[0]?.product?.images?.[0] || mangalsutraImage}
+                            alt={section.items[0]?.product?.name || 'Mangalsutra'}
+                            className="max-w-full h-40 md:h-56 object-contain filter drop-shadow-lg transform transition-all duration-500 group-hover:scale-110"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  </div>
+
+                  {/* Right Half - Second Category */}
+                  <div 
+                    className="relative cursor-pointer group transition-all duration-500 hover:scale-[1.02] min-h-[300px] md:min-h-[400px] overflow-hidden rounded-2xl md:rounded-3xl"
+                    onClick={() => handleViewAllClick(section.items[1]?.product?.category || 'pendants')}
+                  >
+                    {/* Content Container */}
+                    <div className="relative z-10 p-6 md:p-8 h-full flex flex-col justify-center">
+                      {/* Category Image */}
+                      <div className="flex items-center justify-center">
+                        <div className="relative">
+                          <img
+                            src={section.items[1]?.product?.images?.[0] || pendantsImage}
+                            alt={section.items[1]?.product?.name || 'Pendants'}
+                            className="max-w-full h-40 md:h-56 object-contain filter drop-shadow-lg transform transition-all duration-500 group-hover:scale-110"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-bl from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  </div>
+
+                </div>
+                
+                {/* Bottom Section Titles - Compact and Small */}
+                <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 max-w-7xl mx-auto">
+                  {/* Left Category Title - Blue */}
+                  <div 
+                    className="cursor-pointer"
+                    onClick={() => handleViewAllClick(section.items[0]?.product?.category || 'mangalsutra')}
+                  >
+                    <div 
+                      className="rounded-lg py-2 px-4"
+                      style={{ 
+                        background: 'linear-gradient(135deg, #4A90E2 0%, #357ABD 50%, #2A5F94 100%)',
+                      }}
+                    >
+                      <h3 className="text-sm md:text-base font-light text-white text-center tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        {section.items[0]?.product?.category || 'Bracelets'}
+                      </h3>
+                    </div>
+                  </div>
+
+                  {/* Right Category Title - Dark */}
+                  <div 
+                    className="cursor-pointer"
+                    onClick={() => handleViewAllClick(section.items[1]?.product?.category || 'pendants')}
+                  >
+                    <div 
+                      className="rounded-lg py-2 px-4"
+                      style={{ 
+                        background: 'linear-gradient(135deg, #2D3748 0%, #1A202C 50%, #171923 100%)',
+                      }}
+                    >
+                      <h3 className="text-sm md:text-base font-light text-white text-center tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        {section.items[1]?.product?.category || 'Nose Jewellery'}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Carousel layout rendering - Elegant horizontal sliding showcase
+        if (section.layoutType === 'carousel') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-16 overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)'
+              }}
+            >
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-5xl font-light text-gray-800 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title}
+                  </h2>
+                  {section.description && (
+                    <p className="text-lg font-light text-gray-600 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
+                  )}
+                </div>
+                
+                {/* Horizontal Scrolling Carousel */}
+                <div className="relative">
+                  <div className="flex space-x-6 overflow-x-auto pb-6 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                    {section.items.map((item, index) => (
+                      <div key={item.id} className="flex-none w-72 md:w-80">
+                        <div className="relative group">
+                          <div className="absolute inset-0 bg-gradient-to-br from-amber-200/30 to-amber-400/20 rounded-2xl transform rotate-1 transition-transform group-hover:rotate-2"></div>
+                          <div className="relative bg-white rounded-2xl shadow-xl p-6 transition-all duration-300 group-hover:shadow-2xl group-hover:-translate-y-2">
+                            <ProductCard
+                              product={item.product}
+                              currency={selectedCurrency}
+                              showActions={false}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Scroll Indicators */}
+                  <div className="flex justify-center mt-6 space-x-2">
+                    {section.items.map((_, index) => (
+                      <div key={index} className="w-2 h-2 bg-gray-300 rounded-full"></div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Mosaic layout rendering - Royal Majestic Gallery
+        if (section.layoutType === 'mosaic') {
+          return (
+            <section 
+              key={section.id} 
+              className="relative min-h-screen overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{
+                background: 'linear-gradient(135deg, #1a1625 0%, #2d1b4e 15%, #3f2563 30%, #4c1d95 45%, #5b21b6 60%, #6d28d9 75%, #7c3aed 90%, #8b5cf6 100%)'
+              }}
+            >
+              {/* Royal Atmospheric Effects */}
+              <div className="absolute inset-0">
+                {/* Royal Golden Aura */}
+                <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-yellow-400/20 via-amber-500/15 to-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] bg-gradient-to-tl from-purple-400/15 via-violet-500/10 to-indigo-500/8 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-2/3 left-1/6 w-[400px] h-[400px] bg-gradient-to-r from-rose-400/12 via-pink-500/8 to-purple-500/6 rounded-full blur-2xl animate-pulse delay-2000"></div>
+                
+                {/* Royal Crown Pattern */}
+                <div className="absolute inset-0 opacity-[0.12]">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d97706' fill-opacity='0.3'%3E%3Cpolygon points='30,5 35,20 50,20 40,30 45,45 30,35 15,45 20,30 10,20 25,20'/%3E%3C/g%3E%3C/svg%3E")`,
+                    backgroundSize: '120px 120px'
+                  }}></div>
+                </div>
+                
+                {/* Floating Royal Gems */}
+                <div className="absolute inset-0 opacity-30">
+                  <div className="absolute top-1/5 left-1/5 w-4 h-4 bg-gradient-to-br from-yellow-300 to-amber-500 rounded-full shadow-lg animate-bounce delay-300"></div>
+                  <div className="absolute top-1/2 right-1/5 w-3 h-3 bg-gradient-to-br from-purple-300 to-violet-500 rounded-full shadow-lg animate-bounce delay-700"></div>
+                  <div className="absolute bottom-1/4 left-2/3 w-5 h-5 bg-gradient-to-br from-rose-300 to-pink-500 rounded-full shadow-lg animate-bounce delay-1100"></div>
+                  <div className="absolute top-3/4 right-1/3 w-4 h-4 bg-gradient-to-br from-amber-300 to-orange-500 rounded-full shadow-lg animate-bounce delay-1500"></div>
+                  <div className="absolute top-1/6 right-2/3 w-3 h-3 bg-gradient-to-br from-indigo-300 to-blue-500 rounded-full shadow-lg animate-bounce delay-1900"></div>
+                </div>
+              </div>
+
+              <div className="relative py-32 md:py-48">
+                {/* Royal Majestic Header */}
+                <div className="max-w-7xl mx-auto px-6 md:px-8">
+                  <div className="text-center mb-32">
+                    {/* Royal Crown Badge */}
+                    <div className="mb-20">
+                      <div className="relative inline-block">
+                        <div className="absolute -inset-12 bg-gradient-to-r from-yellow-400/30 via-amber-500/40 to-orange-500/30 rounded-full blur-3xl animate-pulse"></div>
+                        <div className="absolute -inset-6 bg-gradient-to-r from-purple-400/25 via-violet-500/35 to-indigo-500/25 rounded-full blur-2xl animate-pulse delay-700"></div>
+                        <div className="relative bg-gradient-to-br from-amber-50/95 via-yellow-50/90 to-orange-50/95 backdrop-blur-lg border-3 border-yellow-400/60 rounded-full px-16 py-8 shadow-3xl">
+                          <div className="flex items-center gap-6">
+                            <Crown className="w-8 h-8 text-yellow-600" />
+                            <span className="text-xl font-bold tracking-[0.3em] bg-gradient-to-r from-purple-800 via-violet-700 to-purple-800 bg-clip-text text-transparent uppercase">
+                              Royal Jewel House
+                            </span>
+                            <Crown className="w-8 h-8 text-yellow-600" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Imperial Typography */}
+                    <h2 className="text-7xl md:text-9xl lg:text-[10rem] xl:text-[14rem] font-thin bg-gradient-to-br from-yellow-200 via-amber-100 to-orange-200 bg-clip-text text-transparent mb-16 tracking-tighter leading-[0.75]" 
+                        style={{ 
+                          fontFamily: 'Playfair Display, serif', 
+                          textShadow: '0 0 60px rgba(251, 191, 36, 0.4), 0 0 120px rgba(251, 191, 36, 0.2)',
+                          filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.3))'
+                        }}>
+                      {section.title || 'Majesty'}
+                    </h2>
+                    
+                    {/* Royal Ornamental Divider */}
+                    <div className="flex items-center justify-center gap-16 mb-16">
+                      <div className="w-64 h-px bg-gradient-to-r from-transparent via-yellow-300/90 to-transparent"></div>
+                      <div className="relative">
+                        <div className="w-6 h-6 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full shadow-2xl"></div>
+                        <div className="absolute inset-0 w-6 h-6 bg-gradient-to-br from-yellow-400 to-amber-600 rounded-full animate-ping"></div>
+                        <div className="absolute -inset-2 border-2 border-yellow-300/50 rounded-full animate-pulse"></div>
+                      </div>
+                      <div className="w-64 h-px bg-gradient-to-r from-transparent via-yellow-300/90 to-transparent"></div>
+                    </div>
+                    
+                    {section.description && (
+                      <p className="text-3xl md:text-4xl lg:text-5xl text-yellow-100/95 max-w-6xl mx-auto font-light leading-relaxed italic tracking-wider" 
+                         style={{ 
+                           textShadow: '0 4px 30px rgba(0, 0, 0, 0.7), 0 2px 10px rgba(139, 92, 246, 0.3)',
+                           filter: 'drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4))'
+                         }}>
+                        {section.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                
+                {/* Royal Architectural Mosaic Layout */}
+                <div className="max-w-8xl mx-auto px-6 md:px-8">
+                  {/* Central Royal Showcase */}
+                  <div className="relative min-h-[1200px]">
+                    
+                    {/* Floating Central Medallion */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] z-20">
+                      <div className="relative w-full h-full">
+                        {/* Central Crown Piece */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-yellow-400/90 via-amber-500/80 to-orange-600/70 shadow-2xl border-8 border-yellow-300/50 backdrop-blur-sm">
+                          <div className="absolute inset-4 rounded-full border-4 border-yellow-200/60 bg-gradient-to-br from-purple-900/80 via-violet-800/70 to-indigo-900/60 overflow-hidden group cursor-pointer hover:scale-105 transition-all duration-700">
+                            {section.items[0] && (
+                              <>
+                                <img 
+                                  src={section.items[0].customImageUrl || section.items[0].product.imageUrl || ''} 
+                                  alt={section.items[0].displayName || section.items[0].product.name}
+                                  className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30"></div>
+                                <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
+                                  <Crown className="w-16 h-16 text-yellow-300 mb-4" />
+                                  <h3 className="text-3xl font-bold text-yellow-100 mb-3" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                    {section.items[0].displayName || section.items[0].product.name}
+                                  </h3>
+                                  <p className="text-yellow-200/80 text-lg font-light">Royal Centerpiece</p>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Orbiting Royal Cards */}
+                    {section.items.slice(1, 7).map((item, index) => {
+                      const angles = [0, 60, 120, 180, 240, 300]; // 6 positions around circle
+                      const angle = angles[index] || 0;
+                      const radius = 400;
+                      const x = Math.cos((angle * Math.PI) / 180) * radius;
+                      const y = Math.sin((angle * Math.PI) / 180) * radius;
+                      const sizes = ['320px', '280px', '360px', '300px', '340px', '260px'];
+                      const cardSize = sizes[index] || '300px';
+                      
+                      return (
+                        <div 
+                          key={item.id}
+                          className="absolute z-10 group cursor-pointer"
+                          style={{
+                            left: `calc(50% + ${x}px)`,
+                            top: `calc(50% + ${y}px)`,
+                            transform: 'translate(-50%, -50%)',
+                            width: cardSize,
+                            height: cardSize,
+                          }}
+                        >
+                          <div className="relative w-full h-full transform transition-all duration-700 hover:scale-110 hover:z-30">
+                            {/* Card Shape - Diamond/Hexagon alternating */}
+                            <div 
+                              className={`absolute inset-0 bg-gradient-to-br from-yellow-400/20 via-purple-600/80 to-indigo-800/90 shadow-2xl backdrop-blur-sm border-4 border-yellow-300/40 overflow-hidden ${
+                                index % 2 === 0 ? 'rounded-3xl rotate-12' : 'rounded-full'
+                              }`}
+                              style={{
+                                transform: `rotate(${index % 2 === 0 ? '12deg' : '0deg'})`,
+                              }}
+                            >
+                              <img 
+                                src={item.customImageUrl || item.product.imageUrl || ''} 
+                                alt={item.displayName || item.product.name}
+                                className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-125"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                              
+                              {/* Card Content */}
+                              <div className="absolute bottom-0 left-0 right-0 p-6 text-center transform transition-all duration-500 group-hover:translate-y-[-8px]">
+                                <h4 className="text-xl font-bold text-yellow-100 mb-2 leading-tight" 
+                                    style={{ fontFamily: 'Playfair Display, serif' }}>
+                                  {item.displayName || item.product.name}
+                                </h4>
+                                {item.displayPrice && (
+                                  <p className="text-yellow-300 font-semibold text-lg">
+                                    {item.displayPrice}
+                                  </p>
+                                )}
+                                <div className="w-8 h-px bg-yellow-300/60 mx-auto mt-3"></div>
+                              </div>
+                              
+                              {/* Floating Royal Icons */}
+                              <div className="absolute top-4 right-4">
+                                {index % 3 === 0 && <Crown className="w-6 h-6 text-yellow-300 animate-pulse" />}
+                                {index % 3 === 1 && <Gem className="w-6 h-6 text-purple-300 animate-pulse delay-300" />}
+                                {index % 3 === 2 && <Star className="w-6 h-6 text-amber-300 animate-pulse delay-600" />}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                    
+                    {/* Royal Corner Accents */}
+                    <div className="absolute top-0 left-0 w-64 h-64 opacity-30">
+                      <div className="w-full h-full border-l-4 border-t-4 border-yellow-400/60 rounded-tl-full"></div>
+                    </div>
+                    <div className="absolute top-0 right-0 w-64 h-64 opacity-30">
+                      <div className="w-full h-full border-r-4 border-t-4 border-yellow-400/60 rounded-tr-full"></div>
+                    </div>
+                    <div className="absolute bottom-0 left-0 w-64 h-64 opacity-30">
+                      <div className="w-full h-full border-l-4 border-b-4 border-yellow-400/60 rounded-bl-full"></div>
+                    </div>
+                    <div className="absolute bottom-0 right-0 w-64 h-64 opacity-30">
+                      <div className="w-full h-full border-r-4 border-b-4 border-yellow-400/60 rounded-br-full"></div>
+                    </div>
+                  </div>
+                  
+                  {/* Royal Decree Footer */}
+                  <div className="mt-24 text-center">
+                    <div className="relative inline-block">
+                      <div className="absolute -inset-8 bg-gradient-to-r from-yellow-400/20 via-amber-500/30 to-yellow-400/20 rounded-full blur-2xl"></div>
+                      <div className="relative bg-gradient-to-br from-amber-50/90 via-yellow-50/80 to-orange-50/90 backdrop-blur-md border-2 border-yellow-400/50 rounded-full px-12 py-6 shadow-xl">
+                        <div className="flex items-center gap-4">
+                          <Crown className="w-6 h-6 text-yellow-600" />
+                          <span className="text-lg font-bold tracking-[0.2em] bg-gradient-to-r from-purple-800 via-violet-700 to-purple-800 bg-clip-text text-transparent uppercase">
+                            Explore Royal Heritage
+                          </span>
+                          <Crown className="w-6 h-6 text-yellow-600" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Luxury layout rendering - Hero product with elegant arrangement
+        if (section.layoutType === 'luxury') {
+          const heroProduct = section.items[0];
+          const otherProducts = section.items.slice(1);
+          
+          return (
+            <section 
+              key={section.id} 
+              className="py-20" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)'
+              }}
+            >
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl md:text-6xl font-light text-gray-800 mb-6" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title}
+                  </h2>
+                  {section.description && (
+                    <p className="text-xl font-light text-gray-600 max-w-3xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
+                  )}
+                </div>
+                
+                {heroProduct && (
+                  <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                    {/* Hero Product */}
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-amber-300/30 to-yellow-400/20 rounded-3xl transform rotate-3"></div>
+                      <div className="absolute inset-0 bg-gradient-to-tl from-rose-300/20 to-pink-400/10 rounded-3xl transform -rotate-2"></div>
+                      <div className="relative bg-white rounded-3xl shadow-2xl p-8 transform transition-all duration-500 hover:scale-105">
+                        <ProductCard
+                          product={heroProduct.product}
+                          currency={selectedCurrency}
+                          showActions={false}
+                        />
+                        <div className="absolute -top-4 -right-4 bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                          Featured
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Supporting Content */}
+                    <div className="space-y-8">
+                      <div className="text-center lg:text-left">
+                        <h3 className="text-2xl md:text-3xl font-light text-gray-800 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                          Exquisite Craftsmanship
+                        </h3>
+                        <p className="text-gray-600 text-lg leading-relaxed">
+                          Discover our premium collection featuring the finest materials and exceptional artistry.
+                        </p>
+                      </div>
+                      
+                      {/* Mini Gallery */}
+                      <div className="grid grid-cols-2 gap-4">
+                        {otherProducts.slice(0, 4).map((item) => (
+                          <div key={item.id} className="bg-white rounded-xl shadow-md p-3 hover:shadow-lg transition-shadow">
+                            <ProductCard
+                              product={item.product}
+                              currency={selectedCurrency}
+                              showActions={false}
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
+          );
+        }
+
+        // New Arrivals layout rendering - Horizontal auto-scrolling layout
+        if (section.layoutType === 'new-arrivals') {
+          return <NewArrivalsSection key={section.id} section={section} selectedCurrency={selectedCurrency} />;
+        }
+
+        // Magazine layout rendering - Luxury Editorial Design
+        if (section.layoutType === 'magazine') {
+          return (
+            <section 
+              key={section.id} 
+              className="relative bg-gradient-to-br from-neutral-50 via-white to-stone-50/80 overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+            >
+              {/* Sophisticated Background Pattern */}
+              <div className="absolute inset-0 opacity-[0.02]">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `radial-gradient(circle at 25px 25px, #000 1px, transparent 0), radial-gradient(circle at 75px 75px, #000 1px, transparent 0)`,
+                  backgroundSize: '100px 100px'
+                }}></div>
+              </div>
+
+              <div className="relative z-10">
+                {/* Luxury Magazine Header */}
+                <div className="py-20 md:py-32">
+                  <div className="max-w-7xl mx-auto px-6 md:px-8">
+                    <div className="text-center mb-20">
+                      {/* Elegant Brand Mark */}
+                      <div className="mb-12">
+                        <div className="relative inline-block">
+                          <div className="absolute -top-4 -left-8 w-16 h-16 border border-amber-200 rounded-full opacity-30"></div>
+                          <div className="absolute -bottom-4 -right-8 w-12 h-12 border border-amber-300 rounded-full opacity-20"></div>
+                          <div className="relative bg-white/80 backdrop-blur-sm border border-amber-100 rounded-full px-8 py-4 shadow-lg">
+                            <span className="text-xs font-semibold tracking-[0.25em] text-amber-700 uppercase">
+                              Palaniappa Exclusive
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      {/* Dramatic Typography */}
+                      <div className="mb-8">
+                        <h1 className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-thin text-neutral-900 mb-4 tracking-tight leading-[0.85]" 
+                            style={{ fontFamily: 'Playfair Display, serif' }}>
+                          {section.title}
+                        </h1>
+                        <div className="flex items-center justify-center gap-6 mt-8">
+                          <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                          <div className="w-3 h-3 bg-amber-400 rounded-full"></div>
+                          <div className="w-24 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                        </div>
+                      </div>
+                      
+                      {section.description && (
+                        <div className="max-w-4xl mx-auto">
+                          <p className="text-xl md:text-2xl lg:text-3xl text-neutral-600 leading-relaxed font-light italic tracking-wide"
+                             style={{ fontFamily: 'Playfair Display, serif' }}>
+                            "{section.description}"
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Luxury Editorial Grid */}
+                <div className="max-w-7xl mx-auto px-6 md:px-8 pb-24">
+                  {/* Main Feature Story */}
+                  {section.items[0] && (
+                    <div className="mb-16">
+                      <div className="relative group">
+                        {/* Hero Article */}
+                        <div className="grid grid-cols-1 lg:grid-cols-5 gap-0 bg-white/60 backdrop-blur-sm rounded-3xl overflow-hidden shadow-2xl border border-white/20">
+                          {/* Large Image Section */}
+                          <div className="lg:col-span-3 relative overflow-hidden">
+                            <div className="aspect-[4/3] lg:aspect-[3/2] relative">
+                              <ProductCard
+                                product={section.items[0].product}
+                                currency={selectedCurrency}
+                                showActions={false}
+                                customImageUrl={section.items[0].customImageUrl}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                              
+                              {/* Floating Feature Badge */}
+                              <div className="absolute top-8 left-8">
+                                <div className="bg-amber-500 text-white px-6 py-3 rounded-full shadow-lg">
+                                  <span className="text-sm font-semibold tracking-wide">COVER STORY</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Content Section */}
+                          <div className="lg:col-span-2 p-8 lg:p-12 flex flex-col justify-center bg-gradient-to-br from-white to-neutral-50/50">
+                            <div className="mb-6">
+                              <span className="text-xs font-bold tracking-[0.2em] text-amber-600 uppercase mb-2 block">
+                                {section.items[0].product.category}
+                              </span>
+                              <h2 className="text-3xl lg:text-4xl xl:text-5xl font-light text-neutral-900 leading-tight mb-6" 
+                                  style={{ fontFamily: 'Playfair Display, serif' }}>
+                                {section.items[0].product.name}
+                              </h2>
+                            </div>
+                            
+                            <p className="text-neutral-600 leading-relaxed text-lg mb-8 font-light">
+                              {section.items[0].product.description || 'An extraordinary masterpiece that embodies the pinnacle of craftsmanship and design excellence.'}
+                            </p>
+                            
+                            <div className="space-y-6">
+                              <div className="flex items-center gap-4">
+                                <span className="text-3xl font-light text-neutral-900" style={{ fontFamily: 'Playfair Display, serif' }}>
+                                  {selectedCurrency === 'INR' ? '₹' : 'BD'} {selectedCurrency === 'INR' ? section.items[0].product.priceInr?.toLocaleString() : Number(section.items[0].product.priceBhd)?.toFixed(3)}
+                                </span>
+                              </div>
+                              <Button 
+                                className="bg-neutral-900 hover:bg-neutral-800 text-white px-8 py-4 rounded-full font-medium tracking-wide transition-all duration-300 hover:shadow-xl group"
+                              >
+                                Discover More
+                                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                              </Button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Secondary Articles Grid */}
+                  {section.items.length > 1 && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                      {section.items.slice(1, 4).map((item, index) => (
+                        <div key={item.id} className="group">
+                          <div className="bg-white/70 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-500 border border-white/30 h-full">
+                            <div className="aspect-[4/3] relative overflow-hidden">
+                              <ProductCard
+                                product={item.product}
+                                currency={selectedCurrency}
+                                showActions={false}
+                                customImageUrl={item.customImageUrl}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                              
+                              {/* Article Number */}
+                              <div className="absolute top-4 right-4">
+                                <div className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center">
+                                  <span className="text-xs font-bold text-neutral-700">{index + 2}</span>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <div className="p-6">
+                              <div className="mb-3">
+                                <span className="text-xs font-bold tracking-[0.15em] text-amber-600 uppercase">
+                                  {item.product.category}
+                                </span>
+                              </div>
+                              <h3 className="text-xl lg:text-2xl font-light text-neutral-900 leading-tight mb-4" 
+                                  style={{ fontFamily: 'Playfair Display, serif' }}>
+                                {item.product.name}
+                              </h3>
+                              <div className="flex items-center justify-between">
+                                <span className="text-lg font-light text-neutral-700">
+                                  {selectedCurrency === 'INR' ? '₹' : 'BD'} {selectedCurrency === 'INR' ? item.product.priceInr?.toLocaleString() : Number(item.product.priceBhd)?.toFixed(3)}
+                                </span>
+                                <Button 
+                                  variant="ghost" 
+                                  size="sm" 
+                                  className="text-amber-600 hover:bg-amber-50 hover:text-amber-700 p-2 rounded-full"
+                                >
+                                  <ArrowRight className="h-4 w-4" />
+                                </Button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  
+                  {/* Additional Items Grid */}
+                  {section.items.length > 4 && (
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-16">
+                      {section.items.slice(4).map((item, index) => (
+                        <div key={item.id} className="group">
+                          <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-neutral-100">
+                            <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-neutral-50 to-stone-100">
+                              <ProductCard
+                                product={item.product}
+                                currency={selectedCurrency}
+                                showActions={false}
+                                customImageUrl={item.customImageUrl}
+                              />
+                            </div>
+                            <div className="p-4">
+                              <span className="text-xs font-medium text-amber-600 uppercase tracking-wider block mb-2">
+                                {item.product.category}
+                              </span>
+                              <h5 className="text-sm font-light text-neutral-900 leading-snug line-clamp-2">
+                                {item.product.name}
+                              </h5>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  
+                  {/* Luxury Editorial Footer */}
+                  {section.items.length > 0 && (
+                    <div className="relative mt-24 pt-16">
+                      {/* Elegant Divider */}
+                      <div className="flex items-center justify-center mb-16">
+                        <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                        <div className="mx-8">
+                          <div className="w-3 h-3 bg-amber-400 rounded-full"></div>
+                        </div>
+                        <div className="w-32 h-px bg-gradient-to-r from-transparent via-amber-400 to-transparent"></div>
+                      </div>
+                      
+                      {/* Closing Statement */}
+                      <div className="text-center max-w-3xl mx-auto mb-12">
+                        <h3 className="text-3xl md:text-4xl lg:text-5xl font-light text-neutral-900 mb-6 leading-tight" 
+                            style={{ fontFamily: 'Playfair Display, serif' }}>
+                          The Story Continues
+                        </h3>
+                        <p className="text-xl md:text-2xl text-neutral-600 font-light leading-relaxed italic mb-8">
+                          "Each piece tells a story of timeless elegance and exceptional craftsmanship"
+                        </p>
+                        <div className="space-y-4">
+                          <Button 
+                            className="bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white px-12 py-4 text-base font-medium rounded-full transition-all duration-300 hover:shadow-2xl hover:scale-105 transform" 
+                            onClick={() => window.location.href = '/collections'}
+                          >
+                            Explore Full Collection
+                            <ArrowRight className="ml-3 h-5 w-5" />
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Festival layout rendering - Full background with overlay content
+        if (section.layoutType === 'festival') {
+          return (
+            <section 
+              key={section.id} 
+              className="w-full relative overflow-hidden -mt-0 -mb-8 m-0 p-0" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+            >
+              {section.festivalImage ? (
+                <div 
+                  className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] m-0 p-0"
                   style={{
-                    backgroundColor: 'rgba(255,255,255,0.1)',
-                    backdropFilter: 'blur(10px)',
+                    backgroundImage: `url("${section.festivalImage}")`,
+                    backgroundSize: '120%',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat'
                   }}
                 >
-                  <ProductCard
-                    product={item.product}
-                    currency={selectedCurrency}
-                    showActions={true}
-                  />
+                  {/* Gradient overlay for readability */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+                  
+                  {/* Full content container */}
+                  <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 h-full flex flex-col">
+                    
+                    {/* Header content */}
+                    <div className="text-center mb-8">
+                      {/* Main Heading */}
+                      <h2 
+                        className="text-4xl md:text-5xl lg:text-6xl font-light text-white mb-3 leading-tight tracking-wide drop-shadow-lg"
+                        style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                      >
+                        {section.title}
+                      </h2>
+                      
+                      {/* Italic subtitle */}
+                      {section.subtitle && (
+                        <p 
+                          className="text-2xl md:text-3xl text-white/90 italic mb-6 font-light drop-shadow-md"
+                          style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                        >
+                          {section.subtitle}
+                        </p>
+                      )}
+                      
+                      {/* Description */}
+                      {section.description && (
+                        <p className="text-lg md:text-xl text-white/80 leading-relaxed mb-8 max-w-lg mx-auto drop-shadow-sm">
+                          {section.description}
+                        </p>
+                      )}
+                    </div>
+                    
+                    {/* Products section with festival background */}
+                    {section.items && section.items.length > 0 && (
+                      <div className="flex-1 flex items-center justify-center">
+                        <div className="w-full max-w-5xl">
+                          <FestivalScrollSection 
+                            items={section.items} 
+                            selectedCurrency={selectedCurrency} 
+                            handleViewAllClick={handleViewAllClick} 
+                          />
+                          
+                          {/* Call to Action Button */}
+                          <div className="text-center mt-8">
+                            <Button 
+                              className="bg-white/90 hover:bg-white text-gray-900 px-8 py-3 rounded-lg text-base font-medium transition-all duration-300 hover:scale-105 shadow-lg backdrop-blur-sm" 
+                              style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                              onClick={() => window.location.href = '/collections'}
+                            >
+                              View Full Collection
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
+              ) : (
+                <div 
+                  className="relative w-full min-h-[400px] md:min-h-[500px]"
+                  style={{ 
+                    background: 'linear-gradient(135deg, #B19CD9 0%, #C8A9DD 25%, #DEB4E2 50%, #E8BFE8 75%, #F0CAF0 100%)',
+                  }}
+                >
+                  <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                      
+                      {/* Left side - Text content */}
+                      <div className="relative z-10 text-left">
+                        {/* Main Heading */}
+                        <h2 
+                          className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-800 mb-3 leading-tight tracking-wide"
+                          style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                        >
+                          {section.title}
+                        </h2>
+                        
+                        {/* Italic subtitle */}
+                        {section.subtitle && (
+                          <p 
+                            className="text-2xl md:text-3xl text-gray-700 italic mb-6 font-light"
+                            style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                          >
+                            {section.subtitle}
+                          </p>
+                        )}
+                        
+                        {/* Description */}
+                        {section.description && (
+                          <p className="text-lg md:text-xl text-gray-600 leading-relaxed mb-8 max-w-lg">
+                            {section.description}
+                          </p>
+                        )}
+                      </div>
+                      
+                      {/* Right side - Auto-scrolling 1x3 Product showcase */}
+                      <div className="relative z-10">
+                        <FestivalScrollSection 
+                          items={section.items} 
+                          selectedCurrency={selectedCurrency} 
+                          handleViewAllClick={handleViewAllClick} 
+                        />
+                        
+                        {/* Call to Action Button */}
+                        <div className="text-center mt-6">
+                          <Button 
+                            className="bg-purple-700 hover:bg-purple-800 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-all duration-300 hover:scale-105 shadow-lg" 
+                            style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                            onClick={() => window.location.href = '/collections'}
+                          >
+                            View Full Collection
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              {/* Only show products section if no festival image (fallback) */}
+              {!section.festivalImage && section.items && section.items.length > 0 && (
+                <section className="py-8 bg-white" data-testid={`${section.title.toLowerCase().replace(/\s+/g, '-')}-products`}>
+                  <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+                    <FestivalScrollSection 
+                      items={section.items} 
+                      selectedCurrency={selectedCurrency} 
+                      handleViewAllClick={handleViewAllClick} 
+                    />
+                    
+                    {/* Call to Action Button */}
+                    <div className="text-center mt-8">
+                      <Button 
+                        className="bg-gray-900 hover:bg-gray-800 text-white px-6 md:px-8 py-2 md:py-3 rounded-lg text-sm md:text-base font-medium transition-all duration-300 hover:scale-105 shadow-lg" 
+                        style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                        onClick={() => window.location.href = '/collections'}
+                      >
+                        View Full Collection
+                      </Button>
+                    </div>
+                  </div>
+                </section>
+              )}
+            </section>
+          );
+        }
+
+        // Diamond layout rendering - Enhanced luxury diamond showcase with premium animations
+        if (section.layoutType === 'diamond') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-20 md:py-32 overflow-hidden relative min-h-screen" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 20%, #16213e 40%, #0f3460 60%, #533a7b 80%, #6a4c93 100%)',
+              }}
+            >
+              {/* Enhanced Cosmic Background Effects */}
+              <div className="absolute inset-0">
+                {/* Floating particles */}
+                <div className="absolute top-10 left-10 w-2 h-2 bg-amber-400 rounded-full animate-pulse opacity-70"></div>
+                <div className="absolute top-20 right-20 w-1 h-1 bg-purple-400 rounded-full animate-pulse opacity-60" style={{ animationDelay: '1s' }}></div>
+                <div className="absolute bottom-20 left-20 w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse opacity-50" style={{ animationDelay: '2s' }}></div>
+                <div className="absolute bottom-32 right-32 w-2 h-2 bg-pink-400 rounded-full animate-pulse opacity-80" style={{ animationDelay: '3s' }}></div>
+                
+                {/* Large gradient orbs */}
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-400/30 to-orange-500/15 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-tl from-purple-400/25 to-blue-500/15 rounded-full blur-2xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 right-1/4 w-72 h-72 bg-gradient-to-br from-pink-400/20 to-violet-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+                
+                {/* Sparkle effects */}
+                <div className="absolute inset-0">
+                  {[...Array(20)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="absolute w-1 h-1 bg-white rounded-full animate-pulse opacity-30"
+                      style={{
+                        top: `${Math.random() * 100}%`,
+                        left: `${Math.random() * 100}%`,
+                        animationDelay: `${Math.random() * 4}s`,
+                        animationDuration: `${2 + Math.random() * 3}s`
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              <div className="max-w-7xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-20">
+                  <div className="mb-8">
+                    <div className="inline-block">
+                      <h2 className="text-5xl md:text-8xl font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 to-orange-300 mb-6 tracking-widest animate-pulse" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        {section.title || 'DIAMOND COLLECTION'}
+                      </h2>
+                      <div className="w-48 h-1 bg-gradient-to-r from-transparent via-amber-400 via-white to-transparent mx-auto mb-6 animate-pulse"></div>
+                    </div>
+                  </div>
+                  <p className="text-white/90 text-xl md:text-2xl font-light max-w-4xl mx-auto leading-relaxed">{section.description || 'Discover the brilliance of our exclusive diamond collection, where each piece reflects pure luxury and timeless elegance'}</p>
+                </div>
+
+                <div className="relative">
+                  {/* Enhanced Central Diamond */}
+                  <div className="flex justify-center mb-16">
+                    <div className="relative">
+                      {/* Rotating ring around central diamond */}
+                      <div className="absolute inset-0 w-80 h-80 md:w-96 md:h-96 border border-amber-400/30 rounded-full animate-spin" style={{ animationDuration: '20s' }}></div>
+                      <div className="absolute inset-4 w-72 h-72 md:w-88 md:h-88 border border-purple-400/20 rounded-full animate-spin" style={{ animationDuration: '30s', animationDirection: 'reverse' }}></div>
+                      
+                      <div 
+                        className="w-72 h-72 md:w-88 md:h-88 transform rotate-45 relative group cursor-pointer transition-all duration-1000 hover:scale-110 hover:rotate-[50deg]"
+                        onClick={() => section.items[0] && handleViewAllClick('featured')}
+                      >
+                        {/* Multiple gradient layers for depth */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-amber-400/40 via-orange-500/30 to-yellow-600/20 rounded-3xl animate-pulse shadow-2xl"></div>
+                        <div className="absolute inset-1 bg-gradient-to-tl from-white/20 via-transparent to-purple-400/10 rounded-3xl"></div>
+                        <div className="absolute inset-2 bg-gradient-to-br from-transparent via-amber-300/15 to-transparent rounded-2xl"></div>
+                        
+                        {/* Glowing border effect */}
+                        <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-amber-400/50 via-white/30 to-purple-400/50 p-0.5">
+                          <div className="w-full h-full bg-black/20 rounded-3xl"></div>
+                        </div>
+                        
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="w-56 h-56 md:w-72 md:h-72 -rotate-45 overflow-hidden rounded-3xl shadow-2xl border border-white/20">
+                            {section.items[0] && (
+                              <img
+                                src={section.items[0].product.images?.[0] || ringsImage}
+                                alt="Featured Diamond Piece"
+                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
+                              />
+                            )}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end p-6">
+                              <div className="text-center w-full">
+                                <h3 className="text-white font-light text-xl md:text-2xl mb-3 tracking-wide">SIGNATURE PIECE</h3>
+                                <div className="w-16 h-0.5 bg-gradient-to-r from-amber-400 to-white mx-auto"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        {/* Premium badge */}
+                        <div className="absolute -top-4 -right-4 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-black px-6 py-3 rounded-full text-sm font-bold shadow-2xl border border-white/30 animate-pulse">
+                          PREMIUM
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Enhanced Surrounding Diamonds with Better Layout */}
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-16 mb-16">
+                    {section.items.slice(1, 5).map((item, index) => (
+                      <div key={item.id} className="flex justify-center">
+                        <div 
+                          className="w-36 h-36 md:w-48 md:h-48 transform rotate-45 relative group cursor-pointer transition-all duration-700 hover:scale-110 hover:rotate-[50deg]"
+                          onClick={() => handleViewAllClick('rings')}
+                        >
+                          {/* Enhanced gradient effects */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-purple-400/25 via-blue-500/20 to-indigo-600/15 rounded-2xl animate-pulse shadow-xl" style={{ animationDelay: `${index * 300}ms` }}></div>
+                          <div className="absolute inset-1 bg-gradient-to-tl from-white/15 to-transparent rounded-2xl"></div>
+                          
+                          {/* Glowing border */}
+                          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400/40 via-blue-400/30 to-indigo-400/40 p-0.5">
+                            <div className="w-full h-full bg-black/20 rounded-2xl"></div>
+                          </div>
+                          
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="w-28 h-28 md:w-40 md:h-40 -rotate-45 overflow-hidden rounded-xl shadow-xl border border-white/20">
+                              <img
+                                src={item.product.images?.[0] || [necklacesImage, earringsImage, pendantsImage, banglesImage][index]}
+                                alt={`Diamond ${index + 1}`}
+                                className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                            </div>
+                          </div>
+                          
+                          {/* Price display */}
+                          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 -rotate-45 bg-black/80 text-white px-3 py-1 rounded-full text-xs font-medium border border-white/20">
+                            {selectedCurrency === 'BHD' ? `${item.product.priceBhd} BHD` : `₹${item.product.priceInr}`}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Call to Action Section */}
+                  <div className="text-center">
+                    <div className="mb-8">
+                      <h3 className="text-3xl md:text-4xl font-light text-white mb-4 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        Experience Diamond Perfection
+                      </h3>
+                      <p className="text-white/80 text-lg max-w-2xl mx-auto">
+                        Each diamond tells a story of brilliance, cut to perfection and set with unmatched craftsmanship
+                      </p>
+                    </div>
+                    <button 
+                      className="bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-600 hover:via-yellow-500 hover:to-amber-600 text-black px-12 py-4 text-lg font-semibold rounded-full transition-all duration-300 hover:shadow-2xl hover:scale-105 transform border border-white/20"
+                      onClick={() => window.location.href = '/collections/diamond'}
+                    >
+                      Explore Diamond Collection
+                      <span className="ml-2 text-xl">💎</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Premium layout rendering - Royal Palace Architecture with Throne Room Structure
+        if (section.layoutType === 'premium') {
+          const throneProduct = section.items[0]; // Central throne piece
+          const royalGuards = section.items.slice(1, 5); // 4 royal guards around throne
+          const courtAttendants = section.items.slice(5, 10); // Additional court members
+          
+          return (
+            <section 
+              key={section.id} 
+              className="py-20 relative overflow-hidden min-h-screen" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: `linear-gradient(135deg, 
+                  #f8f6f0 0%, 
+                  #e8e2d5 15%, 
+                  #d4c5a9 30%, 
+                  #c5a572 45%, 
+                  #b8935a 60%, 
+                  #a67c52 75%, 
+                  #8b6914 90%, 
+                  #7c5902 100%
+                )`,
+              }}
+            >
+              {/* Royal Palace Architecture Background */}
+              <div className="absolute inset-0">
+                {/* Grand Palace Columns */}
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-amber-100 via-yellow-50 to-transparent opacity-80">
+                  <div className="h-full w-16 bg-gradient-to-b from-amber-200/60 via-yellow-100/40 to-amber-200/60 rounded-r-full shadow-2xl"></div>
+                  {/* Column capitals */}
+                  <div className="absolute top-10 left-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
+                  <div className="absolute bottom-10 left-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
+                </div>
+                
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-amber-100 via-yellow-50 to-transparent opacity-80">
+                  <div className="h-full w-16 ml-auto bg-gradient-to-b from-amber-200/60 via-yellow-100/40 to-amber-200/60 rounded-l-full shadow-2xl"></div>
+                  {/* Column capitals */}
+                  <div className="absolute top-10 right-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
+                  <div className="absolute bottom-10 right-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
+                </div>
+
+                {/* Royal Arches */}
+                <div className="absolute top-0 left-1/4 right-1/4 h-40">
+                  <div className="w-full h-full border-8 border-amber-300/40 rounded-b-full bg-gradient-to-b from-yellow-100/30 to-transparent"></div>
+                  <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
+                    <Crown className="w-12 h-12 text-yellow-600 opacity-80" />
+                  </div>
+                </div>
+
+                {/* Palace Floor Pattern */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-amber-200/40 via-yellow-100/20 to-transparent">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `
+                      repeating-linear-gradient(
+                        45deg,
+                        rgba(251, 191, 36, 0.1) 0px,
+                        rgba(251, 191, 36, 0.1) 2px,
+                        transparent 2px,
+                        transparent 12px
+                      ),
+                      repeating-linear-gradient(
+                        -45deg,
+                        rgba(217, 119, 6, 0.1) 0px,
+                        rgba(217, 119, 6, 0.1) 2px,
+                        transparent 2px,
+                        transparent 12px
+                      )
+                    `
+                  }}></div>
+                </div>
+
+                {/* Royal Tapestries */}
+                <div className="absolute top-20 left-40 w-24 h-64 bg-gradient-to-b from-purple-800/20 via-violet-700/30 to-purple-900/20 rounded-lg opacity-60 transform -rotate-2"></div>
+                <div className="absolute top-20 right-40 w-24 h-64 bg-gradient-to-b from-purple-800/20 via-violet-700/30 to-purple-900/20 rounded-lg opacity-60 transform rotate-2"></div>
+
+                {/* Floating Royal Elements */}
+                <div className="absolute top-1/4 left-1/6 w-16 h-16 opacity-30">
+                  <Gem className="w-full h-full text-amber-400 animate-pulse" />
+                </div>
+                <div className="absolute top-1/3 right-1/6 w-12 h-12 opacity-25">
+                  <Crown className="w-full h-full text-yellow-500 animate-pulse delay-1000" />
+                </div>
+                <div className="absolute bottom-1/4 left-1/5 w-14 h-14 opacity-20">
+                  <Star className="w-full h-full text-amber-500 animate-pulse delay-2000" />
+                </div>
+              </div>
+
+              <div className="max-w-7xl mx-auto px-4 relative z-10">
+                {/* Royal Palace Header */}
+                <div className="text-center mb-16">
+                  <div className="mb-8 relative">
+                    {/* Royal Crown Above Title */}
+                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 via-amber-500/40 to-yellow-400/20 rounded-full blur-xl"></div>
+                        <Crown className="relative w-16 h-16 text-yellow-600" />
+                      </div>
+                    </div>
+                    
+                    <h2 className="text-5xl md:text-7xl font-light bg-gradient-to-br from-amber-800 via-yellow-700 to-amber-900 bg-clip-text text-transparent mb-6 tracking-[0.1em]" 
+                        style={{ fontFamily: 'Playfair Display, serif' }}>
+                      {section.title || 'ROYAL COLLECTION'}
+                    </h2>
+                    
+                    {/* Royal Underline */}
+                    <div className="w-64 h-1 mx-auto bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-6"></div>
+                    <div className="flex items-center justify-center gap-4 text-amber-700">
+                      <div className="w-8 h-px bg-amber-500"></div>
+                      <Crown className="w-6 h-6" />
+                      <div className="w-8 h-px bg-amber-500"></div>
+                    </div>
+                  </div>
+                  
+                  {section.description && (
+                    <p className="text-xl text-amber-800 max-w-4xl mx-auto font-light leading-relaxed mb-8" 
+                       style={{ fontFamily: 'Playfair Display, serif' }}>
+                      {section.description}
+                    </p>
+                  )}
+                </div>
+
+                {/* Royal Palace Layout */}
+                <div className="relative">
+                  {/* Throne Platform - Central Elevated Stage */}
+                  <div className="relative mb-16">
+                    {/* Palace Steps */}
+                    <div className="flex justify-center mb-8">
+                      <div className="w-full max-w-6xl">
+                        {/* Step 3 - Highest */}
+                        <div className="h-4 bg-gradient-to-r from-amber-300/40 via-yellow-200/60 to-amber-300/40 rounded-t-lg mb-1 w-5/6 mx-auto"></div>
+                        {/* Step 2 */}
+                        <div className="h-4 bg-gradient-to-r from-amber-300/30 via-yellow-200/50 to-amber-300/30 rounded-t-lg mb-1 w-11/12 mx-auto"></div>
+                        {/* Step 1 - Base */}
+                        <div className="h-4 bg-gradient-to-r from-amber-300/20 via-yellow-200/40 to-amber-300/20 rounded-t-lg w-full"></div>
+                      </div>
+                    </div>
+
+                    {/* Royal Throne - Central Product */}
+                    {throneProduct && (
+                      <div className="flex justify-center mb-12">
+                        <div className="relative group cursor-pointer" onClick={() => handleViewAllClick(throneProduct.product.category)}>
+                          {/* Throne Backdrop */}
+                          <div className="absolute -inset-8 bg-gradient-to-br from-amber-200/60 via-yellow-100/40 to-amber-300/50 rounded-3xl blur-xl"></div>
+                          <div className="absolute -inset-4 bg-gradient-to-br from-purple-100/30 via-violet-50/20 to-purple-200/40 rounded-2xl"></div>
+                          
+                          {/* Throne Ornaments */}
+                          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                            <Crown className="w-8 h-8 text-yellow-600" />
+                          </div>
+                          <div className="absolute -left-6 top-1/2 transform -translate-y-1/2">
+                            <Gem className="w-6 h-6 text-amber-500" />
+                          </div>
+                          <div className="absolute -right-6 top-1/2 transform -translate-y-1/2">
+                            <Gem className="w-6 h-6 text-amber-500" />
+                          </div>
+                          
+                          {/* Throne Product */}
+                          <div className="relative bg-gradient-to-br from-white via-amber-50 to-yellow-50 rounded-2xl p-8 shadow-2xl border-4 border-amber-200/50 transform transition-all duration-500 hover:scale-105 hover:shadow-3xl min-w-[350px]">
+                            <ProductCard
+                              product={throneProduct.product}
+                              currency={selectedCurrency}
+                              showActions={false}
+                            />
+                            
+                            {/* Royal Badge */}
+                            <div className="absolute -top-3 -right-3 bg-gradient-to-br from-purple-700 to-violet-800 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-yellow-400">
+                              ROYAL PIECE
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Royal Guards - Flanking Products */}
+                  {royalGuards.length > 0 && (
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                      {royalGuards.map((item, index) => {
+                        const isLeftSide = index % 2 === 0;
+                        return (
+                          <div 
+                            key={item.id}
+                            className={`relative group cursor-pointer transform transition-all duration-500 hover:scale-105 ${
+                              isLeftSide ? 'lg:pr-8' : 'lg:pl-8'
+                            }`}
+                            onClick={() => handleViewAllClick(item.product.category)}
+                          >
+                            {/* Guard Post */}
+                            <div className={`absolute inset-0 bg-gradient-to-${isLeftSide ? 'r' : 'l'} from-amber-100/40 via-transparent to-transparent rounded-2xl`}></div>
+                            
+                            {/* Guard Product */}
+                            <div className="relative bg-gradient-to-br from-white to-amber-50/80 rounded-xl p-6 shadow-lg border-2 border-amber-200/40 hover:border-amber-300/60 transition-all duration-300">
+                              <ProductCard
+                                product={item.product}
+                                currency={selectedCurrency}
+                                showActions={false}
+                              />
+                              
+                              {/* Guard Badge */}
+                              <div className="absolute -top-2 -right-2 bg-gradient-to-br from-amber-600 to-yellow-700 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                GUARD
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Royal Court - Additional Products */}
+                  {courtAttendants.length > 0 && (
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                      {courtAttendants.map((item, index) => (
+                        <div 
+                          key={item.id}
+                          className="relative group cursor-pointer transform transition-all duration-300 hover:scale-105"
+                          onClick={() => handleViewAllClick(item.product.category)}
+                        >
+                          {/* Court Member */}
+                          <div className="relative bg-gradient-to-br from-white to-yellow-50/60 rounded-lg p-4 shadow-md border border-amber-200/30 hover:border-amber-300/50 transition-all duration-300">
+                            <ProductCard
+                              product={item.product}
+                              currency={selectedCurrency}
+                              showActions={false}
+                            />
+                            
+                            {/* Court Badge */}
+                            <div className="absolute -top-1 -right-1 bg-gradient-to-br from-yellow-500 to-amber-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                              COURT
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Royal Decree - Call to Action */}
+                  <div className="mt-20 text-center">
+                    <div className="relative inline-block">
+                      <div className="absolute -inset-12 bg-gradient-to-r from-yellow-400/20 via-amber-500/30 to-yellow-400/20 rounded-full blur-3xl"></div>
+                      <div className="relative bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 backdrop-blur-md border-4 border-amber-300/60 rounded-2xl px-16 py-8 shadow-2xl">
+                        <Crown className="w-12 h-12 text-yellow-600 mx-auto mb-4" />
+                        <h3 className="text-2xl font-bold text-amber-800 mb-4 tracking-wide" 
+                            style={{ fontFamily: 'Playfair Display, serif' }}>
+                          Enter the Royal Collection
+                        </h3>
+                        <p className="text-amber-700 mb-6 max-w-md mx-auto">
+                          Discover treasures worthy of royalty, crafted for those who demand excellence
+                        </p>
+                        <button 
+                          className="bg-gradient-to-r from-purple-700 via-violet-800 to-purple-700 hover:from-purple-800 hover:via-violet-900 hover:to-purple-800 text-white px-12 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:shadow-xl hover:scale-105 border-2 border-yellow-400"
+                          onClick={() => window.location.href = '/collections'}
+                        >
+                          <span className="flex items-center gap-3">
+                            <Crown className="w-5 h-5" />
+                            EXPLORE ROYAL COLLECTION
+                            <Crown className="w-5 h-5" />
+                          </span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+                        
+                        {/* Mobile-responsive glowing border */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/60 via-white/40 via-gold-400/60 to-amber-400/60 p-0.5 md:p-1">
+                          <div className="w-full h-full bg-black/30 rounded-full"></div>
+                        </div>
+                        
+                        <div className="relative w-[260px] h-[260px] sm:w-[330px] sm:h-[330px] md:w-[460px] md:h-[460px] bg-black/40 backdrop-blur-2xl rounded-full overflow-hidden border-2 border-white/30 shadow-2xl transform transition-all duration-1000 group-hover:scale-110">
+                          {featuredProduct && (
+                            <>
+                              <img
+                                src={featuredProduct.product.images?.[0] || ringsImage}
+                                alt={featuredProduct.product.name}
+                                className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-125"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                              
+                              <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 md:p-12">
+                                <div className="text-center">
+                                  <h3 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extralight mb-3 sm:mb-4 md:mb-6 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                                    {featuredProduct.product.name}
+                                  </h3>
+                                  <div className="mb-3 sm:mb-4 md:mb-6">
+                                    <span className="text-amber-300 text-lg sm:text-xl md:text-2xl font-light tracking-wide">
+                                      {selectedCurrency === 'BHD' ? `${featuredProduct.product.priceBhd} BHD` : `₹${featuredProduct.product.priceInr}`}
+                                    </span>
+                                  </div>
+                                  <div className="w-16 sm:w-20 md:w-24 h-0.5 md:h-1 bg-gradient-to-r from-amber-400 via-white to-gold-400 mx-auto mb-2 sm:mb-3 md:mb-4"></div>
+                                  <p className="text-white/90 text-sm sm:text-base md:text-lg font-extralight tracking-wider md:tracking-widest">SIGNATURE MASTERPIECE</p>
+                                </div>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                        
+                        {/* Mobile-responsive premium badge */}
+                        <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 md:-top-6 md:-right-6 bg-gradient-to-r from-amber-500 via-yellow-400 via-gold-500 to-amber-600 text-black px-3 py-2 sm:px-4 sm:py-2 md:px-8 md:py-4 rounded-full text-xs sm:text-sm font-bold shadow-2xl border-2 border-white/40 animate-pulse">
+                          <span className="hidden sm:inline">♦ PRESTIGE ♦</span>
+                          <span className="sm:hidden">♦</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mobile-Enhanced Luxury Content Section */}
+                  <div className="text-center mb-12 md:mb-20 px-4">
+                    <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extralight text-white mb-6 md:mb-8 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                      Artistry Perfected
+                    </h3>
+                    <p className="text-white/85 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-5xl mx-auto mb-8 md:mb-12 font-light">
+                      Our prestige collection embodies the pinnacle of jewelry mastery, where each piece is conceived as a work of art and crafted with uncompromising dedication to perfection.
+                    </p>
+                    
+                    {/* Mobile-optimized premium statistics */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 max-w-4xl mx-auto mb-12 md:mb-16">
+                      <div className="text-center">
+                        <div className="text-amber-300 text-2xl sm:text-3xl md:text-4xl font-extralight mb-2 md:mb-3">100%</div>
+                        <div className="text-white/70 text-xs sm:text-sm tracking-[0.1em] md:tracking-[0.2em] font-light">HANDCRAFTED</div>
+                        <div className="w-6 md:w-8 h-0.5 bg-amber-400/50 mx-auto mt-1 md:mt-2"></div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-amber-300 text-2xl sm:text-3xl md:text-4xl font-extralight mb-2 md:mb-3">24K</div>
+                        <div className="text-white/70 text-xs sm:text-sm tracking-[0.1em] md:tracking-[0.2em] font-light">PURE GOLD</div>
+                        <div className="w-6 md:w-8 h-0.5 bg-amber-400/50 mx-auto mt-1 md:mt-2"></div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-amber-300 text-2xl sm:text-3xl md:text-4xl font-extralight mb-2 md:mb-3">∞</div>
+                        <div className="text-white/70 text-xs sm:text-sm tracking-[0.1em] md:tracking-[0.2em] font-light">LIFETIME VALUE</div>
+                        <div className="w-6 md:w-8 h-0.5 bg-amber-400/50 mx-auto mt-1 md:mt-2"></div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-amber-300 text-2xl sm:text-3xl md:text-4xl font-extralight mb-2 md:mb-3">♦</div>
+                        <div className="text-white/70 text-xs sm:text-sm tracking-[0.1em] md:tracking-[0.2em] font-light">CERTIFIED LUXURY</div>
+                        <div className="w-6 md:w-8 h-0.5 bg-amber-400/50 mx-auto mt-1 md:mt-2"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Mobile-Enhanced Ultra-Premium Collection Grid */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-16 md:mb-20 px-2">
+                    {supportingProducts.map((item, index) => (
+                      <div key={item.id} className="relative group">
+                        {/* Mobile-optimized luxury frame effects */}
+                        <div className="absolute -inset-2 md:-inset-3 bg-gradient-to-br from-purple-400/25 via-blue-500/20 to-cyan-600/15 rounded-xl md:rounded-2xl blur-lg md:blur-xl animate-pulse" style={{ animationDelay: `${index * 300}ms` }}></div>
+                        <div className="absolute -inset-0.5 md:-inset-1 bg-gradient-to-br from-white/10 to-transparent rounded-lg md:rounded-xl"></div>
+                        
+                        {/* Mobile-responsive premium border */}
+                        <div className="absolute inset-0 rounded-lg md:rounded-xl bg-gradient-to-r from-purple-400/50 via-blue-400/40 to-cyan-400/50 p-0.5">
+                          <div className="w-full h-full bg-black/40 rounded-lg md:rounded-xl"></div>
+                        </div>
+                        
+                        <div className="relative bg-black/50 backdrop-blur-xl rounded-lg md:rounded-xl overflow-hidden border border-white/20 shadow-2xl transform transition-all duration-700 group-hover:scale-105 group-hover:bg-black/60">
+                          <div className="aspect-square overflow-hidden">
+                            <img
+                              src={item.product.images?.[0] || [necklacesImage, earringsImage, pendantsImage, banglesImage, ringsImage, chainsImage, pendantsImage, banglesImage][index % 8]}
+                              alt={item.product.name}
+                              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                          </div>
+                          
+                          <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-4 md:p-6">
+                            <div className="text-center">
+                              <h4 className="text-white text-xs sm:text-sm md:text-base font-light mb-2 md:mb-3 truncate tracking-wide">{item.product.name}</h4>
+                              <div className="text-amber-300 text-xs sm:text-sm font-light tracking-wide">
+                                {selectedCurrency === 'BHD' ? `${item.product.priceBhd} BHD` : `₹${item.product.priceInr}`}
+                              </div>
+                              <div className="w-6 md:w-8 h-0.5 bg-gradient-to-r from-amber-400 to-white mx-auto mt-1 md:mt-2"></div>
+                            </div>
+                          </div>
+                          
+                          {/* Mobile-optimized mini premium badge */}
+                          <div className="absolute top-1 right-1 sm:top-2 sm:right-2 bg-amber-400/90 text-black px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-xs font-medium">
+                            ♦
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Mobile-Enhanced Ultra-Premium Call to Action */}
+                <div className="text-center px-4">
+                  <div className="mb-12 md:mb-16">
+                    <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight text-white mb-6 md:mb-8 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                      Enter the Realm of Luxury
+                    </h3>
+                    <p className="text-white/85 text-base sm:text-lg md:text-xl max-w-4xl mx-auto mb-8 md:mb-12 font-light leading-relaxed">
+                      Step beyond the ordinary into a world where exceptional artistry meets timeless elegance, where your jewelry becomes an eternal testament to refined taste.
+                    </p>
+                    
+                    <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
+                      <button 
+                        className="group relative bg-gradient-to-r from-amber-500 via-yellow-400 via-gold-500 to-amber-600 hover:from-amber-600 hover:via-yellow-500 hover:to-gold-700 text-black px-8 sm:px-10 md:px-14 py-4 md:py-5 text-base md:text-lg font-semibold rounded-full transition-all duration-500 hover:shadow-2xl hover:scale-110 transform border-2 border-white/30 overflow-hidden w-full sm:w-auto"
+                        onClick={() => window.location.href = '/collections/premium'}
+                      >
+                        <span className="relative z-10 tracking-wide">
+                          <span className="hidden sm:inline">Explore Prestige Collection</span>
+                          <span className="sm:hidden">Prestige Collection</span>
+                        </span>
+                        <span className="ml-2 md:ml-3 text-lg md:text-xl">♦</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      </button>
+                      
+                      <button 
+                        className="group relative bg-transparent border-2 border-amber-400/60 text-white hover:bg-amber-400/10 px-8 sm:px-10 md:px-14 py-4 md:py-5 text-base md:text-lg font-light rounded-full transition-all duration-500 hover:shadow-xl hover:scale-110 transform hover:border-amber-300 w-full sm:w-auto"
+                        onClick={() => window.location.href = '/contact'}
+                      >
+                        <span className="tracking-wide">
+                          <span className="hidden sm:inline">Private Consultation</span>
+                          <span className="sm:hidden">Consultation</span>
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-amber-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                      </button>
+                    </div>
+                    
+                    <div className="mt-8 md:mt-12 text-white/50 text-xs sm:text-sm tracking-[0.15em] md:tracking-[0.2em]">
+                      BY APPOINTMENT ONLY
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Floating layout rendering - 3D floating cards with depth
+        if (section.layoutType === 'floating') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-20 md:py-32 relative overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)',
+              }}
+            >
+              <div className="absolute inset-0 opacity-30">
+                <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-xl transform rotate-12"></div>
+                <div className="absolute bottom-32 right-32 w-48 h-48 bg-gradient-to-tl from-white/15 to-transparent rounded-full blur-lg transform -rotate-12"></div>
+              </div>
+
+              <div className="max-w-7xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-20">
+                  <h2 className="text-5xl md:text-8xl font-extralight text-white mb-8 tracking-widest" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title || 'FLOATING ELEGANCE'}
+                  </h2>
+                  <p className="text-white/90 text-2xl font-light max-w-3xl mx-auto">{section.description || 'Experience jewelry that defies gravity'}</p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 perspective-1000">
+                  {section.items.slice(0, 6).map((item, index) => (
+                    <div 
+                      key={item.id}
+                      className="relative group cursor-pointer"
+                      style={{
+                        transform: `translateZ(${(index % 3) * 50}px) rotateX(${5 - (index % 3) * 2}deg) rotateY(${(index % 2) * 10 - 5}deg)`,
+                        transformStyle: 'preserve-3d',
+                      }}
+                    >
+                      <div className="absolute -inset-4 bg-black/20 rounded-3xl blur-xl transform translate-y-8 scale-95 group-hover:scale-105 transition-all duration-700"></div>
+                      
+                      <div className="relative bg-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/20 transform transition-all duration-700 group-hover:translateZ-20 group-hover:scale-105">
+                        <div className="aspect-square mb-6 overflow-hidden rounded-2xl">
+                          <img
+                            src={item.product.images?.[0] || ringsImage}
+                            alt={item.product.name}
+                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                          />
+                        </div>
+                        <h3 className="text-white text-xl font-light mb-4 text-center">{item.product.name}</h3>
+                        <div className="text-center">
+                          <span className="bg-white/20 backdrop-blur-sm text-white px-6 py-3 rounded-full text-sm font-medium">
+                            VIEW DETAILS
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Radial layout rendering - Circular jewelry constellation
+        if (section.layoutType === 'radial') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-24 md:py-36 relative overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'conic-gradient(from 0deg, #000428 0%, #004e92 25%, #009ffd 50%, #004e92 75%, #000428 100%)',
+              }}
+            >
+              <div className="max-w-6xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-20">
+                  <h2 className="text-6xl md:text-9xl font-extralight text-transparent bg-clip-text bg-gradient-to-r from-white via-blue-200 to-cyan-300 mb-8 tracking-widest" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title || 'CONSTELLATION'}
+                  </h2>
+                  <p className="text-white/95 text-2xl font-light max-w-3xl mx-auto">{section.description || 'A celestial arrangement of precious treasures'}</p>
+                </div>
+
+                <div className="relative w-96 h-96 md:w-[600px] md:h-[600px] mx-auto">
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 md:w-48 md:h-48">
+                    <div className="relative group cursor-pointer">
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-transparent rounded-full animate-pulse"></div>
+                      <div className="w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white/30">
+                        {section.items[0] && (
+                          <img
+                            src={section.items[0].product.images?.[0] || ringsImage}
+                            alt="Center Constellation"
+                            className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
+                          />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {section.items.slice(1, 9).map((item, index) => {
+                    const angle = (index * 45) * (Math.PI / 180);
+                    const radius = 120;
+                    const x = Math.cos(angle) * radius;
+                    const y = Math.sin(angle) * radius;
+                    
+                    return (
+                      <div 
+                        key={item.id}
+                        className="absolute w-20 h-20 md:w-28 md:h-28 group cursor-pointer"
+                        style={{
+                          left: '50%',
+                          top: '50%',
+                          transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
+                          animation: `orbit 20s linear infinite`,
+                          animationDelay: `${index * 0.5}s`,
+                        }}
+                      >
+                        <div className="relative">
+                          <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-blue-500/10 rounded-full blur-sm animate-pulse"></div>
+                          <div className="w-full h-full rounded-full overflow-hidden shadow-xl border-2 border-white/20">
+                            <img
+                              src={item.product.images?.[0] || [necklacesImage, earringsImage, pendantsImage, banglesImage][index % 4]}
+                              alt={`Orbit ${index + 1}`}
+                              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-125"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <style>{`
+                @keyframes orbit {
+                  from {
+                    transform: translate(calc(-50% + 120px), -50%) rotate(0deg) translate(-120px, 0) rotate(0deg);
+                  }
+                  to {
+                    transform: translate(calc(-50% + 120px), -50%) rotate(360deg) translate(-120px, 0) rotate(-360deg);
+                  }
+                }
+              `}</style>
+            </section>
+          );
+        }
+
+        // Artistic layout rendering - Modern luxury showcase
+        if (section.layoutType === 'artistic') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-24 md:py-32 relative overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+              style={{ 
+                background: 'linear-gradient(135deg, #0f0f23 0%, #1a1a2e 30%, #16213e 70%, #0f0f23 100%)',
+              }}
+            >
+              {/* Animated background elements */}
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-amber-500/10 to-orange-600/5 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-to-br from-rose-500/10 to-pink-600/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-violet-500/10 to-purple-600/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
+              </div>
+
+              <div className="max-w-7xl mx-auto px-4 relative z-10">
+                <div className="text-center mb-20">
+                  <div className="mb-8">
+                    <div className="inline-block">
+                      <div className="h-px w-24 bg-gradient-to-r from-transparent via-amber-400 to-transparent mb-6"></div>
+                      <h2 className="text-4xl md:text-6xl lg:text-7xl font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 to-orange-300 mb-6 tracking-[0.2em] leading-tight" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                        {section.title || 'ARTISAN COLLECTION'}
+                      </h2>
+                      <div className="h-px w-24 bg-gradient-to-r from-transparent via-amber-400 to-transparent mt-6"></div>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 text-lg md:text-xl font-light max-w-2xl mx-auto leading-relaxed">{section.description || 'Where timeless artistry meets contemporary elegance'}</p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                  {/* Featured large item */}
+                  <div className="lg:col-span-5 order-2 lg:order-1">
+                    {section.items[0] && (
+                      <div className="group relative">
+                        <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-rose-500/20 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-1000"></div>
+                        <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white/10">
+                          <div className="aspect-[4/5] overflow-hidden rounded-2xl mb-6">
+                            <img
+                              src={section.items[0].product.images?.[0] || ringsImage}
+                              alt={section.items[0].product.name}
+                              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                            />
+                          </div>
+                          <div className="text-center">
+                            <h3 className="text-white text-xl font-light mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                              {section.items[0].product.name}
+                            </h3>
+                            <div className="flex justify-center items-center space-x-2 mb-4">
+                              <div className="h-px w-8 bg-gradient-to-r from-transparent to-amber-400"></div>
+                              <span className="text-amber-400 text-sm font-light">{section.items[0].product.category}</span>
+                              <div className="h-px w-8 bg-gradient-to-l from-transparent to-amber-400"></div>
+                            </div>
+                            <p className="text-amber-300 text-lg font-semibold">
+                              {selectedCurrency === 'BHD' ? `BD ${section.items[0].product.priceBhd}` : `₹ ${section.items[0].product.priceInr}`}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Grid of smaller items */}
+                  <div className="lg:col-span-7 order-1 lg:order-2">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+                      {section.items.slice(1, 7).map((item, index) => (
+                        <div key={item.id} className="group relative">
+                          <div className="absolute -inset-2 bg-gradient-to-br from-amber-500/10 to-orange-500/10 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                          <div className="relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-2xl p-3 shadow-xl border border-white/10 hover:border-amber-400/30 transition-all duration-500">
+                            <div className="aspect-square overflow-hidden rounded-xl mb-3">
+                              <img
+                                src={item.product.images?.[0] || [ringsImage, necklacesImage, earringsImage, pendantsImage][index % 4]}
+                                alt={item.product.name}
+                                className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                              />
+                            </div>
+                            <div className="text-center">
+                              <h4 className="text-white text-sm font-light line-clamp-2 mb-1" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                                {item.product.name}
+                              </h4>
+                              <p className="text-amber-300 text-xs font-medium">
+                                {selectedCurrency === 'BHD' ? `BD ${item.product.priceBhd}` : `₹ ${item.product.priceInr}`}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Call to action */}
+                <div className="text-center mt-16">
+                  <button
+                    onClick={() => window.location.href = '/collections'}
+                    className="group relative inline-flex items-center px-8 py-4 overflow-hidden text-lg font-medium text-amber-400 border-2 border-amber-400 rounded-full hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-400 transition-all duration-300"
+                  >
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-br from-amber-500 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    <span className="relative flex items-center">
+                      Explore Collection
+                      <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </section>
+          );
+        }
+        
+        // Regular layout rendering
+        return (
+          <section 
+            key={section.id} 
+            className="py-12" 
+            data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+            style={{ 
+              background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)'
+            }}
+          >
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-10">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                  {section.title}
+                </h2>
+                {section.description && (
+                  <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description}</p>
+                )}
+              </div>
+              <div className={`grid gap-4 md:gap-6 mb-10 ${getLayoutClasses(section.layoutType, section.items.length)}`}>
+                {section.items.map((item) => (
+                  <div key={item.id} className={getSizeClasses(item.size || 'normal')}>
+                    <ProductCard
+                      product={item.product}
+                      currency={selectedCurrency}
+                      showActions={false}
+                      customImageUrl={item.customImageUrl}
+                    />
+                  </div>
+                ))}
+              </div>
+              <div className="text-center">
+                <Button 
+                  className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                  style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                  onClick={() => window.location.href = '/collections'}
+                >
+                  View All <ArrowRight className="ml-2 h-3 w-3" />
+                </Button>
+              </div>
+            </div>
+          </section>
+        );
+      })}
+
+      {/* Section Divider */}
+      {homeSections.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
+
+      {/* New Arrivals - Only show if no custom new-arrivals layout exists */}
+      {newArrivalProducts.length > 0 && !homeSections.some(section => section.layoutType === 'new-arrivals') && (
+        <section className="py-12" data-testid="section-new-arrivals" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>New Arrivals</h2>
+              <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Latest additions to our collection</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+              {newArrivalProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  currency={selectedCurrency}
+                  showActions={false}
+                />
               ))}
+            </div>
+            <div className="text-center">
+              <Button 
+                className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                onClick={() => window.location.href = '/collections?category=new-arrivals'}
+              >
+                View All New Arrivals <ArrowRight className="ml-2 h-3 w-3" />
+              </Button>
             </div>
           </div>
         </section>
-      ))}
-
-      {/* 2. Gold Platted Silver Jewellery Section */}
-      {goldPlattedSilverProducts.length > 0 && (
-        <section className="py-16" data-testid="section-gold-platted-silver" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%)' }}>
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                <div className="flex items-center justify-center mb-6">
-                  <Gem className="h-8 w-8 mr-4" style={{ color: '#b8860b' }} />
-                  <h2 className="text-2xl md:text-4xl font-bold" style={{ color: '#8b4513' }}>Gold Platted Silver Jewellery</h2>
-                  <Gem className="h-8 w-8 ml-4" style={{ color: '#b8860b' }} />
-                </div>
-                <p className="text-xl text-black">Elegant silver jewelry with luxurious gold finish</p>
-              </div>
-              <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 mb-8">
-                {goldPlattedSilverProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    currency={selectedCurrency}
-                    showActions={false}
-                  />
-                ))}
-              </div>
-              <div className="text-center">
-                <Button 
-                  variant="outline" 
-                  className="border-2 px-8 py-3 text-lg" 
-                  style={{ borderColor: '#b8860b', color: '#8b4513' }} 
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#b8860b'; e.currentTarget.style.color = 'white'; }} 
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#8b4513'; }}
-                  onClick={() => handleViewAllClick('gold-plated-silver')}
-                >
-                  View All Gold Platted Silver <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
-            </div>
-          </section>
       )}
 
-      {/* 3. New Arrivals Section */}
-      {newArrivalProducts.length > 0 && (
-          <section className="py-16" data-testid="section-new-arrivals" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%)' }}>
-            <div className="container mx-auto px-4">
-              <div className="text-center mb-12">
-                <div className="flex items-center justify-center mb-6">
-                  <Sparkles className="h-8 w-8 mr-4" style={{ color: '#b8860b' }} />
-                  <h2 className="text-2xl md:text-4xl font-bold" style={{ color: '#8b4513' }}>New Arrivals</h2>
-                  <Sparkles className="h-8 w-8 ml-4" style={{ color: '#b8860b' }} />
-                </div>
-                <p className="text-xl text-black">Discover our latest jewelry additions</p>
-              </div>
-              <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 gap-3 md:gap-6 mb-8">
-                {newArrivalProducts.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    currency={selectedCurrency}
-                    showActions={false}
-                  />
-                ))}
-              </div>
-              <div className="text-center">
-                <Button 
-                  variant="outline" 
-                  className="border-2 px-8 py-3 text-lg" 
-                  style={{ borderColor: '#b8860b', color: '#8b4513' }} 
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#b8860b'; e.currentTarget.style.color = 'white'; }} 
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = '#8b4513'; }}
-                  onClick={() => handleViewAllClick('new-arrivals')}
-                >
-                  View All New Arrivals <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
-            </div>
-          </section>
+      {/* Section Divider */}
+      {newArrivalProducts.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
 
-          {/* Section Separator */}
-          <div className="h-px bg-black"></div>
-        </>
-      )}
-
-      {/* 4. Gold Collection Section */}
-      {goldProducts.length > 0 && (
-        <section className="py-16" data-testid="section-gold" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%)' }}>
+      {/* Gold Plated Silver Collection */}
+      {goldPlatedSilverProducts.length > 0 && (
+        <section className="py-12" data-testid="section-gold-plated-silver-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center mb-4">
-                <Crown className="h-8 w-8 text-yellow-600 mr-3" />
-                <h2 className="text-4xl font-bold text-black">Gold Collection</h2>
-                <Crown className="h-8 w-8 text-yellow-600 ml-3" />
-              </div>
-              <p className="text-xl text-gray-600">22K & 18K gold jewelry with intricate designs</p>
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gold Plated Silver</h2>
+              <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Affordable luxury with gold plated silver elegance</p>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+              {goldPlatedSilverProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  currency={selectedCurrency}
+                  showActions={false}
+                />
+              ))}
+            </div>
+            <div className="text-center">
+              <Button 
+                className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                onClick={() => window.location.href = '/collections?material=gold-plated-silver'}
+              >
+                View Collection <ArrowRight className="ml-2 h-3 w-3" />
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Section Divider */}
+      {goldPlatedSilverProducts.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
+
+      {/* Material-Based Sections - Always show these regardless of custom sections */}
+      
+      {/* Gold Collection */}
+      {goldProducts.length > 0 && (
+        <section className="py-12" data-testid="section-gold-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Gold Collection</h2>
+              <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Exquisite gold jewelry crafted to perfection</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {goldProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -768,30 +2459,29 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                variant="outline" 
-                className="border-yellow-600 text-yellow-600 hover:bg-yellow-50"
-                onClick={() => handleViewAllClick('GOLD')}
+                className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                onClick={() => window.location.href = '/collections?material=gold'}
               >
-                View All Gold Jewelry <ArrowRight className="ml-2 h-4 w-4" />
+                View Gold Collection <ArrowRight className="ml-2 h-3 w-3" />
               </Button>
             </div>
           </div>
         </section>
       )}
 
-      {/* 5. Silver Collection Section */}
+      {/* Section Divider */}
+      {goldProducts.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
+
+      {/* Silver Collection */}
       {silverProducts.length > 0 && (
-        <section className="py-16" data-testid="section-silver" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%)' }}>
+        <section className="py-12" data-testid="section-silver-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center mb-4">
-                <Star className="h-8 w-8 text-gray-600 mr-3" />
-                <h2 className="text-4xl font-bold text-black">Silver Collection</h2>
-                <Star className="h-8 w-8 text-gray-600 ml-3" />
-              </div>
-              <p className="text-xl text-gray-600">Sterling silver jewelry with contemporary elegance</p>
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Silver Collection</h2>
+              <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Elegant silver jewelry for every occasion</p>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {silverProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -803,30 +2493,29 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                variant="outline" 
-                className="border-gray-600 text-gray-600 hover:bg-gray-50"
-                onClick={() => handleViewAllClick('SILVER')}
+                className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                onClick={() => window.location.href = '/collections?material=silver'}
               >
-                View All Silver Jewelry <ArrowRight className="ml-2 h-4 w-4" />
+                View Silver Collection <ArrowRight className="ml-2 h-3 w-3" />
               </Button>
             </div>
           </div>
         </section>
       )}
 
-      {/* 6. Diamond Collection Section */}
+      {/* Section Divider */}
+      {silverProducts.length > 0 && <div className="w-full border-t border-gray-200 my-8"></div>}
+
+      {/* Diamond Collection */}
       {diamondProducts.length > 0 && (
-        <section className="py-16" data-testid="section-diamond" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%)' }}>
+        <section className="py-12" data-testid="section-diamond-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center mb-4">
-                <Gem className="h-8 w-8 text-blue-600 mr-3" />
-                <h2 className="text-4xl font-bold text-black">Diamond Collection</h2>
-                <Gem className="h-8 w-8 text-blue-600 ml-3" />
-              </div>
-              <p className="text-xl text-gray-600">Brilliant diamonds for life's precious moments</p>
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Diamond Collection</h2>
+              <p className="text-base font-medium text-gray-700 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Brilliant diamonds for life's special moments</p>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {diamondProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -838,30 +2527,26 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                variant="outline" 
-                className="border-blue-600 text-blue-600 hover:bg-blue-50"
-                onClick={() => handleViewAllClick('DIAMOND')}
+                className="bg-white border border-gray-900 text-gray-600 px-6 py-2 text-sm font-normal rounded hover:bg-gray-50 transition-colors duration-200" 
+                style={{ fontFamily: 'Cormorant Garamond, serif' }}
+                onClick={() => window.location.href = '/collections?material=diamond'}
               >
-                View All Diamond Jewelry <ArrowRight className="ml-2 h-4 w-4" />
+                View Diamond Collection <ArrowRight className="ml-2 h-3 w-3" />
               </Button>
             </div>
           </div>
         </section>
       )}
 
-      {/* 7. Platinum Collection Section */}
+      {/* Platinum Collection */}
       {platinumProducts.length > 0 && (
-        <section className="py-16" data-testid="section-platinum" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%)' }}>
+        <section className="py-12" data-testid="section-platinum-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center mb-4">
-                <Crown className="h-8 w-8 text-slate-600 mr-3" />
-                <h2 className="text-4xl font-bold text-black">Platinum Collection</h2>
-                <Crown className="h-8 w-8 text-slate-600 ml-3" />
-              </div>
-              <p className="text-xl text-gray-600">Rare and precious platinum jewelry for discerning taste</p>
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Platinum Collection</h2>
+              <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Premium platinum jewelry for discerning taste</p>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {platinumProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -873,30 +2558,25 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                variant="outline" 
-                className="border-slate-600 text-slate-600 hover:bg-slate-50"
-                onClick={() => handleViewAllClick('PLATINUM')}
+                className="bg-white border border-gray-200 text-gray-600 px-6 py-2 text-sm font-light rounded hover:bg-gray-50 transition-colors duration-200" 
+                onClick={() => window.location.href = '/collections?material=platinum'}
               >
-                View All Platinum Jewelry <ArrowRight className="ml-2 h-4 w-4" />
+                View Platinum Collection <ArrowRight className="ml-2 h-3 w-3" />
               </Button>
             </div>
           </div>
         </section>
       )}
 
-      {/* 8. Gemstone Collection Section */}
+      {/* Gemstone Collection */}
       {gemstoneProducts.length > 0 && (
-        <section className="py-16" data-testid="section-gemstone" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%)' }}>
+        <section className="py-12" data-testid="section-gemstone-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center mb-4">
-                <Gem className="h-8 w-8 text-purple-600 mr-3" />
-                <h2 className="text-4xl font-bold text-black">Gemstone Collection</h2>
-                <Gem className="h-8 w-8 text-purple-600 ml-3" />
-              </div>
-              <p className="text-xl text-gray-600">Vibrant gemstones for colorful expressions</p>
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Gemstone Collection</h2>
+              <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Colorful gemstones for vibrant elegance</p>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {gemstoneProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -908,30 +2588,25 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                variant="outline" 
-                className="border-purple-600 text-purple-600 hover:bg-purple-50"
-                onClick={() => handleViewAllClick('GEMSTONE')}
+                className="bg-white border border-gray-200 text-gray-600 px-6 py-2 text-sm font-light rounded hover:bg-gray-50 transition-colors duration-200" 
+                onClick={() => window.location.href = '/collections?material=gemstone'}
               >
-                View All Gemstone Jewelry <ArrowRight className="ml-2 h-4 w-4" />
+                View Gemstone Collection <ArrowRight className="ml-2 h-3 w-3" />
               </Button>
             </div>
           </div>
         </section>
       )}
 
-      {/* 9. Pearl Collection Section */}
+      {/* Pearl Collection */}
       {pearlProducts.length > 0 && (
-        <section className="py-16" data-testid="section-pearl" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%)' }}>
+        <section className="py-12" data-testid="section-pearl-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <div className="flex items-center justify-center mb-4">
-                <Heart className="h-8 w-8 text-rose-600 mr-3" />
-                <h2 className="text-4xl font-bold text-black">Pearl Collection</h2>
-                <Heart className="h-8 w-8 text-rose-600 ml-3" />
-              </div>
-              <p className="text-xl text-gray-600">Timeless pearls for elegant sophistication</p>
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Pearl Collection</h2>
+              <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Timeless pearls for classic beauty</p>
             </div>
-            <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-6 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
               {pearlProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -943,11 +2618,41 @@ export default function Home() {
             </div>
             <div className="text-center">
               <Button 
-                variant="outline" 
-                className="border-rose-600 text-rose-600 hover:bg-rose-50"
-                onClick={() => handleViewAllClick('PEARL')}
+                className="bg-white border border-gray-200 text-gray-600 px-6 py-2 text-sm font-light rounded hover:bg-gray-50 transition-colors duration-200" 
+                onClick={() => window.location.href = '/collections?material=pearl'}
               >
-                View All Pearl Jewelry <ArrowRight className="ml-2 h-4 w-4" />
+                View Pearl Collection <ArrowRight className="ml-2 h-3 w-3" />
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
+
+
+      {/* Other Materials Collection */}
+      {otherProducts.length > 0 && (
+        <section className="py-12" data-testid="section-other-collection" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-10">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-900 mb-4">Other Materials Collection</h2>
+              <p className="text-base text-gray-500 max-w-2xl mx-auto font-light">Unique materials for distinctive styles</p>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+              {otherProducts.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  currency={selectedCurrency}
+                  showActions={false}
+                />
+              ))}
+            </div>
+            <div className="text-center">
+              <Button 
+                className="bg-white border border-gray-200 text-gray-600 px-6 py-2 text-sm font-light rounded hover:bg-gray-50 transition-colors duration-200" 
+                onClick={() => window.location.href = '/collections?material=other'}
+              >
+                View All Collections <ArrowRight className="ml-2 h-3 w-3" />
               </Button>
             </div>
           </div>
@@ -958,29 +2663,4 @@ export default function Home() {
       <WhatsAppFloat />
     </div>
   );
-}
-
-// Layout helper functions
-function getLayoutClasses(layoutType: string, itemCount: number): string {
-  switch (layoutType) {
-    case 'grid':
-      return 'grid-cols-2 md:grid-cols-3 lg:grid-cols-4';
-    case 'featured':
-      return 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3';
-    case 'mixed':
-      return 'grid-cols-2 md:grid-cols-4';
-    default:
-      return 'grid-cols-2 md:grid-cols-3';
-  }
-}
-
-function getSizeClasses(size: string): string {
-  switch (size) {
-    case 'small':
-      return 'col-span-1';
-    case 'large':
-      return 'col-span-2';
-    default:
-      return 'col-span-1';
-  }
 }

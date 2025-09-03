@@ -1634,7 +1634,7 @@ export default function Home() {
           );
         }
 
-        // Premium layout rendering - Ultimate ultra-luxury showcase with cinematic sophistication
+        // Premium layout rendering - Royal Palace Architecture with Throne Room Structure
         if (section.layoutType === 'premium') {
           const featuredProduct = section.items[0];
           const supportingProducts = section.items.slice(1, 8);
@@ -1642,134 +1642,264 @@ export default function Home() {
           return (
             <section 
               key={section.id} 
-              className="py-32 md:py-48 relative overflow-hidden min-h-screen" 
+              className="py-20 relative overflow-hidden min-h-screen" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
               style={{ 
-                background: 'radial-gradient(ellipse at center top, #0a0a0a 0%, #1a1a1a 25%, #2d1b69 45%, #1e3c72 65%, #0f3460 85%, #000000 100%)',
+                background: `linear-gradient(135deg, 
+                  #f8f6f0 0%, 
+                  #e8e2d5 15%, 
+                  #d4c5a9 30%, 
+                  #c5a572 45%, 
+                  #b8935a 60%, 
+                  #a67c52 75%, 
+                  #8b6914 90%, 
+                  #7c5902 100%
+                )`,
               }}
             >
-              {/* Cinematic Background Effects */}
+              {/* Royal Palace Architecture Background */}
               <div className="absolute inset-0">
-                {/* Luxury light rays */}
-                <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1 h-96 bg-gradient-to-b from-amber-400/40 via-yellow-300/20 to-transparent animate-pulse"></div>
-                <div className="absolute top-0 left-1/3 transform -translate-x-1/2 w-0.5 h-80 bg-gradient-to-b from-purple-400/30 via-blue-300/15 to-transparent animate-pulse delay-1000"></div>
-                <div className="absolute top-0 right-1/3 transform translate-x-1/2 w-0.5 h-80 bg-gradient-to-b from-pink-400/30 via-rose-300/15 to-transparent animate-pulse delay-2000"></div>
+                {/* Grand Palace Columns */}
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-amber-100 via-yellow-50 to-transparent opacity-80">
+                  <div className="h-full w-16 bg-gradient-to-b from-amber-200/60 via-yellow-100/40 to-amber-200/60 rounded-r-full shadow-2xl"></div>
+                  {/* Column capitals */}
+                  <div className="absolute top-10 left-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
+                  <div className="absolute bottom-10 left-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
+                </div>
+                
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-amber-100 via-yellow-50 to-transparent opacity-80">
+                  <div className="h-full w-16 ml-auto bg-gradient-to-b from-amber-200/60 via-yellow-100/40 to-amber-200/60 rounded-l-full shadow-2xl"></div>
+                  {/* Column capitals */}
+                  <div className="absolute top-10 right-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
+                  <div className="absolute bottom-10 right-8 w-12 h-8 bg-gradient-to-br from-yellow-300 to-amber-400 rounded-full opacity-70"></div>
+                </div>
 
-                {/* Floating luxury orbs */}
-                <div className="absolute top-1/4 left-1/6 w-96 h-96 bg-gradient-to-br from-amber-400/25 to-yellow-500/10 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute bottom-1/4 right-1/6 w-80 h-80 bg-gradient-to-tl from-purple-400/20 to-indigo-500/8 rounded-full blur-2xl animate-pulse delay-1000"></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-rose-400/15 to-pink-500/6 rounded-full blur-3xl animate-pulse delay-2000"></div>
+                {/* Royal Arches */}
+                <div className="absolute top-0 left-1/4 right-1/4 h-40">
+                  <div className="w-full h-full border-8 border-amber-300/40 rounded-b-full bg-gradient-to-b from-yellow-100/30 to-transparent"></div>
+                  <div className="absolute top-4 left-1/2 transform -translate-x-1/2">
+                    <Crown className="w-12 h-12 text-yellow-600 opacity-80" />
+                  </div>
+                </div>
 
-                {/* Premium geometric patterns */}
-                <div className="absolute inset-0 opacity-8">
+                {/* Palace Floor Pattern */}
+                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-amber-200/40 via-yellow-100/20 to-transparent">
                   <div className="absolute inset-0" style={{
                     backgroundImage: `
-                      radial-gradient(circle at 25% 25%, rgba(255,215,0,0.15) 1px, transparent 1px),
-                      radial-gradient(circle at 75% 75%, rgba(255,255,255,0.08) 1px, transparent 1px),
-                      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '120px 120px, 80px 80px, 60px 60px, 60px 60px'
+                      repeating-linear-gradient(
+                        45deg,
+                        rgba(251, 191, 36, 0.1) 0px,
+                        rgba(251, 191, 36, 0.1) 2px,
+                        transparent 2px,
+                        transparent 12px
+                      ),
+                      repeating-linear-gradient(
+                        -45deg,
+                        rgba(217, 119, 6, 0.1) 0px,
+                        rgba(217, 119, 6, 0.1) 2px,
+                        transparent 2px,
+                        transparent 12px
+                      )
+                    `
                   }}></div>
                 </div>
 
-                {/* Luxury diamond sparkles */}
-                <div className="absolute inset-0">
-                  {[...Array(50)].map((_, i) => {
-                    const size = Math.random() * 3 + 1;
-                    const opacity = Math.random() * 0.8 + 0.2;
-                    return (
-                      <div
-                        key={i}
-                        className="absolute bg-gradient-to-r from-amber-300 via-white to-yellow-200 rounded-full animate-pulse"
-                        style={{
-                          width: `${size}px`,
-                          height: `${size}px`,
-                          top: `${Math.random() * 100}%`,
-                          left: `${Math.random() * 100}%`,
-                          opacity: opacity,
-                          animationDelay: `${Math.random() * 6}s`,
-                          animationDuration: `${2 + Math.random() * 5}s`,
-                          filter: 'blur(0.5px)'
-                        }}
-                      />
-                    );
-                  })}
-                </div>
+                {/* Royal Tapestries */}
+                <div className="absolute top-20 left-40 w-24 h-64 bg-gradient-to-b from-purple-800/20 via-violet-700/30 to-purple-900/20 rounded-lg opacity-60 transform -rotate-2"></div>
+                <div className="absolute top-20 right-40 w-24 h-64 bg-gradient-to-b from-purple-800/20 via-violet-700/30 to-purple-900/20 rounded-lg opacity-60 transform rotate-2"></div>
 
-                {/* Premium border effects */}
-                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-amber-400/30 to-transparent"></div>
-                <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-transparent via-amber-400/30 to-transparent"></div>
-                <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-transparent via-amber-400/20 to-transparent"></div>
-                <div className="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-transparent via-amber-400/20 to-transparent"></div>
+                {/* Floating Royal Elements */}
+                <div className="absolute top-1/4 left-1/6 w-16 h-16 opacity-30">
+                  <Gem className="w-full h-full text-amber-400 animate-pulse" />
+                </div>
+                <div className="absolute top-1/3 right-1/6 w-12 h-12 opacity-25">
+                  <Crown className="w-full h-full text-yellow-500 animate-pulse delay-1000" />
+                </div>
+                <div className="absolute bottom-1/4 left-1/5 w-14 h-14 opacity-20">
+                  <Star className="w-full h-full text-amber-500 animate-pulse delay-2000" />
+                </div>
               </div>
 
-              <div className="max-w-8xl mx-auto px-4 md:px-8 relative z-10">
-                {/* Enhanced Mobile-First Header */}
-                <div className="text-center mb-20 md:mb-32">
-                  <div className="mb-12 md:mb-16 relative">
-                    {/* Mobile-optimized crown decoration */}
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4 md:-translate-y-8">
-                      <div className="text-3xl md:text-6xl opacity-60 text-amber-300 animate-pulse">♦</div>
-                    </div>
-                    
-                    <div className="inline-block relative">
-                      <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[12rem] font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 via-gold-300 via-yellow-400 to-amber-500 mb-6 md:mb-12 tracking-[0.1em] md:tracking-[0.2em] leading-none drop-shadow-2xl" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-                        {section.title || 'PRESTIGE'}
-                      </h2>
-                      
-                      {/* Mobile-responsive animated underline */}
-                      <div className="relative w-48 md:w-80 h-1 md:h-2 mx-auto mb-6 md:mb-12">
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400 via-white via-gold-400 via-yellow-300 to-transparent animate-pulse"></div>
-                        <div className="absolute inset-0 bg-gradient-to-r from-amber-300/50 via-transparent to-amber-300/50 animate-pulse delay-500"></div>
+              <div className="max-w-7xl mx-auto px-4 relative z-10">
+                {/* Royal Palace Header */}
+                <div className="text-center mb-16">
+                  <div className="mb-8 relative">
+                    {/* Royal Crown Above Title */}
+                    <div className="absolute -top-16 left-1/2 transform -translate-x-1/2">
+                      <div className="relative">
+                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 via-amber-500/40 to-yellow-400/20 rounded-full blur-xl"></div>
+                        <Crown className="relative w-16 h-16 text-yellow-600" />
                       </div>
                     </div>
                     
-                    {/* Mobile-optimized subtitle */}
-                    <div className="mb-6 md:mb-8">
-                      <p className="text-amber-200 text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] font-light uppercase">COLLECTION</p>
+                    <h2 className="text-5xl md:text-7xl font-light bg-gradient-to-br from-amber-800 via-yellow-700 to-amber-900 bg-clip-text text-transparent mb-6 tracking-[0.1em]" 
+                        style={{ fontFamily: 'Playfair Display, serif' }}>
+                      {section.title || 'ROYAL COLLECTION'}
+                    </h2>
+                    
+                    {/* Royal Underline */}
+                    <div className="w-64 h-1 mx-auto bg-gradient-to-r from-transparent via-amber-500 to-transparent mb-6"></div>
+                    <div className="flex items-center justify-center gap-4 text-amber-700">
+                      <div className="w-8 h-px bg-amber-500"></div>
+                      <Crown className="w-6 h-6" />
+                      <div className="w-8 h-px bg-amber-500"></div>
                     </div>
                   </div>
                   
-                  <p className="text-white/95 text-lg sm:text-xl md:text-2xl lg:text-4xl font-extralight max-w-6xl mx-auto leading-relaxed mb-8 md:mb-12 tracking-wide px-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description || 'Where legendary craftsmanship meets eternal beauty, creating heirloom masterpieces that define luxury for generations'}</p>
-                  
-                  <div className="flex justify-center items-center space-x-4 md:space-x-8 text-amber-300 mb-6 md:mb-8">
-                    <div className="w-8 md:w-16 h-0.5 bg-gradient-to-r from-transparent to-amber-400"></div>
-                    <span className="text-xs md:text-base tracking-[0.15em] md:tracking-[0.3em] font-extralight">EXCLUSIVELY CURATED</span>
-                    <div className="w-8 md:w-16 h-0.5 bg-gradient-to-l from-transparent to-amber-400"></div>
+                  {section.description && (
+                    <p className="text-xl text-amber-800 max-w-4xl mx-auto font-light leading-relaxed mb-8" 
+                       style={{ fontFamily: 'Playfair Display, serif' }}>
+                      {section.description}
+                    </p>
+                  )}
+                </div>
+
+                {/* Royal Palace Layout */}
+                <div className="relative">
+                  {/* Throne Platform - Central Elevated Stage */}
+                  <div className="relative mb-16">
+                    {/* Palace Steps */}
+                    <div className="flex justify-center mb-8">
+                      <div className="w-full max-w-6xl">
+                        {/* Step 3 - Highest */}
+                        <div className="h-4 bg-gradient-to-r from-amber-300/40 via-yellow-200/60 to-amber-300/40 rounded-t-lg mb-1 w-5/6 mx-auto"></div>
+                        {/* Step 2 */}
+                        <div className="h-4 bg-gradient-to-r from-amber-300/30 via-yellow-200/50 to-amber-300/30 rounded-t-lg mb-1 w-11/12 mx-auto"></div>
+                        {/* Step 1 - Base */}
+                        <div className="h-4 bg-gradient-to-r from-amber-300/20 via-yellow-200/40 to-amber-300/20 rounded-t-lg w-full"></div>
+                      </div>
+                    </div>
+
+                    {/* Royal Throne - Central Product */}
+                    {throneProduct && (
+                      <div className="flex justify-center mb-12">
+                        <div className="relative group cursor-pointer" onClick={() => handleViewAllClick(throneProduct.product.category)}>
+                          {/* Throne Backdrop */}
+                          <div className="absolute -inset-8 bg-gradient-to-br from-amber-200/60 via-yellow-100/40 to-amber-300/50 rounded-3xl blur-xl"></div>
+                          <div className="absolute -inset-4 bg-gradient-to-br from-purple-100/30 via-violet-50/20 to-purple-200/40 rounded-2xl"></div>
+                          
+                          {/* Throne Ornaments */}
+                          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                            <Crown className="w-8 h-8 text-yellow-600" />
+                          </div>
+                          <div className="absolute -left-6 top-1/2 transform -translate-y-1/2">
+                            <Gem className="w-6 h-6 text-amber-500" />
+                          </div>
+                          <div className="absolute -right-6 top-1/2 transform -translate-y-1/2">
+                            <Gem className="w-6 h-6 text-amber-500" />
+                          </div>
+                          
+                          {/* Throne Product */}
+                          <div className="relative bg-gradient-to-br from-white via-amber-50 to-yellow-50 rounded-2xl p-8 shadow-2xl border-4 border-amber-200/50 transform transition-all duration-500 hover:scale-105 hover:shadow-3xl min-w-[350px]">
+                            <ProductCard
+                              product={throneProduct.product}
+                              currency={selectedCurrency}
+                              showActions={false}
+                            />
+                            
+                            {/* Royal Badge */}
+                            <div className="absolute -top-3 -right-3 bg-gradient-to-br from-purple-700 to-violet-800 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg border-2 border-yellow-400">
+                              ROYAL PIECE
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                  
-                  {/* Mobile-responsive credentials */}
-                  <div className="flex flex-col md:flex-row justify-center md:space-x-12 space-y-2 md:space-y-0 text-white/60 text-xs md:text-sm tracking-wider">
-                    <div className="flex justify-center space-x-6 md:space-x-0">
-                      <span>EST. 1985</span>
-                      <span className="md:hidden">•</span>
-                      <span>CERTIFIED LUXURY</span>
+
+                  {/* Royal Guards - Flanking Products */}
+                  {royalGuards.length > 0 && (
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                      {royalGuards.map((item, index) => {
+                        const isLeftSide = index % 2 === 0;
+                        return (
+                          <div 
+                            key={item.id}
+                            className={`relative group cursor-pointer transform transition-all duration-500 hover:scale-105 ${
+                              isLeftSide ? 'lg:pr-8' : 'lg:pl-8'
+                            }`}
+                            onClick={() => handleViewAllClick(item.product.category)}
+                          >
+                            {/* Guard Post */}
+                            <div className={`absolute inset-0 bg-gradient-to-${isLeftSide ? 'r' : 'l'} from-amber-100/40 via-transparent to-transparent rounded-2xl`}></div>
+                            
+                            {/* Guard Product */}
+                            <div className="relative bg-gradient-to-br from-white to-amber-50/80 rounded-xl p-6 shadow-lg border-2 border-amber-200/40 hover:border-amber-300/60 transition-all duration-300">
+                              <ProductCard
+                                product={item.product}
+                                currency={selectedCurrency}
+                                showActions={false}
+                              />
+                              
+                              {/* Guard Badge */}
+                              <div className="absolute -top-2 -right-2 bg-gradient-to-br from-amber-600 to-yellow-700 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                GUARD
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
-                    <div className="hidden md:flex space-x-12">
-                      <span>•</span>
-                      <span>LIFETIME WARRANTY</span>
+                  )}
+
+                  {/* Royal Court - Additional Products */}
+                  {courtAttendants.length > 0 && (
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                      {courtAttendants.map((item, index) => (
+                        <div 
+                          key={item.id}
+                          className="relative group cursor-pointer transform transition-all duration-300 hover:scale-105"
+                          onClick={() => handleViewAllClick(item.product.category)}
+                        >
+                          {/* Court Member */}
+                          <div className="relative bg-gradient-to-br from-white to-yellow-50/60 rounded-lg p-4 shadow-md border border-amber-200/30 hover:border-amber-300/50 transition-all duration-300">
+                            <ProductCard
+                              product={item.product}
+                              currency={selectedCurrency}
+                              showActions={false}
+                            />
+                            
+                            {/* Court Badge */}
+                            <div className="absolute -top-1 -right-1 bg-gradient-to-br from-yellow-500 to-amber-600 text-white px-2 py-1 rounded-full text-xs font-medium">
+                              COURT
+                            </div>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    <div className="md:hidden">
-                      <span>LIFETIME WARRANTY</span>
+                  )}
+
+                  {/* Royal Decree - Call to Action */}
+                  <div className="mt-20 text-center">
+                    <div className="relative inline-block">
+                      <div className="absolute -inset-12 bg-gradient-to-r from-yellow-400/20 via-amber-500/30 to-yellow-400/20 rounded-full blur-3xl"></div>
+                      <div className="relative bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 backdrop-blur-md border-4 border-amber-300/60 rounded-2xl px-16 py-8 shadow-2xl">
+                        <Crown className="w-12 h-12 text-yellow-600 mx-auto mb-4" />
+                        <h3 className="text-2xl font-bold text-amber-800 mb-4 tracking-wide" 
+                            style={{ fontFamily: 'Playfair Display, serif' }}>
+                          Enter the Royal Collection
+                        </h3>
+                        <p className="text-amber-700 mb-6 max-w-md mx-auto">
+                          Discover treasures worthy of royalty, crafted for those who demand excellence
+                        </p>
+                        <button 
+                          className="bg-gradient-to-r from-purple-700 via-violet-800 to-purple-700 hover:from-purple-800 hover:via-violet-900 hover:to-purple-800 text-white px-12 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:shadow-xl hover:scale-105 border-2 border-yellow-400"
+                          onClick={() => window.location.href = '/collections'}
+                        >
+                          <span className="flex items-center gap-3">
+                            <Crown className="w-5 h-5" />
+                            EXPLORE ROYAL COLLECTION
+                            <Crown className="w-5 h-5" />
+                          </span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-
-                {/* Mobile-Optimized Ultimate Luxury Layout */}
-                <div className="mb-16 md:mb-24">
-                  {/* Mobile-Enhanced Featured Product Showcase */}
-                  <div className="text-center mb-12 md:mb-20">
-                    <div className="relative inline-block">
-                      {/* Mobile-responsive rotating luxury frames */}
-                      <div className="absolute inset-0 w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] border-2 border-amber-400/30 rounded-full animate-spin" style={{ animationDuration: '60s' }}></div>
-                      <div className="absolute inset-2 md:inset-4 w-[268px] h-[268px] sm:w-[334px] sm:h-[334px] md:w-[484px] md:h-[484px] border border-white/20 rounded-full animate-spin" style={{ animationDuration: '80s', animationDirection: 'reverse' }}></div>
-                      
-                      <div className="relative group">
-                        {/* Mobile-optimized frame effects */}
-                        <div className="absolute -inset-4 md:-inset-8 bg-gradient-to-br from-amber-400/40 via-yellow-500/25 to-gold-400/30 rounded-full blur-xl md:blur-2xl animate-pulse"></div>
-                        <div className="absolute -inset-3 md:-inset-6 bg-gradient-to-br from-white/15 via-transparent to-purple-400/10 rounded-full"></div>
-                        <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-br from-transparent via-amber-300/20 to-transparent rounded-full"></div>
+              </div>
+            </section>
+          );
+        }
                         
                         {/* Mobile-responsive glowing border */}
                         <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/60 via-white/40 via-gold-400/60 to-amber-400/60 p-0.5 md:p-1">
