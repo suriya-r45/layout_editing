@@ -1755,72 +1755,79 @@ export default function Home() {
                 <div className="absolute top-0 right-0 w-2 h-full bg-gradient-to-b from-transparent via-amber-400/20 to-transparent"></div>
               </div>
 
-              <div className="max-w-8xl mx-auto px-8 relative z-10">
-                {/* Cinematic Header */}
-                <div className="text-center mb-32">
-                  <div className="mb-16 relative">
-                    {/* Luxury crown decoration */}
-                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8">
-                      <div className="text-6xl opacity-60 text-amber-300 animate-pulse">♦</div>
+              <div className="max-w-8xl mx-auto px-4 md:px-8 relative z-10">
+                {/* Enhanced Mobile-First Header */}
+                <div className="text-center mb-20 md:mb-32">
+                  <div className="mb-12 md:mb-16 relative">
+                    {/* Mobile-optimized crown decoration */}
+                    <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-4 md:-translate-y-8">
+                      <div className="text-3xl md:text-6xl opacity-60 text-amber-300 animate-pulse">♦</div>
                     </div>
                     
                     <div className="inline-block relative">
-                      <h2 className="text-7xl md:text-[12rem] font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 via-gold-300 via-yellow-400 to-amber-500 mb-12 tracking-[0.2em] leading-none drop-shadow-2xl" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                      <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-[12rem] font-extralight text-transparent bg-clip-text bg-gradient-to-br from-white via-amber-200 via-gold-300 via-yellow-400 to-amber-500 mb-6 md:mb-12 tracking-[0.1em] md:tracking-[0.2em] leading-none drop-shadow-2xl" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                         {section.title || 'PRESTIGE'}
                       </h2>
                       
-                      {/* Animated underline */}
-                      <div className="relative w-80 h-2 mx-auto mb-12">
+                      {/* Mobile-responsive animated underline */}
+                      <div className="relative w-48 md:w-80 h-1 md:h-2 mx-auto mb-6 md:mb-12">
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-400 via-white via-gold-400 via-yellow-300 to-transparent animate-pulse"></div>
                         <div className="absolute inset-0 bg-gradient-to-r from-amber-300/50 via-transparent to-amber-300/50 animate-pulse delay-500"></div>
                       </div>
                     </div>
                     
-                    {/* Luxury subtitle */}
-                    <div className="mb-8">
-                      <p className="text-amber-200 text-sm tracking-[0.3em] font-light uppercase">COLLECTION</p>
+                    {/* Mobile-optimized subtitle */}
+                    <div className="mb-6 md:mb-8">
+                      <p className="text-amber-200 text-xs md:text-sm tracking-[0.2em] md:tracking-[0.3em] font-light uppercase">COLLECTION</p>
                     </div>
                   </div>
                   
-                  <p className="text-white/95 text-2xl md:text-4xl font-extralight max-w-6xl mx-auto leading-relaxed mb-12 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description || 'Where legendary craftsmanship meets eternal beauty, creating heirloom masterpieces that define luxury for generations'}</p>
+                  <p className="text-white/95 text-lg sm:text-xl md:text-2xl lg:text-4xl font-extralight max-w-6xl mx-auto leading-relaxed mb-8 md:mb-12 tracking-wide px-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>{section.description || 'Where legendary craftsmanship meets eternal beauty, creating heirloom masterpieces that define luxury for generations'}</p>
                   
-                  <div className="flex justify-center items-center space-x-8 text-amber-300 mb-8">
-                    <div className="w-16 h-0.5 bg-gradient-to-r from-transparent to-amber-400"></div>
-                    <span className="text-base tracking-[0.3em] font-extralight">EXCLUSIVELY CURATED</span>
-                    <div className="w-16 h-0.5 bg-gradient-to-l from-transparent to-amber-400"></div>
+                  <div className="flex justify-center items-center space-x-4 md:space-x-8 text-amber-300 mb-6 md:mb-8">
+                    <div className="w-8 md:w-16 h-0.5 bg-gradient-to-r from-transparent to-amber-400"></div>
+                    <span className="text-xs md:text-base tracking-[0.15em] md:tracking-[0.3em] font-extralight">EXCLUSIVELY CURATED</span>
+                    <div className="w-8 md:w-16 h-0.5 bg-gradient-to-l from-transparent to-amber-400"></div>
                   </div>
                   
-                  {/* Premium credentials */}
-                  <div className="flex justify-center space-x-12 text-white/60 text-sm tracking-wider">
-                    <span>EST. 1985</span>
-                    <span>•</span>
-                    <span>CERTIFIED LUXURY</span>
-                    <span>•</span>
-                    <span>LIFETIME WARRANTY</span>
+                  {/* Mobile-responsive credentials */}
+                  <div className="flex flex-col md:flex-row justify-center md:space-x-12 space-y-2 md:space-y-0 text-white/60 text-xs md:text-sm tracking-wider">
+                    <div className="flex justify-center space-x-6 md:space-x-0">
+                      <span>EST. 1985</span>
+                      <span className="md:hidden">•</span>
+                      <span>CERTIFIED LUXURY</span>
+                    </div>
+                    <div className="hidden md:flex space-x-12">
+                      <span>•</span>
+                      <span>LIFETIME WARRANTY</span>
+                    </div>
+                    <div className="md:hidden">
+                      <span>LIFETIME WARRANTY</span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Ultimate Luxury Layout */}
-                <div className="mb-24">
-                  {/* Featured Product Showcase */}
-                  <div className="text-center mb-20">
+                {/* Mobile-Optimized Ultimate Luxury Layout */}
+                <div className="mb-16 md:mb-24">
+                  {/* Mobile-Enhanced Featured Product Showcase */}
+                  <div className="text-center mb-12 md:mb-20">
                     <div className="relative inline-block">
-                      {/* Rotating luxury frame */}
-                      <div className="absolute inset-0 w-[500px] h-[500px] border-2 border-amber-400/30 rounded-full animate-spin" style={{ animationDuration: '60s' }}></div>
-                      <div className="absolute inset-4 w-[484px] h-[484px] border border-white/20 rounded-full animate-spin" style={{ animationDuration: '80s', animationDirection: 'reverse' }}></div>
+                      {/* Mobile-responsive rotating luxury frames */}
+                      <div className="absolute inset-0 w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[500px] md:h-[500px] border-2 border-amber-400/30 rounded-full animate-spin" style={{ animationDuration: '60s' }}></div>
+                      <div className="absolute inset-2 md:inset-4 w-[268px] h-[268px] sm:w-[334px] sm:h-[334px] md:w-[484px] md:h-[484px] border border-white/20 rounded-full animate-spin" style={{ animationDuration: '80s', animationDirection: 'reverse' }}></div>
                       
                       <div className="relative group">
-                        {/* Ultra-premium frame effects */}
-                        <div className="absolute -inset-8 bg-gradient-to-br from-amber-400/40 via-yellow-500/25 to-gold-400/30 rounded-full blur-2xl animate-pulse"></div>
-                        <div className="absolute -inset-6 bg-gradient-to-br from-white/15 via-transparent to-purple-400/10 rounded-full"></div>
-                        <div className="absolute -inset-4 bg-gradient-to-br from-transparent via-amber-300/20 to-transparent rounded-full"></div>
+                        {/* Mobile-optimized frame effects */}
+                        <div className="absolute -inset-4 md:-inset-8 bg-gradient-to-br from-amber-400/40 via-yellow-500/25 to-gold-400/30 rounded-full blur-xl md:blur-2xl animate-pulse"></div>
+                        <div className="absolute -inset-3 md:-inset-6 bg-gradient-to-br from-white/15 via-transparent to-purple-400/10 rounded-full"></div>
+                        <div className="absolute -inset-2 md:-inset-4 bg-gradient-to-br from-transparent via-amber-300/20 to-transparent rounded-full"></div>
                         
-                        {/* Glowing border */}
-                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/60 via-white/40 via-gold-400/60 to-amber-400/60 p-1">
+                        {/* Mobile-responsive glowing border */}
+                        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-amber-400/60 via-white/40 via-gold-400/60 to-amber-400/60 p-0.5 md:p-1">
                           <div className="w-full h-full bg-black/30 rounded-full"></div>
                         </div>
                         
-                        <div className="relative w-[460px] h-[460px] bg-black/40 backdrop-blur-2xl rounded-full overflow-hidden border-2 border-white/30 shadow-2xl transform transition-all duration-1000 group-hover:scale-110">
+                        <div className="relative w-[260px] h-[260px] sm:w-[330px] sm:h-[330px] md:w-[460px] md:h-[460px] bg-black/40 backdrop-blur-2xl rounded-full overflow-hidden border-2 border-white/30 shadow-2xl transform transition-all duration-1000 group-hover:scale-110">
                           {featuredProduct && (
                             <>
                               <img
@@ -1830,80 +1837,81 @@ export default function Home() {
                               />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                               
-                              <div className="absolute inset-0 flex flex-col justify-end p-12">
+                              <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 md:p-12">
                                 <div className="text-center">
-                                  <h3 className="text-white text-3xl md:text-4xl font-extralight mb-6 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                                  <h3 className="text-white text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extralight mb-3 sm:mb-4 md:mb-6 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                                     {featuredProduct.product.name}
                                   </h3>
-                                  <div className="mb-6">
-                                    <span className="text-amber-300 text-2xl font-light tracking-wide">
+                                  <div className="mb-3 sm:mb-4 md:mb-6">
+                                    <span className="text-amber-300 text-lg sm:text-xl md:text-2xl font-light tracking-wide">
                                       {selectedCurrency === 'BHD' ? `${featuredProduct.product.priceBhd} BHD` : `₹${featuredProduct.product.priceInr}`}
                                     </span>
                                   </div>
-                                  <div className="w-24 h-1 bg-gradient-to-r from-amber-400 via-white to-gold-400 mx-auto mb-4"></div>
-                                  <p className="text-white/90 text-lg font-extralight tracking-widest">SIGNATURE MASTERPIECE</p>
+                                  <div className="w-16 sm:w-20 md:w-24 h-0.5 md:h-1 bg-gradient-to-r from-amber-400 via-white to-gold-400 mx-auto mb-2 sm:mb-3 md:mb-4"></div>
+                                  <p className="text-white/90 text-sm sm:text-base md:text-lg font-extralight tracking-wider md:tracking-widest">SIGNATURE MASTERPIECE</p>
                                 </div>
                               </div>
                             </>
                           )}
                         </div>
                         
-                        {/* Ultra-premium badge */}
-                        <div className="absolute -top-6 -right-6 bg-gradient-to-r from-amber-500 via-yellow-400 via-gold-500 to-amber-600 text-black px-8 py-4 rounded-full text-sm font-bold shadow-2xl border-2 border-white/40 animate-pulse">
-                          ♦ PRESTIGE ♦
+                        {/* Mobile-responsive premium badge */}
+                        <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 md:-top-6 md:-right-6 bg-gradient-to-r from-amber-500 via-yellow-400 via-gold-500 to-amber-600 text-black px-3 py-2 sm:px-4 sm:py-2 md:px-8 md:py-4 rounded-full text-xs sm:text-sm font-bold shadow-2xl border-2 border-white/40 animate-pulse">
+                          <span className="hidden sm:inline">♦ PRESTIGE ♦</span>
+                          <span className="sm:hidden">♦</span>
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Luxury Content Section */}
-                  <div className="text-center mb-20">
-                    <h3 className="text-5xl md:text-7xl font-extralight text-white mb-8 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                  {/* Mobile-Enhanced Luxury Content Section */}
+                  <div className="text-center mb-12 md:mb-20 px-4">
+                    <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extralight text-white mb-6 md:mb-8 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                       Artistry Perfected
                     </h3>
-                    <p className="text-white/85 text-xl md:text-2xl leading-relaxed max-w-5xl mx-auto mb-12 font-light">
+                    <p className="text-white/85 text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-5xl mx-auto mb-8 md:mb-12 font-light">
                       Our prestige collection embodies the pinnacle of jewelry mastery, where each piece is conceived as a work of art and crafted with uncompromising dedication to perfection.
                     </p>
                     
-                    {/* Premium statistics */}
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-4xl mx-auto mb-16">
+                    {/* Mobile-optimized premium statistics */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 max-w-4xl mx-auto mb-12 md:mb-16">
                       <div className="text-center">
-                        <div className="text-amber-300 text-4xl font-extralight mb-3">100%</div>
-                        <div className="text-white/70 text-sm tracking-[0.2em] font-light">HANDCRAFTED</div>
-                        <div className="w-8 h-0.5 bg-amber-400/50 mx-auto mt-2"></div>
+                        <div className="text-amber-300 text-2xl sm:text-3xl md:text-4xl font-extralight mb-2 md:mb-3">100%</div>
+                        <div className="text-white/70 text-xs sm:text-sm tracking-[0.1em] md:tracking-[0.2em] font-light">HANDCRAFTED</div>
+                        <div className="w-6 md:w-8 h-0.5 bg-amber-400/50 mx-auto mt-1 md:mt-2"></div>
                       </div>
                       <div className="text-center">
-                        <div className="text-amber-300 text-4xl font-extralight mb-3">24K</div>
-                        <div className="text-white/70 text-sm tracking-[0.2em] font-light">PURE GOLD</div>
-                        <div className="w-8 h-0.5 bg-amber-400/50 mx-auto mt-2"></div>
+                        <div className="text-amber-300 text-2xl sm:text-3xl md:text-4xl font-extralight mb-2 md:mb-3">24K</div>
+                        <div className="text-white/70 text-xs sm:text-sm tracking-[0.1em] md:tracking-[0.2em] font-light">PURE GOLD</div>
+                        <div className="w-6 md:w-8 h-0.5 bg-amber-400/50 mx-auto mt-1 md:mt-2"></div>
                       </div>
                       <div className="text-center">
-                        <div className="text-amber-300 text-4xl font-extralight mb-3">∞</div>
-                        <div className="text-white/70 text-sm tracking-[0.2em] font-light">LIFETIME VALUE</div>
-                        <div className="w-8 h-0.5 bg-amber-400/50 mx-auto mt-2"></div>
+                        <div className="text-amber-300 text-2xl sm:text-3xl md:text-4xl font-extralight mb-2 md:mb-3">∞</div>
+                        <div className="text-white/70 text-xs sm:text-sm tracking-[0.1em] md:tracking-[0.2em] font-light">LIFETIME VALUE</div>
+                        <div className="w-6 md:w-8 h-0.5 bg-amber-400/50 mx-auto mt-1 md:mt-2"></div>
                       </div>
                       <div className="text-center">
-                        <div className="text-amber-300 text-4xl font-extralight mb-3">♦</div>
-                        <div className="text-white/70 text-sm tracking-[0.2em] font-light">CERTIFIED LUXURY</div>
-                        <div className="w-8 h-0.5 bg-amber-400/50 mx-auto mt-2"></div>
+                        <div className="text-amber-300 text-2xl sm:text-3xl md:text-4xl font-extralight mb-2 md:mb-3">♦</div>
+                        <div className="text-white/70 text-xs sm:text-sm tracking-[0.1em] md:tracking-[0.2em] font-light">CERTIFIED LUXURY</div>
+                        <div className="w-6 md:w-8 h-0.5 bg-amber-400/50 mx-auto mt-1 md:mt-2"></div>
                       </div>
                     </div>
                   </div>
 
-                  {/* Ultra-Premium Collection Grid */}
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+                  {/* Mobile-Enhanced Ultra-Premium Collection Grid */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-16 md:mb-20 px-2">
                     {supportingProducts.map((item, index) => (
                       <div key={item.id} className="relative group">
-                        {/* Luxury frame effects */}
-                        <div className="absolute -inset-3 bg-gradient-to-br from-purple-400/25 via-blue-500/20 to-cyan-600/15 rounded-2xl blur-xl animate-pulse" style={{ animationDelay: `${index * 300}ms` }}></div>
-                        <div className="absolute -inset-1 bg-gradient-to-br from-white/10 to-transparent rounded-xl"></div>
+                        {/* Mobile-optimized luxury frame effects */}
+                        <div className="absolute -inset-2 md:-inset-3 bg-gradient-to-br from-purple-400/25 via-blue-500/20 to-cyan-600/15 rounded-xl md:rounded-2xl blur-lg md:blur-xl animate-pulse" style={{ animationDelay: `${index * 300}ms` }}></div>
+                        <div className="absolute -inset-0.5 md:-inset-1 bg-gradient-to-br from-white/10 to-transparent rounded-lg md:rounded-xl"></div>
                         
-                        {/* Premium border */}
-                        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-purple-400/50 via-blue-400/40 to-cyan-400/50 p-0.5">
-                          <div className="w-full h-full bg-black/40 rounded-xl"></div>
+                        {/* Mobile-responsive premium border */}
+                        <div className="absolute inset-0 rounded-lg md:rounded-xl bg-gradient-to-r from-purple-400/50 via-blue-400/40 to-cyan-400/50 p-0.5">
+                          <div className="w-full h-full bg-black/40 rounded-lg md:rounded-xl"></div>
                         </div>
                         
-                        <div className="relative bg-black/50 backdrop-blur-xl rounded-xl overflow-hidden border border-white/20 shadow-2xl transform transition-all duration-700 group-hover:scale-105 group-hover:bg-black/60">
+                        <div className="relative bg-black/50 backdrop-blur-xl rounded-lg md:rounded-xl overflow-hidden border border-white/20 shadow-2xl transform transition-all duration-700 group-hover:scale-105 group-hover:bg-black/60">
                           <div className="aspect-square overflow-hidden">
                             <img
                               src={item.product.images?.[0] || [necklacesImage, earringsImage, pendantsImage, banglesImage, ringsImage, chainsImage, pendantsImage, banglesImage][index % 8]}
@@ -1913,18 +1921,18 @@ export default function Home() {
                             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                           </div>
                           
-                          <div className="absolute inset-0 flex flex-col justify-end p-6">
+                          <div className="absolute inset-0 flex flex-col justify-end p-3 sm:p-4 md:p-6">
                             <div className="text-center">
-                              <h4 className="text-white text-base font-light mb-3 truncate tracking-wide">{item.product.name}</h4>
-                              <div className="text-amber-300 text-sm font-light tracking-wide">
+                              <h4 className="text-white text-xs sm:text-sm md:text-base font-light mb-2 md:mb-3 truncate tracking-wide">{item.product.name}</h4>
+                              <div className="text-amber-300 text-xs sm:text-sm font-light tracking-wide">
                                 {selectedCurrency === 'BHD' ? `${item.product.priceBhd} BHD` : `₹${item.product.priceInr}`}
                               </div>
-                              <div className="w-8 h-0.5 bg-gradient-to-r from-amber-400 to-white mx-auto mt-2"></div>
+                              <div className="w-6 md:w-8 h-0.5 bg-gradient-to-r from-amber-400 to-white mx-auto mt-1 md:mt-2"></div>
                             </div>
                           </div>
                           
-                          {/* Mini premium badge */}
-                          <div className="absolute top-2 right-2 bg-amber-400/90 text-black px-2 py-1 rounded-full text-xs font-medium">
+                          {/* Mobile-optimized mini premium badge */}
+                          <div className="absolute top-1 right-1 sm:top-2 sm:right-2 bg-amber-400/90 text-black px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-xs font-medium">
                             ♦
                           </div>
                         </div>
@@ -1933,36 +1941,42 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Ultra-Premium Call to Action */}
-                <div className="text-center">
-                  <div className="mb-16">
-                    <h3 className="text-5xl md:text-6xl font-extralight text-white mb-8 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                {/* Mobile-Enhanced Ultra-Premium Call to Action */}
+                <div className="text-center px-4">
+                  <div className="mb-12 md:mb-16">
+                    <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extralight text-white mb-6 md:mb-8 tracking-wide" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
                       Enter the Realm of Luxury
                     </h3>
-                    <p className="text-white/85 text-xl max-w-4xl mx-auto mb-12 font-light leading-relaxed">
+                    <p className="text-white/85 text-base sm:text-lg md:text-xl max-w-4xl mx-auto mb-8 md:mb-12 font-light leading-relaxed">
                       Step beyond the ordinary into a world where exceptional artistry meets timeless elegance, where your jewelry becomes an eternal testament to refined taste.
                     </p>
                     
-                    <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+                    <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
                       <button 
-                        className="group relative bg-gradient-to-r from-amber-500 via-yellow-400 via-gold-500 to-amber-600 hover:from-amber-600 hover:via-yellow-500 hover:to-gold-700 text-black px-14 py-5 text-lg font-semibold rounded-full transition-all duration-500 hover:shadow-2xl hover:scale-110 transform border-2 border-white/30 overflow-hidden"
+                        className="group relative bg-gradient-to-r from-amber-500 via-yellow-400 via-gold-500 to-amber-600 hover:from-amber-600 hover:via-yellow-500 hover:to-gold-700 text-black px-8 sm:px-10 md:px-14 py-4 md:py-5 text-base md:text-lg font-semibold rounded-full transition-all duration-500 hover:shadow-2xl hover:scale-110 transform border-2 border-white/30 overflow-hidden w-full sm:w-auto"
                         onClick={() => window.location.href = '/collections/premium'}
                       >
-                        <span className="relative z-10 tracking-wide">Explore Prestige Collection</span>
-                        <span className="ml-3 text-xl">♦</span>
+                        <span className="relative z-10 tracking-wide">
+                          <span className="hidden sm:inline">Explore Prestige Collection</span>
+                          <span className="sm:hidden">Prestige Collection</span>
+                        </span>
+                        <span className="ml-2 md:ml-3 text-lg md:text-xl">♦</span>
                         <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       </button>
                       
                       <button 
-                        className="group relative bg-transparent border-2 border-amber-400/60 text-white hover:bg-amber-400/10 px-14 py-5 text-lg font-light rounded-full transition-all duration-500 hover:shadow-xl hover:scale-110 transform hover:border-amber-300"
+                        className="group relative bg-transparent border-2 border-amber-400/60 text-white hover:bg-amber-400/10 px-8 sm:px-10 md:px-14 py-4 md:py-5 text-base md:text-lg font-light rounded-full transition-all duration-500 hover:shadow-xl hover:scale-110 transform hover:border-amber-300 w-full sm:w-auto"
                         onClick={() => window.location.href = '/contact'}
                       >
-                        <span className="tracking-wide">Private Consultation</span>
+                        <span className="tracking-wide">
+                          <span className="hidden sm:inline">Private Consultation</span>
+                          <span className="sm:hidden">Consultation</span>
+                        </span>
                         <div className="absolute inset-0 bg-gradient-to-r from-amber-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                       </button>
                     </div>
                     
-                    <div className="mt-12 text-white/50 text-sm tracking-[0.2em]">
+                    <div className="mt-8 md:mt-12 text-white/50 text-xs sm:text-sm tracking-[0.15em] md:tracking-[0.2em]">
                       BY APPOINTMENT ONLY
                     </div>
                   </div>
