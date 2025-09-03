@@ -8,6 +8,7 @@ import { useAuth } from '@/lib/auth';
 import { Currency, CURRENCY_NAMES } from '@/lib/currency';
 import CartButton from '@/components/cart/cart-button';
 import MobileMenu from '@/components/mobile-menu';
+import { MetalRatesDropdown } from '@/components/metal-rates-dropdown';
 import logoPath from '@assets/company_logo_new.jpg';
 
 interface HeaderProps {
@@ -101,6 +102,9 @@ export default function Header({ selectedCurrency, onCurrencyChange }: HeaderPro
 
             {/* Right Section - Icons */}
             <div className="flex items-center space-x-1 md:space-x-4 flex-shrink-0">
+              {/* Metal Rates Dropdown */}
+              <MetalRatesDropdown selectedCurrency={selectedCurrency} />
+              
               {/* Currency Selection */}
               <Select value={selectedCurrency} onValueChange={onCurrencyChange} data-testid="select-currency">
                 <SelectTrigger className="bg-white/90 hover:bg-white border border-gray-300 rounded-full px-3 py-2 h-8 md:h-10 w-auto min-w-[80px] md:min-w-[120px] shadow-sm hover:shadow-md transition-all duration-200">

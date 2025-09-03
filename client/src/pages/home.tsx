@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { Product, HomeSection, HomeSectionItem } from '@shared/schema';
 import { Currency } from '@/lib/currency';
 import { ProductFilters as IProductFilters } from '@shared/cart-schema';
-import { MetalRatesTicker } from '@/components/metal-rates-ticker';
 import { ArrowRight, Star, Sparkles, Crown, Gem, Heart, Watch, Users, Baby, Palette, Wrench } from "lucide-react";
 import ringsImage from '@assets/new_rings.png';
 
@@ -554,7 +553,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen" data-testid="page-home" style={{ background: 'linear-gradient(135deg, #f8f4f0 0%, #e8ddd4 50%, #d4c5a9 100%)' }}>
-      <MetalRatesTicker />
       <Header
         selectedCurrency={selectedCurrency}
         onCurrencyChange={setSelectedCurrency}
