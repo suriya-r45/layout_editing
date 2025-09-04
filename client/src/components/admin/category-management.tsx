@@ -116,23 +116,51 @@ const HOME_CATEGORIES = {
       'Sport Watches'
     ]
   },
-  'mens': {
-    name: "Men's Jewellery",
+  'men': {
+    name: "Men",
     subcategories: [
-      'Rings',
-      'Bracelets', 
-      'Necklaces',
-      'Cufflinks',
-      'Tie Clips'
+      'Bracelets',
+      'Chain',
+      'Cufflinks Button',
+      'Pendant',
+      'Ring',
+      'Stud'
     ]
   },
-  'children': {
-    name: "Children's Jewellery",
+  'kids': {
+    name: "Kids",
     subcategories: [
-      "Kids' Rings",
-      "Kids' Necklaces",
-      "Kids' Earrings",
-      "Kids' Bracelets"
+      'Bangle',
+      'Bracelet',
+      'Chain',
+      'Earrings',
+      'Gold Kid Anklet',
+      'Necklace',
+      'Pendant',
+      'Ring',
+      'Waist Chain'
+    ]
+  },
+  'occasion': {
+    name: "Occasion",
+    subcategories: [
+      'Casual Wear',
+      'Daily Wear',
+      'Miniature',
+      'Office Wear',
+      'Party Wear',
+      'Pooja Items'
+    ]
+  },
+  'accessories': {
+    name: "Accessories",
+    subcategories: [
+      'Belt',
+      'Button Pin',
+      'Frames',
+      'Pen',
+      'Safety Pin',
+      'Wallet'
     ]
   },
   'materials': {

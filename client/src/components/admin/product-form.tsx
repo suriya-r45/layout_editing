@@ -19,10 +19,10 @@ const HOME_CATEGORIES = {
     subcategories: [
       'Engagement Rings',
       'Wedding Bands',
-      'Couple Rings',
-      'Cocktail Party Rings',
-      'Daily Wear Rings',
-      'Mens Rings'
+      'Fashion Rings',
+      'Cocktail Rings',
+      'Promise Rings',
+      'Birthstone Rings'
     ]
   },
   'necklaces': {
@@ -33,20 +33,36 @@ const HOME_CATEGORIES = {
       'Lockets',
       'Beaded Necklaces',
       'Collars',
-      'Long Necklaces Opera Chains',
-      'Multi Layered Necklaces'
+      'Long Necklaces/Opera Chains',
+      'Multi-layered Necklaces'
+    ]
+  },
+  'pendants': {
+    name: 'Pendants ✨',
+    subcategories: [
+      'Solitaire',
+      'Halo',
+      'Cluster',
+      'Heart',
+      'Cross',
+      'Initial',
+      'Diamond',
+      'Gemstone',
+      'Pearl',
+      'Bridal',
+      'Minimalist',
+      'Traditional'
     ]
   },
   'earrings': { 
     name: 'Earrings 🌸',
     subcategories: [
-      'Studs',
-      'Hoops',
-      'Drops Danglers',
-      'Chandbalis',
-      'Jhumkas',
+      'Stud Earrings',
+      'Hoop Earrings',
+      'Drop Earrings',
+      'Dangle Earrings',
       'Ear Cuffs',
-      'Kids Earrings'
+      'Huggie Earrings'
     ]
   },
   'bracelets': {
@@ -89,87 +105,162 @@ const HOME_CATEGORIES = {
       'Navratna'
     ]
   },
-  'pendants': {
-    name: 'Pendants ✨',
+  'watches': {
+    name: 'Watches ⌚',
     subcategories: [
-      'Solitaire',
-      'Halo',
-      'Cluster',
-      'Heart',
-      'Cross',
-      'Initial',
-      'Diamond',
-      'Gemstone',
-      'Pearl',
-      'Bridal',
-      'Minimalist',
-      'Traditional'
+      "Men's Watches",
+      "Women's Watches",
+      'Smartwatches',
+      'Luxury Watches',
+      'Sport Watches'
+    ]
+  },
+  'men': {
+    name: 'Men 👨',
+    subcategories: [
+      'Bracelets',
+      'Chain',
+      'Cufflinks Button',
+      'Pendant',
+      'Ring',
+      'Stud'
+    ]
+  },
+  'kids': {
+    name: 'Kids 🧒',
+    subcategories: [
+      'Bangle',
+      'Bracelet',
+      'Chain',
+      'Earrings',
+      'Gold Kid Anklet',
+      'Necklace',
+      'Pendant',
+      'Ring',
+      'Waist Chain'
+    ]
+  },
+  'occasion': {
+    name: 'Occasion 🎉',
+    subcategories: [
+      'Casual Wear',
+      'Daily Wear',
+      'Miniature',
+      'Office Wear',
+      'Party Wear',
+      'Pooja Items'
+    ]
+  },
+  'accessories': {
+    name: 'Accessories 👜',
+    subcategories: [
+      'Belt',
+      'Button Pin',
+      'Frames',
+      'Pen',
+      'Safety Pin',
+      'Wallet'
+    ]
+  },
+  'materials': {
+    name: 'Materials 💎',
+    subcategories: [
+      'Gold Jewellery',
+      'Silver Jewellery',
+      'Platinum Jewellery',
+      'Diamond Jewellery',
+      'Gemstone Jewellery',
+      'Pearl Jewellery'
+    ]
+  },
+  'collections': {
+    name: 'Collections 👰',
+    subcategories: [
+      'Bridal Collection',
+      'Vintage Collection',
+      'Contemporary Collection',
+      'Minimalist Collection',
+      'Celebrity Collection'
+    ]
+  },
+  'custom': {
+    name: 'Custom Jewellery ✏️',
+    subcategories: [
+      'Design Your Own',
+      'Engraving Services',
+      'Repairs & Restorations'
+    ]
+  },
+  'new_arrivals': {
+    name: 'New Arrivals ✨',
+    subcategories: [
+      'Latest Products',
+      'Featured Items',
+      'Trending Now',
+      'Exclusive Pieces'
+    ]
+  },
+  'gold_coins': {
+    name: 'Gold Coins 🪙',
+    subcategories: [
+      'Investment',
+      'Religious',
+      'Customized',
+      'Occasion',
+      'Corporate Gifting',
+      'Collectible',
+      'Plain',
+      'Hallmarked'
     ]
   },
   'mangalsutra': {
-    name: 'Mangalsutra & Thali Chains 🖤',
+    name: 'Mangalsutra 🖤',
     subcategories: [
-      'Traditional Mangalsutra',
-      'Modern Mangalsutra',
-      'Thali Thirumangalyam Chains'
+      'Traditional',
+      'Contemporary',
+      'Diamond',
+      'Gold',
+      'Long Chain',
+      'Short Chain',
+      'Pendant Style',
+      'Beaded'
     ]
   },
   'nose jewellery': {
-    name: 'Nose Jewellery 👃',
+    name: 'Nose Jewelry 👃',
     subcategories: [
-      'Nose Pins',
-      'Nose Rings Nath',
-      'Septum Rings'
+      'Nose Rings',
+      'Nose Studs',
+      'Septum Rings',
+      'Traditional',
+      'Contemporary',
+      'Diamond',
+      'Gold',
+      'Silver'
     ]
   },
   'anklets & toe rings': {
     name: 'Anklets & Toe Rings 👣',
     subcategories: [
-      'Silver Anklets',
-      'Beaded Anklets',
-      'Bridal Toe Rings',
-      'Daily Wear Toe Rings'
+      'Anklets',
+      'Toe Rings',
+      'Chain Anklets',
+      'Charm Anklets',
+      'Traditional',
+      'Contemporary',
+      'Gold',
+      'Silver'
     ]
   },
-  'brooches & pins': {
-    name: 'Brooches & Pins 🎀',
-    subcategories: [
-      'Saree Pins',
-      'Suit Brooches',
-      'Bridal Brooches',
-      'Cufflinks',
-      'Tie Pins'
-    ]
-  },
-  'kids jewellery': {
-    name: 'Kids Jewellery 🧒',
-    subcategories: [
-      'Baby Bangles',
-      'Nazariya Bracelets',
-      'Kids Earrings',
-      'Kids Chains',
-      'Kids Rings'
-    ]
-  },
-  'bridal & special collections': {
-    name: 'Bridal & Special Collections 👰',
+  'bridal collections': {
+    name: 'Bridal Collections 💍',
     subcategories: [
       'Bridal Sets',
-      'Temple Jewellery Sets',
-      'Antique Jewellery Collections',
-      'Custom Made Jewellery'
-    ]
-  },
-  'shop by material / gemstone': {
-    name: 'Shop by Material / Gemstone 💎',
-    subcategories: [
-      'Gold Jewellery 22K 18K 14K',
-      'Silver Jewellery Sterling Oxidized',
-      'Platinum Jewellery',
-      'Diamond Jewellery',
-      'Gemstone Jewellery',
-      'Pearl Jewellery',
-      'Fashion Artificial Jewellery'
+      'Wedding Jewelry',
+      'Engagement Jewelry',
+      'Traditional Bridal',
+      'Contemporary Bridal',
+      'Complete Sets'
     ]
   }
 };

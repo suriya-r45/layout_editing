@@ -48,12 +48,20 @@ const categories: Category[] = [
     subcategories: ['Men\'s Watches', 'Women\'s Watches', 'Smartwatches', 'Luxury Watches', 'Sport Watches']
   },
   {
-    name: 'Men\'s Jewellery',
-    subcategories: ['Rings', 'Bracelets', 'Necklaces', 'Cufflinks', 'Tie Clips']
+    name: 'Men',
+    subcategories: ['Bracelets', 'Chain', 'Cufflinks Button', 'Pendant', 'Ring', 'Stud']
   },
   {
-    name: 'Children\'s Jewellery',
-    subcategories: ['Kids\' Rings', 'Kids\' Necklaces', 'Kids\' Earrings', 'Kids\' Bracelets']
+    name: 'Kids',
+    subcategories: ['Bangle', 'Bracelet', 'Chain', 'Earrings', 'Gold Kid Anklet', 'Necklace', 'Pendant', 'Ring', 'Waist Chain']
+  },
+  {
+    name: 'Occasion',
+    subcategories: ['Casual Wear', 'Daily Wear', 'Miniature', 'Office Wear', 'Party Wear', 'Pooja Items']
+  },
+  {
+    name: 'Accessories',
+    subcategories: ['Belt', 'Button Pin', 'Frames', 'Pen', 'Safety Pin', 'Wallet']
   },
   {
     name: 'Materials',
@@ -103,8 +111,10 @@ const getCategoryIcon = (categoryName: string) => {
     'Bracelets': Crown,
     'Bangles': Crown,
     'Watches': Watch,
-    'Men\'s Jewellery': Diamond,
-    'Children\'s Jewellery': Star,
+    'Men': Diamond,
+    'Kids': Star,
+    'Occasion': Heart,
+    'Accessories': Crown,
     'Materials': Sparkles,
     'Collections': Crown,
     'Custom Jewellery': Heart,

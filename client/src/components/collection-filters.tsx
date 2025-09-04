@@ -105,6 +105,12 @@ export function CollectionFilters({ filters, onFiltersChange }: CollectionFilter
               <SelectItem value="earrings">EARRINGS</SelectItem>
               <SelectItem value="bracelets">BRACELETS</SelectItem>
               <SelectItem value="pendants">PENDANTS</SelectItem>
+              <SelectItem value="bangles">BANGLES</SelectItem>
+              <SelectItem value="watches">WATCHES</SelectItem>
+              <SelectItem value="men">MEN</SelectItem>
+              <SelectItem value="kids">KIDS</SelectItem>
+              <SelectItem value="occasion">OCCASION</SelectItem>
+              <SelectItem value="accessories">ACCESSORIES</SelectItem>
             </SelectContent>
           </Select>
 
