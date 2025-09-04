@@ -412,7 +412,7 @@ function CreateSectionDialog({
               <Label htmlFor="layoutType" className="font-medium text-gray-700" style={{ fontFamily: 'Cormorant Garamond, serif' }}>Layout Type *</Label>
               <Select
                 value={formData.layoutType}
-                onValueChange={(value: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine' | 'diamond' | 'floating' | 'radial' | 'artistic' | 'royal' | 'new-arrivals' | 'premium') => 
+                onValueChange={(value: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine' | 'diamond' | 'floating' | 'radial' | 'artistic' | 'royal' | 'new-arrivals' | 'premium' | 'slanted') => 
                   setFormData(prev => ({ ...prev, layoutType: value }))
                 }
               >
@@ -435,6 +435,7 @@ function CreateSectionDialog({
                   <SelectItem value="artistic">🎭 Artistic - Creative Collage Vision</SelectItem>
                   <SelectItem value="royal">👑 Royal - Majestic Palace Layout</SelectItem>
                   <SelectItem value="new-arrivals">✨ New Arrivals - Auto-scrolling Showcase</SelectItem>
+                  <SelectItem value="slanted">🎯 Slanted - Tilted Auto-scrolling Cards</SelectItem>
                   <SelectItem value="premium">👑 Premium - Ultra-Luxury Elite Showcase</SelectItem>
                   <SelectItem value="zen">🧘 Zen - Minimalist Floating Cards</SelectItem>
                 </SelectContent>

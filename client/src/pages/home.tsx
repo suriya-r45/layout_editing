@@ -1120,6 +1120,35 @@ export default function Home() {
           return <NewArrivalsSection key={section.id} section={section} selectedCurrency={selectedCurrency} />;
         }
 
+        // Slanted layout rendering - Products with slanted auto-scrolling cards
+        if (section.layoutType === 'slanted') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-16 overflow-hidden" 
+              style={{ background: 'linear-gradient(135deg, #fef7f0 0%, #fef3ec 50%, #feeee7 100%)' }}
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+            >
+              <div className="container mx-auto px-4">
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.title || 'Featured Collection'}
+                  </h2>
+                  <p className="text-lg text-gray-600 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+                    {section.description || 'Discover our handpicked selection of exquisite jewelry pieces'}
+                  </p>
+                </div>
+                
+                <SlantedProductScrollSection 
+                  items={section.items} 
+                  selectedCurrency={selectedCurrency}
+                  handleViewAllClick={handleViewAllClick}
+                />
+              </div>
+            </section>
+          );
+        }
+
         // Magazine layout rendering - Luxury Editorial Design
         if (section.layoutType === 'magazine') {
           return (
@@ -2419,14 +2448,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* Slanted Auto-Scrolling Product Section */}
-      {filteredProducts.length > 0 && (
-        <SlantedProductScrollSection 
-          products={filteredProducts.slice(0, 12)} 
-          selectedCurrency={selectedCurrency}
-          handleViewAllClick={handleViewAllClick}
-        />
-      )}
 
       {/* Shop by Budget Section */}
       <ShopByBudgetSection selectedCurrency={selectedCurrency} />
@@ -2438,8 +2459,8 @@ export default function Home() {
 }
 
 // Slanted Auto-Scrolling Product Section Component
-function SlantedProductScrollSection({ products, selectedCurrency, handleViewAllClick }: { 
-  products: Product[]; 
+function SlantedProductScrollSection({ items, selectedCurrency, handleViewAllClick }: { 
+  items: HomeSectionItemWithProduct[]; 
   selectedCurrency: Currency; 
   handleViewAllClick: (category: string) => void 
 }) {
@@ -2487,92 +2508,79 @@ function SlantedProductScrollSection({ products, selectedCurrency, handleViewAll
   }, [isUserScrolling]);
 
   return (
-    <section className="py-16 overflow-hidden" style={{ background: 'linear-gradient(135deg, #fef7f0 0%, #fef3ec 50%, #feeee7 100%)' }}>
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-            Featured Collection
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-            Discover our handpicked selection of exquisite jewelry pieces
-          </p>
-        </div>
-        
-        <div 
-          ref={scrollContainerRef}
-          className="flex overflow-x-auto scrollbar-hide gap-6 pb-4"
-          style={{ 
-            scrollbarWidth: 'none', 
-            msOverflowStyle: 'none',
-            scrollBehavior: 'smooth'
+    <div 
+      ref={scrollContainerRef}
+      className="flex overflow-x-auto scrollbar-hide gap-6 pb-4"
+      style={{ 
+        scrollbarWidth: 'none', 
+        msOverflowStyle: 'none',
+        scrollBehavior: 'smooth'
+      }}
+    >
+      {items.map((item, index) => (
+        <div
+          key={item.id}
+          className="flex-shrink-0 w-72 group cursor-pointer"
+          onClick={() => handleViewAllClick(item.product.category)}
+          style={{
+            transform: `rotate(${(index % 2 === 0) ? '2deg' : '-2deg'})`,
+            transition: 'all 0.4s ease'
           }}
         >
-          {products.map((product, index) => (
-            <div
-              key={product.id}
-              className="flex-shrink-0 w-72 group cursor-pointer"
-              onClick={() => handleViewAllClick(product.category)}
-              style={{
-                transform: `rotate(${(index % 2 === 0) ? '2deg' : '-2deg'})`,
-                transition: 'all 0.4s ease'
-              }}
-            >
-              <div 
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 group-hover:scale-105 group-hover:rotate-0"
-                style={{
-                  background: 'linear-gradient(145deg, #ffffff 0%, #fefefe 100%)',
-                  boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.05)'
-                }}
-              >
-                {/* Product Image */}
-                <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
-                  <img
-                    src={product.images?.[0] || ringsImage}
-                    alt={product.name}
-                    className="w-full h-full object-contain transform transition-all duration-700 group-hover:scale-110"
-                  />
-                  
-                  {/* Overlay with sparkle effect */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  {/* Floating sparkles */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <Sparkles className="w-6 h-6 text-amber-400 animate-pulse" />
-                  </div>
-                </div>
-                
-                {/* Product Info */}
-                <div className="p-6">
-                  <div className="mb-4">
-                    <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 mb-2 group-hover:text-amber-700 transition-colors">
-                      {product.name}
-                    </h3>
-                    <p className="text-sm text-gray-500 uppercase tracking-wide">
-                      {product.category}
-                    </p>
-                  </div>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl font-bold text-gray-900">
-                        {selectedCurrency === 'INR' ? '₹' : 'BD'}
-                      </span>
-                      <span className="text-2xl font-bold text-gray-900">
-                        {selectedCurrency === 'INR' 
-                          ? product.priceInr?.toLocaleString() 
-                          : Number(product.priceBhd)?.toFixed(3)
-                        }
-                      </span>
-                    </div>
-                    <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
-                  </div>
-                </div>
+          <div 
+            className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 group-hover:scale-105 group-hover:rotate-0"
+            style={{
+              background: 'linear-gradient(145deg, #ffffff 0%, #fefefe 100%)',
+              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1), 0 4px 16px rgba(0, 0, 0, 0.05)'
+            }}
+          >
+            {/* Product Image */}
+            <div className="aspect-square relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
+              <img
+                src={item.customImageUrl || item.product.images?.[0] || ringsImage}
+                alt={item.product.name}
+                className="w-full h-full object-contain transform transition-all duration-700 group-hover:scale-110"
+              />
+              
+              {/* Overlay with sparkle effect */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              {/* Floating sparkles */}
+              <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <Sparkles className="w-6 h-6 text-amber-400 animate-pulse" />
               </div>
             </div>
-          ))}
+            
+            {/* Product Info */}
+            <div className="p-6">
+              <div className="mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 mb-2 group-hover:text-amber-700 transition-colors">
+                  {item.product.name}
+                </h3>
+                <p className="text-sm text-gray-500 uppercase tracking-wide">
+                  {item.product.category}
+                </p>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-gray-900">
+                    {selectedCurrency === 'INR' ? '₹' : 'BD'}
+                  </span>
+                  <span className="text-2xl font-bold text-gray-900">
+                    {selectedCurrency === 'INR' 
+                      ? item.product.priceInr?.toLocaleString() 
+                      : Number(item.product.priceBhd)?.toFixed(3)
+                    }
+                  </span>
+                </div>
+                <ArrowRight className="w-5 h-5 text-gray-400 group-hover:text-amber-600 group-hover:translate-x-1 transition-all" />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
   );
 }
 
@@ -2580,124 +2588,115 @@ function SlantedProductScrollSection({ products, selectedCurrency, handleViewAll
 function ShopByBudgetSection({ selectedCurrency }: { selectedCurrency: Currency }) {
   const budgetRanges = selectedCurrency === 'INR' 
     ? [
-        { label: 'Under ₹15,000', value: '15000', bgColor: 'from-rose-400 to-pink-500' },
-        { label: 'Under ₹30,000', value: '30000', bgColor: 'from-amber-400 to-orange-500' },
-        { label: 'Under ₹60,000', value: '60000', bgColor: 'from-emerald-400 to-teal-500' }
+        { label: 'Under ₹15,000', value: '15000' },
+        { label: 'Under ₹30,000', value: '30000' },
+        { label: 'Under ₹60,000', value: '60000' }
       ]
     : [
-        { label: 'Under BD 50', value: '50', bgColor: 'from-rose-400 to-pink-500' },
-        { label: 'Under BD 100', value: '100', bgColor: 'from-amber-400 to-orange-500' },
-        { label: 'Under BD 200', value: '200', bgColor: 'from-emerald-400 to-teal-500' }
+        { label: 'Under BD 50', value: '50' },
+        { label: 'Under BD 100', value: '100' },
+        { label: 'Under BD 200', value: '200' }
       ];
 
   return (
-    <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #fef1f7 0%, #fde2e7 50%, #fcd3d8 100%)' }}>
-      {/* Decorative elements */}
-      <div className="absolute top-10 left-10 w-20 h-20 bg-pink-200 rounded-full opacity-20 animate-pulse"></div>
-      <div className="absolute top-32 right-20 w-16 h-16 bg-amber-200 rounded-full opacity-30 animate-bounce"></div>
-      <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-purple-200 rounded-full opacity-25"></div>
-      
-      {/* Floating sparkles */}
-      <div className="absolute top-20 left-1/3">
-        <Sparkles className="w-8 h-8 text-pink-300 animate-pulse" />
+    <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f8f2f5 0%, #f0e6ea 50%, #e8dade 100%)' }}>
+      {/* Decorative sparkles */}
+      <div className="absolute top-16 left-16">
+        <Sparkles className="w-8 h-8 text-pink-300 opacity-60 animate-pulse" />
       </div>
-      <div className="absolute bottom-32 right-1/3">
-        <Sparkles className="w-6 h-6 text-amber-300 animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute top-32 right-24">
+        <Sparkles className="w-6 h-6 text-pink-400 opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+      <div className="absolute bottom-24 left-1/3">
+        <Sparkles className="w-10 h-10 text-pink-200 opacity-40 animate-pulse" style={{ animationDelay: '1s' }} />
+      </div>
+      <div className="absolute bottom-16 right-16">
+        <Sparkles className="w-7 h-7 text-pink-300 opacity-55 animate-pulse" style={{ animationDelay: '3s' }} />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-16">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent"></div>
-            <Sparkles className="w-8 h-8 text-pink-400" />
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent"></div>
-          </div>
-          
-          <h2 className="text-4xl md:text-6xl font-light text-gray-900 mb-6" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+        <div className="text-left mb-16 ml-8">
+          <h2 className="text-4xl md:text-5xl font-light text-gray-800 mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
             Shop by
           </h2>
-          <h3 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-pink-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-8" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+          <h3 className="text-6xl md:text-8xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#8B4B6B' }}>
             Budget
           </h3>
-          
-          <div className="flex items-center justify-center gap-6">
-            <div className="w-16 h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent"></div>
+          <div className="flex items-center gap-3">
             <Sparkles className="w-6 h-6 text-pink-400" />
-            <div className="w-16 h-px bg-gradient-to-r from-transparent via-pink-400 to-transparent"></div>
+            <div className="w-20 h-px bg-pink-300"></div>
           </div>
         </div>
         
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mt-12">
           {budgetRanges.map((range, index) => (
             <div
               key={range.value}
-              className="group cursor-pointer transform transition-all duration-500 hover:scale-110 hover:-translate-y-2"
+              className="group cursor-pointer transform transition-all duration-700 hover:scale-110 hover:-translate-y-3"
               onClick={() => window.location.href = `/collections?budget=${range.value}&currency=${selectedCurrency}`}
               style={{
-                animation: `float ${3 + index * 0.5}s ease-in-out infinite`,
-                animationDelay: `${index * 0.5}s`
+                animation: `float ${4 + index * 0.8}s ease-in-out infinite`,
+                animationDelay: `${index * 0.8}s`
               }}
             >
-              {/* Hexagonal shape container */}
               <div className="relative">
-                {/* Outer glow effect */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${range.bgColor} rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300`}
-                     style={{ 
-                       width: index === 1 ? '200px' : '160px', 
-                       height: index === 1 ? '200px' : '160px',
-                       transform: 'scale(1.2)'
-                     }}></div>
+                {/* Shadow effect */}
+                <div className="absolute top-6 left-6 w-full h-full bg-black/10 rounded-full blur-lg transform scale-95"></div>
                 
-                {/* Main hexagon */}
+                {/* Main shape */}
                 <div 
-                  className={`relative bg-gradient-to-br ${range.bgColor} rounded-full shadow-2xl group-hover:shadow-3xl transition-all duration-500 flex items-center justify-center border-4 border-white/30 group-hover:border-white/50`}
+                  className="relative bg-gradient-to-br from-white via-pink-50 to-rose-100 shadow-2xl group-hover:shadow-3xl transition-all duration-700 flex items-center justify-center border-2 border-pink-200/30 group-hover:border-pink-300/50 overflow-hidden"
                   style={{ 
-                    width: index === 1 ? '200px' : '160px', 
-                    height: index === 1 ? '200px' : '160px',
+                    width: index === 1 ? '220px' : '180px', 
+                    height: index === 1 ? '220px' : '180px',
                     clipPath: index === 0 
                       ? 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)'
                       : index === 2 
-                        ? 'polygon(25% 0%, 75% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)'
+                        ? 'polygon(20% 0%, 80% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 30%)'
                         : 'circle(50%)'
                   }}
                 >
-                  {/* Inner content */}
-                  <div className="text-center text-white p-4">
-                    <div className="mb-2">
-                      <span className="text-xs font-semibold tracking-wider uppercase opacity-90">
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-pink-100/30 to-pink-200/50 group-hover:from-pink-100/40 group-hover:to-pink-300/60 transition-all duration-700"></div>
+                  
+                  {/* Content */}
+                  <div className="relative text-center p-6">
+                    <div className="mb-3">
+                      <span className="text-sm font-semibold tracking-wider uppercase text-gray-600 opacity-80">
                         Under
                       </span>
                     </div>
-                    <div className="font-bold text-lg md:text-xl lg:text-2xl leading-tight">
+                    <div className="font-bold text-xl md:text-2xl lg:text-3xl leading-tight text-gray-800 group-hover:text-pink-700 transition-colors duration-500">
                       {range.label.replace('Under ', '')}
-                    </div>
-                    
-                    {/* Sparkle icon */}
-                    <div className="mt-2 opacity-80 group-hover:opacity-100 transition-opacity">
-                      <Sparkles className="w-5 h-5 mx-auto animate-pulse" />
                     </div>
                   </div>
                   
                   {/* Hover arrow */}
-                  <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
-                    <ArrowRight className="w-5 h-5 text-white" />
+                  <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-2 group-hover:translate-x-0">
+                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg">
+                      <ArrowRight className="w-4 h-4 text-pink-600" />
+                    </div>
                   </div>
+                  
+                  {/* Decorative elements */}
+                  <div className="absolute top-4 left-4 w-3 h-3 bg-pink-300 rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="absolute top-6 right-8 w-2 h-2 bg-pink-400 rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-500"></div>
                 </div>
               </div>
             </div>
           ))}
         </div>
         
-        <div className="text-center mt-16">
-          <p className="text-lg text-gray-600 mb-8" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-            Find your perfect piece within your budget
+        <div className="text-center mt-20">
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            Discover exquisite jewelry pieces crafted to match your budget and style preferences
           </p>
           <Button 
-            className="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white px-8 py-4 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            className="bg-gradient-to-r from-pink-400 to-rose-500 hover:from-pink-500 hover:to-rose-600 text-white px-10 py-4 rounded-full text-lg font-medium shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500 border border-pink-300/30"
             onClick={() => window.location.href = '/collections'}
           >
-            Explore All Collections
-            <ArrowRight className="ml-2 h-5 w-5" />
+            View All Collections
+            <ArrowRight className="ml-3 h-5 w-5" />
           </Button>
         </div>
       </div>
@@ -2705,8 +2704,9 @@ function ShopByBudgetSection({ selectedCurrency }: { selectedCurrency: Currency 
       {/* CSS for floating animation */}
       <style>{`
         @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-10px); }
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          33% { transform: translateY(-8px) rotate(1deg); }
+          66% { transform: translateY(-4px) rotate(-1deg); }
         }
       `}</style>
     </section>
