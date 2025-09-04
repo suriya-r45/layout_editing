@@ -2599,114 +2599,150 @@ function ShopByBudgetSection({ selectedCurrency }: { selectedCurrency: Currency 
       ];
 
   return (
-    <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #f8f2f5 0%, #f0e6ea 50%, #e8dade 100%)' }}>
-      {/* Decorative sparkles */}
-      <div className="absolute top-16 left-16">
-        <Sparkles className="w-8 h-8 text-pink-300 opacity-60 animate-pulse" />
+    <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #fdf2f8 0%, #fce7f3 30%, #f3e8ff 70%, #ede9fe 100%)' }}>
+      {/* Decorative sparkles positioned like in reference */}
+      <div className="absolute top-20 left-20">
+        <Sparkles className="w-12 h-12 text-pink-300 opacity-40 animate-pulse" />
       </div>
-      <div className="absolute top-32 right-24">
-        <Sparkles className="w-6 h-6 text-pink-400 opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-32 right-32">
+        <Sparkles className="w-8 h-8 text-purple-300 opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
-      <div className="absolute bottom-24 left-1/3">
-        <Sparkles className="w-10 h-10 text-pink-200 opacity-40 animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-32 left-1/4">
+        <Sparkles className="w-16 h-16 text-pink-200 opacity-30 animate-pulse" style={{ animationDelay: '1s' }} />
       </div>
-      <div className="absolute bottom-16 right-16">
-        <Sparkles className="w-7 h-7 text-pink-300 opacity-55 animate-pulse" style={{ animationDelay: '3s' }} />
+      <div className="absolute bottom-20 right-20">
+        <Sparkles className="w-10 h-10 text-purple-200 opacity-35 animate-pulse" style={{ animationDelay: '3s' }} />
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-left mb-16 ml-8">
-          <h2 className="text-4xl md:text-5xl font-light text-gray-800 mb-2" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+        <div className="text-left mb-20 ml-4">
+          <h2 className="text-5xl md:text-6xl font-light text-gray-700 mb-1" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
             Shop by
           </h2>
-          <h3 className="text-6xl md:text-8xl font-bold text-gray-800 mb-4" style={{ fontFamily: 'Cormorant Garamond, serif', color: '#8B4B6B' }}>
+          <h3 className="text-7xl md:text-9xl font-bold mb-6" style={{ 
+            fontFamily: 'Cormorant Garamond, serif', 
+            background: 'linear-gradient(45deg, #be185d, #7c3aed, #be185d)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text'
+          }}>
             Budget
           </h3>
-          <div className="flex items-center gap-3">
-            <Sparkles className="w-6 h-6 text-pink-400" />
-            <div className="w-20 h-px bg-pink-300"></div>
+          <div className="flex items-center gap-4">
+            <Sparkles className="w-8 h-8 text-pink-400" />
+            <div className="w-24 h-px bg-gradient-to-r from-pink-400 to-purple-400"></div>
           </div>
         </div>
         
-        <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mt-12">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 mt-16">
           {budgetRanges.map((range, index) => (
             <div
               key={range.value}
-              className="group cursor-pointer transform transition-all duration-700 hover:scale-110 hover:-translate-y-3"
+              className="group cursor-pointer transform transition-all duration-700 hover:scale-110 hover:-translate-y-4"
               onClick={() => window.location.href = `/collections?budget=${range.value}&currency=${selectedCurrency}`}
               style={{
-                animation: `float ${4 + index * 0.8}s ease-in-out infinite`,
-                animationDelay: `${index * 0.8}s`
+                animation: `float ${5 + index * 1}s ease-in-out infinite`,
+                animationDelay: `${index * 1}s`
               }}
             >
               <div className="relative">
-                {/* Shadow effect */}
-                <div className="absolute top-6 left-6 w-full h-full bg-black/10 rounded-full blur-lg transform scale-95"></div>
+                {/* Multiple shadow layers for depth */}
+                <div className="absolute top-8 left-8 w-full h-full bg-black/5 blur-2xl transform scale-90" 
+                     style={{ 
+                       width: index === 1 ? '240px' : '200px', 
+                       height: index === 1 ? '240px' : '200px',
+                       clipPath: index === 0 
+                         ? 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)'
+                         : index === 2 
+                           ? 'polygon(25% 0%, 75% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)'
+                           : 'circle(50%)'
+                     }}></div>
                 
-                {/* Main shape */}
+                {/* Main shape container */}
                 <div 
-                  className="relative bg-gradient-to-br from-white via-pink-50 to-rose-100 shadow-2xl group-hover:shadow-3xl transition-all duration-700 flex items-center justify-center border-2 border-pink-200/30 group-hover:border-pink-300/50 overflow-hidden"
+                  className="relative shadow-2xl group-hover:shadow-3xl transition-all duration-700 flex items-center justify-center overflow-hidden border-4 border-white/60 group-hover:border-white/80"
                   style={{ 
-                    width: index === 1 ? '220px' : '180px', 
-                    height: index === 1 ? '220px' : '180px',
+                    width: index === 1 ? '240px' : '200px', 
+                    height: index === 1 ? '240px' : '200px',
+                    background: index === 0
+                      ? 'linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 50%, #ddd6fe 100%)'
+                      : index === 1
+                        ? 'linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%)'
+                        : 'linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #bbf7d0 100%)',
                     clipPath: index === 0 
                       ? 'polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%)'
                       : index === 2 
-                        ? 'polygon(20% 0%, 80% 0%, 100% 30%, 80% 100%, 20% 100%, 0% 30%)'
+                        ? 'polygon(25% 0%, 75% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)'
                         : 'circle(50%)'
                   }}
                 >
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent via-pink-100/30 to-pink-200/50 group-hover:from-pink-100/40 group-hover:to-pink-300/60 transition-all duration-700"></div>
+                  {/* Inner glow effect */}
+                  <div className="absolute inset-0 opacity-60 group-hover:opacity-80 transition-opacity duration-700"
+                       style={{
+                         background: index === 0
+                           ? 'radial-gradient(circle at center, rgba(147, 51, 234, 0.1) 0%, transparent 70%)'
+                           : index === 1
+                             ? 'radial-gradient(circle at center, rgba(236, 72, 153, 0.1) 0%, transparent 70%)'
+                             : 'radial-gradient(circle at center, rgba(34, 197, 94, 0.1) 0%, transparent 70%)'
+                       }}></div>
                   
                   {/* Content */}
-                  <div className="relative text-center p-6">
-                    <div className="mb-3">
-                      <span className="text-sm font-semibold tracking-wider uppercase text-gray-600 opacity-80">
+                  <div className="relative text-center p-8">
+                    <div className="mb-4">
+                      <span className="text-xs font-bold tracking-[0.2em] uppercase opacity-70"
+                            style={{ 
+                              color: index === 0 ? '#7c3aed' : index === 1 ? '#ec4899' : '#059669'
+                            }}>
                         Under
                       </span>
                     </div>
-                    <div className="font-bold text-xl md:text-2xl lg:text-3xl leading-tight text-gray-800 group-hover:text-pink-700 transition-colors duration-500">
+                    <div className="font-bold text-2xl md:text-3xl lg:text-4xl leading-tight transition-all duration-500"
+                         style={{ 
+                           color: index === 0 ? '#6b21a8' : index === 1 ? '#be185d' : '#047857'
+                         }}>
                       {range.label.replace('Under ', '')}
                     </div>
                   </div>
                   
-                  {/* Hover arrow */}
-                  <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-2 group-hover:translate-x-0">
-                    <div className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg">
-                      <ArrowRight className="w-4 h-4 text-pink-600" />
+                  {/* Hover arrow - clean white circle */}
+                  <div className="absolute bottom-8 right-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-3 group-hover:translate-x-0">
+                    <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-xl border border-gray-100">
+                      <ArrowRight className="w-5 h-5" style={{ 
+                        color: index === 0 ? '#7c3aed' : index === 1 ? '#ec4899' : '#059669'
+                      }} />
                     </div>
                   </div>
-                  
-                  {/* Decorative elements */}
-                  <div className="absolute top-4 left-4 w-3 h-3 bg-pink-300 rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute top-6 right-8 w-2 h-2 bg-pink-400 rounded-full opacity-50 group-hover:opacity-80 transition-opacity duration-500"></div>
                 </div>
               </div>
             </div>
           ))}
         </div>
         
-        <div className="text-center mt-20">
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
-            Discover exquisite jewelry pieces crafted to match your budget and style preferences
+        <div className="text-center mt-24">
+          <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: 'Cormorant Garamond, serif' }}>
+            Find your perfect piece within your desired price range. Each collection offers stunning craftsmanship and timeless elegance.
           </p>
           <Button 
-            className="bg-gradient-to-r from-pink-400 to-rose-500 hover:from-pink-500 hover:to-rose-600 text-white px-10 py-4 rounded-full text-lg font-medium shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-500 border border-pink-300/30"
+            className="text-lg font-semibold px-12 py-5 rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-500 border border-white/30"
+            style={{
+              background: 'linear-gradient(45deg, #be185d, #7c3aed, #be185d)',
+              color: 'white'
+            }}
             onClick={() => window.location.href = '/collections'}
           >
-            View All Collections
-            <ArrowRight className="ml-3 h-5 w-5" />
+            Explore All Collections
+            <ArrowRight className="ml-3 h-6 w-6" />
           </Button>
         </div>
       </div>
       
-      {/* CSS for floating animation */}
+      {/* Enhanced floating animation */}
       <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
-          33% { transform: translateY(-8px) rotate(1deg); }
-          66% { transform: translateY(-4px) rotate(-1deg); }
+          25% { transform: translateY(-12px) rotate(1deg); }
+          50% { transform: translateY(-6px) rotate(0deg); }
+          75% { transform: translateY(-10px) rotate(-1deg); }
         }
       `}</style>
     </section>
