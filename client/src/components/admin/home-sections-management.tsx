@@ -30,7 +30,7 @@ interface CreateHomeSectionData {
   title: string;
   subtitle: string;
   description: string;
-  layoutType: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine' | 'new-arrivals' | 'diamond' | 'floating' | 'radial' | 'artistic' | 'premium';
+  layoutType: 'grid' | 'featured' | 'mixed' | 'split' | 'festival' | 'carousel' | 'mosaic' | 'luxury' | 'magazine' | 'new-arrivals' | 'diamond' | 'floating' | 'radial' | 'artistic' | 'premium' | 'zen';
   isActive: boolean;
   displayOrder: number;
   backgroundColor: string;
@@ -436,6 +436,7 @@ function CreateSectionDialog({
                   <SelectItem value="royal">👑 Royal - Majestic Palace Layout</SelectItem>
                   <SelectItem value="new-arrivals">✨ New Arrivals - Auto-scrolling Showcase</SelectItem>
                   <SelectItem value="premium">👑 Premium - Ultra-Luxury Elite Showcase</SelectItem>
+                  <SelectItem value="zen">🧘 Zen - Minimalist Floating Cards</SelectItem>
                 </SelectContent>
               </Select>
             </div>
