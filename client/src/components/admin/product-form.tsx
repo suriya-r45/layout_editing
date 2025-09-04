@@ -598,15 +598,17 @@ function ProductForm({ currency }: ProductFormProps) {
                     <SelectValue placeholder={formData.category ? "Select Sub Category" : "Select Category First"} />
                   </SelectTrigger>
                   <SelectContent>
-                    {formData.category && HOME_CATEGORIES[formData.category as keyof typeof HOME_CATEGORIES]?.subcategories.map((subCat) => (
+                    {/* Show subcategories from static HOME_CATEGORIES */}
+                    {formData.category && HOME_CATEGORIES[formData.category as keyof typeof HOME_CATEGORIES]?.subcategories?.map((subCat) => (
                       <SelectItem key={subCat} value={subCat}>
                         {subCat}
                       </SelectItem>
                     ))}
-                    {/* For API categories, show subcategories if available */}
-                    {formData.category && apiCategories.find(cat => cat.id === formData.category)?.subcategories?.map((subCat: string) => (
-                      <SelectItem key={subCat} value={subCat}>
-                        {subCat}
+                    
+                    {/* For API categories, show children as subcategories */}
+                    {formData.category && apiCategories.find(cat => cat.id === formData.category)?.children?.map((child: any) => (
+                      <SelectItem key={`api-${child.id}`} value={child.name}>
+                        {child.name}
                       </SelectItem>
                     ))}
                   </SelectContent>
