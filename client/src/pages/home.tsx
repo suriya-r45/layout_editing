@@ -1690,178 +1690,393 @@ export default function Home() {
           );
         }
 
-        // Premium Layout - Modern Hexagonal Architecture
+        // Premium Layout - Modern Asymmetric Masonry Layout
         if (section.layoutType === 'premium') {
           return (
             <section 
               key={section.id} 
-              className="py-16 bg-gradient-to-r from-amber-900 to-yellow-900 relative" 
+              className="py-16 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
             >
-              <div className="max-w-6xl mx-auto px-6">
-                <div className="text-center mb-12">
-                  <div className="flex items-center justify-center mb-6">
-                    <Star className="w-6 h-6 text-yellow-400 mr-2" />
-                    <h2 className="text-3xl md:text-4xl font-bold text-white">{section.title}</h2>
-                    <Star className="w-6 h-6 text-yellow-400 ml-2" />
-                  </div>
+              <div className="max-w-7xl mx-auto px-6">
+                {/* Modern Header */}
+                <div className="text-center mb-16">
+                  <h2 className="text-4xl md:text-5xl font-light text-white mb-6 tracking-wide">
+                    {section.title}
+                  </h2>
                   {section.description && (
-                    <p className="text-lg text-amber-100 max-w-3xl mx-auto">{section.description}</p>
+                    <p className="text-lg text-gray-300 max-w-2xl mx-auto font-light">
+                      {section.description}
+                    </p>
                   )}
                 </div>
                 
-                {/* Products Grid */}
+                {/* Asymmetric Masonry Grid */}
                 {section.items && section.items.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    {section.items.map((item) => (
-                      <div key={item.id} className="bg-gradient-to-b from-yellow-50 to-amber-50 rounded-lg shadow-lg border border-yellow-200 p-6 hover:shadow-xl transition-shadow">
-                        <div className="mb-4">
-                          <ProductCard
-                            product={item.product}
-                            currency={selectedCurrency}
-                            showActions={false}
-                            customImageUrl={item.customImageUrl}
-                          />
-                        </div>
-                        <h3 className="text-lg font-semibold text-amber-900 mb-2">
-                          {item.displayName || item.product.name}
-                        </h3>
-                        <div className="text-xl font-bold text-amber-800">
-                          {item.displayPrice || (selectedCurrency === 'INR' 
-                            ? `₹${item.product.priceInr?.toLocaleString()}` 
-                            : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
-                        </div>
-                      </div>
-                    ))}
+                  <div className="relative">
+                    <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6 mb-16">
+                      {section.items.map((item, index) => {
+                        // Dynamic sizing pattern
+                        const getCardSize = (index: number) => {
+                          const patterns = [
+                            'md:col-span-2 md:row-span-2', // Large featured
+                            'md:col-span-1 md:row-span-1', // Small
+                            'md:col-span-2 md:row-span-1', // Wide
+                            'md:col-span-1 md:row-span-2', // Tall
+                            'md:col-span-1 md:row-span-1', // Small
+                            'md:col-span-2 md:row-span-1', // Wide
+                          ];
+                          return patterns[index % patterns.length];
+                        };
+                        
+                        const cardSize = getCardSize(index);
+                        const isLarge = cardSize.includes('span-2');
+                        
+                        return (
+                          <div 
+                            key={item.id} 
+                            className={`group relative cursor-pointer transition-all duration-500 hover:scale-105 hover:z-10 ${cardSize}`}
+                            onClick={() => handleViewAllClick(item.product.category)}
+                            style={{ 
+                              animationDelay: `${index * 150}ms`,
+                              animation: 'slideUp 0.8s ease-out forwards'
+                            }}
+                          >
+                            <div className="relative h-full bg-white rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-500 overflow-hidden">
+                              {/* Premium Badge */}
+                              <div className="absolute top-4 right-4 z-10 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                                PREMIUM
+                              </div>
+                              
+                              {/* Product Image Section */}
+                              <div className={`${isLarge ? 'h-64' : 'h-48'} overflow-hidden bg-gray-50`}>
+                                <ProductCard
+                                  product={item.product}
+                                  currency={selectedCurrency}
+                                  showActions={false}
+                                  customImageUrl={item.customImageUrl}
+                                />
+                              </div>
+                              
+                              {/* Content Section */}
+                              <div className="p-6">
+                                <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-2">
+                                  {item.displayName || item.product.name}
+                                </h3>
+                                
+                                <div className="flex items-center justify-between">
+                                  <span className="text-2xl font-bold text-amber-600">
+                                    {item.displayPrice || (selectedCurrency === 'INR' 
+                                      ? `₹${item.product.priceInr?.toLocaleString()}` 
+                                      : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
+                                  </span>
+                                  
+                                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <div className="w-8 h-8 bg-amber-100 rounded-full flex items-center justify-center">
+                                      <svg className="w-4 h-4 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                      </svg>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                {/* Tags for larger cards */}
+                                {isLarge && (
+                                  <div className="mt-4 flex flex-wrap gap-2">
+                                    <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Handcrafted</span>
+                                    <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">Limited Edition</span>
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    
+                    {/* Modern CTA */}
+                    <div className="text-center">
+                      <button 
+                        className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                        onClick={() => window.location.href = '/collections'}
+                      >
+                        View All Premium Collection
+                      </button>
+                    </div>
                   </div>
                 )}
-                
-                {/* Call to Action */}
-                <div className="text-center">
-                  <Button 
-                    className="bg-yellow-400 hover:bg-yellow-500 text-amber-900 px-8 py-3 rounded-lg font-bold"
-                    onClick={() => window.location.href = '/collections'}
-                  >
-                    Discover Premium
-                  </Button>
-                </div>
               </div>
+              
+              <style>{`
+                @keyframes slideUp {
+                  from {
+                    opacity: 0;
+                    transform: translateY(40px);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+                }
+              `}</style>
             </section>
           );
         }
 
-        // Royal Layout - Professional Clean Design
+        // Royal Layout - Elegant Hexagonal Diamond Grid
         if (section.layoutType === 'royal') {
           return (
             <section 
               key={section.id} 
-              className="py-16 bg-gradient-to-r from-purple-900 to-indigo-900 relative" 
+              className="py-20 bg-gradient-to-b from-purple-50 to-indigo-100" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
             >
               <div className="max-w-6xl mx-auto px-6">
-                <div className="text-center mb-12">
+                {/* Elegant Header */}
+                <div className="text-center mb-20">
                   <div className="flex items-center justify-center mb-6">
-                    <Crown className="w-8 h-8 text-yellow-400 mr-3" />
-                    <h2 className="text-3xl md:text-4xl font-bold text-white">{section.title}</h2>
-                    <Crown className="w-8 h-8 text-yellow-400 ml-3" />
+                    <Crown className="w-10 h-10 text-purple-600 mr-4" />
+                    <h2 className="text-5xl font-serif text-purple-900 tracking-wide">
+                      {section.title}
+                    </h2>
+                    <Crown className="w-10 h-10 text-purple-600 ml-4" />
                   </div>
                   {section.description && (
-                    <p className="text-lg text-purple-100 max-w-3xl mx-auto">{section.description}</p>
+                    <p className="text-xl text-purple-700 max-w-3xl mx-auto font-light italic">
+                      {section.description}
+                    </p>
                   )}
                 </div>
                 
-                {/* Products Grid */}
+                {/* Hexagonal Diamond Grid */}
                 {section.items && section.items.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    {section.items.map((item) => (
-                      <div key={item.id} className="bg-gradient-to-b from-purple-800 to-indigo-800 rounded-lg shadow-lg border border-yellow-400/30 p-6 hover:shadow-xl transition-shadow">
-                        <div className="mb-4">
-                          <ProductCard
-                            product={item.product}
-                            currency={selectedCurrency}
-                            showActions={false}
-                            customImageUrl={item.customImageUrl}
-                          />
-                        </div>
-                        <h3 className="text-lg font-bold text-yellow-100 mb-2">
-                          {item.displayName || item.product.name}
-                        </h3>
-                        <div className="text-xl font-bold text-yellow-400">
-                          {item.displayPrice || (selectedCurrency === 'INR' 
-                            ? `₹${item.product.priceInr?.toLocaleString()}` 
-                            : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
-                        </div>
-                      </div>
-                    ))}
+                  <div className="relative">
+                    {/* Custom hexagonal positioning */}
+                    <div className="relative">
+                      {section.items.map((item, index) => {
+                        // Create hexagonal diamond pattern positions
+                        const positions = [
+                          { row: 0, col: 1, size: 'large' },   // Top center - large
+                          { row: 1, col: 0, size: 'medium' },  // Left
+                          { row: 1, col: 2, size: 'medium' },  // Right
+                          { row: 2, col: 0.5, size: 'small' }, // Bottom left
+                          { row: 2, col: 1.5, size: 'small' }, // Bottom right
+                          { row: 3, col: 1, size: 'large' },   // Bottom center - large
+                        ];
+                        
+                        const pos = positions[index % positions.length];
+                        const isLarge = pos.size === 'large';
+                        const isMedium = pos.size === 'medium';
+                        
+                        return (
+                          <div 
+                            key={item.id} 
+                            className="absolute cursor-pointer group"
+                            onClick={() => handleViewAllClick(item.product.category)}
+                            style={{
+                              top: `${pos.row * 280}px`,
+                              left: `calc(${pos.col * 280}px + ${pos.row % 2 * 140}px)`,
+                              width: isLarge ? '320px' : isMedium ? '260px' : '200px',
+                              height: isLarge ? '400px' : isMedium ? '340px' : '280px',
+                              animationDelay: `${index * 200}ms`,
+                              animation: 'hexFloat 1s ease-out forwards'
+                            }}
+                          >
+                            {/* Hexagonal card */}
+                            <div className="relative w-full h-full">
+                              {/* Hexagon shape using clip-path */}
+                              <div 
+                                className="w-full h-full bg-white shadow-lg group-hover:shadow-2xl transition-all duration-500 overflow-hidden relative"
+                                style={{
+                                  clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
+                                  transform: 'scale(1)',
+                                  transition: 'transform 0.3s ease'
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.transform = 'scale(1.05)';
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.transform = 'scale(1)';
+                                }}
+                              >
+                                {/* Royal badge */}
+                                <div className="absolute top-8 right-8 z-10 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-3 py-1 rounded-full text-xs font-bold">
+                                  ROYAL
+                                </div>
+                                
+                                {/* Content positioned within hexagon */}
+                                <div className="absolute inset-0 flex flex-col items-center justify-center p-8">
+                                  {/* Product image */}
+                                  <div className={`${isLarge ? 'w-32 h-32' : isMedium ? 'w-24 h-24' : 'w-20 h-20'} mb-4 rounded-full overflow-hidden bg-gray-50 ring-4 ring-purple-200`}>
+                                    <ProductCard
+                                      product={item.product}
+                                      currency={selectedCurrency}
+                                      showActions={false}
+                                      customImageUrl={item.customImageUrl}
+                                    />
+                                  </div>
+                                  
+                                  {/* Product details */}
+                                  <div className="text-center">
+                                    <h3 className={`font-serif text-purple-900 font-semibold mb-2 ${isLarge ? 'text-lg' : isMedium ? 'text-base' : 'text-sm'} line-clamp-2`}>
+                                      {item.displayName || item.product.name}
+                                    </h3>
+                                    
+                                    <div className={`font-bold text-purple-600 ${isLarge ? 'text-xl' : isMedium ? 'text-lg' : 'text-base'}`}>
+                                      {item.displayPrice || (selectedCurrency === 'INR' 
+                                        ? `₹${item.product.priceInr?.toLocaleString()}` 
+                                        : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
+                                    </div>
+                                    
+                                    {/* Crown decoration for large cards */}
+                                    {isLarge && (
+                                      <div className="mt-3 flex justify-center">
+                                        <Crown className="w-6 h-6 text-purple-500" />
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    
+                    {/* Bottom CTA */}
+                    <div className="text-center mt-96 pt-20">
+                      <button 
+                        className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white px-10 py-4 rounded-full font-serif text-lg transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl flex items-center mx-auto"
+                        onClick={() => window.location.href = '/collections'}
+                      >
+                        <Crown className="w-5 h-5 mr-3" />
+                        Discover Royal Collection
+                        <Crown className="w-5 h-5 ml-3" />
+                      </button>
+                    </div>
                   </div>
                 )}
-                
-                {/* Call to Action */}
-                <div className="text-center">
-                  <Button 
-                    className="bg-yellow-400 hover:bg-yellow-500 text-purple-900 px-8 py-3 rounded-lg font-bold"
-                    onClick={() => window.location.href = '/collections'}
-                  >
-                    Royal Collection
-                  </Button>
-                </div>
               </div>
+              
+              <style>{`
+                @keyframes hexFloat {
+                  from {
+                    opacity: 0;
+                    transform: translateY(50px) scale(0.8);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateY(0) scale(1);
+                  }
+                }
+              `}</style>
             </section>
           );
         }
 
-        // Zen Layout - Japanese Zen Garden Architecture with Flowing Water Elements
+        // Zen Layout - Minimalist Flowing Columns Layout
         if (section.layoutType === 'zen') {
           return (
             <section 
               key={section.id} 
-              className="py-16 bg-gray-50 relative" 
+              className="py-24 bg-white" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
             >
-              <div className="max-w-6xl mx-auto px-6">
-                <div className="text-center mb-12">
-                  <h2 className="text-3xl md:text-4xl font-light text-gray-800 mb-4">{section.title}</h2>
+              <div className="max-w-5xl mx-auto px-6">
+                {/* Minimal Header */}
+                <div className="text-center mb-24">
+                  <h2 className="text-4xl font-extralight text-gray-900 mb-8 tracking-[0.2em]">
+                    {section.title}
+                  </h2>
                   {section.description && (
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">{section.description}</p>
+                    <div className="w-16 h-px bg-gray-300 mx-auto mb-8"></div>
+                  )}
+                  {section.description && (
+                    <p className="text-lg text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
+                      {section.description}
+                    </p>
                   )}
                 </div>
                 
-                {/* Products Grid */}
+                {/* Flowing Columns Layout */}
                 {section.items && section.items.length > 0 && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                    {section.items.map((item) => (
-                      <div key={item.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-                        <div className="mb-4">
-                          <ProductCard
-                            product={item.product}
-                            currency={selectedCurrency}
-                            showActions={false}
-                            customImageUrl={item.customImageUrl}
-                          />
-                        </div>
-                        <h3 className="text-lg font-medium text-gray-800 mb-2">
-                          {item.displayName || item.product.name}
-                        </h3>
-                        <div className="text-xl font-semibold text-gray-900">
-                          {item.displayPrice || (selectedCurrency === 'INR' 
-                            ? `₹${item.product.priceInr?.toLocaleString()}` 
-                            : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
-                        </div>
-                      </div>
-                    ))}
+                  <div className="relative">
+                    {/* Masonry-style flowing layout */}
+                    <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+                      {section.items.map((item, index) => {
+                        // Vary card heights for organic flow
+                        const heights = ['h-80', 'h-96', 'h-72', 'h-88', 'h-84'];
+                        const cardHeight = heights[index % heights.length];
+                        
+                        return (
+                          <div 
+                            key={item.id} 
+                            className="break-inside-avoid cursor-pointer group mb-8"
+                            onClick={() => handleViewAllClick(item.product.category)}
+                            style={{ 
+                              animationDelay: `${index * 100}ms`,
+                              animation: 'fadeInUp 0.6s ease-out forwards'
+                            }}
+                          >
+                            <div className={`bg-gray-50 rounded-none shadow-none hover:shadow-lg transition-all duration-700 overflow-hidden group-hover:bg-white ${cardHeight}`}>
+                              {/* Minimal product display */}
+                              <div className="h-2/3 overflow-hidden bg-white">
+                                <ProductCard
+                                  product={item.product}
+                                  currency={selectedCurrency}
+                                  showActions={false}
+                                  customImageUrl={item.customImageUrl}
+                                />
+                              </div>
+                              
+                              {/* Minimal content */}
+                              <div className="p-6 h-1/3 flex flex-col justify-center">
+                                <h3 className="text-base font-light text-gray-900 mb-3 line-clamp-2 leading-relaxed">
+                                  {item.displayName || item.product.name}
+                                </h3>
+                                
+                                <div className="flex items-center justify-between">
+                                  <span className="text-lg font-extralight text-gray-800 tracking-wide">
+                                    {item.displayPrice || (selectedCurrency === 'INR' 
+                                      ? `₹${item.product.priceInr?.toLocaleString()}` 
+                                      : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
+                                  </span>
+                                  
+                                  <div className="w-8 h-px bg-gray-300 group-hover:bg-gray-500 transition-colors duration-300"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    
+                    {/* Minimal CTA */}
+                    <div className="text-center mt-20">
+                      <div className="w-24 h-px bg-gray-300 mx-auto mb-8"></div>
+                      <button 
+                        className="text-gray-700 hover:text-gray-900 font-extralight tracking-[0.3em] text-sm uppercase transition-colors duration-300 border-b border-gray-300 hover:border-gray-700 pb-1"
+                        onClick={() => window.location.href = '/collections'}
+                      >
+                        Explore Collection
+                      </button>
+                    </div>
                   </div>
                 )}
-                
-                {/* Call to Action */}
-                <div className="text-center">
-                  <Button 
-                    className="bg-gray-800 hover:bg-gray-900 text-white px-8 py-3 rounded-lg font-medium"
-                    onClick={() => window.location.href = '/collections'}
-                  >
-                    View Collection
-                  </Button>
-                </div>
               </div>
+              
+              <style>{`
+                @keyframes fadeInUp {
+                  from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                  }
+                  to {
+                    opacity: 1;
+                    transform: translateY(0);
+                  }
+                }
+              `}</style>
             </section>
           );
         }
