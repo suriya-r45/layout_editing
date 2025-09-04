@@ -1690,188 +1690,160 @@ export default function Home() {
           );
         }
 
-        // Premium Layout - Sophisticated Glass-morphism Design
+        // Premium Layout - Modern Hexagonal Architecture
         if (section.layoutType === 'premium') {
           return (
             <section 
               key={section.id} 
-              className="relative py-20 md:py-28 min-h-screen overflow-hidden" 
+              className="py-24 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
-              style={{ 
-                background: 'linear-gradient(160deg, #fdf2f8 0%, #fcfcfc 15%, #f8fafc 35%, #f1f5f9 60%, #e2e8f0 85%, #cbd5e1 100%)',
-              }}
             >
-              {/* Sophisticated floating elements */}
+              {/* Geometric background pattern */}
               <div className="absolute inset-0">
-                {/* Organic glass shapes */}
-                <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-rose-300/20 via-pink-200/15 to-transparent rounded-full blur-2xl animate-pulse"></div>
-                <div className="absolute bottom-20 right-16 w-96 h-96 bg-gradient-to-tl from-purple-300/15 via-violet-200/10 to-transparent rounded-full blur-3xl"></div>
-                <div className="absolute top-1/3 right-1/4 w-48 h-48 bg-gradient-to-bl from-orange-300/12 via-amber-200/8 to-transparent rounded-full blur-2xl"></div>
-                <div className="absolute bottom-1/4 left-1/5 w-64 h-64 bg-gradient-to-tr from-blue-300/10 via-sky-200/6 to-transparent rounded-full blur-2xl"></div>
-                
-                {/* Delicate pattern overlay */}
-                <div className="absolute inset-0 opacity-[0.04]">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `
-                      radial-gradient(circle at 4px 4px, #f59e0b 1px, transparent 0),
-                      radial-gradient(circle at 20px 20px, #ec4899 0.5px, transparent 0),
-                      linear-gradient(30deg, transparent 46%, #8b5cf6 47%, #8b5cf6 49%, transparent 50%)
-                    `,
-                    backgroundSize: '40px 40px, 60px 60px, 120px 120px'
-                  }}></div>
-                </div>
-                
-                {/* Floating micro-elements */}
-                <div className="absolute top-16 right-20 w-2 h-2 bg-rose-400 rounded-full opacity-60 animate-bounce"></div>
-                <div className="absolute bottom-32 left-24 w-1 h-1 bg-purple-400 rounded-full opacity-50 animate-bounce" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute top-1/2 left-16 w-1.5 h-1.5 bg-orange-400 rounded-full opacity-40 animate-bounce" style={{ animationDelay: '2s' }}></div>
+                <svg className="absolute inset-0 w-full h-full opacity-5" viewBox="0 0 400 400">
+                  <defs>
+                    <pattern id="hexagon" x="0" y="0" width="100" height="87" patternUnits="userSpaceOnUse">
+                      <polygon points="50,1 93,25 93,74 50,98 7,74 7,25" fill="none" stroke="#f59e0b" strokeWidth="1"/>
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#hexagon)" />
+                </svg>
               </div>
-
-              <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-                {/* Elegant Header with Glass Effect */}
+              
+              <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+                {/* Hexagonal Header Design */}
                 <div className="text-center mb-20">
-                  <div className="inline-flex items-center justify-center mb-12">
-                    <div className="relative">
-                      {/* Glass morphism badge */}
-                      <div className="w-32 h-32 md:w-40 md:h-40 bg-white/30 backdrop-blur-xl rounded-full border border-white/40 shadow-2xl flex items-center justify-center">
-                        <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-br from-rose-400/20 via-purple-400/15 to-orange-400/20 rounded-full border border-white/50 flex items-center justify-center backdrop-blur-sm">
-                          <Diamond className="w-10 h-10 md:w-12 md:h-12 text-rose-600" />
-                        </div>
+                  <div className="relative inline-block mb-8">
+                    {/* Hexagonal frame */}
+                    <div className="relative w-32 h-28 mx-auto">
+                      <svg viewBox="0 0 100 87" className="w-full h-full">
+                        <polygon points="50,1 93,25 93,62 50,86 7,62 7,25" 
+                                fill="none" stroke="#f59e0b" strokeWidth="3" 
+                                className="animate-pulse"/>
+                      </svg>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <Gem className="w-8 h-8 text-amber-600" />
                       </div>
-                      {/* Floating accents */}
-                      <div className="absolute -top-3 -right-3 w-6 h-6 bg-gradient-to-br from-rose-400 to-pink-500 rounded-full opacity-80 animate-pulse"></div>
-                      <div className="absolute -bottom-3 -left-3 w-4 h-4 bg-gradient-to-br from-purple-400 to-violet-500 rounded-full opacity-70 animate-pulse" style={{ animationDelay: '1s' }}></div>
                     </div>
                   </div>
                   
-                  <h2 className="text-5xl md:text-7xl lg:text-8xl font-thin text-gray-800 mb-8 tracking-wide leading-none" 
-                      style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.02em' }}>
+                  <h2 className="text-5xl md:text-6xl font-light text-gray-900 mb-6 tracking-wider">
                     {section.title}
                   </h2>
-                  
                   {section.description && (
-                    <p className="text-xl md:text-2xl text-gray-600 font-light max-w-4xl mx-auto leading-relaxed px-4">
+                    <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed font-light">
                       {section.description}
                     </p>
                   )}
-                  
-                  {/* Elegant separator */}
-                  <div className="mt-12 flex justify-center">
-                    <div className="w-32 h-px bg-gradient-to-r from-transparent via-rose-300 to-transparent"></div>
-                  </div>
                 </div>
 
-                {/* Glass Cards Product Grid */}
+                {/* Hexagonal Product Grid */}
                 {section.items && section.items.length > 0 && (
                   <div className="mb-20">
-                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                      {/* Show only 4 items on mobile (2x2 grid), more on larger screens */}
-                      {section.items.slice(0, 4).map((item, index) => (
-                        <div key={item.id} className="group relative">
+                    <div className="relative">
+                      {/* Center hexagon - main product */}
+                      {section.items[0] && (
+                        <div className="flex justify-center mb-16">
                           <div className="relative">
-                            {/* Glass morphism card */}
-                            <div className="bg-white/40 backdrop-blur-xl rounded-3xl p-4 md:p-8 border border-white/50 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:bg-white/50 hover:border-white/60 hover:scale-[1.02]">
-                              {/* Subtle glow effect */}
-                              <div className="absolute -inset-1 bg-gradient-to-br from-rose-300/20 via-purple-300/15 to-orange-300/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                              
-                              {/* Content */}
-                              <div className="relative">
-                                <div className="mb-6">
-                                  <ProductCard
-                                    product={item.product}
-                                    currency={selectedCurrency}
-                                    showActions={false}
-                                  />
-                                </div>
-                                
-                                <div className="text-center space-y-3">
-                                  <h3 className="text-gray-800 font-semibold text-sm md:text-lg line-clamp-2" style={{ fontFamily: 'Inter, sans-serif' }}>
-                                    {item.product.name}
-                                  </h3>
-                                  
-                                  <div className="flex items-center justify-center">
-                                    <div className="px-4 py-2 bg-gradient-to-r from-rose-100/80 to-purple-100/80 rounded-full backdrop-blur-sm border border-white/60">
-                                      <p className="text-rose-700 font-bold text-xs md:text-sm">
-                                        {selectedCurrency === 'BHD' ? 'BD ' : '₹'}
-                                        {selectedCurrency === 'BHD' 
-                                          ? (parseFloat(item.product.priceBhd || '0')).toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
-                                          : (parseFloat(item.product.priceInr || '0')).toLocaleString('en-IN')
-                                        }
-                                      </p>
-                                    </div>
-                                  </div>
+                            {/* Large hexagonal frame */}
+                            <div className="w-80 h-80 relative group">
+                              <svg viewBox="0 0 100 87" className="absolute inset-0 w-full h-full">
+                                <polygon points="50,1 93,25 93,62 50,86 7,62 7,25" 
+                                        fill="#fef3c7" stroke="#f59e0b" strokeWidth="2" 
+                                        className="group-hover:fill-amber-100 transition-colors duration-300"/>
+                              </svg>
+                              <div className="absolute inset-4 rounded-lg overflow-hidden">
+                                <ProductCard
+                                  product={section.items[0].product}
+                                  currency={selectedCurrency}
+                                  showActions={false}
+                                  customImageUrl={section.items[0].customImageUrl}
+                                />
+                              </div>
+                              {/* Premium badge */}
+                              <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                                <div className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                                  ✦ PREMIUM ✦
                                 </div>
                               </div>
                             </div>
+                            
+                            {/* Product details */}
+                            <div className="text-center mt-8 max-w-sm mx-auto">
+                              <h3 className="text-2xl font-light text-gray-800 mb-4">
+                                {section.items[0].displayName || section.items[0].product.name}
+                              </h3>
+                              <div className="text-3xl font-light text-amber-600 mb-6">
+                                {section.items[0].displayPrice || (selectedCurrency === 'INR' 
+                                  ? `₹${section.items[0].product.priceInr?.toLocaleString()}` 
+                                  : `BD ${Number(section.items[0].product.priceBhd)?.toFixed(3)}`)}
+                              </div>
+                              <Button className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                                View Details
+                              </Button>
+                            </div>
                           </div>
                         </div>
-                      ))}
+                      )}
                       
-                      {/* Show additional items only on larger screens */}
-                      <div className="hidden lg:contents">
-                        {section.items.slice(4, 6).map((item, index) => (
-                          <div key={item.id} className="group relative">
-                            <div className="relative">
-                              <div className="bg-white/40 backdrop-blur-xl rounded-3xl p-8 border border-white/50 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:bg-white/50 hover:border-white/60 hover:scale-[1.02]">
-                                <div className="absolute -inset-1 bg-gradient-to-br from-rose-300/20 via-purple-300/15 to-orange-300/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                                
-                                <div className="relative">
-                                  <div className="mb-6">
+                      {/* Surrounding smaller hexagons */}
+                      {section.items.length > 1 && (
+                        <div className="flex justify-center">
+                          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl">
+                            {section.items.slice(1, 4).map((item, index) => (
+                              <div key={item.id} className="relative group">
+                                <div className="w-40 h-40 relative">
+                                  <svg viewBox="0 0 100 87" className="absolute inset-0 w-full h-full">
+                                    <polygon points="50,1 93,25 93,62 50,86 7,62 7,25" 
+                                            fill="#f9fafb" stroke="#e5e7eb" strokeWidth="2" 
+                                            className="group-hover:stroke-amber-400 group-hover:fill-amber-50 transition-colors duration-300"/>
+                                  </svg>
+                                  <div className="absolute inset-3 rounded-lg overflow-hidden">
                                     <ProductCard
                                       product={item.product}
                                       currency={selectedCurrency}
                                       showActions={false}
+                                      customImageUrl={item.customImageUrl}
                                     />
                                   </div>
-                                  
-                                  <div className="text-center space-y-3">
-                                    <h3 className="text-gray-800 font-semibold text-lg" style={{ fontFamily: 'Inter, sans-serif' }}>
-                                      {item.product.name}
-                                    </h3>
-                                    
-                                    <div className="flex items-center justify-center">
-                                      <div className="px-4 py-2 bg-gradient-to-r from-rose-100/80 to-purple-100/80 rounded-full backdrop-blur-sm border border-white/60">
-                                        <p className="text-rose-700 font-bold">
-                                          {selectedCurrency === 'BHD' ? 'BD ' : '₹'}
-                                          {selectedCurrency === 'BHD' 
-                                            ? (parseFloat(item.product.priceBhd || '0')).toLocaleString('en-US', { minimumFractionDigits: 3, maximumFractionDigits: 3 })
-                                            : (parseFloat(item.product.priceInr || '0')).toLocaleString('en-IN')
-                                          }
-                                        </p>
-                                      </div>
-                                    </div>
+                                  {/* Item number */}
+                                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-amber-500 text-white rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
+                                    {index + 1}
                                   </div>
                                 </div>
+                                
+                                <div className="text-center mt-4">
+                                  <h4 className="font-medium text-gray-700 text-sm mb-2 line-clamp-2">
+                                    {item.displayName || item.product.name}
+                                  </h4>
+                                  <p className="text-amber-600 font-semibold text-sm">
+                                    {item.displayPrice || (selectedCurrency === 'INR' 
+                                      ? `₹${item.product.priceInr?.toLocaleString()}` 
+                                      : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
+                                  </p>
+                                </div>
                               </div>
-                            </div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
 
-                {/* Sophisticated Call to Action */}
+                {/* Geometric Call to Action */}
                 <div className="text-center">
                   <div className="relative inline-block">
-                    {/* Glass button */}
-                    <button 
-                      className="relative bg-white/50 backdrop-blur-xl border border-white/60 text-gray-800 px-12 py-4 rounded-full font-semibold tracking-wide transition-all duration-500 hover:bg-white/60 hover:border-white/70 hover:shadow-2xl hover:scale-105 group"
+                    <svg viewBox="0 0 300 60" className="w-96 h-16">
+                      <polygon points="30,5 270,5 285,30 270,55 30,55 15,30" 
+                              fill="#f59e0b" className="drop-shadow-lg"/>
+                    </svg>
+                    <Button 
+                      className="absolute inset-0 text-white font-bold text-lg hover:scale-105 transition-transform duration-300"
                       onClick={() => window.location.href = '/collections'}
-                      style={{ fontFamily: 'Inter, sans-serif' }}
                     >
-                      {/* Gradient overlay on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-rose-200/30 via-purple-200/20 to-orange-200/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                      
-                      <span className="relative flex items-center">
-                        Explore Premium Collection
-                        <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                      </span>
-                    </button>
-                    
-                    {/* Floating decorative elements */}
-                    <div className="absolute -top-2 -right-2 w-3 h-3 bg-rose-400 rounded-full opacity-70 animate-ping"></div>
-                    <div className="absolute -bottom-2 -left-2 w-2 h-2 bg-purple-400 rounded-full opacity-60 animate-ping" style={{ animationDelay: '1s' }}></div>
+                      EXPLORE PREMIUM COLLECTION
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -1879,235 +1851,345 @@ export default function Home() {
           );
         }
 
-        // Royal layout rendering - Ultra-Modern Luxury Experience
+        // Royal Layout - Gothic Cathedral Architecture
         if (section.layoutType === 'royal') {
-          const featuredProduct = section.items[0];
-          const supportingProducts = section.items.slice(1);
-          
           return (
             <section 
               key={section.id} 
-              className="py-20 md:py-32 relative overflow-hidden" 
+              className="py-32 bg-black relative overflow-hidden" 
               data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
-              style={{ 
-                background: 'linear-gradient(145deg, #0c0c0c 0%, #1a1a1a 25%, #2d2d2d 50%, #1a1a1a 75%, #0c0c0c 100%)'
-              }}
             >
-              {/* Ultra-modern background architecture */}
+              {/* Gothic arches background */}
               <div className="absolute inset-0">
-                {/* Dynamic geometric shapes */}
-                <div className="absolute top-0 left-0 w-full h-full">
-                  <div className="absolute top-1/4 left-1/6 w-80 h-80 bg-gradient-to-br from-emerald-500/8 via-teal-400/5 to-transparent rounded-full blur-3xl"></div>
-                  <div className="absolute bottom-1/3 right-1/5 w-96 h-96 bg-gradient-to-tl from-blue-500/6 via-indigo-400/4 to-transparent rounded-full blur-3xl"></div>
-                  <div className="absolute top-2/3 left-1/3 w-64 h-64 bg-gradient-to-r from-violet-500/5 to-transparent rounded-full blur-2xl"></div>
-                </div>
-                
-                {/* Modern grid pattern */}
-                <div className="absolute inset-0 opacity-[0.03]">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `
-                      linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
-                      linear-gradient(rgba(59, 130, 246, 0.05) 1px, transparent 1px),
-                      linear-gradient(90deg, rgba(59, 130, 246, 0.05) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '60px 60px, 60px 60px, 300px 300px, 300px 300px'
-                  }}></div>
-                </div>
-                
-                {/* Floating accent elements */}
-                <div className="absolute top-10 right-10 w-3 h-3 bg-emerald-400 rounded-full opacity-60 animate-pulse"></div>
-                <div className="absolute bottom-20 left-16 w-2 h-2 bg-blue-400 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute top-1/2 right-1/4 w-1 h-1 bg-violet-400 rounded-full opacity-50 animate-pulse" style={{ animationDelay: '2s' }}></div>
+                <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 800 600">
+                  <defs>
+                    <pattern id="gothic-arches" x="0" y="0" width="200" height="300" patternUnits="userSpaceOnUse">
+                      <path d="M50,300 Q100,50 150,300" fill="none" stroke="#f59e0b" strokeWidth="2"/>
+                      <path d="M0,300 Q50,50 100,300" fill="none" stroke="#f59e0b" strokeWidth="2"/>
+                    </pattern>
+                  </defs>
+                  <rect width="100%" height="100%" fill="url(#gothic-arches)" />
+                </svg>
               </div>
-
-              <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-                {/* Revolutionary Header Design */}
+              
+              {/* Stained glass window effect */}
+              <div className="absolute top-10 right-10 w-32 h-48 opacity-30">
+                <svg viewBox="0 0 100 150" className="w-full h-full">
+                  <rect x="10" y="10" width="80" height="130" fill="none" stroke="#f59e0b" strokeWidth="2" rx="40"/>
+                  <circle cx="50" cy="40" r="20" fill="#fbbf24" opacity="0.3"/>
+                  <rect x="30" y="60" width="40" height="60" fill="#f59e0b" opacity="0.2"/>
+                </svg>
+              </div>
+              
+              <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+                {/* Cathedral Header */}
                 <div className="text-center mb-24">
-                  <div className="inline-flex items-center justify-center mb-16">
-                    <div className="relative">
-                      {/* Geometric icon container */}
-                      <div className="w-20 h-20 md:w-28 md:h-28 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl rotate-45 border border-gray-700 shadow-2xl">
-                        <div className="absolute inset-2 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-xl">
-                          <div className="absolute inset-0 flex items-center justify-center">
-                            <Crown className="w-8 h-8 md:w-12 md:h-12 text-emerald-400 -rotate-45" />
-                          </div>
-                        </div>
-                      </div>
-                      {/* Accent dots */}
-                      <div className="absolute -top-2 -right-2 w-4 h-4 bg-emerald-400 rounded-full opacity-80"></div>
-                      <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-blue-400 rounded-full opacity-60"></div>
+                  {/* Gothic arch frame */}
+                  <div className="relative inline-block mb-12">
+                    <svg viewBox="0 0 200 120" className="w-80 h-48">
+                      <path d="M20,120 Q100,20 180,120" fill="none" stroke="#f59e0b" strokeWidth="4" className="drop-shadow-lg"/>
+                      <path d="M40,120 Q100,40 160,120" fill="none" stroke="#fbbf24" strokeWidth="2"/>
+                    </svg>
+                    <div className="absolute inset-0 flex items-center justify-center pt-8">
+                      <Crown className="w-12 h-12 text-amber-400 drop-shadow-2xl" />
                     </div>
                   </div>
                   
-                  <h2 className="text-5xl md:text-7xl lg:text-8xl font-extralight text-white mb-12 tracking-wider leading-none" 
-                      style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.05em' }}>
+                  <h2 className="text-6xl md:text-8xl font-thin text-transparent bg-clip-text bg-gradient-to-b from-amber-200 to-amber-600 mb-8 tracking-widest drop-shadow-2xl">
                     {section.title}
                   </h2>
-                  
                   {section.description && (
-                    <p className="text-xl md:text-2xl text-gray-400 font-light max-w-5xl mx-auto leading-relaxed px-4">
+                    <p className="text-2xl text-amber-100 max-w-4xl mx-auto leading-relaxed font-light drop-shadow-lg">
                       {section.description}
                     </p>
                   )}
                 </div>
-                
-                {/* Revolutionary Product Showcase */}
-                {featuredProduct && (
-                  <div className="mb-28">
-                    {/* Asymmetric layout */}
-                    <div className="grid lg:grid-cols-5 gap-12 items-center">
-                      {/* Featured Product - Takes 3 columns */}
-                      <div className="lg:col-span-3 relative">
-                        <div className="relative group">
-                          {/* Modern backdrop */}
-                          <div className="absolute -inset-8 bg-gradient-to-br from-gray-800/30 via-gray-900/20 to-gray-800/30 rounded-3xl blur-xl group-hover:from-emerald-500/10 group-hover:to-blue-500/10 transition-all duration-1000"></div>
+
+                {/* Cathedral Altar - Featured Product */}
+                {section.items && section.items.length > 0 && (
+                  <div className="mb-24">
+                    <div className="flex justify-center">
+                      <div className="relative">
+                        {/* Gothic altar base */}
+                        <div className="w-96 h-96 relative">
+                          <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full">
+                            {/* Altar base */}
+                            <rect x="50" y="300" width="300" height="80" fill="#1f2937" stroke="#f59e0b" strokeWidth="3"/>
+                            {/* Gothic arch frame */}
+                            <path d="M50,300 Q200,50 350,300" fill="none" stroke="#f59e0b" strokeWidth="6" className="drop-shadow-xl"/>
+                            <path d="M80,300 Q200,100 320,300" fill="none" stroke="#fbbf24" strokeWidth="3"/>
+                            {/* Inner glow */}
+                            <path d="M100,300 Q200,130 300,300" fill="none" stroke="#fde68a" strokeWidth="1" opacity="0.7"/>
+                          </svg>
                           
-                          {/* Product container */}
-                          <div className="relative bg-gradient-to-br from-gray-900/80 via-gray-800/60 to-gray-900/80 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-gray-700/50 hover:border-emerald-400/30 transition-all duration-700 shadow-2xl">
-                            {/* Modern corner accents */}
-                            <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-emerald-400/40 rounded-tr-2xl"></div>
-                            <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-blue-400/40 rounded-bl-2xl"></div>
-                            
-                            {/* Status badge */}
-                            <div className="absolute top-6 left-6">
-                              <div className="px-4 py-2 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-full border border-emerald-400/30 backdrop-blur-sm">
-                                <span className="text-sm text-emerald-300 font-medium uppercase tracking-wider">Exclusive</span>
-                              </div>
-                            </div>
-                            
+                          {/* Product in the center */}
+                          <div className="absolute inset-16 bg-gradient-to-b from-amber-900/20 to-amber-800/40 backdrop-blur-sm rounded-lg border border-amber-500/30 overflow-hidden">
                             <ProductCard
-                              product={featuredProduct.product}
+                              product={section.items[0].product}
                               currency={selectedCurrency}
                               showActions={false}
-                              customImageUrl={featuredProduct.customImageUrl}
+                              customImageUrl={section.items[0].customImageUrl}
                             />
                           </div>
-                        </div>
-                      </div>
-                      
-                      {/* Product Info - Takes 2 columns */}
-                      <div className="lg:col-span-2 space-y-10">
-                        <div>
-                          <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-gray-800/60 to-gray-900/60 border border-gray-700/50 mb-8">
-                            <div className="w-2 h-2 bg-emerald-400 rounded-full mr-3 animate-pulse"></div>
-                            <span className="text-sm text-gray-300 font-medium uppercase tracking-wider">
-                              Limited Edition
-                            </span>
+                          
+                          {/* Royal seal */}
+                          <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+                            <div className="w-16 h-16 bg-gradient-to-br from-amber-500 to-yellow-600 rounded-full border-4 border-amber-300 flex items-center justify-center shadow-2xl">
+                              <Crown className="w-8 h-8 text-white" />
+                            </div>
                           </div>
-                          
-                          <h3 className="text-4xl md:text-5xl font-light text-white mb-8 leading-tight"
-                              style={{ fontFamily: 'Inter, sans-serif' }}>
-                            {featuredProduct.displayName || featuredProduct.product.name}
-                          </h3>
-                          
-                          <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                            {featuredProduct.product.description || 'Crafted with precision and passion, this exclusive piece represents the pinnacle of modern jewelry design.'}
-                          </p>
                         </div>
                         
-                        {/* Price and action */}
-                        <div className="space-y-6">
-                          <div className="flex items-baseline gap-3">
-                            <span className="text-3xl md:text-4xl font-light text-white">
-                              {featuredProduct.displayPrice || (selectedCurrency === 'INR' 
-                                ? `₹${featuredProduct.product.priceInr?.toLocaleString()}` 
-                                : `BD ${Number(featuredProduct.product.priceBhd)?.toFixed(3)}`)}
-                            </span>
-                            <span className="text-sm text-gray-500 uppercase tracking-wider">Starting</span>
+                        {/* Royal proclamation */}
+                        <div className="text-center mt-12 max-w-lg mx-auto">
+                          <div className="bg-gradient-to-r from-amber-900/30 via-amber-800/40 to-amber-900/30 backdrop-blur-md rounded-lg p-8 border border-amber-500/30">
+                            <h3 className="text-3xl font-light text-amber-100 mb-6 tracking-wide">
+                              {section.items[0].displayName || section.items[0].product.name}
+                            </h3>
+                            
+                            <div className="flex items-center justify-center gap-4 mb-6">
+                              <div className="h-px w-16 bg-amber-400"></div>
+                              <span className="text-4xl font-thin text-amber-300">
+                                {section.items[0].displayPrice || (selectedCurrency === 'INR' 
+                                  ? `₹${section.items[0].product.priceInr?.toLocaleString()}` 
+                                  : `BD ${Number(section.items[0].product.priceBhd)?.toFixed(3)}`)}
+                              </span>
+                              <div className="h-px w-16 bg-amber-400"></div>
+                            </div>
+                            
+                            <div className="inline-flex items-center gap-2 bg-amber-600/20 px-4 py-2 rounded-full border border-amber-500/40">
+                              <span className="text-amber-200 text-sm font-medium uppercase tracking-wider">⚜ ROYAL EXCLUSIVE ⚜</span>
+                            </div>
                           </div>
-                          
-                          <Button className="w-full bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-500 hover:to-blue-500 text-white px-8 py-4 rounded-2xl font-medium transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/25">
-                            Explore Details
-                            <ArrowRight className="ml-2 h-5 w-5" />
-                          </Button>
                         </div>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {/* Modern Product Grid */}
-                {supportingProducts.length > 0 && (
+                {/* Cathedral Pillars - Supporting Products */}
+                {section.items && section.items.length > 1 && (
                   <div className="mb-20">
-                    <div className="flex items-center justify-between mb-16">
-                      <div>
-                        <h3 className="text-3xl md:text-4xl font-light text-white mb-2"
-                            style={{ fontFamily: 'Inter, sans-serif' }}>
-                          More Collections
-                        </h3>
-                        <div className="w-16 h-1 bg-gradient-to-r from-emerald-400 to-blue-400 rounded-full"></div>
+                    <div className="text-center mb-16">
+                      <h3 className="text-4xl md:text-5xl font-thin text-amber-200 mb-6 tracking-wider">
+                        Royal Pillars
+                      </h3>
+                      <div className="flex items-center justify-center gap-4">
+                        <div className="w-20 h-px bg-gradient-to-r from-transparent to-amber-400"></div>
+                        <div className="w-3 h-3 rotate-45 bg-amber-400"></div>
+                        <div className="w-20 h-px bg-gradient-to-l from-transparent to-amber-400"></div>
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                      {/* Show only 4 items on mobile (2x2 grid), more on larger screens */}
-                      {supportingProducts.slice(0, 4).map((item, index) => (
-                        <div key={item.id} className="relative group">
-                          <div className="bg-gradient-to-br from-gray-900/60 via-gray-800/40 to-gray-900/60 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-gray-700/30 hover:border-emerald-400/30 transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/10">
-                            <ProductCard
-                              product={item.product}
-                              currency={selectedCurrency}
-                              showActions={false}
-                              customImageUrl={item.customImageUrl}
-                            />
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+                      {section.items.slice(1, 4).map((item, index) => (
+                        <div key={item.id} className="group">
+                          <div className="relative">
+                            {/* Gothic pillar */}
+                            <div className="w-full h-80 relative">
+                              <svg viewBox="0 0 200 320" className="absolute inset-0 w-full h-full">
+                                {/* Pillar base */}
+                                <rect x="20" y="280" width="160" height="40" fill="#374151" stroke="#f59e0b" strokeWidth="2"/>
+                                {/* Pillar shaft */}
+                                <rect x="80" y="60" width="40" height="220" fill="#1f2937" stroke="#f59e0b" strokeWidth="2"/>
+                                {/* Gothic capital */}
+                                <path d="M60,60 Q100,20 140,60" fill="#374151" stroke="#f59e0b" strokeWidth="2"/>
+                                <path d="M70,60 Q100,35 130,60" fill="none" stroke="#fbbf24" strokeWidth="1"/>
+                              </svg>
+                              
+                              {/* Product on pillar */}
+                              <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-gradient-to-b from-amber-900/30 to-amber-800/50 backdrop-blur-sm rounded-lg border border-amber-500/40 overflow-hidden group-hover:scale-110 transition-transform duration-500">
+                                <ProductCard
+                                  product={item.product}
+                                  currency={selectedCurrency}
+                                  showActions={false}
+                                  customImageUrl={item.customImageUrl}
+                                />
+                              </div>
+                              
+                              {/* Roman numeral */}
+                              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-amber-600 text-white rounded-full flex items-center justify-center text-xs font-bold border-2 border-amber-400">
+                                {['I', 'II', 'III'][index]}
+                              </div>
+                            </div>
                             
-                            <div className="mt-4 space-y-2">
-                              <h4 className="text-white font-medium text-sm md:text-base line-clamp-1" style={{ fontFamily: 'Inter, sans-serif' }}>
+                            {/* Pillar inscription */}
+                            <div className="text-center mt-8">
+                              <h4 className="text-amber-100 font-medium mb-3 tracking-wide">
                                 {item.displayName || item.product.name}
                               </h4>
-                              <p className="text-emerald-400 font-semibold text-xs md:text-sm">
+                              <div className="text-amber-300 font-light text-lg">
                                 {item.displayPrice || (selectedCurrency === 'INR' 
                                   ? `₹${item.product.priceInr?.toLocaleString()}` 
                                   : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
-                              </p>
+                              </div>
                             </div>
                           </div>
                         </div>
                       ))}
-                      
-                      {/* Show additional items only on larger screens */}
-                      <div className="hidden lg:contents">
-                        {supportingProducts.slice(4, 8).map((item, index) => (
-                          <div key={item.id} className="relative group">
-                            <div className="bg-gradient-to-br from-gray-900/60 via-gray-800/40 to-gray-900/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/30 hover:border-emerald-400/30 transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/10">
-                              <ProductCard
-                                product={item.product}
-                                currency={selectedCurrency}
-                                showActions={false}
-                                customImageUrl={item.customImageUrl}
-                              />
-                              
-                              <div className="mt-4 space-y-2">
-                                <h4 className="text-white font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>
-                                  {item.displayName || item.product.name}
-                                </h4>
-                                <p className="text-emerald-400 font-semibold">
-                                  {item.displayPrice || (selectedCurrency === 'INR' 
-                                    ? `₹${item.product.priceInr?.toLocaleString()}` 
-                                    : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        ))}
-                      </div>
                     </div>
                   </div>
                 )}
 
-                {/* Modern Call to Action */}
+                {/* Royal Decree - Call to Action */}
                 <div className="text-center">
-                  <div className="inline-flex items-center gap-6">
-                    <div className="h-px w-20 bg-gradient-to-r from-transparent to-gray-600"></div>
+                  <div className="relative inline-block">
+                    {/* Gothic scroll */}
+                    <svg viewBox="0 0 400 100" className="w-full max-w-md h-24">
+                      <path d="M20,50 Q50,20 100,25 L300,25 Q350,20 380,50 Q350,80 300,75 L100,75 Q50,80 20,50" 
+                            fill="#f59e0b" stroke="#fbbf24" strokeWidth="2" className="drop-shadow-xl"/>
+                      <path d="M30,50 Q55,30 100,35 L300,35 Q345,30 370,50 Q345,70 300,65 L100,65 Q55,70 30,50" 
+                            fill="none" stroke="#fde68a" strokeWidth="1"/>
+                    </svg>
                     <Button 
-                      className="bg-gradient-to-r from-gray-800 to-gray-900 hover:from-emerald-600 hover:to-blue-600 text-white border border-gray-700 hover:border-emerald-400 px-12 py-4 rounded-2xl text-base font-medium transition-all duration-500 hover:shadow-xl hover:shadow-emerald-500/25 group"
+                      className="absolute inset-0 text-black font-bold text-lg hover:scale-105 transition-transform duration-300 flex items-center justify-center"
                       onClick={() => window.location.href = '/collections'}
                     >
-                      Discover All Collections
-                      <ArrowRight className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                      ⚜ ENTER THE ROYAL COURT ⚜
                     </Button>
-                    <div className="h-px w-20 bg-gradient-to-l from-transparent to-gray-600"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          );
+        }
+
+        // Zen Layout - Minimalist Floating Cards Architecture
+        if (section.layoutType === 'zen') {
+          return (
+            <section 
+              key={section.id} 
+              className="py-28 bg-gradient-to-b from-slate-100 via-gray-50 to-white relative overflow-hidden" 
+              data-testid={`section-${section.title.toLowerCase().replace(/\s+/g, '-')}`}
+            >
+              {/* Subtle floating orbs */}
+              <div className="absolute inset-0">
+                <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-slate-200/30 to-gray-300/20 rounded-full blur-2xl animate-pulse"></div>
+                <div className="absolute bottom-32 right-16 w-24 h-24 bg-gradient-to-tl from-gray-200/40 to-slate-300/30 rounded-full blur-2xl animate-pulse" style={{animationDelay: '2s'}}></div>
+                <div className="absolute top-40 right-32 w-16 h-16 bg-gradient-to-br from-slate-300/25 to-gray-200/35 rounded-full blur-xl animate-pulse" style={{animationDelay: '1s'}}></div>
+              </div>
+              
+              <div className="max-w-6xl mx-auto px-4 md:px-6 relative z-10">
+                {/* Zen Header */}
+                <div className="text-center mb-20">
+                  <div className="inline-flex items-center justify-center mb-8">
+                    <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
+                    <div className="w-16 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-6"></div>
+                    <div className="p-3 bg-white rounded-full shadow-lg border border-slate-200">
+                      <Gem className="w-6 h-6 text-slate-600" />
+                    </div>
+                    <div className="w-16 h-px bg-gradient-to-l from-transparent via-slate-300 to-transparent mx-6"></div>
+                    <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
+                  </div>
+                  
+                  <h2 className="text-4xl md:text-5xl font-light text-slate-800 mb-6 tracking-wide">
+                    {section.title}
+                  </h2>
+                  {section.description && (
+                    <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed font-light">
+                      {section.description}
+                    </p>
+                  )}
+                </div>
+
+                {/* Floating Cards Layout */}
+                {section.items && section.items.length > 0 && (
+                  <div className="mb-20">
+                    <div className="relative">
+                      {section.items.map((item, index) => {
+                        // Create floating pattern positions
+                        const positions = [
+                          {x: 0, y: 0, rotation: 0, delay: 0}, // Center
+                          {x: -200, y: -80, rotation: -3, delay: 0.5}, // Top left
+                          {x: 200, y: -80, rotation: 3, delay: 1}, // Top right
+                          {x: -150, y: 100, rotation: 2, delay: 1.5}, // Bottom left
+                          {x: 150, y: 100, rotation: -2, delay: 2}, // Bottom right
+                          {x: 0, y: 180, rotation: 1, delay: 2.5}, // Bottom center
+                        ];
+                        
+                        const pos = positions[index] || {x: 0, y: 0, rotation: 0, delay: 0};
+                        
+                        return (
+                          <div key={item.id} 
+                               className="absolute group transition-all duration-700 hover:z-20"
+                               style={{
+                                 left: '50%',
+                                 top: '50%',
+                                 transform: `translate(calc(-50% + ${pos.x}px), calc(-50% + ${pos.y}px)) rotate(${pos.rotation}deg)`,
+                                 animationDelay: `${pos.delay}s`
+                               }}>
+                            {/* Floating card */}
+                            <div className="w-64 h-80 bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden group-hover:shadow-2xl group-hover:scale-105 transition-all duration-500 hover:rotate-0">
+                              {/* Card header */}
+                              <div className="h-12 bg-gradient-to-r from-slate-100 to-gray-100 flex items-center justify-center relative">
+                                <div className="w-8 h-px bg-slate-300"></div>
+                                <div className="mx-4 w-3 h-3 bg-slate-300 rounded-full"></div>
+                                <div className="w-8 h-px bg-slate-300"></div>
+                                
+                                {index === 0 && (
+                                  <div className="absolute -top-2 right-4">
+                                    <div className="px-3 py-1 bg-slate-600 text-white text-xs font-medium rounded-full">
+                                      Featured
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
+                              
+                              {/* Product image */}
+                              <div className="h-48 p-4 bg-gradient-to-b from-slate-50 to-white">
+                                <ProductCard
+                                  product={item.product}
+                                  currency={selectedCurrency}
+                                  showActions={false}
+                                  customImageUrl={item.customImageUrl}
+                                />
+                              </div>
+                              
+                              {/* Card content */}
+                              <div className="p-6 text-center bg-white">
+                                <h4 className="font-medium text-slate-800 text-lg mb-3 line-clamp-2">
+                                  {item.displayName || item.product.name}
+                                </h4>
+                                <div className="text-slate-600 font-semibold text-xl mb-4">
+                                  {item.displayPrice || (selectedCurrency === 'INR' 
+                                    ? `₹${item.product.priceInr?.toLocaleString()}` 
+                                    : `BD ${Number(item.product.priceBhd)?.toFixed(3)}`)}
+                                </div>
+                                
+                                <div className="flex items-center justify-center">
+                                  <div className="w-6 h-px bg-slate-300"></div>
+                                  <div className="mx-3 w-1.5 h-1.5 bg-slate-400 rounded-full"></div>
+                                  <div className="w-6 h-px bg-slate-300"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      }).slice(0, 6)} {/* Limit to 6 cards for optimal layout */}
+                    </div>
+                    
+                    {/* Spacer for absolute positioning */}
+                    <div className="h-96"></div>
+                  </div>
+                )}
+
+                {/* Zen Call to Action */}
+                <div className="text-center">
+                  <div className="inline-flex items-center gap-6">
+                    <div className="w-12 h-px bg-gradient-to-r from-transparent to-slate-300"></div>
+                    <Button 
+                      className="bg-slate-700 hover:bg-slate-800 text-white px-8 py-3 rounded-full font-medium text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+                      onClick={() => window.location.href = '/collections'}
+                    >
+                      Explore Collection
+                    </Button>
+                    <div className="w-12 h-px bg-gradient-to-l from-transparent to-slate-300"></div>
+                  </div>
+                  
+                  <div className="mt-6 flex items-center justify-center gap-3">
+                    <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
+                    <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
+                    <div className="w-2 h-2 bg-slate-300 rounded-full"></div>
                   </div>
                 </div>
               </div>
