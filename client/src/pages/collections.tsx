@@ -6,7 +6,7 @@ import { Product } from '@shared/schema';
 import { ProductFilters as IProductFilters } from '@shared/cart-schema';
 import ProductCard from '@/components/product-card';
 
-import { MobileBottomNav } from '@/components/mobile-bottom-nav';
+import MobileBottomNav from '@/components/mobile-bottom-nav';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import WhatsAppFloat from '@/components/whatsapp-float';
